@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HealthApplication</string>
+    <string name="skinFirts_text">Skin\nFirts</string>
+    <string name="dermatologyCenter_text">Dermatology Center</string>
 </resources>
