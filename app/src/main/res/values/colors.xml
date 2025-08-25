@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
     <color name="backgroundColor">#2260FF</color>
+    <color name="edittext_backgroundColor">#ECF1FF</color>
+    <color name="edittext_hintColor">#809CFF</color>
 </resources>
