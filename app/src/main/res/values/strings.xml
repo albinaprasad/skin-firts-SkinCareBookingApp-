@@ -15,4 +15,7 @@
     <string name="don_t_have_an_account">Don’t have an account?</string>
     <string name="hello">Hello!</string>
     <string name="or">or</string>
+    <string name="hi_welcome_back">Hi, WelcomeBack</string>
+    <string name="john_doe">John Doe</string>
+
 </resources>
