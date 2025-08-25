@@ -1,12 +1,11 @@
 package com.medicalhealth.healthapplication.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBinding
+import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
 class WelcomeScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeScreenBinding
@@ -15,10 +14,10 @@ class WelcomeScreenActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityWelcomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        binding.btnlogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }

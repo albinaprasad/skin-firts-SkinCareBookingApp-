@@ -5,4 +5,14 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="log_in">Log In</string>
     <string name="sign_Up">Sign Up</string>
+    <string name="welcome">Welcome</string>
+    <string name="email_phone">Email or Mobile Number</string>
+    <string name="mail">  example@example.com</string>
+    <string name="password">Password\n</string>
+    <string name="forgotPassword">Forget Password</string>
+    <string name="log_in_buttontext">Log In</string>
+    <string name="or_sign_up_with">or sign up with</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="hello">Hello!</string>
+    <string name="or">or</string>
 </resources>
