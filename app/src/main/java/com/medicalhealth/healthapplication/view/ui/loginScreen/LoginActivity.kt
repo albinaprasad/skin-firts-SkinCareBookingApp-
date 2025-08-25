@@ -1,16 +1,15 @@
-package com.medicalhealth.healthapplication.view
+package com.medicalhealth.healthapplication.view.ui.loginScreen
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.R
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.activity_login)
 
     }
 }
