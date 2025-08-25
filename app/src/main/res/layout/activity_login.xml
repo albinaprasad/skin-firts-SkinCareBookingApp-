@@ -159,6 +159,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
 
+        app:passwordToggleEnabled="true"
+        app:hintEnabled="false"
+        app:hintAnimationEnabled="false"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -172,9 +175,10 @@
             android:background="@drawable/edittext_round_edges"
             android:fontFamily="@font/leaguespartan_medium"
             android:hint="***********"
+
             android:inputType="textPassword"
             android:paddingStart="12dp"
-            android:paddingTop="24dp"
+
             app:passwordToggleEnabled="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
