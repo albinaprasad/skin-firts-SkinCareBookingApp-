@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.view.ui
+package com.medicalhealth.healthapplication.view.ui.loginScreen
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
