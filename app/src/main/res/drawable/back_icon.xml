@@ -4,12 +4,12 @@
     android:viewportWidth="10"
     android:viewportHeight="16">
 
-  <!-- White background -->
+
   <path
       android:pathData="M0,0L10,0L10,16L0,16Z"
       android:fillColor="#FFFFFF"/>
 
-  <!-- Blue arrow -->
+
   <path
       android:pathData="M9,1L1,8L9,15"
       android:strokeLineJoin="round"

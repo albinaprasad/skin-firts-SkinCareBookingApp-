@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.Login.Login">
+    tools:context=".view.LoginActivity">
 
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_semibold"
         android:text="@string/log_in"
-        android:textColor="@color/DarkBlue"
+        android:textColor="@color/button_blue"
         android:textSize="23dp"
         android:textStyle="bold"
         android:gravity="center"
@@ -29,6 +29,7 @@
     </TextView>
 
     <ImageButton
+        android:background="@color/white"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/back_icon"
@@ -48,13 +49,13 @@
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_semibold"
         android:text="@string/welcome"
-        android:textColor="@color/DarkBlue"
+        android:textColor="@color/button_blue"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="144:28"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintHorizontal_bias="0.131"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -68,7 +69,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_medium"
-        android:text="@string/data"
+        android:text="@string/lorem_ipsum"
         android:textColor="@color/black"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -188,7 +189,7 @@
         android:fontFamily="@font/leaguespartan_medium"
         android:gravity="end"
         android:text="@string/forgotPassword"
-        android:textColor="@color/DarkBlue"
+        android:textColor="@color/button_blue"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="185:16"
@@ -207,7 +208,7 @@
         android:id="@+id/login"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:backgroundTint="@color/DarkBlue"
+        android:backgroundTint="@color/button_blue"
         android:fontFamily="@font/leaguespartan_medium"
 
         android:text="@string/log_in_buttontext"
@@ -332,8 +333,8 @@
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/sign_up"
-          android:textColor="@color/DarkBlue"
+          android:text="@string/sign_Up"
+          android:textColor="@color/button_blue"
           android:fontFamily="@font/leaguespartan_semibold"
           android:gravity="bottom">
       </TextView>
