@@ -6,7 +6,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBinding
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
-import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
 class WelcomeScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWelcomeScreenBinding
