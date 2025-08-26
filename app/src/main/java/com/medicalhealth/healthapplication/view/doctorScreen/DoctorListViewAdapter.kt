@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 
-class DoctorListViewAdapter(val context: Context, val DoctorDataList: ArrayList<Doctors>) :
+class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<Doctors>) :
     RecyclerView.Adapter<DoctorListViewAdapter.doctorlistViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -23,11 +23,11 @@ class DoctorListViewAdapter(val context: Context, val DoctorDataList: ArrayList<
         holder: doctorlistViewHolder,
         position: Int
     ) {
-        val doctorData = DoctorDataList[position]
+        val doctorData = doctorDataList[position]
 
         holder.doctorBinding.doctorImage.setImageResource(doctorData.image)
-        holder.doctorBinding.doctorName.text = doctorData.name.toString()
-        holder.doctorBinding.specification.text = doctorData.specification.toString()
+        holder.doctorBinding.doctorName.text = doctorData.name
+        holder.doctorBinding.specification.text = doctorData.specification
 
         holder.doctorBinding.infoButton.setOnClickListener {
             Toast("info")
@@ -48,15 +48,10 @@ class DoctorListViewAdapter(val context: Context, val DoctorDataList: ArrayList<
         holder.doctorBinding.favBtn.setOnClickListener {
             Toast("fav")
         }
-
-
-
-
-
     }
 
     override fun getItemCount(): Int {
-        return DoctorDataList.size
+        return doctorDataList.size
     }
 
 
