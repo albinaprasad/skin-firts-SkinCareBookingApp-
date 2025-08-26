@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.SignupActivity">
 
     <TextView
@@ -33,16 +33,16 @@
         app:layout_constraintWidth_percent="0.6527" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
+        android:id="@+id/backbutton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
         android:background="@drawable/navigation_back_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.03"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.08838"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08838"
         app:layout_constraintWidth_percent="0.058" />
 
     <TextView
@@ -56,10 +56,10 @@
         android:textFontWeight="500"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintHeight_percent="0.0375"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1437"
         app:layout_constraintWidth_percent="0.594" />
 
@@ -76,12 +76,12 @@
         android:paddingLeft="15dp"
         android:textColorHint="@color/edittext_hintColor"
         android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="299:45"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1841"
         app:layout_constraintWidth_percent="0.8305" />
@@ -142,11 +142,11 @@
         android:text="@string/email"
         android:textColor="@color/black"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:flow_horizontalBias="0.0"
 
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.0375"
         app:layout_constraintStart_toStartOf="parent"
-        app:flow_horizontalBias="0.0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3702"
         app:layout_constraintWidth_percent="0.5944" />
@@ -262,15 +262,15 @@
 
         android:gravity="center_horizontal"
         android:text="@string/terms_and_privacy"
-        android:textSize="14dp"
-        app:layout_constraintVertical_bias="0.71"
-        app:layout_constraintHorizontal_bias="0.4942"
-        app:layout_constraintDimensionRatio="273:28"
-        app:layout_constraintStart_toStartOf="parent"
         android:textFontWeight="300"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="273:28"
+        app:layout_constraintHorizontal_bias="0.4942"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.71"
 
         app:layout_constraintWidth_percent="0.7583" />
 
@@ -278,10 +278,16 @@
         android:id="@+id/button2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="80dp"
+        android:background="@drawable/rounded_background"
+        android:fontFamily="@font/league_spartan_medium"
         android:text="@string/sign_up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="207:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -290,11 +296,111 @@
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        tools:layout_editor_absoluteX="157dp"
-        tools:layout_editor_absoluteY="670dp" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/league_spartan_medium"
+        android:gravity="center_horizontal"
+        android:text="@string/or_sign_up_with"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="273:15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83057"
+        app:layout_constraintWidth_percent="0.7583"
+        tools:layout_editor_absoluteX="126dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="138:40"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.899"
+        app:layout_constraintWidth_percent="0.3833">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button_login"
+            app:layout_constraintDimensionRatio="1:1"
+            app:srcCompat="@drawable/google_icon" />
+
+        <ImageButton
+            android:id="@+id/imageButton3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button_login"
+            app:layout_constraintDimensionRatio="0.5:0.8"
+            app:srcCompat="@drawable/facebook_icon" />
+
+        <ImageButton
+            android:id="@+id/imageButton4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button_login"
+            app:layout_constraintDimensionRatio="1:1"
+            app:srcCompat="@drawable/fingerprint_icon" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintDimensionRatio="273:28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96"
+        app:layout_constraintWidth_percent="0.7583">
+
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            android:fontFamily="@font/league_spartan_medium"
+            android:textColor="@color/black"
+            android:textAlignment="textEnd"
+            android:text="@string/already_have_an_account" />
+
+        <TextView
+            android:id="@+id/txtlogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/league_spartan_medium"
+            android:textSize="12dp"
+            android:textAlignment="textStart"
+            android:text="@string/log_in"
+            android:textColor="@color/backgroundColor"/>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

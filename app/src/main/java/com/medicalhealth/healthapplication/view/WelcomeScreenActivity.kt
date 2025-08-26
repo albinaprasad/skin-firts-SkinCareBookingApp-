@@ -19,5 +19,9 @@ class WelcomeScreenActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+        binding.btnsignup.setOnClickListener {
+            val intent = Intent(this@WelcomeScreenActivity,SignupActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

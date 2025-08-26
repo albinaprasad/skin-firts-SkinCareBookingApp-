@@ -7,25 +7,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.medicalhealth.healthapplication.R
-import com.medicalhealth.healthapplication.databinding.ActivitySignupBinding
+import com.medicalhealth.healthapplication.databinding.ActivitySetPasswordBinding
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
-class SignupActivity : AppCompatActivity() {
-    private lateinit var binding:ActivitySignupBinding
+class SetPasswordActivity : AppCompatActivity() {
+    private lateinit var binding:ActivitySetPasswordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivitySignupBinding.inflate(layoutInflater)
+        binding = ActivitySetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.backbutton.setOnClickListener {
-            val intent = Intent(this@SignupActivity,WelcomeScreenActivity::class.java)
+        binding.passwordbackbtn.setOnClickListener {
+            val intent = Intent(this@SetPasswordActivity,LoginActivity::class.java)
             startActivity(intent)
-        }
-        binding.txtlogin.setOnClickListener {
-            val intent = Intent(this@SignupActivity,LoginActivity::class.java)
-            startActivity(intent)
-        }
-
         }
     }
+}

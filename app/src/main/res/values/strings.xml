@@ -21,7 +21,11 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="dob">Date Of Birth</string>
     <string name="sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="set_password">Set Password</string>
+    <string name="create_new_password">Create New Password</string>
     <string name="dob_format">DD/MM/YYYY</string>
+    <string name="already_have_an_account">already have an account?</string>
     <string name="terms_and_privacy">
         By continuing, you agree to \n<font color="#2260FF">Terms of Use</font> and <font color="#2260FF">Privacy Policy</font>.
 </string>

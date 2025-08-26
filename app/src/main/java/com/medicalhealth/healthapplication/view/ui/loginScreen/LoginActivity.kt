@@ -1,15 +1,35 @@
 package com.medicalhealth.healthapplication.view.ui.loginScreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.R
+import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
+import com.medicalhealth.healthapplication.view.SetPasswordActivity
+import com.medicalhealth.healthapplication.view.SignupActivity
+import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var binding:ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnback.setOnClickListener {
+            val intent = Intent(this@LoginActivity,WelcomeScreenActivity::class.java)
+            startActivity(intent)
+        }
+        binding.txtsignup.setOnClickListener {
+            val intent = Intent(this@LoginActivity,SignupActivity::class.java)
+            startActivity(intent)
+        }
+        binding.txtforgotpassword.setOnClickListener {
+            val intent = Intent(this@LoginActivity,SetPasswordActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }

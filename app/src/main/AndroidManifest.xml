@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthApplication"
         tools:targetApi="31">
-
+        <activity
+            android:name=".view.SetPasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".view.ui.loginScreen.LoginActivity"
             android:exported="false" />
@@ -30,11 +32,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".view.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
