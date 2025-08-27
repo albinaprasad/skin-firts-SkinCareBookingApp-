@@ -147,6 +147,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
+        android:id="@+id/doctorImageButton"
         android:background="@color/white"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -187,7 +188,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintDimensionRatio="17:7"
         app:layout_constraintHorizontal_bias="0.2620"
-        app:layout_constraintVertical_bias="0.1700"
+        app:layout_constraintVertical_bias="0.1730"
         app:layout_constraintWidth_percent="0.1221"
         />
 
@@ -241,6 +242,194 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/offBlueConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3250"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2990"
+        android:background="@color/off_blue">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dateRecyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4816"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/offBlueConstraint"
+            app:layout_constraintBottom_toTopOf="@+id/scheduleContainer"
+            tools:listitem="@layout/item_date" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/scheduleContainer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/rounded_light_blue_bg"
+                app:layout_constraintDimensionRatio="300:132"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.8250"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dateRecyclerView">
+
+                <TextView
+                    android:id="@+id/headerDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/league_spartan"
+                    android:text="@string/date_wednesday_text"
+                    android:textColor="@color/button_blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.7523"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/scheduleContainer"
+                    tools:text="11 Wednesday - Today" />
+
+                <TextView
+                    android:id="@+id/timeOneTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/league_spartan_light"
+                    android:text="@string/time_9am"
+                    android:textColor="@color/button_blue"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toTopOf="@+id/timeTwoTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1055"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/headerDate"
+                    app:layout_constraintWidth_percent="0.0966" />
+
+                <ImageView
+                    android:id="@+id/dashedLineOneImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dotted_line_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.4949"
+                    app:layout_constraintStart_toStartOf="@id/timeOneTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/headerDate"
+                    app:layout_constraintVertical_bias="0.0850"
+                    />
+
+                <TextView
+                    android:id="@+id/timeTwoTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/league_spartan_light"
+                    android:text="@string/time_10am"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/button_blue"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="@id/scheduleRecyclerView"
+                    app:layout_constraintHorizontal_bias="0.1290"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/timeOneTextView"
+                    app:layout_constraintWidth_percent="0.0966" />
+
+                <TextView
+                    android:id="@+id/timeThreeTextView"
+                    android:layout_width="28dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/league_spartan_light"
+                    android:text="@string/time_11am"
+                    android:textColor="@color/button_blue"
+                    android:textSize="12dp"
+                    app:layout_constraintBottom_toTopOf="@id/timeFourTextView"
+                    app:layout_constraintEnd_toEndOf="@id/scheduleRecyclerView"
+                    app:layout_constraintHorizontal_bias="0.1290"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/timeTwoTextView"
+                    app:layout_constraintWidth_percent="0.0966" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/scheduleRecyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@id/dashedLineTwoImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5650"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dashedLineOneImageView"
+                    tools:listitem="@layout/item_schedule_appointment"
+                     />
+
+                <TextView
+                    android:id="@+id/timeFourTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/league_spartan_light"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/time_12am"
+                    android:textColor="@color/button_blue"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1055"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/timeThreeTextView"
+                    app:layout_constraintBottom_toBottomOf="@+id/scheduleContainer"
+                    app:layout_constraintWidth_percent="0.0966" />
+
+                <ImageView
+                    android:id="@+id/dashedLineTwoImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dotted_line_image"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5050"
+                    app:layout_constraintStart_toStartOf="@id/timeFourTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/scheduleRecyclerView"
+                    app:layout_constraintBottom_toBottomOf="@+id/scheduleContainer"
+                    app:layout_constraintWidth_percent="0.0966"
+                    app:layout_constraintVertical_bias="0.4275"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/doctorRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.42"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/offBlueConstraint"
+        app:layout_constraintWidth_percent="0.8250"
+        tools:listitem="@layout/item_doctor_profile" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentNavigation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        tools:layout="@layout/bottom_navigation_layout"
+        android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
+        android:foregroundGravity="bottom"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.0594"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8250"
+        >
+
+    </androidx.fragment.app.FragmentContainerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
