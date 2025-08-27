@@ -18,7 +18,7 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.backbutton.setOnClickListener {
+        binding.btnBackSignUp.setOnClickListener {
             val intent = Intent(this@SignupActivity,WelcomeScreenActivity::class.java)
             startActivity(intent)
         }

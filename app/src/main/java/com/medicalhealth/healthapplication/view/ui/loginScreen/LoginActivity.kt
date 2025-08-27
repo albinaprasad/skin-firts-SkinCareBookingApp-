@@ -18,18 +18,19 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnback.setOnClickListener {
-            val intent = Intent(this@LoginActivity,WelcomeScreenActivity::class.java)
-            startActivity(intent)
+        with(binding){
+            btnback.setOnClickListener {
+                val intent = Intent(this@LoginActivity,WelcomeScreenActivity::class.java)
+                startActivity(intent)
+            }
+            txtsignup.setOnClickListener {
+                val intent = Intent(this@LoginActivity,SignupActivity::class.java)
+                startActivity(intent)
+            }
+            txtforgotpassword.setOnClickListener {
+                val intent = Intent(this@LoginActivity,SetPasswordActivity::class.java)
+                startActivity(intent)
+            }
         }
-        binding.txtsignup.setOnClickListener {
-            val intent = Intent(this@LoginActivity,SignupActivity::class.java)
-            startActivity(intent)
-        }
-        binding.txtforgotpassword.setOnClickListener {
-            val intent = Intent(this@LoginActivity,SetPasswordActivity::class.java)
-            startActivity(intent)
-        }
-
     }
 }

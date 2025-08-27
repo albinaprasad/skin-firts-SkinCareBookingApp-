@@ -3,8 +3,7 @@
     <string name="skinFirts_text">Skin\nFirts</string>
     <string name="dermatologyCenter_text">Dermatology Center</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-    <string name="log_in">Log In</string>
-    <string name="sign_Up">Sign Up</string>
+    <string name="text_log_in">Log In</string>
     <string name="welcome">Welcome</string>
     <string name="email_phone">Email or Mobile Number</string>
     <string name="password">Password\n</string>
@@ -20,7 +19,8 @@
     <string name="email">Email</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="dob">Date Of Birth</string>
-    <string name="sign_up">Sign Up</string>
+    <string name="button_sign_up">Sign Up</string>
+    <string name="text_sign_up">Sign Up</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="set_password">Set Password</string>
     <string name="create_new_password">Create New Password</string>

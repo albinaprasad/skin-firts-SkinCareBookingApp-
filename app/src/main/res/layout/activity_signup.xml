@@ -33,7 +33,7 @@
         app:layout_constraintWidth_percent="0.6527" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/backbutton"
+        android:id="@+id/btnBackSignUp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -64,7 +64,7 @@
         app:layout_constraintWidth_percent="0.594" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/tvUserName"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -121,7 +121,7 @@
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/editTextTextPassword3"
+            android:id="@+id/tvPasswordSignUp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0"
@@ -152,7 +152,7 @@
         app:layout_constraintWidth_percent="0.5944" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/tvEmail"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -232,7 +232,7 @@
         app:layout_constraintWidth_percent="0.3638" />
 
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/tvDateOfBirth"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="31dp"
@@ -275,12 +275,12 @@
         app:layout_constraintWidth_percent="0.7583" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
+        android:id="@+id/btnSignUp"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/rounded_background"
         android:fontFamily="@font/league_spartan_medium"
-        android:text="@string/sign_up"
+        android:text="@string/button_sign_up"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="24dp"
@@ -329,7 +329,7 @@
         app:layout_constraintWidth_percent="0.3833">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnGoogle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
@@ -340,7 +340,7 @@
             app:srcCompat="@drawable/google_icon" />
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/btnFacebook"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
@@ -351,7 +351,7 @@
             app:srcCompat="@drawable/facebook_icon" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/btnFingerprint"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
@@ -398,7 +398,7 @@
             android:fontFamily="@font/league_spartan_medium"
             android:textSize="12dp"
             android:textAlignment="textStart"
-            android:text="@string/log_in"
+            android:text="@string/text_log_in"
             android:textColor="@color/backgroundColor"/>
     </LinearLayout>
 
