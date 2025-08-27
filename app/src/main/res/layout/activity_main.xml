@@ -249,7 +249,7 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3250"
+        app:layout_constraintHeight_percent="0.3050"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.2990"
@@ -273,7 +273,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/rounded_light_blue_bg"
-                app:layout_constraintDimensionRatio="300:132"
+                app:layout_constraintDimensionRatio="300:112"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintWidth_percent="0.8250"
                 app:layout_constraintStart_toStartOf="parent"
@@ -290,23 +290,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.7523"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/scheduleContainer"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="11 Wednesday - Today" />
 
                 <TextView
                     android:id="@+id/timeOneTextView"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/league_spartan_light"
                     android:text="@string/time_9am"
                     android:textColor="@color/button_blue"
                     android:textSize="12dp"
-                    app:layout_constraintBottom_toTopOf="@+id/timeTwoTextView"
+                    app:layout_constraintBottom_toTopOf="@+id/scheduleRecyclerView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.1055"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/headerDate"
-                    app:layout_constraintWidth_percent="0.0966" />
+                     />
 
                 <ImageView
                     android:id="@+id/dashedLineOneImageView"
@@ -317,71 +317,39 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.4949"
                     app:layout_constraintStart_toStartOf="@id/timeOneTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/headerDate"
-                    app:layout_constraintVertical_bias="0.0850"
+                    app:layout_constraintTop_toTopOf="@+id/timeOneTextView"
+                    app:layout_constraintVertical_bias="0.0650"
                     />
 
-                <TextView
-                    android:id="@+id/timeTwoTextView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/league_spartan_light"
-                    android:text="@string/time_10am"
-                    android:layout_marginTop="12dp"
-                    android:textColor="@color/button_blue"
-                    android:textSize="12dp"
-                    app:layout_constraintEnd_toEndOf="@id/scheduleRecyclerView"
-                    app:layout_constraintHorizontal_bias="0.1290"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/timeOneTextView"
-                    app:layout_constraintWidth_percent="0.0966" />
-
-                <TextView
-                    android:id="@+id/timeThreeTextView"
-                    android:layout_width="28dp"
-                    android:layout_height="18dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/league_spartan_light"
-                    android:text="@string/time_11am"
-                    android:textColor="@color/button_blue"
-                    android:textSize="12dp"
-                    app:layout_constraintBottom_toTopOf="@id/timeFourTextView"
-                    app:layout_constraintEnd_toEndOf="@id/scheduleRecyclerView"
-                    app:layout_constraintHorizontal_bias="0.1290"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/timeTwoTextView"
-                    app:layout_constraintWidth_percent="0.0966" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/scheduleRecyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="6dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintWidth_percent="0.90"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toTopOf="@id/dashedLineTwoImageView"
+                    app:layout_constraintBottom_toTopOf="@id/timeFourTextView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5650"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/timeOneTextView"
                     app:layout_constraintTop_toBottomOf="@+id/dashedLineOneImageView"
                     tools:listitem="@layout/item_schedule_appointment"
                      />
 
                 <TextView
                     android:id="@+id/timeFourTextView"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/league_spartan_light"
-                    android:layout_marginTop="10dp"
                     android:text="@string/time_12am"
                     android:textColor="@color/button_blue"
                     android:textSize="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.1055"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/timeThreeTextView"
-                    app:layout_constraintBottom_toBottomOf="@+id/scheduleContainer"
-                    app:layout_constraintWidth_percent="0.0966" />
+                    app:layout_constraintTop_toBottomOf="@+id/scheduleRecyclerView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"/>
 
                 <ImageView
                     android:id="@+id/dashedLineTwoImageView"
@@ -389,10 +357,10 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/dotted_line_image"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5050"
+                    app:layout_constraintHorizontal_bias="0.4949"
                     app:layout_constraintStart_toStartOf="@id/timeFourTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/scheduleRecyclerView"
-                    app:layout_constraintBottom_toBottomOf="@+id/scheduleContainer"
+                    app:layout_constraintTop_toTopOf="@+id/timeFourTextView"
+                    app:layout_constraintBottom_toBottomOf="@+id/timeFourTextView"
                     app:layout_constraintWidth_percent="0.0966"
                     app:layout_constraintVertical_bias="0.4275"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -421,7 +389,6 @@
         tools:layout="@layout/bottom_navigation_layout"
         android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
         android:foregroundGravity="bottom"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.0594"

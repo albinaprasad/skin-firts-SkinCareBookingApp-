@@ -1,64 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="201dp"
-    android:layout_height="51dp"
-    android:background="@drawable/rounded_blue_bg">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_schedule_appointment_layout">
 
     <TextView
-        android:id="@+id/doctorNameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/leaguespartan_semibold"
-        android:text="Dr. Olivia Turner, M.D."
-        android:textColor="@color/button_blue"
-        android:textSize="12dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/statusIcons"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.6066" />
-
-    <TextView
-        android:id="@+id/treatmentTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:fontFamily="@font/league_spartan_light"
-        android:text="Treatment and prevention of \nskin and photodermatitis."
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:textColor="@color/black"
-        android:textSize="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.26"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/doctorNameTextView"
-        app:layout_constraintWidth_percent="0.7192" />
-
-    <LinearLayout
-        android:id="@+id/statusIcons"
+        android:id="@+id/timeTwoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/league_spartan_light"
+        android:text="@string/time_10am"
+        android:textColor="@color/button_blue"
+        android:textSize="12dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintEnd_toStartOf="@id/doctorAvailableConstraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.0966"
+        app:layout_constraintHorizontal_bias="0"/>
+
+    <TextView
+        android:id="@+id/timeThreeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/league_spartan_light"
+        android:text="@string/time_11am"
+        android:textColor="@color/button_blue"
+        android:layout_marginTop="2dp"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/doctorAvailableConstraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeTwoTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent="0.0966"
+        app:layout_constraintHorizontal_bias="0"/>
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/doctorAvailableConstraintLayout"
+        android:layout_width="201dp"
+        android:layout_height="51dp"
+        android:background="@drawable/rounded_blue_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.40">
 
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginEnd="2dp"
-            android:src="@drawable/tick_image" />
+        <TextView
+            android:id="@+id/doctorNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/leaguespartan_semibold"
+            android:text="Dr. Olivia Turner, M.D."
+            android:textColor="@color/button_blue"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/statusIcons"
+            app:layout_constraintHorizontal_bias="0.32"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.6066" />
 
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="2dp"
-            android:src="@drawable/cross_image" />
+        <TextView
+            android:id="@+id/treatmentTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/league_spartan_light"
+            android:maxLines="2"
+            android:text="Treatment and prevention of \nskin and photodermatitis."
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.26"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/doctorNameTextView"
+            app:layout_constraintWidth_percent="0.7192" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/statusIcons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginEnd="2dp"
+                android:src="@drawable/tick_image" />
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="2dp"
+                android:src="@drawable/cross_image" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
