@@ -8,19 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 
 class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<Doctors>) :
-    RecyclerView.Adapter<DoctorListViewAdapter.doctorlistViewHolder>() {
+    RecyclerView.Adapter<DoctorListViewAdapter.DoctorlistViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): doctorlistViewHolder {
+    ): DoctorlistViewHolder {
 
         val view =
             DoctorsListCardviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return doctorlistViewHolder(view)
+        return DoctorlistViewHolder(view)
     }
 
     override fun onBindViewHolder(
-        holder: doctorlistViewHolder,
+        holder: DoctorlistViewHolder,
         position: Int
     ) {
         val doctorData = doctorDataList[position]
@@ -30,23 +30,23 @@ class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<
         holder.doctorBinding.specification.text = doctorData.specification
 
         holder.doctorBinding.infoButton.setOnClickListener {
-            Toast("info")
+            showToast("info")
         }
 
         holder.doctorBinding.calenderBtn.setOnClickListener {
-            Toast("calender")
+            showToast("calender")
         }
 
         holder.doctorBinding.moreinfoBtn.setOnClickListener {
-            Toast("info")
+            showToast("info")
         }
 
         holder.doctorBinding.aboutwhatBtn.setOnClickListener {
-            Toast("?")
+            showToast("?")
         }
 
         holder.doctorBinding.favBtn.setOnClickListener {
-            Toast("fav")
+            showToast("fav")
         }
     }
 
@@ -54,15 +54,12 @@ class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<
         return doctorDataList.size
     }
 
-
-    class doctorlistViewHolder(val doctorBinding: DoctorsListCardviewBinding) :
+    class DoctorlistViewHolder(val doctorBinding: DoctorsListCardviewBinding) :
         RecyclerView.ViewHolder(doctorBinding.root) {
-
     }
+    fun showToast(message: String) {
 
-    fun Toast(message: String) {
-
-        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }
 
