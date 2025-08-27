@@ -16,11 +16,15 @@
         android:gravity="center"
         android:text="@string/doctors"
         android:textColor="@color/button_blue"
-        android:textSize="24sp"
+
+        android:autoSizeMinTextSize="16dp"
+        android:autoSizeMaxTextSize="26dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
         android:textStyle="bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="87:17"
+        app:layout_constraintDimensionRatio="84:17"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -30,7 +34,7 @@
         app:layout_constraintVertical_bias="0.089"
         app:layout_constraintWidth_percent="0.356" />
 
-    <!-- Back Button -->
+
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="0dp"
@@ -49,7 +53,7 @@
         app:layout_constraintVertical_bias="0.099"
         app:layout_constraintWidth_percent="0.038" />
 
-    <!-- Search Button -->
+
     <ImageButton
         android:id="@+id/searchButton"
         android:layout_width="0dp"
@@ -68,7 +72,7 @@
         app:layout_constraintVertical_bias="0.094"
         app:layout_constraintWidth_percent="0.076" />
 
-    <!-- Settings Button -->
+
     <ImageButton
         android:id="@+id/settingsButton"
         android:layout_width="0dp"
@@ -94,6 +98,7 @@
         android:layout_height="0dp"
         android:fontFamily="@font/league_spartan_light"
         android:text="@string/sort_by"
+        android:autoSizeTextType="uniform"
         android:textColor="@color/text_black"
         android:textSize="14dp"
 
@@ -108,7 +113,7 @@
         app:layout_constraintVertical_bias="0.146"
         app:layout_constraintWidth_percent="0.105" />
 
-    <!-- Sort Button -->
+
     <Button
         android:id="@+id/sortButton"
         android:layout_width="0dp"
