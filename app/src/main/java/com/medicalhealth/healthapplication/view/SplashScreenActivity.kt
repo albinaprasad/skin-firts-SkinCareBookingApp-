@@ -11,7 +11,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivitySplashScreenBinding
 
-class SplashScreenActivity : AppCompatActivity() {
+class SplashScreenActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
 

@@ -9,7 +9,6 @@
     tools:context=".view.SignupActivity">
 
     <TextView
-        android:id="@+id/textview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="62dp"
@@ -21,7 +20,9 @@
         android:text="@string/new_account"
         android:textColor="@color/backgroundColor"
         android:textFontWeight="0"
-        android:textSize="24dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="24sp"
+        app:autoSizeMaxTextSize="40sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +47,6 @@
         app:layout_constraintWidth_percent="0.058" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="36dp"
@@ -54,7 +54,9 @@
         android:text="@string/fullname"
         android:textColor="@color/black"
         android:textFontWeight="500"
-        android:textSize="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.0375"
         app:layout_constraintHorizontal_bias="0.0"
@@ -87,7 +89,6 @@
         app:layout_constraintWidth_percent="0.8305" />
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="36dp"
@@ -95,7 +96,9 @@
         android:text="@string/password"
         android:textColor="@color/black"
         android:textFontWeight="500"
-        android:textSize="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent="0.0375"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,14 +137,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="36dp"
         android:fontFamily="@font/league_spartan_medium"
         android:text="@string/email"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="40sp"
         app:flow_horizontalBias="0.0"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -175,7 +179,6 @@
         app:layout_constraintWidth_percent="0.8305" />
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="36dp"
@@ -183,7 +186,9 @@
         android:text="@string/mobile_number"
         android:textColor="@color/black"
 
-        android:textSize="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="214:28"
 
@@ -193,7 +198,7 @@
         app:layout_constraintWidth_percent="0.5944" />
 
     <EditText
-        android:id="@+id/txtdateofbirth"
+        android:id="@+id/tvMobileNumber"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -216,14 +221,15 @@
         app:layout_constraintWidth_percent="0.8305" />
 
     <TextView
-        android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="36dp"
         android:fontFamily="@font/league_spartan_medium"
         android:text="@string/dob"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="131:27"
         app:layout_constraintStart_toStartOf="parent"
@@ -253,7 +259,7 @@
         app:layout_constraintWidth_percent="0.8305" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvTermsAndPolicy"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="47dp"
@@ -263,7 +269,9 @@
         android:gravity="center_horizontal"
         android:text="@string/terms_and_privacy"
         android:textFontWeight="300"
-        android:textSize="12dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="273:28"
         app:layout_constraintHorizontal_bias="0.4942"
@@ -283,7 +291,9 @@
         android:text="@string/button_sign_up"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="24dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="207:45"
         app:layout_constraintEnd_toEndOf="parent"
@@ -295,13 +305,14 @@
         app:layout_constraintWidth_percent="0.575" />
 
     <TextView
-        android:id="@+id/textView8"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/league_spartan_medium"
         android:gravity="center_horizontal"
         android:text="@string/or_sign_up_with"
-        android:textSize="12dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeMaxTextSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="273:15"
         app:layout_constraintEnd_toEndOf="parent"
@@ -314,7 +325,6 @@
         tools:layout_editor_absoluteX="126dp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -379,24 +389,27 @@
 
 
         <TextView
-            android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="12dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="40sp"
             android:fontFamily="@font/league_spartan_medium"
             android:textColor="@color/black"
             android:textAlignment="textEnd"
             android:text="@string/already_have_an_account" />
 
         <TextView
-            android:id="@+id/txtlogin"
+            android:id="@+id/tvlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="4dp"
             android:fontFamily="@font/league_spartan_medium"
-            android:textSize="12dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="40sp"
             android:textAlignment="textStart"
             android:text="@string/text_log_in"
             android:textColor="@color/backgroundColor"/>

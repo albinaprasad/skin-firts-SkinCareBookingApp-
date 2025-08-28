@@ -8,7 +8,7 @@ import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBind
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
-class WelcomeScreenActivity : AppCompatActivity() {
+class WelcomeScreenActivity : BaseActivity() {
     private lateinit var binding: ActivityWelcomeScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

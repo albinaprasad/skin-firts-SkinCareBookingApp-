@@ -10,7 +10,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivitySignupBinding
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
-class SignupActivity : AppCompatActivity() {
+class SignupActivity : BaseActivity() {
     private lateinit var binding:ActivitySignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

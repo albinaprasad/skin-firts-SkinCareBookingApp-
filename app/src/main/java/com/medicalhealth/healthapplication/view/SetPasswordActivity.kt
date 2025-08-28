@@ -10,7 +10,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivitySetPasswordBinding
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
-class SetPasswordActivity : AppCompatActivity() {
+class SetPasswordActivity : BaseActivity() {
     private lateinit var binding:ActivitySetPasswordBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

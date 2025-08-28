@@ -6,11 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
+import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.SignupActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
     private lateinit var binding:ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
