@@ -41,7 +41,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/doctorAvailableConstraintLayout"
-        android:layout_width="201dp"
+        android:layout_width="202dp"
         android:layout_height="51dp"
         android:background="@drawable/rounded_blue_bg"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -54,7 +54,7 @@
             android:id="@+id/doctorNameTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:fontFamily="@font/leaguespartan_semibold"
             android:text="Dr. Olivia Turner, M.D."
             android:textColor="@color/button_blue"
@@ -70,7 +70,6 @@
             android:id="@+id/treatmentTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:fontFamily="@font/league_spartan_light"
             android:maxLines="2"

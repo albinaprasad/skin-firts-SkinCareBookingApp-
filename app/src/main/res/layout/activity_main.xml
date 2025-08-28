@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".view.MainActivity">
 
     <ImageButton
@@ -22,7 +22,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077"
         app:layout_constraintWidth_percent="0.1043">
-
     </ImageButton>
 
     <TextView
@@ -37,48 +36,44 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="88:14"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2950"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.077"
         app:layout_constraintWidth_percent="0.2239">
-
     </TextView>
 
     <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_semibold"
+        android:gravity="center_vertical"
         android:text="@string/john_doe"
         android:textColor="@color/black"
         android:textSize="14dp"
         android:textStyle="normal"
-        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="101:27"
         app:layout_constraintEnd_toEndOf="parent"
-
+        app:layout_constraintHorizontal_bias="0.3071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.3071"
         app:layout_constraintVertical_bias="0.090"
         app:layout_constraintWidth_percent="0.2569">
-
     </TextView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="27:27"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="27:27"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.0687"
-        app:layout_constraintHorizontal_bias="0.7500"
-        app:layout_constraintVertical_bias="0.0799">
+        app:layout_constraintVertical_bias="0.0799"
+        app:layout_constraintWidth_percent="0.0687">
 
         <ImageView
             android:id="@+id/backgroundEllipse"
@@ -110,20 +105,19 @@
             app:layout_constraintEnd_toEndOf="@+id/backgroundEllipse"
             app:layout_constraintTop_toTopOf="@+id/backgroundEllipse" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="27:27"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="27:27"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8350"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.0687"
-        app:layout_constraintHorizontal_bias="0.8350"
-        app:layout_constraintVertical_bias="0.0799">
+        app:layout_constraintVertical_bias="0.0799"
+        app:layout_constraintWidth_percent="0.0687">
 
         <ImageView
             android:id="@+id/backgroundSettingsEllipse"
@@ -148,9 +142,9 @@
 
     <ImageButton
         android:id="@+id/doctorImageButton"
-        android:background="@color/white"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white"
         android:src="@drawable/all_doctors_icon_image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="40:36"
@@ -160,49 +154,46 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1517"
         app:layout_constraintWidth_percent="0.1017">
-
     </ImageButton>
 
     <ImageButton
-        android:background="@color/white"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white"
         android:src="@drawable/favorite_image"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="17:7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2582"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintDimensionRatio="17:7"
-        app:layout_constraintHorizontal_bias="0.2582"
         app:layout_constraintVertical_bias="0.1494"
-        app:layout_constraintWidth_percent="0.1017"
-        />
+        app:layout_constraintWidth_percent="0.1017" />
 
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/favorite_text_image"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="17:7"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2620"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintDimensionRatio="17:7"
-        app:layout_constraintHorizontal_bias="0.2620"
         app:layout_constraintVertical_bias="0.1730"
-        app:layout_constraintWidth_percent="0.1221"
-        />
+        app:layout_constraintWidth_percent="0.1221" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="34dp"
         android:background="@drawable/search_bar_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="190:33"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.7250"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.7250"
         app:layout_constraintVertical_bias="0.1505"
         app:layout_constraintWidth_percent="0.4834">
 
@@ -246,14 +237,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/offBlueConstraint"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/off_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3050"
+        app:layout_constraintHeight_percent="0.2850"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2990"
-        android:background="@color/off_blue">
+        app:layout_constraintVertical_bias="0.2990">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dateRecyclerView"
@@ -261,108 +252,106 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingVertical="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/scheduleContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.4816"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/offBlueConstraint"
-            app:layout_constraintBottom_toTopOf="@+id/scheduleContainer"
             tools:listitem="@layout/item_date" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/scheduleContainer"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/rounded_light_blue_bg"
-                app:layout_constraintDimensionRatio="300:112"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scheduleContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_light_blue_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="300:112"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateRecyclerView"
+            app:layout_constraintWidth_percent="0.8250">
+
+            <TextView
+                android:id="@+id/headerDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/league_spartan"
+                android:text="@string/date_wednesday_text"
+                android:textColor="@color/button_blue"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_percent="0.8250"
+                app:layout_constraintHorizontal_bias="0.7523"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dateRecyclerView">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="11 Wednesday - Today" />
 
-                <TextView
-                    android:id="@+id/headerDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/league_spartan"
-                    android:text="@string/date_wednesday_text"
-                    android:textColor="@color/button_blue"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.7523"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="11 Wednesday - Today" />
+            <TextView
+                android:id="@+id/timeOneTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/league_spartan_light"
+                android:text="@string/time_9am"
+                android:textColor="@color/button_blue"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/scheduleRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1055"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/headerDate" />
 
-                <TextView
-                    android:id="@+id/timeOneTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/league_spartan_light"
-                    android:text="@string/time_9am"
-                    android:textColor="@color/button_blue"
-                    android:textSize="12dp"
-                    app:layout_constraintBottom_toTopOf="@+id/scheduleRecyclerView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1055"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/headerDate"
-                     />
+            <ImageView
+                android:id="@+id/dashedLineOneImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dotted_line_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4949"
+                app:layout_constraintStart_toStartOf="@id/timeOneTextView"
+                app:layout_constraintTop_toTopOf="@+id/timeOneTextView"
+                app:layout_constraintVertical_bias="0.0650" />
 
-                <ImageView
-                    android:id="@+id/dashedLineOneImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/dotted_line_image"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.4949"
-                    app:layout_constraintStart_toStartOf="@id/timeOneTextView"
-                    app:layout_constraintTop_toTopOf="@+id/timeOneTextView"
-                    app:layout_constraintVertical_bias="0.0650"
-                    />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/scheduleRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/timeFourTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/timeOneTextView"
+                app:layout_constraintTop_toBottomOf="@+id/dashedLineOneImageView"
+                app:layout_constraintVertical_bias="0.5"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintWidth_percent="0.90"
+                tools:listitem="@layout/item_schedule_appointment" />
 
+            <TextView
+                android:id="@+id/timeFourTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/league_spartan_light"
+                android:text="@string/time_12am"
+                android:textColor="@color/button_blue"
+                android:textSize="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1055"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scheduleRecyclerView" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/scheduleRecyclerView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
-                    app:layout_constraintWidth_percent="0.90"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toTopOf="@id/timeFourTextView"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@id/timeOneTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/dashedLineOneImageView"
-                    tools:listitem="@layout/item_schedule_appointment"
-                     />
+            <ImageView
+                android:id="@+id/dashedLineTwoImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/dotted_line_image"
+                app:layout_constraintBottom_toBottomOf="@+id/timeFourTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4949"
+                app:layout_constraintStart_toStartOf="@id/timeFourTextView"
+                app:layout_constraintTop_toTopOf="@+id/timeFourTextView" />
 
-                <TextView
-                    android:id="@+id/timeFourTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/league_spartan_light"
-                    android:text="@string/time_12am"
-                    android:textColor="@color/button_blue"
-                    android:textSize="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.1055"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/scheduleRecyclerView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginBottom="8dp"/>
-
-                <ImageView
-                    android:id="@+id/dashedLineTwoImageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/dotted_line_image"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.4949"
-                    app:layout_constraintStart_toStartOf="@id/timeFourTextView"
-                    app:layout_constraintTop_toTopOf="@+id/timeFourTextView"
-                    app:layout_constraintBottom_toBottomOf="@+id/timeFourTextView"
-                    app:layout_constraintWidth_percent="0.0966"
-                    app:layout_constraintVertical_bias="0.4275"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -383,20 +372,18 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentNavigation"
+        android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="4dp"
-        tools:layout="@layout/bottom_navigation_layout"
-        android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
         android:foregroundGravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.0594"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.8250"
-        >
+        tools:layout="@layout/bottom_navigation_layout">
 
     </androidx.fragment.app.FragmentContainerView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
