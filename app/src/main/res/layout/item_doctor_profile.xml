@@ -86,7 +86,7 @@
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/star_filled"/>
+                    android:src="@drawable/star_empty"/>
 
                 <TextView
                     android:id="@+id/ratingTextView"
@@ -117,7 +117,7 @@
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/comment"/>
+                    android:src="@drawable/comment_blue"/>
 
                 <TextView
                     android:id="@+id/commentCountTextView"

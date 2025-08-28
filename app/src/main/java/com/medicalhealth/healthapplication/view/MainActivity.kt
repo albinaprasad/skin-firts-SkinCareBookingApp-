@@ -12,50 +12,57 @@ import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var mainBinding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels()
+class MainActivity : BaseActivity() {
+    class MainActivity : AppCompatActivity() {
+        private lateinit var mainBinding: ActivityMainBinding
+        private val viewModel: MainViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        mainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mainBinding.root)
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            enableEdgeToEdge()
+            mainBinding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(mainBinding.root)
 
-        setUpRecyclerView()
-    }
-
-    private fun setUpRecyclerView(){
-        viewModel.dates.value?.let { dates->
-            val dateAdapter = DateAdapter(dates) { selectedDate ->
-                viewModel.selectDate(selectedDate)
-            }
-            with(mainBinding){
-                dateRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-                dateRecyclerView.adapter = dateAdapter
-
-                viewModel.dates.observe(this@MainActivity){updatedDates->
-                    dateAdapter.notifyDataSetChanged()
-                }
-            }
+            setUpRecyclerView()
         }
 
-        with(mainBinding){
-            scheduleRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-            viewModel.appointment.observe(this@MainActivity){appointmentsList ->
-                val appointmentAdapter = ScheduleAdapter(appointmentsList)
-                scheduleRecyclerView.adapter = appointmentAdapter
+        private fun setUpRecyclerView() {
+            viewModel.dates.value?.let { dates ->
+                val dateAdapter = DateAdapter(dates) { selectedDate ->
+                    viewModel.selectDate(selectedDate)
+                }
+                with(mainBinding) {
+                    dateRecyclerView.layoutManager =
+                        LinearLayoutManager(
+                            this@MainActivity,
+                            LinearLayoutManager.HORIZONTAL,
+                            false
+                        )
+                    dateRecyclerView.adapter = dateAdapter
+
+                    viewModel.dates.observe(this@MainActivity) { updatedDates ->
+                        dateAdapter.notifyDataSetChanged()
+                    }
+                }
             }
 
-            doctorRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-            viewModel.doctors.observe(this@MainActivity){ doctorsList ->
-                val adapter = DoctorAdapter(doctorsList) {doctor ->
-                    viewModel.toggleFavoriteStatus(doctor.id)
+            with(mainBinding) {
+                scheduleRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+                viewModel.appointment.observe(this@MainActivity) { appointmentsList ->
+                    val appointmentAdapter = ScheduleAdapter(appointmentsList)
+                    scheduleRecyclerView.adapter = appointmentAdapter
                 }
-                doctorRecyclerView.adapter = adapter
-            }
+
+                doctorRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+                viewModel.doctors.observe(this@MainActivity) { doctorsList ->
+                    val adapter = DoctorAdapter(doctorsList) { doctor ->
+                        viewModel.toggleFavoriteStatus(doctor.id)
+                    }
+                    doctorRecyclerView.adapter = adapter
+                }
         }
 
     }
 
 }
+    }

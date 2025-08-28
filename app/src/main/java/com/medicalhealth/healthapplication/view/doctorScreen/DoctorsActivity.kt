@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
+import com.medicalhealth.healthapplication.view.BaseActivity
 
-class DoctorsActivity : AppCompatActivity() {
+class DoctorsActivity : BaseActivity() {
     lateinit var binding: ActivityDoctorsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
