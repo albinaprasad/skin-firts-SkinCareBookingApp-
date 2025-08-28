@@ -6,20 +6,23 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
-import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
+import com.medicalhealth.healthapplication.view.MainActivity
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var binding: ActivityLoginBinding
+
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding= ActivityLoginBinding.inflate(layoutInflater)
         enableEdgeToEdge()
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.login.setOnClickListener {
-            val intent = Intent(this, DoctorsActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
+
     }
 }
