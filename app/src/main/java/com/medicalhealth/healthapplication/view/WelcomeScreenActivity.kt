@@ -6,6 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBinding
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
+import com.medicalhealth.healthapplication.model.data.Notification
+import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
 class WelcomeScreenActivity : BaseActivity() {
@@ -24,5 +26,6 @@ class WelcomeScreenActivity : BaseActivity() {
             val intent = Intent(this@WelcomeScreenActivity,SignupActivity::class.java)
             startActivity(intent)
         }
+
     }
 }

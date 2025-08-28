@@ -46,4 +46,7 @@
     <string name="news">News</string>
     <string name="scheduled_change">Scheduled Change</string>
     <string name="two_hour">2H</string>
+    <string name="today">Today</string>
+    <string name="notification">Notification</string>
+    <string name="mark_all">"Mark all "</string>
 </resources>
