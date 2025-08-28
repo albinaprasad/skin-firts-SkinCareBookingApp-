@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
+import com.medicalhealth.healthapplication.view.DoctorsInfoActivity
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         binding.login.setOnClickListener {
-            val intent = Intent(this, DoctorsActivity::class.java)
+            val intent = Intent(this, DoctorsInfoActivity::class.java)
             startActivity(intent)
         }
     }
