@@ -7,5 +7,6 @@ data class Doctor(
     val specialization: String,
     val rating: Double,
     val commentCount: Int,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+
 )

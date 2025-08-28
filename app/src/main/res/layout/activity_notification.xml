@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.notificationScreen.NotificationActivity">
@@ -12,7 +13,7 @@
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_semibold"
         android:gravity="center"
-        android:text="Notification"
+        android:text="@string/notification"
         android:textColor="@color/button_blue"
 
         android:autoSizeMinTextSize="16dp"
@@ -69,7 +70,7 @@
         app:layout_constraintWidth_percent="0.158" >
 
         <TextView
-            android:paddingTop="3dp"
+            android:paddingTop="2dp"
             android:paddingStart="8dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -82,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_margin="8dp"
+            android:layout_margin="6.5dp"
             android:src="@drawable/small_round_circle">
 
         </com.google.android.material.imageview.ShapeableImageView>
@@ -99,5 +100,31 @@
         app:layout_constraintTop_toBottomOf="@id/titleText"
         tools:listitem="@layout/notification_activity_card_deatils" />
 
+    <TextView
+        android:id="@+id/markallTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:gravity="center"
+        android:text="@string/mark_all"
+        android:clickable="true"
+        android:textColor="@color/button_blue"
 
+        android:autoSizeMinTextSize="13dp"
+        android:autoSizeMaxTextSize="18dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="49:14"
+        app:layout_constraintWidth_percent="0.136"
+
+        app:layout_constraintVertical_bias="0.155"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8486"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
 </androidx.constraintlayout.widget.ConstraintLayout>
