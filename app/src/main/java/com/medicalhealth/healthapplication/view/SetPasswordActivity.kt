@@ -17,7 +17,7 @@ class SetPasswordActivity : BaseActivity() {
         enableEdgeToEdge()
         binding = ActivitySetPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.tvpassword.setOnClickListener {
+        binding.btnSetPasswordbackbtn.setOnClickListener {
             val intent = Intent(this@SetPasswordActivity,LoginActivity::class.java)
             startActivity(intent)
         }
