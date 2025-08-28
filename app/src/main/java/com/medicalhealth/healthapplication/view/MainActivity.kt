@@ -22,18 +22,25 @@ class MainActivity : AppCompatActivity() {
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
 
-        val dateAdapter = DateAdapter(viewModel.dates.value!!) { selectedDate ->
-            viewModel.selectDate(selectedDate)
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView(){
+        viewModel.dates.value?.let { dates->
+            val dateAdapter = DateAdapter(dates) { selectedDate ->
+                viewModel.selectDate(selectedDate)
+            }
+            with(mainBinding){
+                dateRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+                dateRecyclerView.adapter = dateAdapter
+
+                viewModel.dates.observe(this@MainActivity){updatedDates->
+                    dateAdapter.notifyDataSetChanged()
+                }
+            }
         }
 
         with(mainBinding){
-            dateRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
-            dateRecyclerView.adapter = dateAdapter
-
-            viewModel.dates.observe(this@MainActivity){updatedDates->
-                dateAdapter.notifyDataSetChanged()
-            }
-
             scheduleRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             viewModel.appointment.observe(this@MainActivity){appointmentsList ->
                 val appointmentAdapter = ScheduleAdapter(appointmentsList)
@@ -48,5 +55,7 @@ class MainActivity : AppCompatActivity() {
                 doctorRecyclerView.adapter = adapter
             }
         }
+
     }
+
 }

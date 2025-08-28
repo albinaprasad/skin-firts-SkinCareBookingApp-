@@ -9,22 +9,15 @@ import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBin
 
 class BottomNavigationFragment: Fragment() {
 
-    private var _binding: BottomNavigationLayoutBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: BottomNavigationLayoutBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = BottomNavigationLayoutBinding.inflate(inflater, container, false)
+        binding = BottomNavigationLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 
 }
