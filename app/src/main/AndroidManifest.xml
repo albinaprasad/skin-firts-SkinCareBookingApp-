@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HealthApplication"
         tools:targetApi="31">
         <activity
+            android:name=".view.doctorScreen.DoctorsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ui.loginScreen.LoginActivity"
             android:exported="false" />
         <activity

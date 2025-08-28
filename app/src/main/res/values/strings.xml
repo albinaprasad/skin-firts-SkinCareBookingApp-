@@ -23,4 +23,9 @@
     <string name="time_11am">11 AM</string>
     <string name="time_12am">12 AM</string>
 
+    <string name="doctors">Doctors</string>
+    <string name="sort_by">Sort By</string>
+    <string name="doctorname_sample">Dr. Alexander Bennett,\n Ph.D.</string>
+    <string name="doctor_sample_specification">Dermato-Genetics</string>
+    <string name="info">Info</string>
 </resources>
