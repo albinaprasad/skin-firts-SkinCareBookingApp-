@@ -30,6 +30,14 @@
         By continuing, you agree to \n<font color="#2260FF">Terms of Use</font> and <font color="#2260FF">Privacy Policy</font>.
 </string>
 
+    <string name="hi_welcome_back">Hi, WelcomeBack</string>
+    <string name="john_doe">John Doe</string>
+    <string name="date_wednesday_text">11 Wednesday - Today</string>
+    <string name="time_9am">9 AM</string>
+    <string name="time_10am">10 AM</string>
+    <string name="time_11am">11 AM</string>
+    <string name="time_12am">12 AM</string>
+
     <string name="doctors">Doctors</string>
     <string name="sort_by">Sort By</string>
     <string name="doctorname_sample">Dr. Alexander Bennett,\n Ph.D.</string>

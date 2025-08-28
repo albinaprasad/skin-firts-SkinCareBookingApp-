@@ -10,13 +10,13 @@ import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.SignupActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
+import com.medicalhealth.healthapplication.view.MainActivity
 
 class LoginActivity : BaseActivity() {
     private lateinit var binding:ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         with(binding){
@@ -33,5 +33,6 @@ class LoginActivity : BaseActivity() {
                 startActivity(intent)
             }
         }
+
     }
 }
