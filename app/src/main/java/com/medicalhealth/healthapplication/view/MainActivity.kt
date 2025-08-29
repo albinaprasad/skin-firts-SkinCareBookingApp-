@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -10,10 +11,10 @@ import com.medicalhealth.healthapplication.databinding.ActivityMainBinding
 import com.medicalhealth.healthapplication.view.adapter.DateAdapter
 import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
+import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
 class MainActivity : BaseActivity() {
-    class MainActivity : AppCompatActivity() {
         private lateinit var mainBinding: ActivityMainBinding
         private val viewModel: MainViewModel by viewModels()
 
@@ -52,6 +53,10 @@ class MainActivity : BaseActivity() {
                     val appointmentAdapter = ScheduleAdapter(appointmentsList)
                     scheduleRecyclerView.adapter = appointmentAdapter
                 }
+                doctorImageButton.setOnClickListener {
+                    val intent = Intent(this@MainActivity,DoctorsActivity::class.java)
+                    startActivity(intent)
+                }
 
                 doctorRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                 viewModel.doctors.observe(this@MainActivity) { doctorsList ->
@@ -65,4 +70,3 @@ class MainActivity : BaseActivity() {
     }
 
 }
-    }

@@ -11,12 +11,14 @@ import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.SignupActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 import com.medicalhealth.healthapplication.view.MainActivity
+import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 
 class LoginActivity : BaseActivity() {
     private lateinit var binding:ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         with(binding){
@@ -32,6 +34,11 @@ class LoginActivity : BaseActivity() {
                 val intent = Intent(this@LoginActivity,SetPasswordActivity::class.java)
                 startActivity(intent)
             }
+            login.setOnClickListener {
+                val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                startActivity(intent)
+            }
+
         }
 
     }
