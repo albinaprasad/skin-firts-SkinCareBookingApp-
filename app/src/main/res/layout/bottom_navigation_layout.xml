@@ -13,41 +13,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/homeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-
-            android:src="@drawable/home_icon_filled"
+            android:src="@drawable/home_icon_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/chatButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/chatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/chat_icon"
+            android:background="@null"
+            android:src="@drawable/chat_icon_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/profileButton"
             app:layout_constraintStart_toEndOf="@+id/homeButton"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/profileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/profile_icon"
+            android:src="@drawable/profile_icon_white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/calenderButton"
             app:layout_constraintStart_toEndOf="@+id/chatButton"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <ImageView
             android:id="@+id/calenderButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

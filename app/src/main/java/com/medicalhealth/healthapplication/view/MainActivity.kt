@@ -10,6 +10,7 @@ import com.medicalhealth.healthapplication.databinding.ActivityMainBinding
 import com.medicalhealth.healthapplication.view.adapter.DateAdapter
 import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
+import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
 class MainActivity : BaseActivity() {
@@ -24,6 +25,11 @@ class MainActivity : BaseActivity() {
 
             setUpRecyclerView()
         }
+
+    override fun onResume() {
+        super.onResume()
+        setSelectedMenu(BottomNavigationFragment.MenuTypes.HOME)
+    }
 
         private fun setUpRecyclerView() {
             viewModel.dates.value?.let { dates ->

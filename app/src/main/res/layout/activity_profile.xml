@@ -89,6 +89,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/leaguespartan_semibold"
         android:textSize="24dp"
+        android:text="@string/john_doe"
         android:textAlignment="center"
         android:textColor="@color/black"
         app:layout_constraintVertical_bias="0"
@@ -100,13 +101,28 @@
         tools:text="John Doe" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profileOptionRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/profileNameTextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fragmentNavigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.10"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentNavigation"
+        android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:foregroundGravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.0594"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8250"
+        tools:layout="@layout/bottom_navigation_layout"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
