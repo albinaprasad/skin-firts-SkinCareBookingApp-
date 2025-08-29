@@ -28,6 +28,8 @@ class MainViewModel: ViewModel() {
             Date("14", "SAT", true),
         )
         _appointments.value = listOf(
+            Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis."),
+            Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis."),
             Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis.")
         )
 
