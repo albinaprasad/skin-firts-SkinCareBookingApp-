@@ -13,11 +13,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_semibold"
-        android:text="@string/log_in"
+        android:text="@string/text_log_in"
         android:textColor="@color/button_blue"
-        android:textSize="23dp"
         android:textStyle="bold"
         android:gravity="center"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="15dp"
+        app:autoSizeMaxTextSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="121:27"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,6 +32,7 @@
     </TextView>
 
     <ImageButton
+        android:id="@+id/btnback"
         android:background="@color/white"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -51,7 +54,9 @@
         android:fontFamily="@font/leaguespartan_semibold"
         android:text="@string/welcome"
         android:textColor="@color/button_blue"
-        android:textSize="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="15dp"
+        app:autoSizeMaxTextSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="144:28"
@@ -72,7 +77,10 @@
         android:fontFamily="@font/leaguespartan_medium"
         android:text="@string/lorem_ipsum"
         android:textColor="@color/black"
-        android:textSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="9dp"
+        app:autoSizeMaxTextSize="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="299:24"
         app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +100,9 @@
         android:fontFamily="@font/leaguespartan_semibold"
         android:text="@string/email_phone"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="18dp"
+        app:autoSizeMaxTextSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="214:17"
@@ -113,7 +123,7 @@
         android:layout_height="0dp"
         android:background="@drawable/edittext_round_edges"
         android:fontFamily="@font/leaguespartan_medium"
-        android:hint="@string/mail"
+        android:hint="@string/email"
         android:paddingStart="13dp"
         android:textColorHint="@color/hintColor"
 
@@ -136,7 +146,9 @@
         android:fontFamily="@font/leaguespartan_semibold"
         android:text="@string/password"
         android:textColor="@color/black"
-        android:textSize="18dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="18dp"
+        app:autoSizeMaxTextSize="24dp"
         android:textStyle="bold"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -185,13 +197,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:id="@+id/txtforgotpassword"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_medium"
         android:gravity="end"
         android:text="@string/forgotPassword"
         android:textColor="@color/button_blue"
-        android:textSize="13sp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="9dp"
+        app:autoSizeMaxTextSize="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="185:16"
         app:layout_constraintEnd_toEndOf="parent"
@@ -213,7 +229,9 @@
         android:fontFamily="@font/leaguespartan_medium"
 
         android:text="@string/log_in_buttontext"
-        android:textSize="20dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="207:60"
 
@@ -237,7 +255,10 @@
         android:text="@string/or_sign_up_with"
 
         android:textColor="@color/black"
-        android:textSize="12dp"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="9dp"
+        app:autoSizeMaxTextSize="20dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="273:16"
         app:layout_constraintEnd_toEndOf="parent"
@@ -328,13 +349,23 @@
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    app:autoSizeTextType="uniform"
+    app:autoSizeMinTextSize="9dp"
+    app:autoSizeMaxTextSize="20dp"
+
+    android:fontFamily="@font/leaguespartan_medium"
      android:text="@string/don_t_have_an_account"
     android:gravity="bottom">
 </TextView>
       <TextView
+          android:id="@+id/txtsignup"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:text="@string/sign_Up"
+          android:text="@string/text_sign_up"
+          app:autoSizeTextType="uniform"
+          app:autoSizeMinTextSize="9dp"
+          app:autoSizeMaxTextSize="20dp"
+
           android:textColor="@color/button_blue"
           android:fontFamily="@font/leaguespartan_semibold"
           android:gravity="bottom">
