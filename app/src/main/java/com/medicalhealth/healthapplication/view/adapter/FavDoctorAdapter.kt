@@ -3,42 +3,42 @@ package com.medicalhealth.healthapplication.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-
+import com.medicalhealth.healthapplication.R
+import com.medicalhealth.healthapplication.databinding.FavDoctorsCardviewBinding
 import com.medicalhealth.healthapplication.databinding.RatingCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-class RatingsAdapter(private val doctors: List<Doctor>) :
-    RecyclerView.Adapter<RatingsAdapter.RatingViewHolder>() {
+class FavDoctorAdapter(private val doctors: List<Doctor>) :
+    RecyclerView.Adapter<FavDoctorAdapter.FavDoctorViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): RatingViewHolder {
-        val view = RatingCardviewBinding.inflate(
+    ): FavDoctorViewHolder {
+        val view = FavDoctorsCardviewBinding.inflate(
             LayoutInflater.from(parent.context),
             parent, false
         )
-        return RatingViewHolder(view)
+
+        return FavDoctorViewHolder(view)
     }
 
     override fun onBindViewHolder(
-        holder: RatingViewHolder,
+        holder: FavDoctorViewHolder,
         position: Int
     ) {
         val doctor = doctors[position]
-        holder.ratingBinding.apply {
+        holder.favBinding.apply {
             doctorImage.setImageResource(doctor.profileImageUrl)
             nameTV.text = doctor.name
             specificationTV.text = doctor.specialization
-            ratingTV.text = doctor.rating.toString()
+            favBtn.setImageResource(R.drawable.fav_filled)
         }
     }
 
     override fun getItemCount(): Int {
-
         return doctors.size
     }
 
-
-    class RatingViewHolder(val ratingBinding: RatingCardviewBinding) :
-        RecyclerView.ViewHolder(ratingBinding.root)
+    class FavDoctorViewHolder(val favBinding: FavDoctorsCardviewBinding) :
+        RecyclerView.ViewHolder(favBinding.root)
 }

@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.R
-import com.medicalhealth.healthapplication.databinding.NotificationActivityCardDeatilsBinding
-import com.medicalhealth.healthapplication.databinding.NotitificationActivityTimedisplayLayoutBinding
+import com.medicalhealth.healthapplication.databinding.NotificationDataCardDeatilsBinding
+import com.medicalhealth.healthapplication.databinding.NotitificationTimedisplayLayoutBinding
 import com.medicalhealth.healthapplication.model.data.Notification
 
 class NotificationAdapter(val context: Context, val notificationList: ArrayList<Notification>) :
@@ -30,13 +30,13 @@ class NotificationAdapter(val context: Context, val notificationList: ArrayList<
         return when (viewType) {
             TYPE_TIME_DISPLAY -> {
                 val binding =
-                    NotitificationActivityTimedisplayLayoutBinding.inflate(inflater, parent, false)
+                    NotitificationTimedisplayLayoutBinding.inflate(inflater, parent, false)
                 NotificationTimeDisplayViewHolder(binding)
             }
 
             TYPE_CARD_DISPLAY -> {
                 val binding =
-                    NotificationActivityCardDeatilsBinding.inflate(inflater, parent, false)
+                    NotificationDataCardDeatilsBinding.inflate(inflater, parent, false)
                 NotificationCardDisplayViewHolder(binding)
             }
             else -> throw IllegalArgumentException("Invalid view type: $viewType")
@@ -87,11 +87,11 @@ class NotificationAdapter(val context: Context, val notificationList: ArrayList<
     override fun getItemCount(): Int {
         return notificationList.size
     }
-    class NotificationTimeDisplayViewHolder(val notificationTimeBinding: NotitificationActivityTimedisplayLayoutBinding) :
+    class NotificationTimeDisplayViewHolder(val notificationTimeBinding: NotitificationTimedisplayLayoutBinding) :
         RecyclerView.ViewHolder(notificationTimeBinding.root) {
 
     }
-    class NotificationCardDisplayViewHolder(val notificationCardBinding: NotificationActivityCardDeatilsBinding) :
+    class NotificationCardDisplayViewHolder(val notificationCardBinding: NotificationDataCardDeatilsBinding) :
         RecyclerView.ViewHolder(notificationCardBinding.root) {
 
     }

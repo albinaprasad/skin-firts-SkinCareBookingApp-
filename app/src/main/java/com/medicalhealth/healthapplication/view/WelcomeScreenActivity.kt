@@ -8,7 +8,6 @@ import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBind
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.model.data.Notification
 import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
-import com.medicalhealth.healthapplication.view.ratingScreen.RatingActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
 class WelcomeScreenActivity : BaseActivity() {
@@ -20,7 +19,7 @@ class WelcomeScreenActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.btnlogin.setOnClickListener {
-            val Loginintent = Intent(this, RatingActivity::class.java)
+            val Loginintent = Intent(this, LoginActivity::class.java)
             startActivity(Loginintent)
         }
         binding.btnsignup.setOnClickListener {

@@ -255,5 +255,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/doctorBtn"
-        tools:listitem="@layout/rating_cardview" />
+        tools:listitem="@layout/fav_doctors_cardview" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentNavigation"
+        android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:foregroundGravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.0594"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8250"
+        tools:layout="@layout/bottom_navigation_layout">
+
+    </androidx.fragment.app.FragmentContainerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
