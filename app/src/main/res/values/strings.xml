@@ -52,4 +52,6 @@
     <string name="rating">Rating</string>
     <string name="professional_doctor">Professional Doctor</string>
     <string name="dr_olivia_turner_m_d">Dr. Olivia Turner, M.D.</string>
+    <string name="favorite">Favorite</string>
+    <string name="services">Services</string>
 </resources>
