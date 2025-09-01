@@ -43,7 +43,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0."
                 app:layout_constraintWidth_percent="0.4641"
-                app:srcCompat="@drawable/doctor1_circle" />
+                android:src="@drawable/doctor1_circle"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
@@ -370,7 +370,7 @@
                 </ImageButton>
 
                 <ImageButton
-                    android:id="btnFavourite"
+                    android:id="@+id/btnFavourite"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
