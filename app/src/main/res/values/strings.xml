@@ -4,11 +4,9 @@
     <string name="dermatologyCenter_text">Dermatology Center</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
-    <string name="log_in">Log In</string>
-    <string name="sign_Up">Sign Up</string>
+    <string name="text_log_in">Log In</string>
     <string name="welcome">Welcome</string>
     <string name="email_phone">Email or Mobile Number</string>
-    <string name="mail">  example@example.com</string>
     <string name="password">Password\n</string>
     <string name="forgotPassword">Forget Password</string>
     <string name="log_in_buttontext">Log In</string>
@@ -16,6 +14,31 @@
     <string name="don_t_have_an_account">Don’t have an account?</string>
     <string name="hello">Hello!</string>
     <string name="or">or</string>
+    <string name="signup_hint_text">example@example.com</string>
+    <string name="new_account">New Account</string>
+    <string name="fullname">Full name</string>
+    <string name="email">Email</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="dob">Date Of Birth</string>
+    <string name="button_sign_up">Sign Up</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="set_password">Set Password</string>
+    <string name="create_new_password">Create New Password</string>
+    <string name="dob_format">DD/MM/YYYY</string>
+    <string name="already_have_an_account">already have an account?</string>
+    <string name="terms_and_privacy">
+        By continuing, you agree to \n<font color="#2260FF">Terms of Use</font> and <font color="#2260FF">Privacy Policy</font>.
+</string>
+
+    <string name="hi_welcome_back">Hi, WelcomeBack</string>
+    <string name="john_doe">John Doe</string>
+    <string name="date_wednesday_text">11 Wednesday - Today</string>
+    <string name="time_9am">9 AM</string>
+    <string name="time_10am">10 AM</string>
+    <string name="time_11am">11 AM</string>
+    <string name="time_12am">12 AM</string>
+
     <string name="doctors">Doctors</string>
     <string name="sort_by">Sort By</string>
     <string name="doctor_info">Doctor Info</string>

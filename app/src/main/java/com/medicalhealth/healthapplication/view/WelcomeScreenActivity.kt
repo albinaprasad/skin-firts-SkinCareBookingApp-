@@ -8,7 +8,7 @@ import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBind
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
-class WelcomeScreenActivity : AppCompatActivity() {
+class WelcomeScreenActivity : BaseActivity() {
     private lateinit var binding: ActivityWelcomeScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +18,10 @@ class WelcomeScreenActivity : AppCompatActivity() {
 
         binding.btnlogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnsignup.setOnClickListener {
+            val intent = Intent(this@WelcomeScreenActivity,SignupActivity::class.java)
             startActivity(intent)
         }
     }
