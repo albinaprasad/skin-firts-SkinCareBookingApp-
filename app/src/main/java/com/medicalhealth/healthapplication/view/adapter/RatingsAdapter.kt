@@ -3,8 +3,7 @@ package com.medicalhealth.healthapplication.view.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.medicalhealth.healthapplication.databinding.ActivityRatingBinding
-import com.medicalhealth.healthapplication.databinding.ItemDoctorProfileBinding
+
 import com.medicalhealth.healthapplication.databinding.RatingCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
