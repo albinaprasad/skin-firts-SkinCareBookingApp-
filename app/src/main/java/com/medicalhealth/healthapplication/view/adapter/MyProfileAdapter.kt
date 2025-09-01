@@ -31,6 +31,9 @@ class MyProfileAdapter(
                 btnNext.gone()
             }
         }
+        holder.itemView.setOnClickListener {
+            onOptionSelected(option)
+        }
     }
 
     override fun getItemCount(): Int {
