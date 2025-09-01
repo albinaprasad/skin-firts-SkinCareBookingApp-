@@ -26,13 +26,14 @@ class LoginActivity : BaseActivity() {
                 startActivity(intent)
             }
             txtsignup.setOnClickListener {
-                val intent = Intent(this@LoginActivity,SignupActivity::class.java)
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
             }
             txtforgotpassword.setOnClickListener {
                 val intent = Intent(this@LoginActivity,SetPasswordActivity::class.java)
                 startActivity(intent)
             }
+
         }
 
     }

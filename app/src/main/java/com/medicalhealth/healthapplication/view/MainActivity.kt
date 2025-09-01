@@ -1,6 +1,7 @@
 package com.medicalhealth.healthapplication.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,7 @@ import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
 class MainActivity : BaseActivity() {
-    class MainActivity : AppCompatActivity() {
+
         private lateinit var mainBinding: ActivityMainBinding
         private val viewModel: MainViewModel by viewModels()
 
@@ -29,6 +30,7 @@ class MainActivity : BaseActivity() {
         private fun setUpRecyclerView() {
             viewModel.dates.value?.let { dates ->
                 val dateAdapter = DateAdapter(dates) { selectedDate ->
+
                     viewModel.selectDate(selectedDate)
                 }
                 with(mainBinding) {
@@ -64,5 +66,5 @@ class MainActivity : BaseActivity() {
 
     }
 
-}
+
     }
