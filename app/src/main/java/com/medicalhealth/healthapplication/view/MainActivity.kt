@@ -60,8 +60,10 @@ class MainActivity : BaseActivity() {
 
                 doctorRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                 viewModel.doctors.observe(this@MainActivity) { doctorsList ->
-                    val adapter = DoctorAdapter(doctorsList) { doctor ->
-                        viewModel.toggleFavoriteStatus(doctor.id)
+                    val adapter = doctorsList?.let {
+                        DoctorAdapter(it) { doctor ->
+                            viewModel.toggleFavoriteStatus(doctor.id)
+                        }
                     }
                     doctorRecyclerView.adapter = adapter
                 }
