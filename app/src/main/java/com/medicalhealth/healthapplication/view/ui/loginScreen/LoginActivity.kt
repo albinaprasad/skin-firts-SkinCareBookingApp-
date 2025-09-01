@@ -2,7 +2,9 @@ package com.medicalhealth.healthapplication.view.ui.loginScreen
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
@@ -12,15 +14,41 @@ import com.medicalhealth.healthapplication.view.SignupActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 import com.medicalhealth.healthapplication.view.MainActivity
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
+import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 
 class LoginActivity : BaseActivity() {
     private lateinit var binding:ActivityLoginBinding
+    val logino:AuthenticationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setUpOnListener()
+        setUpOnObserver()
+
+
+
+    }
+
+    private fun setUpOnObserver() {
+        logino.isLogin.observe(this){
+            login ->
+            login.onSuccess { user ->
+                Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
+                val intent =Intent(this@LoginActivity,MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            login.onFailure{ exception ->
+                Toast.makeText(this, "{$exception.email}", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
+    private fun setUpOnListener() {
         with(binding){
             btnback.setOnClickListener {
                 val intent = Intent(this@LoginActivity,WelcomeScreenActivity::class.java)
@@ -35,11 +63,18 @@ class LoginActivity : BaseActivity() {
                 startActivity(intent)
             }
             login.setOnClickListener {
-                val intent = Intent(this@LoginActivity,MainActivity::class.java)
-                startActivity(intent)
+                val email = tvEmailLogin.text.toString()
+                val password = tvPasswordLogin.text.toString()
+                if(password.isEmpty() || email.isEmpty())
+                {
+                    Toast.makeText(this@LoginActivity, "Please enter your credinals", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    logino.logIn(email,password)
+
+                }
             }
 
         }
-
     }
 }

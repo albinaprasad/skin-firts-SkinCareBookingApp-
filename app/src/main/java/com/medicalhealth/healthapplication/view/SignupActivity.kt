@@ -23,14 +23,7 @@ class SignupActivity : BaseActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBackSignUp.setOnClickListener {
-            val intent = Intent(this@SignupActivity,WelcomeScreenActivity::class.java)
-            startActivity(intent)
-        }
-        binding.tvlogin.setOnClickListener {
-            val intent = Intent(this@SignupActivity,LoginActivity::class.java)
-            startActivity(intent)
-        }
+
         setUpOnListener()
         setUpOnObserver()
 
@@ -40,6 +33,7 @@ class SignupActivity : BaseActivity() {
         signupo.isResult.observe(this){
             result ->
             result.onSuccess { user ->
+                Toast.makeText(applicationContext, "Signup Successful", Toast.LENGTH_SHORT).show()
                 val intent =Intent(this@SignupActivity,MainActivity::class.java)
                 startActivity(intent)
                 finish()
@@ -55,6 +49,14 @@ class SignupActivity : BaseActivity() {
     }
 
     private fun setUpOnListener() {
+        binding.btnBackSignUp.setOnClickListener {
+            val intent = Intent(this@SignupActivity,WelcomeScreenActivity::class.java)
+            startActivity(intent)
+        }
+        binding.tvlogin.setOnClickListener {
+            val intent = Intent(this@SignupActivity,LoginActivity::class.java)
+            startActivity(intent)
+        }
        binding.btnSignUp.setOnClickListener {
            val email =binding.tvEmail.text.toString()
            val password = binding.tvPasswordSignUp.text.toString()
