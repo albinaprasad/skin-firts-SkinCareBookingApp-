@@ -44,7 +44,6 @@ class ProfileActivity : BaseActivity() {
             profileOptionRecyclerView.layoutManager = LinearLayoutManager(this@ProfileActivity)
             viewModel.profileOptions.observe(this@ProfileActivity) { optionsList->
                 val adapter = MyProfileAdapter(optionsList){ optionSelected ->
-                    Log.d("message", "----${optionSelected.optionName}")
                     Toast.makeText(this@ProfileActivity, optionSelected.optionName, Toast.LENGTH_SHORT).show()
                 }
                 profileOptionRecyclerView.adapter = adapter
