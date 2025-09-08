@@ -17,9 +17,14 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         with(binding){
+            login.setOnClickListener {
+                val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                startActivity(intent)
+            }
             btnback.setOnClickListener {
                 val intent = Intent(this@LoginActivity,WelcomeScreenActivity::class.java)
                 startActivity(intent)
