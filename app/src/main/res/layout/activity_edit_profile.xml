@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.EditProfileActivity">
+
+    <TextView
+        android:id="@+id/myProfileTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:text="@string/profile_text"
+        android:textColor="@color/button_blue"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="121:28"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.080"
+        app:layout_constraintWidth_percent="0.336">
+
+    </TextView>
+
+    <ImageButton
+        android:background="@color/white"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/back_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="23:23"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086"
+        app:layout_constraintWidth_percent="0.0582">
+
+    </ImageButton>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="27:27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/myProfileTextView"
+        app:layout_constraintHorizontal_bias="0.8350"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086"
+        app:layout_constraintWidth_percent="0.0687">
+
+        <ImageView
+            android:id="@+id/backgroundSettingsEllipse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/background_ellipse_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settingsImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/settings_img_white"
+            app:layout_constraintBottom_toBottomOf="@+id/backgroundSettingsEllipse"
+            app:layout_constraintEnd_toEndOf="@+id/backgroundSettingsEllipse"
+            app:layout_constraintStart_toStartOf="@+id/backgroundSettingsEllipse"
+            app:layout_constraintTop_toTopOf="@+id/backgroundSettingsEllipse" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileImageConstraint"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintVertical_bias="0.1578"
+        app:layout_constraintWidth_percent="0.2697"
+        app:layout_constraintDimensionRatio="106:107">
+
+        <ImageView
+            android:id="@+id/profilePictureImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/profile_picture_big"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/edit_icon_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.94" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:text="@string/fullname"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="18dp"
+        app:autoSizeMaxTextSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.3192"
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/edittext_round_edges"
+        android:fontFamily="@font/leaguespartan_medium"
+        android:hint="@string/john_doe"
+        android:paddingStart="18dp"
+        android:textColorHint="@color/black"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.3698"
+        app:layout_constraintWidth_percent="0.830">
+
+    </EditText>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:text="@string/phone_number_text"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="18dp"
+        app:autoSizeMaxTextSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.4414"
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/edittext_round_edges"
+        android:fontFamily="@font/leaguespartan_medium"
+        android:hint="@string/phone_number"
+        android:paddingStart="18dp"
+        android:textColorHint="@color/black"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.4962"
+        app:layout_constraintWidth_percent="0.830">
+
+    </EditText>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:text="@string/email"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="18dp"
+        app:autoSizeMaxTextSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.5650"
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/edittext_round_edges"
+        android:fontFamily="@font/leaguespartan_medium"
+        android:hint="@string/johndoe_email_text"
+        android:paddingStart="18dp"
+        android:textColorHint="@color/black"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.6226"
+        app:layout_constraintWidth_percent="0.830">
+
+    </EditText>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:text="@string/dob"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="18dp"
+        app:autoSizeMaxTextSize="24dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.685"
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/tvDateOfBirth"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/edittext_shape"
+        android:ems="10"
+        android:hint="@string/dob_format"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:inputType="text"
+        android:paddingStart="18dp"
+        android:textSize="20dp"
+
+        android:textColorHint="@color/backgroundColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7460"
+        app:layout_constraintWidth_percent="0.8305" />
+
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/button_blue"
+        android:fontFamily="@font/leaguespartan_medium"
+
+        android:text="@string/update_profile_text"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeMaxTextSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="207:60"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515278"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.8804"
+        app:layout_constraintWidth_percent="0.5036">
+
+    </Button>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
