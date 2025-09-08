@@ -14,8 +14,7 @@ class NotificationAdapter(val context: Context, val notificationList: List<Notif
 
 
     enum class DisplayType(val value: Int) {
-        TIME_DISPLAY(0),
-        CARD_DISPLAY(1)
+        TIME_DISPLAY(0)
     }
 
     enum class MessageType(val value: String) {
@@ -31,10 +30,12 @@ class NotificationAdapter(val context: Context, val notificationList: List<Notif
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         return if (viewType == DisplayType.TIME_DISPLAY.value) {
+            //setting the time display layout
             val binding =
                 NotitificationActivityTimedisplayLayoutBinding.inflate(inflater, parent, false)
             NotificationTimeDisplayViewHolder(binding)
         } else {
+            //setting the card view layout
             val binding =
                 NotificationActivityCardDeatilsBinding.inflate(inflater, parent, false)
             NotificationCardDisplayViewHolder(binding)
