@@ -7,21 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.NotificationActivityCardDeatilsBinding
 import com.medicalhealth.healthapplication.databinding.NotitificationActivityTimedisplayLayoutBinding
+import com.medicalhealth.healthapplication.enums.Enums
 import com.medicalhealth.healthapplication.model.data.Notification
 
 class NotificationAdapter(val context: Context, val notificationList: List<Notification>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-
-    enum class DisplayType(val value: Int) {
-        TIME_DISPLAY(0)
-    }
-
-    enum class MessageType(val value: String) {
-        SCHEDULES("SCHEDULES"),
-        MEDICAL_NOTES("NOTES"),
-        CHAT("CHAT")
-    }
 
     override fun getItemViewType(position: Int): Int {
         return notificationList[position].layoutType
@@ -29,7 +19,7 @@ class NotificationAdapter(val context: Context, val notificationList: List<Notif
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return if (viewType == DisplayType.TIME_DISPLAY.value) {
+        return if (viewType == Enums.DisplayType.TIME_DISPLAY.value) {
             //setting the time display layout
             val binding =
                 NotitificationActivityTimedisplayLayoutBinding.inflate(inflater, parent, false)
@@ -40,6 +30,7 @@ class NotificationAdapter(val context: Context, val notificationList: List<Notif
                 NotificationActivityCardDeatilsBinding.inflate(inflater, parent, false)
             NotificationCardDisplayViewHolder(binding)
         }
+
 
     }
 
@@ -72,9 +63,9 @@ class NotificationAdapter(val context: Context, val notificationList: List<Notif
         messageType: String
     ) {
         val iconResource = when (messageType) {
-            MessageType.SCHEDULES.value -> R.drawable.calender_icon_thin_borders
-            MessageType.MEDICAL_NOTES.value -> R.drawable.notes_icon
-            MessageType.CHAT.value -> R.drawable.chat_icon_svg
+            Enums.MessageType.SCHEDULES.value -> R.drawable.calender_icon_thin_borders
+            Enums.MessageType.MEDICAL_NOTES.value -> R.drawable.notes_icon
+            Enums.MessageType.CHAT.value -> R.drawable.chat_icon_svg
             else -> R.drawable.calender_icon_thin_borders
         }
 
