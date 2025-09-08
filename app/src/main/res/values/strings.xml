@@ -43,4 +43,5 @@
     <string name="doctorname_sample">Dr. Alexander Bennett,\n Ph.D.</string>
     <string name="doctor_sample_specification">Dermato-Genetics</string>
     <string name="info">Info</string>
+    <string name="privacy_policy">Privacy Policy</string>
 </resources>
