@@ -49,4 +49,13 @@
     <string name="today">Today</string>
     <string name="notification">Notification</string>
     <string name="mark_all">"Mark all "</string>
+    <string name="notification_setting">Notification Setting</string>
+    <string name="general_notification">General Notification</string>
+    <string name="sound">Sound</string>
+    <string name="sound_call">Sound Call</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="special_offers">Special Offers</string>
+    <string name="payments">Payments</string>
+    <string name="promo_and_discount">Promo and discount</string>
+    <string name="cashback">Cashback</string>
 </resources>
