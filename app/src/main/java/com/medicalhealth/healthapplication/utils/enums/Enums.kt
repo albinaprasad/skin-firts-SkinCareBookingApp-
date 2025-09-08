@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.enums
+package com.medicalhealth.healthapplication.utils.enums
 
 class Enums {
     enum class MessageType(val value: String) {

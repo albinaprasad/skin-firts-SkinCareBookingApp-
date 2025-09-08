@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.NotificationActivityCardDeatilsBinding
 import com.medicalhealth.healthapplication.databinding.NotitificationActivityTimedisplayLayoutBinding
-import com.medicalhealth.healthapplication.enums.Enums
+import com.medicalhealth.healthapplication.utils.enums.Enums
 import com.medicalhealth.healthapplication.model.data.Notification
 
 class NotificationAdapter(val context: Context, val notificationList: List<Notification>) :
