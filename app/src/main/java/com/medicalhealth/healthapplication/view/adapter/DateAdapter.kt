@@ -20,12 +20,15 @@ class DateAdapter(private val dates: List<Date>, private val onDateSelected: (Da
 
     override fun onBindViewHolder(holder: DateAdapter.DateViewHolder, position: Int) {
         val date = dates[position]
-        holder.binding.dateTextView.text = date.dayOfMonth
-        holder.binding.dayOfWeekTextView.text = date.dayOfWeek
 
-        holder.binding.dateContainer.isSelected = date.isSelected
-        holder.binding.dateTextView.isSelected = date.isSelected
-        holder.binding.dayOfWeekTextView.isSelected = date.isSelected
+        with(holder.binding){
+            dateTextView.text = date.dayOfMonth
+            dayOfWeekTextView.text = date.dayOfWeek
+            dateContainer.isSelected = date.isSelected
+            dateTextView.isSelected = date.isSelected
+            dayOfWeekTextView.isSelected = date.isSelected
+        }
+
 
         holder.itemView.setOnClickListener{
             onDateSelected(date)
