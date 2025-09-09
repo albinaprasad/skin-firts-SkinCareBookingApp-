@@ -3,12 +3,7 @@ package com.medicalhealth.healthapplication.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBinding
-import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
-import com.medicalhealth.healthapplication.model.data.Notification
-import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
-import com.medicalhealth.healthapplication.view.notificationSetting.NotificationSettingsActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
 class WelcomeScreenActivity : BaseActivity() {
