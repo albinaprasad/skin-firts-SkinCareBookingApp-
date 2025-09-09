@@ -68,7 +68,7 @@ class BottomNavigationFragment: Fragment() {
     }
 
     private fun onMenuSelected(menuTypes: MenuTypes) {
-//        updateButtonState(menuTypes)
+        updateButtonState(menuTypes)
         when (menuTypes) {
             HOME -> {
                 val intent = Intent(activity, MainActivity::class.java)

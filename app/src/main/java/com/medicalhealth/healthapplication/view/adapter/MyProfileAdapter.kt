@@ -9,9 +9,10 @@ import com.medicalhealth.healthapplication.util.ViewExtension.gone
 import com.medicalhealth.healthapplication.util.ViewExtension.show
 
 class MyProfileAdapter(
-    private val profileOptionList: List<ProfileOption>,
+    private var profileOptionList: List<ProfileOption>,
     private val onOptionSelected: (ProfileOption) -> Unit
 ) : RecyclerView.Adapter<MyProfileAdapter.OptionViewHolder>() {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -41,5 +42,10 @@ class MyProfileAdapter(
     }
 
     inner class OptionViewHolder(val binding: ItemProfileScreenListBinding): RecyclerView.ViewHolder(binding.root)
+
+    fun updateData(newOptionsList: List<ProfileOption>){
+        profileOptionList = newOptionsList
+        notifyDataSetChanged()
+    }
 
 }

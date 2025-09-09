@@ -41,12 +41,15 @@ class ProfileActivity : BaseActivity() {
     private fun setUpRecyclerView(){
 
         with(binding) {
+            val adapter = MyProfileAdapter(emptyList()){ optionSelected->
+                Toast.makeText(this@ProfileActivity, optionSelected.optionName, Toast.LENGTH_SHORT).show()
+            }
+
             profileOptionRecyclerView.layoutManager = LinearLayoutManager(this@ProfileActivity)
-            viewModel.profileOptions.observe(this@ProfileActivity) { optionsList->
-                val adapter = MyProfileAdapter(optionsList){ optionSelected ->
-                    Toast.makeText(this@ProfileActivity, optionSelected.optionName, Toast.LENGTH_SHORT).show()
-                }
-                profileOptionRecyclerView.adapter = adapter
+            profileOptionRecyclerView.adapter = adapter
+
+            viewModel.profileOptions.observe(this@ProfileActivity){ optionsList ->
+                adapter.updateData(optionsList)
             }
         }
     }
