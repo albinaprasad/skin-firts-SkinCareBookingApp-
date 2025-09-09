@@ -52,4 +52,6 @@
     <string name="exp_year"><b>15 years \n</b>experience</string>
     <string name="focus_description"><b>Focus:</b> The impact of hormonal imbalances on skin conditions, specializing in acne, hirsutism, and other skin disorders.</string>
     <string name="info">Info</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

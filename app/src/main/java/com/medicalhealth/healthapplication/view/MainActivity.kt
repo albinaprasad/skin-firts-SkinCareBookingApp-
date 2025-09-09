@@ -13,7 +13,6 @@ import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
 class MainActivity : BaseActivity() {
-    class MainActivity : AppCompatActivity() {
         private lateinit var mainBinding: ActivityMainBinding
         private val viewModel: MainViewModel by viewModels()
 
@@ -65,4 +64,3 @@ class MainActivity : BaseActivity() {
     }
 
 }
-    }
