@@ -63,7 +63,7 @@
     </TextView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/notificationsConstraint"
+        android:id="@+id/notificationBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -108,7 +108,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/settingsConstraint"
+        android:id="@+id/settingsBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

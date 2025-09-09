@@ -79,7 +79,7 @@ class MainActivity : BaseActivity() {
                 val intent = Intent(this@MainActivity, DoctorsActivity::class.java)
                 startActivity(intent)
             }
-            notificationsConstraint.setOnClickListener {
+            notificationBtn.setOnClickListener {
                 val intent = Intent(this@MainActivity, NotificationActivity::class.java)
                 startActivity(intent)
             }
