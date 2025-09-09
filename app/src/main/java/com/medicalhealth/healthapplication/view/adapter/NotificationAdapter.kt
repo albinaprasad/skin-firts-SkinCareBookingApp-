@@ -65,7 +65,7 @@ class NotificationAdapter(val context: Context, val notificationList: List<Notif
         val iconResource = when (messageType) {
             Enums.MessageType.SCHEDULES.value -> R.drawable.calender_icon_thin_borders
             Enums.MessageType.MEDICAL_NOTES.value -> R.drawable.notes_icon
-            Enums.MessageType.CHAT.value -> R.drawable.chat_icon_svg
+            Enums.MessageType.CHAT.value -> R.drawable.chat_icon_svg_1
             else -> R.drawable.calender_icon_thin_borders
         }
 

@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
-        android:src="@drawable/profile_picture"
+        android:src="@drawable/profile_picture_small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="41:41"
         app:layout_constraintEnd_toEndOf="parent"
@@ -253,9 +253,9 @@
             android:orientation="horizontal"
             android:paddingVertical="16dp"
             app:layout_constraintBottom_toTopOf="@+id/scheduleContainer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4816"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/scheduleContainer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@id/scheduleContainer"
             app:layout_constraintTop_toTopOf="@id/offBlueConstraint"
             tools:listitem="@layout/item_date" />
 
@@ -315,7 +315,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/scheduleRecyclerView"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.4146"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/timeFourTextView"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -43,6 +43,7 @@
     <string name="doctorname_sample">Dr. Alexander Bennett,\n Ph.D.</string>
     <string name="doctor_sample_specification">Dermato-Genetics</string>
     <string name="info">Info</string>
+    <string name="my_profile_text">My Profile</string>
     <string name="news">News</string>
     <string name="scheduled_change">Scheduled Change</string>
     <string name="two_hour">2H</string>

@@ -22,8 +22,7 @@ class SignupActivity : BaseActivity() {
             val intent = Intent(this@SignupActivity,WelcomeScreenActivity::class.java)
             startActivity(intent)
         }
-        binding.tvlogin
-            .setOnClickListener {
+        binding.tvlogin.setOnClickListener {
             val intent = Intent(this@SignupActivity,LoginActivity::class.java)
             startActivity(intent)
         }
