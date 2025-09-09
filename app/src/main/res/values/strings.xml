@@ -59,4 +59,6 @@
     <string name="payments">Payments</string>
     <string name="promo_and_discount">Promo and discount</string>
     <string name="cashback">Cashback</string>
+    <string name="password_manager">Password Manager</string>
+    <string name="current_password">Current Password</string>
 </resources>
