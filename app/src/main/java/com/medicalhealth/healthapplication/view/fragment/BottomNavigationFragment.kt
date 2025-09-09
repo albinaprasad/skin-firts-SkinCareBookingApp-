@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
-import com.medicalhealth.healthapplication.util.ViewExtension.selected
-import com.medicalhealth.healthapplication.util.ViewExtension.unselected
 import com.medicalhealth.healthapplication.view.MainActivity
 import com.medicalhealth.healthapplication.view.ProfileActivity
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment.MenuTypes.*
@@ -120,7 +118,7 @@ class BottomNavigationFragment: Fragment() {
         fun getUnselectedIcon(): Int {
                 return when (this) {
                     HOME -> R.drawable.home_icon_white
-                    MESSAGES -> R.drawable.chat_icon_white
+                    MESSAGES -> R.drawable.chat_icon_white_1
                     PROFILE -> R.drawable.profile_icon_white
                     CALENDER -> R.drawable.calender_icon_white
                 }
