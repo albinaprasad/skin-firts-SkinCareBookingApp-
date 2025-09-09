@@ -76,6 +76,10 @@ class MainActivity : BaseActivity() {
     private fun setUpListeners(){
         with(mainBinding){
             doctorImageButton.setOnClickListener {
+                val intent = Intent(this@MainActivity, DoctorsActivity::class.java)
+                startActivity(intent)
+            }
+            notificationsConstraint.setOnClickListener {
                 val intent = Intent(this@MainActivity, NotificationActivity::class.java)
                 startActivity(intent)
             }
