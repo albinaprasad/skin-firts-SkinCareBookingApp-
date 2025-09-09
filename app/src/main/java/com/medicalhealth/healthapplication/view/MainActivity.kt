@@ -10,6 +10,7 @@ import com.medicalhealth.healthapplication.view.adapter.DateAdapter
 import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
+import com.medicalhealth.healthapplication.view.favoriteScreen.FavoriteDoctorsActivity
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment
 import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
@@ -26,6 +27,12 @@ class MainActivity : BaseActivity() {
 
             setUpRecyclerView()
             setUpListeners()
+
+            mainBinding.favBtn.setOnClickListener {
+                val intent = Intent(this, FavoriteDoctorsActivity::class.java)
+                startActivity(intent)
+            }
+
         }
 
     override fun onResume() {
