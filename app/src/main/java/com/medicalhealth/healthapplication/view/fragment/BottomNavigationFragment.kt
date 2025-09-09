@@ -118,7 +118,7 @@ class BottomNavigationFragment: Fragment() {
         fun getUnselectedIcon(): Int {
                 return when (this) {
                     HOME -> R.drawable.home_icon_white
-                    MESSAGES -> R.drawable.chat_icon_white_1
+                    MESSAGES -> R.drawable.chat_icon_white
                     PROFILE -> R.drawable.profile_icon_white
                     CALENDER -> R.drawable.calender_icon_white
                 }
