@@ -5,21 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.R
-import com.medicalhealth.healthapplication.databinding.NotificationDataCardDeatilsBinding
+import com.medicalhealth.healthapplication.databinding.NotificationCardDeatilsBinding
 import com.medicalhealth.healthapplication.databinding.NotitificationTimedisplayLayoutBinding
+import com.medicalhealth.healthapplication.utils.enums.Enums
 import com.medicalhealth.healthapplication.model.data.Notification
 
-class NotificationAdapter(val context: Context, val notificationList: ArrayList<Notification>) :
+class NotificationAdapter(val context: Context, val notificationList: List<Notification>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-
-    companion object {
-        const val TYPE_TIME_DISPLAY = 0
-        const val TYPE_CARD_DISPLAY = 1
-        const val MESSAGE_TYPE_SCHEDULES = "SCHEDULES"
-        const val MESSAGE_TYPE_MEDICAL_NOTES = "NOTES"
-        const val MESSAGE_TYPE_CHAT = "CHAT"
-    }
 
     override fun getItemViewType(position: Int): Int {
         return notificationList[position].layoutType
@@ -27,27 +19,26 @@ class NotificationAdapter(val context: Context, val notificationList: ArrayList<
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return when (viewType) {
-            TYPE_TIME_DISPLAY -> {
-                val binding =
-                    NotitificationTimedisplayLayoutBinding.inflate(inflater, parent, false)
-                NotificationTimeDisplayViewHolder(binding)
-            }
-
-            TYPE_CARD_DISPLAY -> {
-                val binding =
-                    NotificationDataCardDeatilsBinding.inflate(inflater, parent, false)
-                NotificationCardDisplayViewHolder(binding)
-            }
-            else -> throw IllegalArgumentException("Invalid view type: $viewType")
+        return if (viewType == Enums.DisplayType.TIME_DISPLAY.value) {
+            //setting the time display layout
+            val binding =
+                NotitificationTimedisplayLayoutBinding.inflate(inflater, parent, false)
+            NotificationTimeDisplayViewHolder(binding)
+        } else {
+            //setting the card view layout
+            val binding =
+                NotificationCardDeatilsBinding.inflate(inflater, parent, false)
+            NotificationCardDisplayViewHolder(binding)
         }
+
+
     }
 
     override fun onBindViewHolder(
         holder: RecyclerView.ViewHolder,
         position: Int
     ) {
-        var singleNotificationDetail = notificationList[position]
+        val singleNotificationDetail = notificationList[position]
 
         when (holder) {
             is NotificationTimeDisplayViewHolder -> {
@@ -61,37 +52,37 @@ class NotificationAdapter(val context: Context, val notificationList: ArrayList<
                 holder.notificationCardBinding.timeTV.text =
                     singleNotificationDetail.notificationTime
 
-                when (singleNotificationDetail.messageType) {
-
-                    MESSAGE_TYPE_SCHEDULES -> holder.notificationCardBinding.notificationImage.setImageResource(
-                        R.drawable.calender_icon_thin_borders
-                    )
-
-                    MESSAGE_TYPE_MEDICAL_NOTES -> holder.notificationCardBinding.notificationImage.setImageResource(
-                        R.drawable.notes_icon
-                    )
-
-                    MESSAGE_TYPE_CHAT -> holder.notificationCardBinding.notificationImage.setImageResource(
-                        R.drawable.chat_icon_svg
-                    )
-
-                    else -> holder.notificationCardBinding.notificationImage.setImageResource(
-                        R.drawable.calender_icon_thin_borders
-                    )
-                }
+                setNotificationIcon(holder, singleNotificationDetail.messageType)
 
             }
         }
     }
 
+    fun setNotificationIcon(
+        holder: NotificationCardDisplayViewHolder,
+        messageType: String
+    ) {
+        val iconResource = when (messageType) {
+            Enums.MessageType.SCHEDULES.value -> R.drawable.calender_icon_thin_borders
+            Enums.MessageType.MEDICAL_NOTES.value -> R.drawable.notes_icon
+            Enums.MessageType.CHAT.value -> R.drawable.chat_icon_svg
+            else -> R.drawable.calender_icon_thin_borders
+        }
+
+        holder.notificationCardBinding.notificationImage.setImageResource(iconResource)
+    }
+
+
     override fun getItemCount(): Int {
         return notificationList.size
     }
+
     class NotificationTimeDisplayViewHolder(val notificationTimeBinding: NotitificationTimedisplayLayoutBinding) :
         RecyclerView.ViewHolder(notificationTimeBinding.root) {
 
     }
-    class NotificationCardDisplayViewHolder(val notificationCardBinding: NotificationDataCardDeatilsBinding) :
+
+    class NotificationCardDisplayViewHolder(val notificationCardBinding: NotificationCardDeatilsBinding) :
         RecyclerView.ViewHolder(notificationCardBinding.root) {
 
     }

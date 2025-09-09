@@ -19,6 +19,9 @@
             android:name=".view.ratingScreen.RatingActivity"
             android:exported="false" />
         <activity
+            android:name=".view.notificationSetting.NotificationSettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.notificationScreen.NotificationActivity"
             android:exported="false" />
         <activity
