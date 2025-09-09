@@ -61,4 +61,5 @@
     <string name="cashback">Cashback</string>
     <string name="password_manager">Password Manager</string>
     <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
 </resources>
