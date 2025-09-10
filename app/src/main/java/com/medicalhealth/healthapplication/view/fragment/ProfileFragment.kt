@@ -33,7 +33,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val adapter = MyProfileAdapter(emptyList()){ optionSelected ->
                 Toast.makeText(context, optionSelected.optionName, Toast.LENGTH_SHORT).show()
             }
-            profileOptionRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             profileOptionRecyclerView.adapter = adapter
 
             viewModel.profileOptions.observe(viewLifecycleOwner){ optionList->
