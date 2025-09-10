@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.view.doctorScreen
+package com.medicalhealth.healthapplication.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
+import com.medicalhealth.healthapplication.model.data.Doctor
 
-class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<Doctors>) :
+class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<Doctor>) :
     RecyclerView.Adapter<DoctorListViewAdapter.DoctorlistViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,9 +26,9 @@ class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<
     ) {
         val doctorData = doctorDataList[position]
 
-        holder.doctorBinding.doctorImage.setImageResource(doctorData.image)
+        holder.doctorBinding.doctorImage.setImageResource(doctorData.profileImageUrl)
         holder.doctorBinding.doctorName.text = doctorData.name
-        holder.doctorBinding.specification.text = doctorData.specification
+        holder.doctorBinding.specification.text = doctorData.specialization
 
         holder.doctorBinding.infoButton.setOnClickListener {
             showToast("info")
@@ -62,4 +63,3 @@ class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 }
-

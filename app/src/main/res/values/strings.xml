@@ -43,5 +43,27 @@
     <string name="doctorname_sample">Dr. Alexander Bennett,\n Ph.D.</string>
     <string name="doctor_sample_specification">Dermato-Genetics</string>
     <string name="info">Info</string>
+    <string name="my_profile_text">My Profile</string>
+    <string name="news">News</string>
+    <string name="scheduled_change">Scheduled Change</string>
+    <string name="two_hour">2H</string>
+    <string name="today">Today</string>
+    <string name="notification">Notification</string>
+    <string name="mark_all">"Mark all "</string>
+    <string name="rating">Rating</string>
+    <string name="professional_doctor">Professional Doctor</string>
+    <string name="dr_olivia_turner_m_d">Dr. Olivia Turner, M.D.</string>
+    <string name="favorite">Favorite</string>
+    <string name="services">Services</string>
+    <string name="make_appointment">Make Appointment</string>
+    <string name="notification_setting">Notification Setting</string>
+    <string name="general_notification">General Notification</string>
+    <string name="sound">Sound</string>
+    <string name="sound_call">Sound Call</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="special_offers">Special Offers</string>
+    <string name="payments">Payments</string>
+    <string name="promo_and_discount">Promo and discount</string>
+    <string name="cashback">Cashback</string>
     <string name="privacy_policy">Privacy Policy</string>
 </resources>
