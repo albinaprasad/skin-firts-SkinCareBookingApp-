@@ -199,14 +199,14 @@
         android:name="com.medicalhealth.healthapplication.view.DoctorsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/filterButtons"
         app:layout_constraintBottom_toTopOf="@id/navigation_main"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintVertical_bias="0.86"
         app:layout_constraintWidth_percent="1"
         app:layout_constraintHeight_percent="0.75"
-        tools:layout="@layout/fragment_doctors_list" />
+        tools:layout="@layout/fragment_doctor_info" />
 
 
 
@@ -232,7 +232,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:src="@drawable/home_icon_filled"
+                    android:src="@drawable/home_unfilled"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/chatButton"
                     app:layout_constraintStart_toStartOf="parent"

@@ -11,7 +11,8 @@ import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBindin
 
 class DoctorListViewAdapter(
     private val context: Context,
-    private var dataList: List<Doctors>
+    private var dataList: List<Doctors>,
+    private val listener:OnItemClickListener
 ) : RecyclerView.Adapter<DoctorListViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -36,7 +37,8 @@ class DoctorListViewAdapter(
 
         // Set click listeners for the buttons
         holder.binding.infoButton.setOnClickListener {
-            showToast(context, "info")
+            listener.onInfoButtonClick()
+
         }
 
         holder.binding.calenderBtn.setOnClickListener {
@@ -73,6 +75,10 @@ class DoctorListViewAdapter(
     fun updateData(newData: List<Doctors>) {
         dataList = newData
         notifyDataSetChanged() // Refreshes the RecyclerView
+    }
+    interface OnItemClickListener{
+        fun onInfoButtonClick()
+
     }
 }
 

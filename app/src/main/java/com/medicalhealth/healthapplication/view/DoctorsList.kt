@@ -26,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DoctorsList.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DoctorsList : Fragment() {
+class DoctorsList : Fragment(),DoctorListViewAdapter.OnItemClickListener {
     // TODO: Rename and change types of parameters
     private lateinit var _binding: FragmentDoctorsListBinding
     private val viewModel: DoctorsListViewModel by viewModels()
@@ -42,7 +42,7 @@ class DoctorsList : Fragment() {
         _binding=  FragmentDoctorsListBinding.inflate(inflater, container, false)
         val view = _binding.root
 
-        adapter = DoctorListViewAdapter(requireContext(),emptyList())
+        val adapter = DoctorListViewAdapter(requireContext(), emptyList(),this)
 
         _binding.doctorsRecyclerView.layoutManager = LinearLayoutManager(context)
         _binding.doctorsRecyclerView.adapter = adapter
@@ -59,4 +59,20 @@ class DoctorsList : Fragment() {
         // Release the binding object to prevent memory leaks
 
     }
+
+    override fun onInfoButtonClick() {
+        replaceFragment(DoctorInfoFragment())
+
+    }
+
+    private fun replaceFragment(doctorInfoFragment: DoctorInfoFragment) {
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, doctorInfoFragment)
+            .addToBackStack(null)
+            .commit()
+
+    }
+
+
 }

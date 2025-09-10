@@ -6,7 +6,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
-import com.medicalhealth.healthapplication.view.DoctorsInfoActivity
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.SignupActivity
