@@ -16,6 +16,12 @@
             android:name=".view.passwordManagerScreen.PasswordManagerActivity"
             android:exported="false" />
         <activity
+            android:name=".view.favoriteScreen.FavoriteDoctorsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ratingScreen.RatingActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ProfileActivity"
             android:exported="false" />
         <activity

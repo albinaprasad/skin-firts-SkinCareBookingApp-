@@ -31,6 +31,8 @@ class MainViewModel: ViewModel() {
             Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis."),
             Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis."),
             Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis.")
+            ,Appointment("2", "10 AM", "Dr. Abc Turner, M.D.", "Treatment and prevention of skin and photodermatitis.")
+            ,Appointment("2", "10 AM", "Dr. Abc Turner, M.D.", "Treatment and prevention of skin and photodermatitis.")
         )
 
         _doctors.value = listOf(

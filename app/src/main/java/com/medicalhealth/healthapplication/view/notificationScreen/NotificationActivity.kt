@@ -2,15 +2,13 @@ package com.medicalhealth.healthapplication.view.notificationScreen
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityNotificationBinding
 import com.medicalhealth.healthapplication.model.data.Notification
-import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
+import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.NotificationAdapter
 
-class NotificationActivity : AppCompatActivity() {
+class NotificationActivity : BaseActivity() {
     lateinit var binding: ActivityNotificationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
