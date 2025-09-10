@@ -5,8 +5,7 @@
     android:layout_height="48dp"
     app:cardBackgroundColor="@color/button_blue"
     app:cardCornerRadius="24dp"
-    android:id="@+id/navigation_main"
-    android:layout_marginBottom="10dp">
+    android:id="@+id/navigation_main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

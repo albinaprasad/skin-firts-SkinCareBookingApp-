@@ -11,7 +11,6 @@ import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.SignupActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 import com.medicalhealth.healthapplication.view.MainActivity
-import com.medicalhealth.healthapplication.view.ProfileActivity
 
 class LoginActivity : BaseActivity() {
     private lateinit var binding:ActivityLoginBinding
@@ -25,10 +24,6 @@ class LoginActivity : BaseActivity() {
         with(binding){
             btnback.setOnClickListener {
                 val intent = Intent(this@LoginActivity,WelcomeScreenActivity::class.java)
-                startActivity(intent)
-            }
-            txtsignup.setOnClickListener {
-                val intent = Intent(this@LoginActivity,ProfileActivity::class.java)
                 startActivity(intent)
             }
             txtforgotpassword.setOnClickListener {

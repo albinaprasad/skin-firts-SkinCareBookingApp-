@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="@color/off_blue"
     app:cardCornerRadius="17dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="12dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/doctorProfileConstraint"

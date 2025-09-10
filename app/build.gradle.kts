@@ -59,4 +59,9 @@ dependencies {
     // Add the dependency for Firebase Analytics
     implementation("com.google.firebase:firebase-analytics")
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+// Fragment KTX for viewModels() delegate
+    implementation("androidx.fragment:fragment-ktx:1.8.9")
+
 }
