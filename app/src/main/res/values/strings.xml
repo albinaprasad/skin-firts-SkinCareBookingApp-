@@ -62,4 +62,7 @@
     <string name="password_manager">Password Manager</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="asteric">***********</string>
 </resources>
