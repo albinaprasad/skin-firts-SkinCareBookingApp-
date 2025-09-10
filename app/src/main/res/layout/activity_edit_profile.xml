@@ -15,7 +15,9 @@
         android:fontFamily="@font/leaguespartan_semibold"
         android:text="@string/profile_text"
         android:textColor="@color/button_blue"
-        android:textSize="24dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="15dp"
+        android:autoSizeMaxTextSize="24dp"
         android:textStyle="bold"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,7 +27,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.080"
-        app:layout_constraintWidth_percent="0.336">
+        app:layout_constraintWidth_percent="0.336"
+        android:includeFontPadding="false">
 
     </TextView>
 
@@ -103,16 +106,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="@android:color/transparent"
             android:src="@drawable/edit_icon_img"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.94"
+            app:layout_constraintHorizontal_bias="0.9650"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.94" />
+            app:layout_constraintVertical_bias="0.94"
+            app:layout_constraintWidth_percent="0.2641"
+            app:layout_constraintHeight_percent="0.2641"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

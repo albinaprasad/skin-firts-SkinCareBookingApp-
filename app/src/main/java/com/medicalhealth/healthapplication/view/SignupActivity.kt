@@ -23,7 +23,7 @@ class SignupActivity : BaseActivity() {
             startActivity(intent)
         }
         binding.tvlogin.setOnClickListener {
-            val intent = Intent(this@SignupActivity,LoginActivity::class.java)
+            val intent = Intent(this@SignupActivity,EditProfileActivity::class.java)
             startActivity(intent)
         }
 
