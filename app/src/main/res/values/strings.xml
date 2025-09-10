@@ -50,6 +50,12 @@
     <string name="today">Today</string>
     <string name="notification">Notification</string>
     <string name="mark_all">"Mark all "</string>
+    <string name="rating">Rating</string>
+    <string name="professional_doctor">Professional Doctor</string>
+    <string name="dr_olivia_turner_m_d">Dr. Olivia Turner, M.D.</string>
+    <string name="favorite">Favorite</string>
+    <string name="services">Services</string>
+    <string name="make_appointment">Make Appointment</string>
     <string name="notification_setting">Notification Setting</string>
     <string name="general_notification">General Notification</string>
     <string name="sound">Sound</string>
