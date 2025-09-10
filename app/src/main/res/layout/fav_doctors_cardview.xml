@@ -73,8 +73,9 @@
             android:autoSizeStepGranularity="0.5dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/leaguespartan_regular"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
+
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
             android:text="@string/professional_doctor"
             android:textColor="@color/backgroundColor">
         </TextView>
@@ -102,11 +103,13 @@
         android:id="@+id/nameTV"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeMaxTextSize="14dp"
+        android:autoSizeMaxTextSize="16dp"
         android:autoSizeMinTextSize="12dp"
         android:autoSizeStepGranularity="0.5dp"
-
         android:autoSizeTextType="uniform"
+        android:includeFontPadding="false"
+        android:gravity="center_vertical"
+
         android:background="@color/white"
         android:elevation="2dp"
         android:fontFamily="@font/leaguespartan_medium"
@@ -129,10 +132,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:paddingBottom="3dp"
-        android:autoSizeMaxTextSize="15dp"
-        android:autoSizeMinTextSize="12dp"
+        android:autoSizeMaxTextSize="12dp"
+        android:autoSizeMinTextSize="10dp"
         android:autoSizeStepGranularity="0.5dp"
-
+        android:includeFontPadding="false"
+        android:gravity="center_vertical"
         android:autoSizeTextType="uniform"
         android:background="@color/white"
         android:elevation="2dp"
@@ -173,8 +177,9 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/make_appointment"
+        android:includeFontPadding="false"
         android:autoSizeMinTextSize="10dp"
-        android:autoSizeMaxTextSize="14dp"
+        android:autoSizeMaxTextSize="13dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
         android:textColor="@color/white"

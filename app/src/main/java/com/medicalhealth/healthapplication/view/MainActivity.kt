@@ -27,12 +27,10 @@ class MainActivity : BaseActivity() {
 
             setUpRecyclerView()
             setUpListeners()
-
             mainBinding.favBtn.setOnClickListener {
                 val intent = Intent(this, FavoriteDoctorsActivity::class.java)
                 startActivity(intent)
             }
-
         }
 
     override fun onResume() {
@@ -54,7 +52,6 @@ class MainActivity : BaseActivity() {
                             false
                         )
                     dateRecyclerView.adapter = dateAdapter
-
                     viewModel.dates.observe(this@MainActivity) { updatedDates ->
                         dateAdapter.notifyDataSetChanged()
                     }
@@ -67,7 +64,6 @@ class MainActivity : BaseActivity() {
                     val appointmentAdapter = ScheduleAdapter(appointmentsList)
                     scheduleRecyclerView.adapter = appointmentAdapter
                 }
-
                 doctorRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                 viewModel.doctors.observe(this@MainActivity) { doctorsList ->
                     val adapter = DoctorAdapter(doctorsList) { doctor ->
@@ -75,8 +71,7 @@ class MainActivity : BaseActivity() {
                     }
                     doctorRecyclerView.adapter = adapter
                 }
-        }
-
+            }
     }
 
     private fun setUpListeners(){
@@ -91,5 +86,4 @@ class MainActivity : BaseActivity() {
             }
         }
     }
-
 }

@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.databinding.ActivityNotificationBinding
 import com.medicalhealth.healthapplication.model.data.Notification
+import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.NotificationAdapter
 
-class NotificationActivity : AppCompatActivity() {
+class NotificationActivity : BaseActivity() {
     lateinit var binding: ActivityNotificationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

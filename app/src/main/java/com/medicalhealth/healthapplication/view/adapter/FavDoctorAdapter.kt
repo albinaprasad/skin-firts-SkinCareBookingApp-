@@ -8,8 +8,11 @@ import com.medicalhealth.healthapplication.databinding.FavDoctorsCardviewBinding
 import com.medicalhealth.healthapplication.databinding.RatingCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-class FavDoctorAdapter(private val doctors: List<Doctor>) :
+class FavDoctorAdapter :
     RecyclerView.Adapter<FavDoctorAdapter.FavDoctorViewHolder>() {
+
+    private var doctors: List<Doctor> = emptyList()
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -21,6 +24,8 @@ class FavDoctorAdapter(private val doctors: List<Doctor>) :
 
         return FavDoctorViewHolder(view)
     }
+
+
 
     override fun onBindViewHolder(
         holder: FavDoctorViewHolder,
@@ -41,4 +46,10 @@ class FavDoctorAdapter(private val doctors: List<Doctor>) :
 
     class FavDoctorViewHolder(val favBinding: FavDoctorsCardviewBinding) :
         RecyclerView.ViewHolder(favBinding.root)
+
+
+    fun updateData(newDoctors: List<Doctor>) {
+        this.doctors = newDoctors
+        notifyDataSetChanged()
+    }
 }

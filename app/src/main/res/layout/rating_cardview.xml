@@ -77,7 +77,8 @@
             android:autoSizeStepGranularity="0.5dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/leaguespartan_regular"
-            android:paddingTop="3dp"
+           android:includeFontPadding="false"
+            android:gravity="center_vertical"
             android:text="@string/professional_doctor"
             android:textColor="@color/backgroundColor">
 
@@ -132,8 +133,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:autoSizeMaxTextSize="16dp"
-
+            android:autoSizeMaxTextSize="18dp"
+            android:includeFontPadding="false"
+            android:gravity="center_vertical"
             android:autoSizeMinTextSize="12dp"
             android:autoSizeStepGranularity="0.5dp"
             android:autoSizeTextType="uniform"
@@ -150,8 +152,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:autoSizeMaxTextSize="12dp"
-
+            android:autoSizeMaxTextSize="14dp"
+            android:includeFontPadding="false"
+            android:gravity="center_vertical"
             android:autoSizeMinTextSize="10dp"
             android:autoSizeStepGranularity="0.5dp"
             android:autoSizeTextType="uniform"
@@ -226,6 +229,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="7dp"
+        android:gravity="center"
+        android:includeFontPadding="false"
         android:autoSizeMaxTextSize="15dp"
         android:autoSizeMinTextSize="12dp"
         android:autoSizeStepGranularity="0.5dp"

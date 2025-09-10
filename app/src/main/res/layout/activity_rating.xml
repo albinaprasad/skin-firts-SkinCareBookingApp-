@@ -15,9 +15,9 @@
         android:gravity="center"
         android:text="@string/rating"
         android:textColor="@color/button_blue"
-
-        android:autoSizeMinTextSize="16dp"
-        android:autoSizeMaxTextSize="26dp"
+        android:includeFontPadding="false"
+        android:autoSizeMinTextSize="18dp"
+        android:autoSizeMaxTextSize="24dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
         android:textStyle="bold"
@@ -97,10 +97,13 @@
         android:layout_height="0dp"
         android:fontFamily="@font/league_spartan_light"
         android:text="@string/sort_by"
-        android:autoSizeTextType="uniform"
         android:textColor="@color/text_black"
-        android:textSize="14dp"
-
+        android:autoSizeMinTextSize="13dp"
+        android:autoSizeMaxTextSize="16dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="38:17"
 
@@ -109,7 +112,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146"
+        app:layout_constraintVertical_bias="0.15"
         app:layout_constraintWidth_percent="0.105" />
 
 
