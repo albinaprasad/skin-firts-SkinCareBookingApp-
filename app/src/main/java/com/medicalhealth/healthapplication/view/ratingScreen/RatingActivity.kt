@@ -35,7 +35,9 @@ class RatingActivity : BaseActivity() {
         }
 
         viewModel.doctors.observe(this@RatingActivity){doctors ->
-            adapter.updateData(doctors)
+            if (doctors != null) {
+                adapter.updateData(doctors)
+            }
         }
     }
 }
