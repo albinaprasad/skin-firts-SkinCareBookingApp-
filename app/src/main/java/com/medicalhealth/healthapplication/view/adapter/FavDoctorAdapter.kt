@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FavDoctorsCardviewBinding
-import com.medicalhealth.healthapplication.databinding.RatingCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
 class FavDoctorAdapter :

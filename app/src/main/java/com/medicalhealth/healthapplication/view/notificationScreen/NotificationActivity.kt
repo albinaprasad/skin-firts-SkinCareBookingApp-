@@ -2,7 +2,6 @@ package com.medicalhealth.healthapplication.view.notificationScreen
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.databinding.ActivityNotificationBinding
 import com.medicalhealth.healthapplication.model.data.Notification
