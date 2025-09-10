@@ -36,7 +36,7 @@ class SignupActivity : BaseActivity() {
             }
             it.onFailure { exception->
                 Toast.makeText(this, "Sign Up Failed: {$exception?.email}", Toast.LENGTH_SHORT).show()
-                Log.d("mathews","{$exception?.email}")
+                Log.d("log_message","{$exception?.email}")
 
             }
 

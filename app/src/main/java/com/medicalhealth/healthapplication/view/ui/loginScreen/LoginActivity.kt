@@ -5,15 +5,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.SignupActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 import com.medicalhealth.healthapplication.view.MainActivity
-import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 
 class LoginActivity : BaseActivity() {
@@ -34,14 +31,13 @@ class LoginActivity : BaseActivity() {
 
     private fun setUpOnObserver() {
         logino.isLogin.observe(this){
-            login ->
-            login.onSuccess { user ->
+            it.onSuccess {
                 Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
                 val intent =Intent(this@LoginActivity,MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
-            login.onFailure{ exception ->
+            it.onFailure{ exception ->
                 Toast.makeText(this, "{$exception.email}", Toast.LENGTH_SHORT).show()
             }
 
