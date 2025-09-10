@@ -8,18 +8,18 @@ import androidx.activity.viewModels
 import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
-import com.medicalhealth.healthapplication.view.SignupActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 import com.medicalhealth.healthapplication.view.MainActivity
 import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
+import com.medicalhealth.healthapplication.view.SignupActivity
 
 class LoginActivity : BaseActivity() {
     private lateinit var binding:ActivityLoginBinding
     val logino:AuthenticationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding= ActivityLoginBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setUpOnListener()
@@ -72,5 +72,5 @@ class LoginActivity : BaseActivity() {
             }
 
         }
+        }
     }
-}
