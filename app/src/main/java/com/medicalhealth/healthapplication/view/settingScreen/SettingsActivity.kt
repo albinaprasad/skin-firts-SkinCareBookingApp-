@@ -3,12 +3,12 @@ package com.medicalhealth.healthapplication.view.settingScreen
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.medicalhealth.healthapplication.databinding.ActivitySettingsBinding
+import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.notificationSetting.NotificationSettingsActivity
 import com.medicalhealth.healthapplication.view.passwordManagerScreen.PasswordManagerActivity
 
-class SettingsActivity : AppCompatActivity() {
+class SettingsActivity : BaseActivity() {
     lateinit var settingBinding: ActivitySettingsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,6 +16,11 @@ class SettingsActivity : AppCompatActivity() {
         settingBinding= ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(settingBinding.root)
 
+        buttonClickListener()
+    }
+
+    fun buttonClickListener()
+    {
         with(settingBinding) {
             notificationSettingBtn.setOnClickListener {
                 val settingsIntent =
@@ -28,6 +33,6 @@ class SettingsActivity : AppCompatActivity() {
                 startActivity(passwordManagerIntent)
             }
         }
-
     }
+
 }

@@ -80,11 +80,6 @@ class MainActivity : BaseActivity() {
                     }
                     doctorRecyclerView.adapter = adapter
                 }
-
-                settingsImage.setOnClickListener {
-                    val settingsIntent = Intent(this@MainActivity, SettingsActivity::class.java)
-                    startActivity(settingsIntent)
-                }
             }
     }
 
@@ -97,6 +92,11 @@ class MainActivity : BaseActivity() {
             notificationBtn.setOnClickListener {
                 val intent = Intent(this@MainActivity, NotificationActivity::class.java)
                 startActivity(intent)
+            }
+
+            settingsImage.setOnClickListener {
+                val settingsIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+                startActivity(settingsIntent)
             }
         }
     }

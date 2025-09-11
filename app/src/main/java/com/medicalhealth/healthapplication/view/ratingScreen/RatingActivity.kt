@@ -5,14 +5,12 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.medicalhealth.healthapplication.databinding.ActivityRatingBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.RatingsAdapter
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavoriteDoctorsActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import kotlin.getValue
-
 class RatingActivity : BaseActivity() {
     lateinit var binding: ActivityRatingBinding
     lateinit var adapter: RatingsAdapter
