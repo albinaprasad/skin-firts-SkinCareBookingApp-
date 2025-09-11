@@ -51,7 +51,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         }
-
         with(binding) {
             this.scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             viewModel.appointment.observe(viewLifecycleOwner) { appointmentsList ->
@@ -74,12 +73,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setUpListeners(){
         with(binding){
-            this.allDoctorsBtn.setOnClickListener {
-                val intent = Intent(requireContext(), DoctorsActivity::class.java)
+            allDoctorsBtn.setOnClickListener {
+                val intent = Intent(requireActivity(), DoctorsActivity::class.java)
                 startActivity(intent)
             }
-            this.notificationBtn.setOnClickListener {
-                val intent = Intent(requireContext(), NotificationActivity::class.java)
+            notificationBtn.setOnClickListener {
+                val intent = Intent(requireActivity(), NotificationActivity::class.java)
                 startActivity(intent)
             }
         }
