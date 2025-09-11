@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.fragment
 
+import android.animation.ValueAnimator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentProfileBinding
 import com.medicalhealth.healthapplication.view.adapter.MyProfileAdapter
 import com.medicalhealth.healthapplication.viewModel.ProfileViewModel
+import kotlin.random.Random
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
