@@ -21,18 +21,14 @@
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="84:17"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.089"
         app:layout_constraintWidth_percent="0.356" />
-
 
     <ImageButton
         android:id="@+id/backButton"
@@ -40,39 +36,29 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/back_icon"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="14:14"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.099"
         app:layout_constraintWidth_percent="0.038" />
 
     <ImageButton
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/blue_bulb"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="17:26"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
-
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.185"
         app:layout_constraintWidth_percent="0.05" />
-
     <TextView
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_regular"
@@ -84,20 +70,14 @@
         android:autoSizeMaxTextSize="20dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="195:23"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.190"
         app:layout_constraintWidth_percent="0.541" />
-
-
     <ImageButton
 
         android:id="@+id/notification_settingBtn"
@@ -105,41 +85,30 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/forward_icon"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="14:14"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192"
         app:layout_constraintWidth_percent="0.048" />
 
     <ImageButton
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/key_icon"
-
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="17:26"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
-
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.267"
         app:layout_constraintWidth_percent="0.052" />
 
     <TextView
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_regular"
@@ -151,58 +120,45 @@
         android:autoSizeMaxTextSize="20dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="195:23"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.27"
         app:layout_constraintWidth_percent="0.541" />
 
     <ImageButton
-
         android:id="@+id/password_managerBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/forward_icon"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="14:14"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.272"
         app:layout_constraintWidth_percent="0.048" />
 
     <ImageButton
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/profile_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="17:26"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
-
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.339"
         app:layout_constraintWidth_percent="0.053" />
 
     <TextView
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="@font/leaguespartan_regular"
@@ -214,38 +170,28 @@
         android:autoSizeMaxTextSize="20dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="195:23"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.344"
         app:layout_constraintWidth_percent="0.541" />
 
-
     <ImageButton
-
         android:id="@+id/delete_AccountBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/forward_icon"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="14:14"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.911"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.348"
         app:layout_constraintWidth_percent="0.048" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
