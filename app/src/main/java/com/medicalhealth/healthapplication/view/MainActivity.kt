@@ -22,12 +22,9 @@ class MainActivity : BaseActivity(), BottomNavigationFragment.OnFragmentSwitchLi
                 mainBinding.root.setPadding(0, 0, 0, it.bottom)
             }
         }
-
     }
 
     override fun currentFragment(selectedFragment: BottomNavigationFragment.MenuTypes) {
         Log.d("message", "Current Fragment: $selectedFragment")
     }
-
-
 }

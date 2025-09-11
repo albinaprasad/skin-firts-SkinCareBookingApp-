@@ -1,12 +1,9 @@
 package com.medicalhealth.healthapplication.utils
-
 import android.view.View
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowInsetsCompat
 
-
 object utils {
-
     inline fun WindowInsetsCompat.getSystemBarInsets(view: View, action: (insets: Insets) -> Unit): WindowInsetsCompat {
         val systemBarInsets = getInsets(WindowInsetsCompat.Type.systemBars())
         action(systemBarInsets)

@@ -10,12 +10,9 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment.MenuTypes.*
 
-
-
 class BottomNavigationFragment: Fragment() {
 
     interface OnFragmentSwitchListener{
-
         fun currentFragment(selectedFragment: MenuTypes)
     }
 
