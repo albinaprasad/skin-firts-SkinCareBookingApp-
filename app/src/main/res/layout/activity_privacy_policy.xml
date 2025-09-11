@@ -3,45 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.PrivacyPolicyActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fontFamily="@font/leaguespartan_semibold"
-        android:text="@string/privacy_policy"
-        android:textSize="24dp"
-        android:textColor="@color/button_blue"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
-        app:layout_constraintVertical_bias="0.0817"
-        app:layout_constraintDimensionRatio="167:29"
-        app:layout_constraintWidth_percent="0.4638"
+    <!-- Back Button Icon -->
 
-        tools:layout_editor_absoluteX="126dp"
-        tools:layout_editor_absoluteY="50dp" />
+    <!-- Title TextView -->
+
+    <!-- WebView to display HTML content -->
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/back_icon"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/back_icon" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:text="@string/privacy_policy"
+        android:textColor="@color/button_blue"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <WebView
+        android:id="@+id/privacyPolicyWebView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintDimensionRatio="14:14"
-        app:layout_constraintWidth_percent="0.0388"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="66dp" />
+        android:layout_marginTop="16dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

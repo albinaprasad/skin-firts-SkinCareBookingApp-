@@ -26,6 +26,10 @@ class SignupActivity : BaseActivity() {
             val intent = Intent(this@SignupActivity,LoginActivity::class.java)
             startActivity(intent)
         }
+        binding.tvTermsAndPolicy.setOnClickListener {
+            val intent = Intent(this@SignupActivity,PrivacyPolicyActivity::class.java)
+            startActivity(intent)
+        }
 
         }
     }
