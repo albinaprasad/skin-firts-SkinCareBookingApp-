@@ -1,15 +1,20 @@
 package com.medicalhealth.healthapplication.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityMainBinding
 import com.medicalhealth.healthapplication.view.adapter.DateAdapter
 import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
+import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
+import com.medicalhealth.healthapplication.view.favoriteScreen.FavoriteDoctorsActivity
+import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment
+import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
+import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
+
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
 class MainActivity : BaseActivity() {
@@ -23,11 +28,22 @@ class MainActivity : BaseActivity() {
             setContentView(mainBinding.root)
 
             setUpRecyclerView()
+            setUpListeners()
+            mainBinding.favBtn.setOnClickListener {
+                val intent = Intent(this, FavoriteDoctorsActivity::class.java)
+                startActivity(intent)
+            }
         }
 
-        private fun setUpRecyclerView() {
+    override fun onResume() {
+        super.onResume()
+        setSelectedMenu(BottomNavigationFragment.MenuTypes.HOME)
+    }
+
+    private fun setUpRecyclerView() {
             viewModel.dates.value?.let { dates ->
                 val dateAdapter = DateAdapter(dates) { selectedDate ->
+
                     viewModel.selectDate(selectedDate)
                 }
                 with(mainBinding) {
@@ -38,7 +54,6 @@ class MainActivity : BaseActivity() {
                             false
                         )
                     dateRecyclerView.adapter = dateAdapter
-
                     viewModel.dates.observe(this@MainActivity) { updatedDates ->
                         dateAdapter.notifyDataSetChanged()
                     }
@@ -51,16 +66,38 @@ class MainActivity : BaseActivity() {
                     val appointmentAdapter = ScheduleAdapter(appointmentsList)
                     scheduleRecyclerView.adapter = appointmentAdapter
                 }
+                doctorImageButton.setOnClickListener {
+                    val intent = Intent(this@MainActivity,DoctorsActivity::class.java)
+                    startActivity(intent)
+                }
 
                 doctorRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                 viewModel.doctors.observe(this@MainActivity) { doctorsList ->
-                    val adapter = DoctorAdapter(doctorsList) { doctor ->
-                        viewModel.toggleFavoriteStatus(doctor.id)
+                    val adapter = doctorsList?.let {
+                        DoctorAdapter(it) { doctor ->
+                            viewModel.toggleFavoriteStatus(doctor.id)
+                        }
                     }
                     doctorRecyclerView.adapter = adapter
                 }
-        }
-
+            }
     }
 
+    private fun setUpListeners(){
+        with(mainBinding){
+            doctorImageButton.setOnClickListener {
+                val intent = Intent(this@MainActivity, DoctorsActivity::class.java)
+                startActivity(intent)
+            }
+            notificationBtn.setOnClickListener {
+                val intent = Intent(this@MainActivity, NotificationActivity::class.java)
+                startActivity(intent)
+            }
+
+            settingsImage.setOnClickListener {
+                val settingsIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+                startActivity(settingsIntent)
+            }
+        }
+    }
 }

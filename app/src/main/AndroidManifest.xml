@@ -16,6 +16,27 @@
             android:name=".view.EditProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".view.settingScreen.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.passwordManagerScreen.PasswordManagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.favoriteScreen.FavoriteDoctorsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ratingScreen.RatingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.notificationSetting.NotificationSettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.notificationScreen.NotificationActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.SetPasswordActivity"
             android:exported="false" />
         <activity
@@ -35,13 +56,12 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
