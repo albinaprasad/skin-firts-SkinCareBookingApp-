@@ -27,15 +27,25 @@ class RatingActivity : BaseActivity() {
             ratingsRecyclerView.layoutManager = LinearLayoutManager(this@RatingActivity)
             ratingsRecyclerView.adapter = adapter
         }
-        binding.favBtn.setOnClickListener {
-            val intent = Intent(this, FavoriteDoctorsActivity::class.java)
-            startActivity(intent)
-        }
-
         viewModel.doctors.observe(this@RatingActivity){doctors ->
             if (doctors != null) {
                 adapter.updateData(doctors)
             }
         }
+
+        buttonCliskListeners()
+    }
+
+    fun buttonCliskListeners()
+    {
+        with(binding)
+        {
+            binding.favBtn.setOnClickListener {
+                val intent = Intent(this@RatingActivity, FavoriteDoctorsActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
+
     }
 }
