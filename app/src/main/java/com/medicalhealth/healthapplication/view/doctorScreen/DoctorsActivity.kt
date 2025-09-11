@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
+import com.medicalhealth.healthapplication.view.DoctorsList
 
-class DoctorsActivity : BaseActivity() {
+class DoctorsActivity : BaseActivity(), DoctorsList.OnFragmentInteractionListener {
     lateinit var binding: ActivityDoctorsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,22 +17,13 @@ class DoctorsActivity : BaseActivity() {
         enableEdgeToEdge()
         binding = ActivityDoctorsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.titleText.text = "Doctors"
 
-//        var doctorList= ArrayList<Doctors>()
-//
-//        //TODO:Replace these dummy data with real data from firebase in the future
-//
-//        doctorList.add( Doctors("Dr. Olivia Turner, M.D.", "Cardiologist", R.drawable.doctor1))
-//        doctorList.add(Doctors("Dr. Michael Davidson,\n M.D.", "Neurologist", R.drawable.doctor_img))
-//        doctorList.add(Doctors("Dr. Brown", "Pediatrician", R.drawable.doctor3))
-//
-//        doctorList.add( Doctors("Dr. Sachin", "ortho", R.drawable.doctor1))
-//        doctorList.add(Doctors("Dr. Kohli", "psycology", R.drawable.doctor_img))
-//        doctorList.add(Doctors("Dr. dayle styne", "Ent", R.drawable.doctor3))
-//
-//
-//        val adapter: DoctorListViewAdapter = DoctorListViewAdapter(this,doctorList)
-//        binding.doctorsRecyclerView.layoutManager = LinearLayoutManager(this)
-//        binding.doctorsRecyclerView.adapter = adapter
+
+
+    }
+
+    override fun onTitleChange(newTitle: String) {
+        binding.titleText.text = newTitle
     }
 }

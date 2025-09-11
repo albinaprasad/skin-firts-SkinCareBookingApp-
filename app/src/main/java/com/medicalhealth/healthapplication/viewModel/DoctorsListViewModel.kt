@@ -18,9 +18,7 @@ class DoctorsListViewModel: ViewModel() {
 
 
 
-//    var doctorList= ArrayList<Doctors>()
 
-    //TODO:Replace these dummy data with real data from firebase in the future
 
 
 

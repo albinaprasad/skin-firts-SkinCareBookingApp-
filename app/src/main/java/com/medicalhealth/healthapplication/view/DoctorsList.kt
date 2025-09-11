@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,8 +17,7 @@ import com.medicalhealth.healthapplication.view.doctorScreen.DoctorListViewAdapt
 import com.medicalhealth.healthapplication.view.doctorScreen.Doctors
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
@@ -26,9 +26,10 @@ private const val ARG_PARAM2 = "param2"
  * Use the [DoctorsList.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DoctorsList : Fragment(),DoctorListViewAdapter.OnItemClickListener {
+class DoctorsList : Fragment(), DoctorListViewAdapter.OnItemClickListener {
     // TODO: Rename and change types of parameters
     private lateinit var _binding: FragmentDoctorsListBinding
+
     private val viewModel: DoctorsListViewModel by viewModels()
     private lateinit var adapter: DoctorListViewAdapter // Your custom adapter
     private lateinit var dataList: List<Doctors>
@@ -39,16 +40,16 @@ class DoctorsList : Fragment(),DoctorListViewAdapter.OnItemClickListener {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding=  FragmentDoctorsListBinding.inflate(inflater, container, false)
+        _binding = FragmentDoctorsListBinding.inflate(inflater, container, false)
         val view = _binding.root
 
-        val adapter = DoctorListViewAdapter(requireContext(), emptyList(),this)
+        val adapter = DoctorListViewAdapter(requireContext(), emptyList(), this)
 
         _binding.doctorsRecyclerView.layoutManager = LinearLayoutManager(context)
         _binding.doctorsRecyclerView.adapter = adapter
 
         viewModel.doctors.observe(viewLifecycleOwner) { doctors ->
-            (_binding.doctorsRecyclerView.adapter as DoctorListViewAdapter ).updateData(doctors)
+            (_binding.doctorsRecyclerView.adapter as DoctorListViewAdapter).updateData(doctors)
         }
         return view
 
@@ -56,11 +57,31 @@ class DoctorsList : Fragment(),DoctorListViewAdapter.OnItemClickListener {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Release the binding object to prevent memory leaks
+
 
     }
 
+    interface OnFragmentInteractionListener {
+        fun onTitleChange(newTitle: String)
+    }
+
+    private var listener: OnFragmentInteractionListener? = null
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement OnFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
     override fun onInfoButtonClick() {
+        listener?.onTitleChange("Doctor Info")
         replaceFragment(DoctorInfoFragment())
 
     }
@@ -72,6 +93,12 @@ class DoctorsList : Fragment(),DoctorListViewAdapter.OnItemClickListener {
             .addToBackStack(null)
             .commit()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        listener?.onTitleChange("Doctors")
     }
 
 

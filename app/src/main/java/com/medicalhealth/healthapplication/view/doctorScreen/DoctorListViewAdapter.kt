@@ -8,11 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 
 
-
 class DoctorListViewAdapter(
     private val context: Context,
     private var dataList: List<Doctors>,
-    private val listener:OnItemClickListener
+    private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<DoctorListViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -76,7 +75,8 @@ class DoctorListViewAdapter(
         dataList = newData
         notifyDataSetChanged() // Refreshes the RecyclerView
     }
-    interface OnItemClickListener{
+
+    interface OnItemClickListener {
         fun onInfoButtonClick()
 
     }

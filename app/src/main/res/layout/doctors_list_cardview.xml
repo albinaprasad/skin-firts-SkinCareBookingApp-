@@ -138,7 +138,7 @@
             android:layout_weight="1"
             android:background="@drawable/round_button_doctor_white"
             android:padding="6dp"
-            android:src="@drawable/calender_icon_white" />
+            android:src="@drawable/calender_icon_blue" />
 
         <ImageButton
             android:id="@+id/moreinfoBtn"
