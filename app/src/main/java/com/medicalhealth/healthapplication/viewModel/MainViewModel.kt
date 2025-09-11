@@ -1,6 +1,5 @@
 package com.medicalhealth.healthapplication.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +7,6 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
-import com.medicalhealth.healthapplication.utils.enums.Enums
 
 class MainViewModel: ViewModel() {
     private val _dates = MutableLiveData<List<Date>?>()
@@ -19,16 +17,6 @@ class MainViewModel: ViewModel() {
 
     private val _doctors = MutableLiveData<List<Doctor>?>()
     val doctors: MutableLiveData<List<Doctor>?> get() = _doctors
-
-    private val _currentFragment = MutableLiveData<Enums.NavigationDestination>()
-    val currentFragment: LiveData<Enums.NavigationDestination> = _currentFragment
-
-    fun setDestination(destination: Enums.NavigationDestination){
-        if(_currentFragment.value != destination) {
-            _currentFragment.value = destination
-            Log.d("message", "${_currentFragment.value}")
-        }
-    }
 
     init {
         _dates.value = listOf(
@@ -43,6 +31,8 @@ class MainViewModel: ViewModel() {
             Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis."),
             Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis."),
             Appointment("1", "10 AM", "Dr. Olivia Turner, M.D.", "Treatment and prevention of skin and photodermatitis.")
+            ,Appointment("2", "10 AM", "Dr. Abc Turner, M.D.", "Treatment and prevention of skin and photodermatitis.")
+            ,Appointment("2", "10 AM", "Dr. Abc Turner, M.D.", "Treatment and prevention of skin and photodermatitis.")
         )
 
         _doctors.value = listOf(

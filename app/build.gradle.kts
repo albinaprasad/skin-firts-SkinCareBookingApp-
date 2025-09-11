@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application") // No version here, it uses the one from root
+    id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
 }
@@ -27,41 +27,49 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
-    }
-
-    buildFeatures {
-        viewBinding = true
     }
 }
 
 dependencies {
-
+    // AndroidX dependencies from libs catalog
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
-    // Add the dependency for Firebase Analytics
-    implementation("com.google.firebase:firebase-analytics")
-
+    // Firebase Bill of Materials (BOM)
+    // Manages Firebase library versions for compatibility
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    // AndroidX dependencies (manual versions, can be moved to libs)
+    implementation("androidx.credentials:credentials:1.2.2")
+    implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-// Fragment KTX for viewModels() delegate
+    implementation("androidx.activity:activity-ktx:1.9.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.fragment:fragment-ktx:1.8.9")
-
+    // Firebase dependencies (versions managed by the BOM)
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-storage-ktx")
 }
