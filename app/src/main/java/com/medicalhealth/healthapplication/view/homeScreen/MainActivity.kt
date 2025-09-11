@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.view
+package com.medicalhealth.healthapplication.view.homeScreen
 
 import android.os.Bundle
 import android.util.Log
@@ -6,6 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import com.medicalhealth.healthapplication.databinding.ActivityMainBinding
 import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
+import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment
 
 

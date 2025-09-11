@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment.MenuTypes.*
+import com.medicalhealth.healthapplication.view.homeScreen.HomeFragment
+import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 
 class BottomNavigationFragment: Fragment() {
 

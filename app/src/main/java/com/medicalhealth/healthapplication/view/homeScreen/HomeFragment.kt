@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.view.fragment
+package com.medicalhealth.healthapplication.view.homeScreen
 
 import android.content.Intent
 import android.os.Bundle

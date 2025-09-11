@@ -43,6 +43,10 @@ android {
 }
 
 dependencies {
+
+    // Firebase Bill of Materials (BOM)
+    // Manages Firebase library versions for compatibility
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     // AndroidX dependencies from libs catalog
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -53,9 +57,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    // Firebase Bill of Materials (BOM)
-    // Manages Firebase library versions for compatibility
-    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     // AndroidX dependencies (manual versions, can be moved to libs)
     implementation("androidx.credentials:credentials:1.2.2")
     implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
