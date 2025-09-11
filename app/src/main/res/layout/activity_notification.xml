@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.notificationScreen.NotificationActivity">
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:gravity="center"
+        android:text="@string/notification"
+        android:textColor="@color/button_blue"
+
+        android:autoSizeMinTextSize="16dp"
+        android:autoSizeMaxTextSize="24dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="131:24"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089"
+        app:layout_constraintWidth_percent="0.366" />
+
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:src="@drawable/back_icon"
+
+        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintDimensionRatio="14:14"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.099"
+        app:layout_constraintWidth_percent="0.038" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="@drawable/round_corner_23px_offblue"
+
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintDimensionRatio="57:21"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_constraintVertical_bias="0.089"
+        app:layout_constraintWidth_percent="0.158" >
+
+        <TextView
+            android:paddingTop="2dp"
+            android:paddingStart="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/news"
+
+            >
+        </TextView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="6.5dp"
+            android:src="@drawable/small_round_circle">
+
+        </com.google.android.material.imageview.ShapeableImageView>
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/doctorsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        tools:listitem="@layout/notification_card_deatils" />
+
+    <TextView
+        android:id="@+id/markallTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:gravity="center"
+        android:text="@string/mark_all"
+        android:clickable="true"
+        android:textColor="@color/button_blue"
+
+        android:autoSizeMinTextSize="13dp"
+        android:autoSizeMaxTextSize="18dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="49:14"
+        app:layout_constraintWidth_percent="0.136"
+
+        app:layout_constraintVertical_bias="0.155"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.8486"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,8 +13,9 @@ import com.medicalhealth.healthapplication.view.DoctorsList
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentDoctorsListBinding
-import com.medicalhealth.healthapplication.view.doctorScreen.DoctorListViewAdapter
-import com.medicalhealth.healthapplication.view.doctorScreen.Doctors
+import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
+
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
 
 
@@ -32,7 +33,7 @@ class DoctorsList : Fragment(), DoctorListViewAdapter.OnItemClickListener {
 
     private val viewModel: DoctorsListViewModel by viewModels()
     private lateinit var adapter: DoctorListViewAdapter // Your custom adapter
-    private lateinit var dataList: List<Doctors>
+    private lateinit var dataList: List<Doctor>
 
 
     override fun onCreateView(

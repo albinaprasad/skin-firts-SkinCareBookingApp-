@@ -7,14 +7,13 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
-import com.medicalhealth.healthapplication.view.doctorScreen.DoctorListViewAdapter
-import com.medicalhealth.healthapplication.view.doctorScreen.Doctors
+import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
 
 class DoctorsListViewModel: ViewModel() {
    
 
-    private val _doctors = MutableLiveData<List<Doctors>>()
-    val doctors: LiveData<List<Doctors>> get() = _doctors
+    private val _doctors = MutableLiveData<List<Doctor>>()
+    val doctors: LiveData<List<Doctor>> get() = _doctors
 
 
 
@@ -27,11 +26,11 @@ class DoctorsListViewModel: ViewModel() {
 
 
         _doctors.value = listOf(
-             Doctors("Dr. Olivia Turner, M.D.", "Cardiologist", R.drawable.doctor1),
-            Doctors("Dr. Michael Davidson,\n M.D.", "Neurologist", R.drawable.doctor_img),
-            Doctors("Dr. Brown", "Pediatrician", R.drawable.doctor3),
-             Doctors("Dr. Sachin", "ortho", R.drawable.doctor1),
-             Doctors("Dr. Sachin", "ortho", R.drawable.doctor1)
+            Doctor("1", R.drawable.doctor_image_one, "Dr. Olivia Turner, M.D.", "Dermato-Endocrinology", 5.0, 60, true),
+            Doctor("2", R.drawable.doctor_image_two, "Dr. Alexander Bennett, Ph.D.", "Dermato-Genetics", 4.5, 40, false),
+            Doctor("3", R.drawable.doctor_image_three, "Dr. Sophia Martinez, Ph.D.", "Cosmetic Bioengineering", 5.0, 150, false),
+            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
         )
+
     }
 }

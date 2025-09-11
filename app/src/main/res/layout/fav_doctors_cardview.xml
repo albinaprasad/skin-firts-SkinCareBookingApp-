@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:background="@color/white">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/off_blue"
+        android:elevation="1dp"
+        app:cardCornerRadius="18dp"
+
+        app:layout_constraintDimensionRatio="300:106"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.844" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/doctorImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="7dp"
+        android:elevation="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/doctor_img"
+
+        app:layout_constraintBottom_toBottomOf="@id/cardBackground"
+        app:layout_constraintDimensionRatio="1:1"
+
+        app:layout_constraintStart_toStartOf="@id/cardBackground"
+        app:layout_constraintTop_toTopOf="@id/cardBackground"
+        app:layout_constraintWidth_percent="0.21"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circle" />
+    <LinearLayout
+        android:id="@+id/TopLL"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/off_blue"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/cardBackground"
+        app:layout_constraintDimensionRatio="209:22"
+        app:layout_constraintEnd_toEndOf="@+id/cardBackground"
+        app:layout_constraintStart_toEndOf="@+id/doctorImage"
+
+        app:layout_constraintTop_toTopOf="@+id/cardBackground"
+        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintWidth_percent="0.57">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+
+            android:layout_weight="0.5"
+            android:background="@drawable/button_blue_round_background"
+            android:padding="7dp"
+            android:src="@drawable/badge_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:autoSizeMaxTextSize="14dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/leaguespartan_regular"
+
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:text="@string/professional_doctor"
+            android:textColor="@color/backgroundColor">
+        </TextView>
+    </LinearLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardCenter"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="13dp"
+        android:background="@drawable/white_back_roundcorner"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:padding="3dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardBackground"
+        app:layout_constraintDimensionRatio="211:43"
+        app:layout_constraintEnd_toEndOf="@+id/cardBackground"
+        app:layout_constraintStart_toEndOf="@+id/doctorImage"
+
+        app:layout_constraintTop_toTopOf="@+id/cardBackground"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintWidth_percent="0.583"/>
+
+    <TextView
+
+        android:id="@+id/nameTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="16dp"
+        android:autoSizeMinTextSize="12dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:includeFontPadding="false"
+        android:gravity="center_vertical"
+
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:fontFamily="@font/leaguespartan_medium"
+        android:paddingStart="10dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/dr_olivia_turner_m_d"
+        android:textColor="@color/backgroundColor"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintDimensionRatio="180:19"
+        app:layout_constraintWidth_percent="0.457"
+
+        app:layout_constraintEnd_toEndOf="@+id/cardCenter"
+        app:layout_constraintStart_toStartOf="@+id/cardCenter"
+        app:layout_constraintTop_toTopOf="@+id/cardCenter"
+        >
+
+    </TextView>
+    <TextView
+        android:id="@+id/specificationTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingBottom="3dp"
+        android:autoSizeMaxTextSize="12dp"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:includeFontPadding="false"
+        android:gravity="center_vertical"
+        android:autoSizeTextType="uniform"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:fontFamily="@font/league_spartan_light"
+        android:paddingStart="10dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/doctor_sample_specification"
+        android:textColor="@color/text_black"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintDimensionRatio="180:19"
+        app:layout_constraintWidth_percent="0.457"
+
+        app:layout_constraintEnd_toEndOf="@+id/cardCenter"
+        app:layout_constraintStart_toStartOf="@+id/cardCenter"
+        app:layout_constraintTop_toBottomOf="@+id/nameTV"
+        />
+
+<ImageButton
+    android:id="@+id/favBtn"
+    android:background="@color/white"
+    android:elevation="2dp"
+
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:src="@drawable/fav_filled"
+    app:layout_constraintDimensionRatio="18:18"
+    app:layout_constraintWidth_percent="0.0757"
+
+    app:layout_constraintEnd_toEndOf="@+id/cardCenter"
+    app:layout_constraintStart_toEndOf="@+id/nameTV"
+    app:layout_constraintTop_toTopOf="@+id/cardCenter"
+    app:layout_constraintBottom_toBottomOf="@+id/cardCenter"
+    >
+</ImageButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/AppointementBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/make_appointment"
+        android:includeFontPadding="false"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeMaxTextSize="13dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        app:cornerRadius="12dp"
+        android:paddingTop="1dp"
+        android:paddingBottom="1dp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/league_spartan_light"
+        android:background="@drawable/dark_blue_round_corner"
+        app:layout_constraintDimensionRatio="211:20"
+        app:layout_constraintWidth_percent="0.577"
+
+        app:layout_constraintVertical_bias="0.2182"
+        app:layout_constraintHorizontal_bias="0.12"
+
+        app:layout_constraintStart_toStartOf="@id/cardCenter"
+        app:layout_constraintTop_toBottomOf="@id/cardCenter"
+        app:layout_constraintEnd_toEndOf="@id/cardCenter">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

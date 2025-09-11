@@ -3,7 +3,7 @@
     android:id="@+id/dateContainer"
     android:layout_width="42dp"
     android:layout_height="64dp"
-    android:layout_marginHorizontal="4dp"
+    android:layout_marginHorizontal="5dp"
     android:background="@drawable/date_selector_bg"
     android:gravity="center"
     android:orientation="vertical"

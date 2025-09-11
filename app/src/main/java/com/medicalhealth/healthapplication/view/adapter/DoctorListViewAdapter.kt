@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.view.doctorScreen
+package com.medicalhealth.healthapplication.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,11 +6,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
+import com.medicalhealth.healthapplication.model.data.Doctor
 
 
 class DoctorListViewAdapter(
     private val context: Context,
-    private var dataList: List<Doctors>,
+    private var dataList: List<Doctor>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<DoctorListViewAdapter.MyViewHolder>() {
 
@@ -30,11 +31,11 @@ class DoctorListViewAdapter(
         val currentItem = dataList[position]
 
         // Bind data to the views using the binding object
-        holder.binding.doctorImage.setImageResource(currentItem.image)
+        holder.binding.doctorImage.setImageResource(currentItem.profileImageUrl)
         holder.binding.doctorName.text = currentItem.name
-        holder.binding.specification.text = currentItem.specification
+        holder.binding.specification.text = currentItem.specialization
 
-        // Set click listeners for the buttons
+
         holder.binding.infoButton.setOnClickListener {
             listener.onInfoButtonClick()
 
@@ -61,7 +62,7 @@ class DoctorListViewAdapter(
         return dataList.size
     }
 
-    // This is the correct way to handle the ViewHolder with ViewBinding
+
     class MyViewHolder(val binding: DoctorsListCardviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
@@ -70,10 +71,10 @@ class DoctorListViewAdapter(
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    // Function to update the data in the adapter
-    fun updateData(newData: List<Doctors>) {
+
+    fun updateData(newData: List<Doctor>) {
         dataList = newData
-        notifyDataSetChanged() // Refreshes the RecyclerView
+        notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
@@ -81,4 +82,3 @@ class DoctorListViewAdapter(
 
     }
 }
-
