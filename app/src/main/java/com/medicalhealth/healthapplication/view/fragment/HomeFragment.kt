@@ -75,7 +75,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setUpListeners(){
         with(binding){
-            this.doctorImageButton.setOnClickListener {
+            this.allDoctorsBtn.setOnClickListener {
                 val intent = Intent(requireContext(), DoctorsActivity::class.java)
                 startActivity(intent)
             }

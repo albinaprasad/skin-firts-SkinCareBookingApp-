@@ -12,7 +12,7 @@
         android:id="@+id/myProfileTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="63dp"
+
         android:fontFamily="@font/leaguespartan_semibold"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -25,7 +25,7 @@
         app:layout_constraintDimensionRatio="121:28"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topGuideLineOne"
         app:layout_constraintWidth_percent="0.336">
 
     </TextView>
@@ -50,7 +50,7 @@
         android:id="@+id/profileImageConstraint"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintDimensionRatio="106:107"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +71,8 @@
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_margin="1dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
             android:background="@android:color/transparent"
             android:src="@drawable/edit_icon_img"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -105,13 +106,21 @@
         android:id="@+id/profileOptionRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
         android:overScrollMode="never"
+        android:layout_marginTop="40dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileNameTextView"
+        app:layout_constraintTop_toBottomOf="@id/profileNameTextView"
         tools:listitem="@layout/item_profile_screen_list" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuideLineOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.070" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
