@@ -48,7 +48,7 @@ class MainViewModel: ViewModel() {
             date.isSelected = (date == selectedDate)
             date
         }
-        _dates.value = updatedList
+        _dates.value = updatedList!!
     }
 
     fun toggleFavoriteStatus(doctorId: String){
@@ -59,6 +59,6 @@ class MainViewModel: ViewModel() {
                 doctor
             }
         }
-        _doctors.value = updatedList
+        _doctors.value = updatedList!!
     }
 }

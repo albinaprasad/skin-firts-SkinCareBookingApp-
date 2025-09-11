@@ -410,7 +410,7 @@
             app:layout_constraintBottom_toTopOf="@id/tvProfile"
             app:layout_constraintDimensionRatio="282:18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintHorizontal_bias="0.55"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvDoctor"
             app:layout_constraintWidth_percent="0.7833" />
@@ -426,7 +426,7 @@
             app:layout_constraintDimensionRatio="285:50"
 
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.439"
+            app:layout_constraintHorizontal_bias="0.576"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textProfile"
             app:layout_constraintWidth_percent="0.7916" />
@@ -442,7 +442,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tvCareerPath"
             app:layout_constraintDimensionRatio="282:18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintHorizontal_bias="0.55"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvProfile"
             app:layout_constraintVertical_bias="0.6878"
@@ -458,7 +458,7 @@
             android:textSize="12dp"
             app:layout_constraintDimensionRatio="285:50"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.576"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView5"
             app:layout_constraintWidth_percent="0.7916" />
@@ -473,7 +473,7 @@
             android:textColor="@color/button_blue"
             app:layout_constraintDimensionRatio="282:18"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintHorizontal_bias="0.561"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvCareerPath"
             app:layout_constraintWidth_percent="0.7833" />
@@ -490,7 +490,7 @@
 
             app:layout_constraintDimensionRatio="285:50"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.523"
+            app:layout_constraintHorizontal_bias="0.588"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView7"
             app:layout_constraintWidth_percent="0.7916" />
