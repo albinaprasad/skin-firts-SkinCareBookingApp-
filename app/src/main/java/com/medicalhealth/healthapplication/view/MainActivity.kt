@@ -13,6 +13,7 @@ import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavoriteDoctorsActivity
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment
 import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
+import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
@@ -91,6 +92,11 @@ class MainActivity : BaseActivity() {
             notificationBtn.setOnClickListener {
                 val intent = Intent(this@MainActivity, NotificationActivity::class.java)
                 startActivity(intent)
+            }
+
+            settingsImage.setOnClickListener {
+                val settingsIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+                startActivity(settingsIntent)
             }
         }
     }
