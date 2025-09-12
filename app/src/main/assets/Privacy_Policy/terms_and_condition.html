@@ -3,47 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap">
     <title>Terms & Conditions</title>
     <style>
         body {
-          font-family: Arial, sans-serif;
-          line-height: 1.6;
-          margin: 31;
-          padding: 20px;
-          color: #333;
+          font-family: 'League Spartan', sans-serif;
+          margin: 31px;
+
+          font-size: 16px;
+          padding: 0px;
+          height:100%;
+          color: #000;
         }
         .last-update {
           color: #A9BCFE;
-          font-size: 0.9em;
+          font-size: 12px;
+          font-weight:200;
         }
         .section-title {
-          color: #007bff;
-          font-size: 1.25em;
-          font-weight: bold;
-          margin-top: 1em;
+          color:#2260FF;;
+          font-size: 20px;
+          font-weight: 500;
+          margin-top: 1.5em;
           margin-bottom: 0.5em;
         }
         p {
           margin-bottom: 1em;
           font-size: 0.875em;
-          font-family: League Spartan, sans-serif;
+          font-weight: 300;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 7;
+          font-family: 'League Spartan', sans-serif;
         }
-        ol {
+
+
+        .terms-list {
           list-style-type: none;
-          font-family: League Spartan, sans-serif;
-          font-size: 14px;
-          padding: 0;
+          padding-left: 0;
+          margin: 0;
         }
-        li {
-          margin-bottom: 1em;
+        .term-item {
+          display: flex; /* Makes the list item a flex container */
+          align-items: flex-start; /* Aligns items at the top */
+          margin-bottom: 20px; /* Space between each item */
         }
-        li::before {
-          content: attr(data-number) ".";
-          font-weight: bold;
+        .term-number {
           font-size: 0.875em;
-          font-family: League Spartan, sans-serif;
-          margin-right: 0.5em;
+          font-weight: 300;
+          font-family: 'League Spartan', sans-serif;
+          width: 25px; /* Fixed width for the number column */
+          text-align: right; /* Aligns the number to the right */
+          margin-right: 2px; /* Space between number and description */
+        }
+        .term-description {
+          font-size: 0.875em;
+          font-weight: 300;
+          font-family: 'League Spartan', sans-serif;
+          margin: 0; /* Reset default paragraph margin */
+          flex-grow: 1; /* Allows the description to take up remaining space */
         }
     </style>
 </head>
@@ -57,12 +76,24 @@
 
 <h2 class="section-title">Terms & Conditions</h2>
 
-<ol>
-    <li data-number="1">Ut lacinia justo sit amet lorem sodales accumsan. Proin malesuada eleifend fermentum. Donec condimentum, nunc at rhoncus faucibus, ex nisi laoreet ipsum, eu pharetra eros est vitae orci. Morbi quis rhoncus mi. Nullam lacinia ornare accumsan. Duis laoreet, ex eget rutrum pharetra, lectus nisi posuere risus, vel facilisis nisi tellus ac turpis.</li>
-    <li data-number="2">Ut lacinia justo sit amet lorem sodales accumsan. Proin malesuada eleifend fermentum. Donec condimentum, nunc at rhoncus faucibus, ex nisi laoreet ipsum, eu pharetra eros est vitae orci. Morbi quis rhoncus mi. Nullam lacinia ornare accumsan. Duis laoreet, ex eget rutrum pharetra, lectus nisi posuere risus, vel facilisis nisi tellus.</li>
-    <li data-number="3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.</li>
-    <li data-number="4">Nunc auctor tortor in dolor luctus, quis euismod urna tincidunt. Aenean arcu metus, bibendum at rhoncus at, volutpat ut lacus. Morbi pellentesque malesuada eros semper ultrices. Vestibulum lobortis enim vel neque auctor, a ultrices ex placerat. Mauris ut lacinia justo, sed suscipit tortor. Nam egestas nulla posuere neque tincidunt porta.</li>
-</ol>
+<ul class="terms-list">
+    <li class="term-item">
+        <span class="term-number">1.</span>
+        <p class="term-description">Ut lacinia justo sit amet lorem sodales accumsan. Proin malesuada eleifend fermentum. Donec condimentum, nunc at rhoncus faucibus, ex nisi laoreet ipsum, eu pharetra eros est vitae orci. Morbi quis rhoncus mi. Nullam lacinia ornare accumsan. Duis laoreet, ex eget rutrum pharetra, lectus nisi posuere risus, vel facilisis nisi tellus ac turpis.</p>
+    </li>
+    <li class="term-item">
+        <span class="term-number">2.</span>
+        <p class="term-description">Ut lacinia justo sit amet lorem sodales accumsan. Proin malesuada eleifend fermentum. Donec condimentum, nunc at rhoncus faucibus, ex nisi laoreet ipsum, eu pharetra eros est vitae orci. Morbi quis rhoncus mi. Nullam lacinia ornare accumsan. Duis laoreet, ex eget rutrum pharetra, lectus nisi posuere risus, vel facilisis nisi tellus.</p>
+    </li>
+    <li class="term-item">
+        <span class="term-number">3.</span>
+        <p class="term-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent pellentesque congue lorem, vel tincidunt tortor placerat a. Proin ac diam quam. Aenean in sagittis magna, ut feugiat diam. Fusce a scelerisque neque, sed accumsan metus.</p>
+    </li>
+    <li class="term-item">
+        <span class="term-number">4.</span>
+        <p class="term-description">Nunc auctor tortor in dolor luctus, quis euismod urna tincidunt. Aenean arcu metus, bibendum at rhoncus at, volutpat ut lacus. Morbi pellentesque malesuada eros semper ultrices. Vestibulum lobortis enim vel neque auctor, a ultrices ex placerat. Mauris ut lacinia justo, sed suscipit tortor. Nam egestas nulla posuere neque tincidunt porta.</p>
+    </li>
+</ul>
 
 </body>
 </html>
