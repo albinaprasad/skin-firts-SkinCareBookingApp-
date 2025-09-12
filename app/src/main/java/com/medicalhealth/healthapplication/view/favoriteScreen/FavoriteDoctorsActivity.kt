@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.databinding.ActivityFavoriteDoctorsBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.FavDoctorAdapter
+import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import kotlin.getValue
@@ -28,7 +29,9 @@ class FavoriteDoctorsActivity : BaseActivity() {
             ratingsRecyclerView.layoutManager = LinearLayoutManager(this@FavoriteDoctorsActivity)
             ratingsRecyclerView.adapter = adapter
             viewModel.doctors.observe(this@FavoriteDoctorsActivity) { doctorList ->
-                adapter.updateData(doctorList)
+                if (doctorList != null) {
+                    adapter.updateData(doctorList)
+                }
             }
 
             ratingButton.setOnClickListener {

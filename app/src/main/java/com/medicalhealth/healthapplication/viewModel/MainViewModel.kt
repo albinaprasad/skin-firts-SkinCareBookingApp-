@@ -9,14 +9,14 @@ import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
 
 class MainViewModel: ViewModel() {
-    private val _dates = MutableLiveData<List<Date>>()
-    val dates: LiveData<List<Date>> get() = _dates
+    private val _dates = MutableLiveData<List<Date>?>()
+    val dates: MutableLiveData<List<Date>?> get() = _dates
 
     private val _appointments = MutableLiveData<List<Appointment>>()
     val appointment: LiveData<List<Appointment>> get() = _appointments
 
-    private val _doctors = MutableLiveData<List<Doctor>>()
-    val doctors: LiveData<List<Doctor>> get() = _doctors
+    private val _doctors = MutableLiveData<List<Doctor>?>()
+    val doctors: MutableLiveData<List<Doctor>?> get() = _doctors
 
     init {
         _dates.value = listOf(

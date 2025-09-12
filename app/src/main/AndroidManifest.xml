@@ -17,6 +17,12 @@
             android:name=".view.PrivacyPolicyActivity"
             android:exported="false" />
         <activity
+            android:name=".view.settingScreen.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.passwordManagerScreen.PasswordManagerActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.favoriteScreen.FavoriteDoctorsActivity"
             android:exported="false" />
         <activity
