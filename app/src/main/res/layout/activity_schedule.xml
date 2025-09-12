@@ -14,18 +14,14 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/back_icon"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="14:14"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095"
         app:layout_constraintWidth_percent="0.038" />
-
     <TextView
         android:id="@+id/titleText"
         android:layout_width="0dp"
@@ -40,21 +36,14 @@
         android:autoSizeMaxTextSize="16dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="156:21"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2916"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.089"
         app:layout_constraintWidth_percent="0.4356" />
-
-
-
 
     <LinearLayout
         android:id="@+id/filterButtons"
@@ -62,17 +51,14 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:weightSum="5"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="105:23"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.895"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.086"
         app:layout_constraintWidth_percent="0.30">
-
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -83,7 +69,6 @@
             android:layout_marginTop="3dp"
             android:src="@drawable/phone_icon"
             />
-
         <ImageButton
             android:id="@+id/favBtn"
             android:layout_width="0dp"
@@ -95,7 +80,6 @@
             android:background="@drawable/button_blue_round_background"
             android:padding="8dp"
             android:src="@drawable/video_icon" />
-
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -106,7 +90,6 @@
             android:background="@drawable/button_blue_round_background"
             android:padding="6dp"
             android:src="@drawable/chat_icon_small" />
-
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -117,7 +100,6 @@
             android:background="@drawable/round_button_offblue"
             android:padding="8dp"
             android:src="@drawable/question_mark_icon" />
-
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -129,7 +111,6 @@
             android:padding="8dp"
             android:src="@drawable/fav_icon_filled_darkblue" />
     </LinearLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dateContainer"
         android:layout_width="0dp"
@@ -166,13 +147,10 @@
             android:layout_height="0dp"
             android:background="@color/off_blue"
             android:src="@drawable/forward_icon_offblue"
-
             app:layout_constraintBottom_toBottomOf="@+id/dateContainer"
             app:layout_constraintDimensionRatio="14:14"
-
             app:layout_constraintEnd_toEndOf="@+id/dateContainer"
             app:layout_constraintHorizontal_bias="0.94702"
-
             app:layout_constraintStart_toStartOf="@+id/dateContainer"
             app:layout_constraintTop_toTopOf="@+id/dateContainer"
             app:layout_constraintVertical_bias="0.585"
@@ -183,13 +161,10 @@
             android:layout_height="0dp"
             android:background="@color/off_blue"
             android:src="@drawable/back_icon_offblue"
-
             app:layout_constraintBottom_toBottomOf="@+id/dateContainer"
             app:layout_constraintDimensionRatio="14:14"
-
             app:layout_constraintEnd_toEndOf="@+id/dateContainer"
-            app:layout_constraintHorizontal_bias="0.054702"
-
+            app:layout_constraintHorizontal_bias="0.050702"
             app:layout_constraintStart_toStartOf="@+id/dateContainer"
             app:layout_constraintTop_toTopOf="@+id/dateContainer"
             app:layout_constraintVertical_bias="0.585"
@@ -210,23 +185,20 @@
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
         android:textColor="@color/button_blue"
-
         app:layout_constraintDimensionRatio="86:13"
         app:layout_constraintEnd_toEndOf="@+id/main"
         app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="@+id/main"
-
         app:layout_constraintTop_toBottomOf="@id/dateContainer"
         app:layout_constraintVertical_bias="0.15"
         app:layout_constraintWidth_percent="0.231">
-
     </TextView>
 
     <LinearLayout
+        android:id="@+id/timeLL"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:weightSum="3"
         android:layout_marginTop="7dp"
         app:layout_constraintDimensionRatio="295:84"
         app:layout_constraintEnd_toEndOf="@+id/main"
@@ -238,29 +210,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:paddingTop="3dp"
-            android:id="@+id/morningTimeRV"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/time_item"
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="2dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:id="@+id/noonTimeRV"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/time_item"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="2dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:id="@+id/afterNoonTimeRV"
+            android:id="@+id/TimeRV"
             android:orientation="horizontal"
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -268,4 +218,297 @@
             tools:listitem="@layout/time_item"
             />
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/LineOneImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="292:2"
+        app:layout_constraintWidth_percent="0.81"
+        android:src="@drawable/line_icon"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/timeLL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0250" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LineOneImageView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scrollConstraintLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/patientDetailsTV"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeMaxTextSize="13dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/leaguespartan_medium"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="@string/patient_details"
+                android:textColor="@color/button_blue"
+                app:layout_constraintDimensionRatio="85:13"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toTopOf="@id/scrollConstraintLL"
+                app:layout_constraintVertical_bias="0.15"
+                app:layout_constraintWidth_percent="0.231">
+
+            </TextView>
+
+            <TextView
+                android:padding="2dp"
+                android:id="@+id/yourselfTV"
+                android:layout_width="0dp"
+                android:layout_marginTop="7dp"
+                android:layout_height="0dp"
+                android:background="@drawable/white_background_with_stroke"
+                android:autoSizeMaxTextSize="13dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/yourself"
+                android:textColor="@color/edittext_hintColor"
+                app:layout_constraintDimensionRatio="62:19"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/patientDetailsTV"
+                app:layout_constraintWidth_percent="0.163">
+
+            </TextView>
+
+            <TextView
+                android:padding="2dp"
+                android:id="@+id/anotherPersonTV"
+                android:layout_width="0dp"
+                android:layout_marginTop="7dp"
+                android:layout_height="0dp"
+                android:background="@drawable/dark_blue_round_corner"
+                android:autoSizeMaxTextSize="13dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/another_person"
+                android:textColor="@color/white"
+                app:layout_constraintDimensionRatio="87:19"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.369"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/patientDetailsTV"
+                app:layout_constraintWidth_percent="0.2313">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/fullNameTV"
+                android:layout_width="0dp"
+                android:layout_marginTop="24dp"
+                android:layout_height="0dp"
+                android:autoSizeMaxTextSize="12dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="bottom"
+                android:includeFontPadding="false"
+                android:text="@string/fullname"
+                android:textColor="@color/text_black"
+                app:layout_constraintDimensionRatio="48:11"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/yourselfTV"
+                app:layout_constraintWidth_percent="0.133">
+            </TextView>
+
+            <EditText
+                android:id="@+id/fullNameET"
+                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeMinTextSize="12dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:paddingStart="12dp"
+                android:fontFamily="@font/leaguespartan_medium"
+                android:textColorHint="@color/hintColor"
+                android:hint="@string/jane_doe"
+                android:layout_marginTop="2dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="299:35"
+                app:layout_constraintWidth_percent="0.833"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.6"
+                android:background="@drawable/round_corner_23px_light_blue"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/fullNameTV"
+                >
+            </EditText>
+
+            <TextView
+                android:id="@+id/AgeTV"
+                android:layout_width="0dp"
+                android:layout_marginTop="14dp"
+                android:layout_height="0dp"
+                android:autoSizeMaxTextSize="12dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="bottom"
+                android:includeFontPadding="false"
+                android:text="@string/age"
+                android:textColor="@color/text_black"
+                app:layout_constraintDimensionRatio="48:11"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/fullNameET"
+                app:layout_constraintWidth_percent="0.133">
+            </TextView>
+
+            <EditText
+                android:id="@+id/ageET"
+                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeMinTextSize="12dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:paddingStart="12dp"
+                android:fontFamily="@font/leaguespartan_medium"
+                android:textColorHint="@color/hintColor"
+                android:hint="@string/thirty_number"
+                android:layout_marginTop="2dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="299:35"
+                app:layout_constraintWidth_percent="0.833"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.6"
+                android:background="@drawable/round_corner_23px_light_blue"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/AgeTV"
+                >
+            </EditText>
+
+            <TextView
+                android:id="@+id/GenderTV"
+                android:layout_width="0dp"
+                android:layout_marginTop="12dp"
+                android:layout_height="0dp"
+                android:autoSizeMaxTextSize="12dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="bottom"
+                android:includeFontPadding="false"
+                android:text="@string/gender"
+                android:textColor="@color/text_black"
+                app:layout_constraintDimensionRatio="48:11"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/ageET"
+                app:layout_constraintWidth_percent="0.133">
+            </TextView>
+
+            <TextView
+                android:padding="2dp"
+                android:id="@+id/maleBtn"
+                android:layout_width="0dp"
+                android:layout_marginTop="7dp"
+                android:layout_height="0dp"
+                android:background="@drawable/white_background_with_stroke"
+                android:autoSizeMaxTextSize="13dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/male"
+                android:textColor="@color/edittext_hintColor"
+                app:layout_constraintDimensionRatio="62:19"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/GenderTV"
+                app:layout_constraintWidth_percent="0.163">
+
+            </TextView>
+            <TextView
+                android:padding="2dp"
+                android:id="@+id/femaleBtn"
+                android:layout_width="0dp"
+                android:layout_marginTop="7dp"
+                android:layout_height="0dp"
+                android:background="@drawable/dark_blue_round_corner"
+                android:autoSizeMaxTextSize="13dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/female"
+                android:textColor="@color/white"
+                app:layout_constraintDimensionRatio="61:19"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.349"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/GenderTV"
+                app:layout_constraintWidth_percent="0.16313">
+            </TextView>
+
+            <TextView
+                android:padding="2dp"
+                android:id="@+id/otherBtn"
+                android:layout_width="0dp"
+                android:layout_marginTop="7dp"
+                android:layout_height="0dp"
+                android:background="@drawable/white_background_with_stroke"
+                android:autoSizeMaxTextSize="13dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/other"
+                android:textColor="@color/edittext_hintColor"
+                app:layout_constraintDimensionRatio="61:19"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.562"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/GenderTV"
+                app:layout_constraintWidth_percent="0.16313">
+
+            </TextView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
