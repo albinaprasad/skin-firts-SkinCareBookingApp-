@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
             setUpRecyclerView()
             setUpListeners()
             mainBinding.favBtn.setOnClickListener {
-                val intent = Intent(this, FavoriteDoctorsActivity::class.java)
+                val intent = Intent(this, HelpCenterActivity::class.java)
                 startActivity(intent)
             }
         }
