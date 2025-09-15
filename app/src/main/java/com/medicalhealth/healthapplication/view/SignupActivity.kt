@@ -26,6 +26,7 @@ class SignupActivity : BaseActivity() {
 
         }
 
+
     private fun setUpOnObserver() {
         signupo.isResult.observe(this){
             it.onSuccess {
@@ -46,6 +47,10 @@ class SignupActivity : BaseActivity() {
 
     private fun setUpOnListener() {
         with(binding) {
+            tvTermsAndPolicy.setOnClickListener {
+                val intent = Intent(this@SignupActivity,PrivacyPolicyActivity::class.java)
+                startActivity(intent)
+            }
             btnBackSignUp.setOnClickListener {
                 val intent = Intent(this@SignupActivity, WelcomeScreenActivity::class.java)
                 startActivity(intent)

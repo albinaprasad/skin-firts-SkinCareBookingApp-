@@ -43,8 +43,7 @@ android {
 }
 
 dependencies {
-    // Correct way to use Firebase BoM:
-    // Place this as the FIRST dependency to ensure it manages all Firebase library versions.
+
     implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
 
     // Now, declare all your Firebase dependencies without a version number
