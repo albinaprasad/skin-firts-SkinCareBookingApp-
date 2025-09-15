@@ -46,7 +46,7 @@ dependencies {
 
     // Firebase Bill of Materials (BOM)
     // Manages Firebase library versions for compatibility
-    implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
+    implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
     // AndroidX dependencies from libs catalog
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -61,12 +61,10 @@ dependencies {
     implementation("androidx.credentials:credentials:1.2.2")
     implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation("androidx.fragment:fragment-ktx:1.8.9")
     // Firebase dependencies (versions managed by the BOM)
     implementation("com.google.firebase:firebase-auth-ktx")
