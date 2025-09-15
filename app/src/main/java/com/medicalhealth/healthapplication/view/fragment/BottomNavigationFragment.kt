@@ -54,10 +54,6 @@ class BottomNavigationFragment: Fragment() {
         updateButtonState(selectedMenu)
     }
 
-    fun setSelectedMenu(selectedMenu: MenuTypes) {
-        this.selectedMenu = selectedMenu
-        updateButtonState(selectedMenu)
-    }
 
 
     private fun setUpListener() {

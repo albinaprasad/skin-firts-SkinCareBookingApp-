@@ -1,12 +1,8 @@
 package com.medicalhealth.healthapplication.view.adapter
 
-import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ItemDateBinding
 import com.medicalhealth.healthapplication.model.data.Date
 
