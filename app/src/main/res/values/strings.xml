@@ -3,6 +3,7 @@
     <string name="skinFirts_text">Skin\nFirts</string>
     <string name="dermatologyCenter_text">Dermatology Center</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="text_log_in">Log In</string>
     <string name="welcome">Welcome</string>
     <string name="email_phone">Email or Mobile Number</string>
@@ -42,8 +43,16 @@
 
     <string name="doctors">Doctors</string>
     <string name="sort_by">Sort By</string>
+    <string name="doctor_info">Doctor Info</string>
+    <string name="profile">Profile</string>
+    <string name="career_path">Career Path</string>
+    <string name="highlights">Highlights</string>
     <string name="doctorname_sample">Dr. Alexander Bennett,\n Ph.D.</string>
+    <string name="doctorname_sample_without_nxtLine">Dr. Alexander Bennett, Ph.D.</string>
     <string name="doctor_sample_specification">Dermato-Genetics</string>
+    <string name="schedule">Schedule</string>
+    <string name="exp_year"><b>15 years \n</b>experience</string>
+    <string name="focus_description"><b>Focus:</b> The impact of hormonal imbalances on skin conditions, specializing in acne, hirsutism, and other skin disorders.</string>
     <string name="info">Info</string>
     <string name="my_profile_text">My Profile</string>
     <string name="news">News</string>
@@ -68,6 +77,7 @@
     <string name="promo_and_discount">Promo and discount</string>
     <string name="cashback">Cashback</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="password_manager">Password Manager</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
@@ -76,6 +86,4 @@
     <string name="asteric">***********</string>
     <string name="settings">Settings</string>
     <string name="delete_account">Delete Account</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

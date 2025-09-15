@@ -14,13 +14,14 @@ import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 import com.medicalhealth.healthapplication.view.SignupActivity
 
 class LoginActivity : BaseActivity() {
-    private lateinit var binding:ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
     val logino:AuthenticationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityLoginBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
+
 
         setUpOnListener()
         setUpOnObserver()
