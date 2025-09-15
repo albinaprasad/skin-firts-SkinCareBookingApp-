@@ -73,4 +73,7 @@
     <string name="asteric">***********</string>
     <string name="settings">Settings</string>
     <string name="delete_account">Delete Account</string>
+    <string name="dermato_Endocrinology">Dermato-Endocrinology</string>
+    <string name="re_Book">Re-Book</string>
+    <string name="add_Review">Add Review</string>
 </resources>
