@@ -12,7 +12,7 @@ import com.medicalhealth.healthapplication.model.data.Doctor
 class DoctorListViewAdapter(
     private val context: Context,
     private var dataList: List<Doctor>,
-    private val listener: OnItemClickListener
+    private val onInfoButtonClick:(Doctor) -> Unit
 ) : RecyclerView.Adapter<DoctorListViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -37,7 +37,7 @@ class DoctorListViewAdapter(
 
 
         holder.binding.infoButton.setOnClickListener {
-            listener.onInfoButtonClick()
+            onInfoButtonClick(currentItem)
 
         }
 
@@ -66,7 +66,7 @@ class DoctorListViewAdapter(
     class MyViewHolder(val binding: DoctorsListCardviewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    // A correct way to show a Toast from an adapter
+
     private fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
@@ -77,8 +77,5 @@ class DoctorListViewAdapter(
         notifyDataSetChanged()
     }
 
-    interface OnItemClickListener {
-        fun onInfoButtonClick()
 
-    }
 }

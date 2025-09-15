@@ -10,7 +10,6 @@ import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
 import com.medicalhealth.healthapplication.view.MainActivity
-import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 import com.medicalhealth.healthapplication.view.SignupActivity
 

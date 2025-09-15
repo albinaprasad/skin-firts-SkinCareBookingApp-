@@ -1,23 +1,14 @@
 package com.medicalhealth.healthapplication.view
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityProfileBinding
 import com.medicalhealth.healthapplication.view.adapter.MyProfileAdapter
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment
 import com.medicalhealth.healthapplication.viewModel.ProfileViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class ProfileActivity : BaseActivity() {
 

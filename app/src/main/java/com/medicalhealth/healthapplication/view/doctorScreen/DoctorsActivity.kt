@@ -2,28 +2,41 @@ package com.medicalhealth.healthapplication.view.doctorScreen
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.DoctorsList
+import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
-class DoctorsActivity : BaseActivity(), DoctorsList.OnFragmentInteractionListener {
+class DoctorsActivity : BaseActivity() {
     lateinit var binding: ActivityDoctorsBinding
+    private val sharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityDoctorsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.titleText.text = "Doctors"
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, DoctorsList())
+                .commit()
+        }
+        setUpOnObserver()
 
 
 
     }
 
-    override fun onTitleChange(newTitle: String) {
-        binding.titleText.text = newTitle
+    private fun setUpOnObserver() {
+        sharedViewModel.titleChange.observe(this){newTitle ->
+            binding.titleText.text = newTitle
+        }
+
     }
+
+
 }
