@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.util
+package com.medicalhealth.healthapplication.utils
 
 import android.view.View
 
@@ -20,3 +20,4 @@ object ViewExtension {
         this.isSelected = false
     }
 }
+

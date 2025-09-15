@@ -29,9 +29,6 @@
             android:name=".view.ratingScreen.RatingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.notificationSetting.NotificationSettingsActivity"
             android:exported="false" />
         <activity
@@ -57,13 +54,12 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.homeScreen.MainActivity"
             android:exported="false" />
 
         <meta-data
