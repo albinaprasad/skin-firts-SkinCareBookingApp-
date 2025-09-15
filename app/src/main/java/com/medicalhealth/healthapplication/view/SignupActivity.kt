@@ -7,12 +7,13 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.medicalhealth.healthapplication.databinding.ActivitySignupBinding
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 
 class SignupActivity : BaseActivity() {
-    private lateinit var binding: ActivitySignupBinding
-    val signupo: AuthenticationViewModel by viewModels()
+    private lateinit var binding:ActivitySignupBinding
+    val signupo:AuthenticationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,21 +24,21 @@ class SignupActivity : BaseActivity() {
         setUpOnListener()
         setUpOnObserver()
 
-    }
+        }
+
 
     private fun setUpOnObserver() {
-        signupo.isResult.observe(this) {
+        signupo.isResult.observe(this){
             it.onSuccess {
                 Toast.makeText(applicationContext, "Signup Successful", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@SignupActivity, MainActivity::class.java)
+                val intent =Intent(this@SignupActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
 
             }
-            it.onFailure { exception ->
-                Toast.makeText(this, "Sign Up Failed: {$exception?.email}", Toast.LENGTH_SHORT)
-                    .show()
-                Log.d("log_message", "{$exception?.email}")
+            it.onFailure { exception->
+                Toast.makeText(this, "Sign Up Failed: {$exception?.email}", Toast.LENGTH_SHORT).show()
+                Log.d("log_message","{$exception?.email}")
 
             }
 
@@ -46,6 +47,10 @@ class SignupActivity : BaseActivity() {
 
     private fun setUpOnListener() {
         with(binding) {
+            tvTermsAndPolicy.setOnClickListener {
+                val intent = Intent(this@SignupActivity,PrivacyPolicyActivity::class.java)
+                startActivity(intent)
+            }
             btnBackSignUp.setOnClickListener {
                 val intent = Intent(this@SignupActivity, WelcomeScreenActivity::class.java)
                 startActivity(intent)
@@ -62,18 +67,10 @@ class SignupActivity : BaseActivity() {
                 val dob = binding.tvDateOfBirth.text.toString()
 
                 if (password.isEmpty() || email.isEmpty() || userName.isEmpty() || dob.isEmpty() || mobileNumberStr.isEmpty()) {
-                    Toast.makeText(
-                        this@SignupActivity,
-                        "PlEASE ENTER THE EMAIL AND PASSWORD",
-                        Toast.LENGTH_SHORT
-                    )
+                    Toast.makeText(this@SignupActivity, "PlEASE ENTER THE EMAIL AND PASSWORD", Toast.LENGTH_SHORT)
                         .show()
                 } else if (mobileNumberStr.length < 10 || mobileNumberStr.length > 10) {
-                    Toast.makeText(
-                        this@SignupActivity,
-                        "PLEASE ENTER A VALID PHONE NUMBER",
-                        Toast.LENGTH_SHORT
-                    )
+                    Toast.makeText(this@SignupActivity, "PLEASE ENTER A VALID PHONE NUMBER", Toast.LENGTH_SHORT)
                         .show()
 
                 } else {
@@ -89,16 +86,8 @@ class SignupActivity : BaseActivity() {
                     }
                 }
             }
-            binding.btnBackSignUp.setOnClickListener {
-                val intent = Intent(this@SignupActivity, WelcomeScreenActivity::class.java)
-                startActivity(intent)
-            }
-            binding.tvlogin.setOnClickListener {
-                val intent = Intent(this@SignupActivity, EditProfileActivity::class.java)
-                startActivity(intent)
-            }
-
-
         }
+
+
     }
 }

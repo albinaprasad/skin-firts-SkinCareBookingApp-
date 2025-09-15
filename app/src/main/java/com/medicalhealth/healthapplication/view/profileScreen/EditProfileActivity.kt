@@ -1,8 +1,9 @@
-package com.medicalhealth.healthapplication.view
+package com.medicalhealth.healthapplication.view.profileScreen
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.medicalhealth.healthapplication.databinding.ActivityEditProfileBinding
+import com.medicalhealth.healthapplication.view.BaseActivity
 
 class EditProfileActivity : BaseActivity() {
     private lateinit var binding: ActivityEditProfileBinding

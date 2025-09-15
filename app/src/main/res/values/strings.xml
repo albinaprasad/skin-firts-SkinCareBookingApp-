@@ -3,6 +3,7 @@
     <string name="skinFirts_text">Skin\nFirts</string>
     <string name="dermatologyCenter_text">Dermatology Center</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="text_log_in">Log In</string>
     <string name="welcome">Welcome</string>
     <string name="email_phone">Email or Mobile Number</string>
@@ -28,20 +29,28 @@
     <string name="already_have_an_account">already have an account?</string>
     <string name="terms_and_privacy">
         By continuing, you agree to \n<font color="#2260FF">Terms of Use</font> and <font color="#2260FF">Privacy Policy</font>.
-</string>
-
+    </string>
     <string name="hi_welcome_back">Hi, WelcomeBack</string>
     <string name="john_doe">John Doe</string>
+    <string name="doctors_text">Doctors</string>
+    <string name="favorite_text">Favorite</string>
     <string name="date_wednesday_text">11 Wednesday - Today</string>
     <string name="time_9am">9 AM</string>
     <string name="time_10am">10 AM</string>
     <string name="time_11am">11 AM</string>
     <string name="time_12am">12 AM</string>
-
     <string name="doctors">Doctors</string>
     <string name="sort_by">Sort By</string>
+    <string name="doctor_info">Doctor Info</string>
+    <string name="profile">Profile</string>
+    <string name="career_path">Career Path</string>
+    <string name="highlights">Highlights</string>
     <string name="doctorname_sample">Dr. Alexander Bennett,\n Ph.D.</string>
+    <string name="doctorname_sample_without_nxtLine">Dr. Alexander Bennett, Ph.D.</string>
     <string name="doctor_sample_specification">Dermato-Genetics</string>
+    <string name="schedule">Schedule</string>
+    <string name="exp_year"><b>15 years \n</b>experience</string>
+    <string name="focus_description"><b>Focus:</b> The impact of hormonal imbalances on skin conditions, specializing in acne, hirsutism, and other skin disorders.</string>
     <string name="info">Info</string>
     <string name="profile_text">Profile</string>
     <string name="phone_number_text">Phone Number</string>
@@ -70,6 +79,8 @@
     <string name="payments">Payments</string>
     <string name="promo_and_discount">Promo and discount</string>
     <string name="cashback">Cashback</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="password_manager">Password Manager</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>

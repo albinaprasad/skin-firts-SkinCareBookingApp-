@@ -40,6 +40,9 @@ class MainViewModel: ViewModel() {
             Doctor("2", R.drawable.doctor_image_two, "Dr. Alexander Bennett, Ph.D.", "Dermato-Genetics", 4.5, 40, false),
             Doctor("3", R.drawable.doctor_image_three, "Dr. Sophia Martinez, Ph.D.", "Cosmetic Bioengineering", 5.0, 150, false),
             Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
+            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
+            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
+            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true)
         )
     }
 
@@ -48,7 +51,7 @@ class MainViewModel: ViewModel() {
             date.isSelected = (date == selectedDate)
             date
         }
-        _dates.value = updatedList
+        _dates.value = updatedList!!
     }
 
     fun toggleFavoriteStatus(doctorId: String){
@@ -59,6 +62,6 @@ class MainViewModel: ViewModel() {
                 doctor
             }
         }
-        _doctors.value = updatedList
+        _doctors.value = updatedList!!
     }
 }

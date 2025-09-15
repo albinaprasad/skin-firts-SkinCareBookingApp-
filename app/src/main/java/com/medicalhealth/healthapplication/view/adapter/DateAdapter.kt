@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.ItemDateBinding
 import com.medicalhealth.healthapplication.model.data.Date
 
-class DateAdapter(private val dates: List<Date>, private val onDateSelected: (Date) -> Unit) :
+class DateAdapter(private var dates: List<Date>, private val onDateSelected: (Date) -> Unit) :
     RecyclerView.Adapter<DateAdapter.DateViewHolder>() {
     class DateViewHolder(val binding: ItemDateBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -37,5 +37,10 @@ class DateAdapter(private val dates: List<Date>, private val onDateSelected: (Da
 
     override fun getItemCount(): Int {
         return dates.size
+    }
+
+    fun updateData(newOptionList: List<Date>){
+        dates = newOptionList
+        notifyDataSetChanged()
     }
 }

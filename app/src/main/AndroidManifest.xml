@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:theme="@style/Theme.HealthApplication"
         tools:targetApi="31">
         <activity
-            android:name=".view.EditProfileActivity"
+            android:name=".view.PrivacyPolicyActivity"
             android:exported="false" />
         <activity
             android:name=".view.settingScreen.SettingsActivity"
@@ -28,13 +29,16 @@
             android:name=".view.ratingScreen.RatingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.notificationSetting.NotificationSettingsActivity"
             android:exported="false" />
         <activity
             android:name=".view.notificationScreen.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.profileScreen.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".view.SetPasswordActivity"
@@ -60,7 +64,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.MainActivity"
+            android:name=".view.homeScreen.MainActivity"
             android:exported="false" />
 
         <meta-data
