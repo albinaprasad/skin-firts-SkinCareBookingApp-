@@ -112,7 +112,7 @@
         android:id="@+id/faqBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="12dp"
         android:autoSizeMaxTextSize="20dp"
         android:autoSizeMinTextSize="17dp"
         android:autoSizeStepGranularity="0.5dp"
