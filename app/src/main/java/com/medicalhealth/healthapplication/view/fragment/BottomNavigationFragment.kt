@@ -2,29 +2,32 @@ package com.medicalhealth.healthapplication.view.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
-import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment.MenuTypes.*
+import com.medicalhealth.healthapplication.utils.enums.Enums.*
 import com.medicalhealth.healthapplication.view.homeScreen.HomeFragment
 import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 
 class BottomNavigationFragment: Fragment() {
 
-    interface OnFragmentSwitchListener{
+
+    interface OnFragmentSwitchListener {
         fun currentFragment(selectedFragment: MenuTypes)
     }
 
     private lateinit var binding: BottomNavigationLayoutBinding
-    private var fragmentSwitchListener: OnFragmentSwitchListener? =  null
-    private var selectedMenu = HOME
+    private var fragmentSwitchListener: OnFragmentSwitchListener? = null
+    private var selectedMenu = MenuTypes.HOME
+    private var activeFragment: Fragment? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is OnFragmentSwitchListener){
+        if (context is OnFragmentSwitchListener) {
             fragmentSwitchListener = context
         }
     }
@@ -43,10 +46,10 @@ class BottomNavigationFragment: Fragment() {
 
         setUpListener()
 
-        binding.homeButton.tag = HOME
-        binding.chatButton.tag = MESSAGES
-        binding.profileButton.tag = PROFILE
-        binding.calenderButton.tag = CALENDER
+        binding.homeButton.tag = MenuTypes.HOME
+        binding.chatButton.tag = MenuTypes.MESSAGES
+        binding.profileButton.tag = MenuTypes.PROFILE
+        binding.calenderButton.tag = MenuTypes.CALENDER
 
         updateButtonState(selectedMenu)
     }
@@ -57,22 +60,22 @@ class BottomNavigationFragment: Fragment() {
     }
 
 
-    private fun setUpListener(){
-        with(binding){
+    private fun setUpListener() {
+        with(binding) {
             homeButton.setOnClickListener {
-                onMenuSelected(HOME)
+                onMenuSelected(MenuTypes.HOME)
             }
 
             chatButton.setOnClickListener {
-                onMenuSelected(MESSAGES)
+                onMenuSelected(MenuTypes.MESSAGES)
             }
 
             profileButton.setOnClickListener {
-                onMenuSelected(PROFILE)
+                onMenuSelected(MenuTypes.PROFILE)
             }
 
             calenderButton.setOnClickListener {
-                onMenuSelected(CALENDER)
+                onMenuSelected(MenuTypes.CALENDER)
             }
         }
     }
@@ -80,17 +83,20 @@ class BottomNavigationFragment: Fragment() {
     private fun onMenuSelected(menuTypes: MenuTypes) {
         updateButtonState(menuTypes)
         when (menuTypes) {
-            HOME -> {
-                 showFragment(HomeFragment(), "Home", menuTypes)
+            MenuTypes.HOME -> {
+                showFragment(HomeFragment(), "Home", menuTypes)
 
             }
-            MESSAGES -> {
+
+            MenuTypes.MESSAGES -> {
 
             }
-            PROFILE -> {
+
+            MenuTypes.PROFILE -> {
                 showFragment(ProfileFragment(), "Profile", menuTypes)
             }
-            CALENDER -> {
+
+            MenuTypes.CALENDER -> {
 
             }
         }
@@ -112,34 +118,25 @@ class BottomNavigationFragment: Fragment() {
         }
     }
 
-    enum class MenuTypes {
-        HOME, MESSAGES, PROFILE, CALENDER;
 
-        fun getSelectedIcon(): Int {
-            return when (this) {
-                HOME -> R.drawable.home_icon_blue
-                MESSAGES -> R.drawable.chat_icon_blue
-                PROFILE -> R.drawable.profile_icon_blue
-                CALENDER -> R.drawable.calender_ic_blue
-            }
-        }
-
-        fun getUnselectedIcon(): Int {
-                return when (this) {
-                    HOME -> R.drawable.home_icon_white
-                    MESSAGES -> R.drawable.chat_icon_white
-                    PROFILE -> R.drawable.profile_icon_white
-                    CALENDER -> R.drawable.calender_icon_white
-                }
-
-        }
-    }
-
-    private fun showFragment(fragment: Fragment, tag: String, selectedMenu: MenuTypes){
+    private fun showFragment(fragment: Fragment, tag: String, selectedMenu: MenuTypes) {
         val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.addToBackStack(tag)
+        activeFragment?.let {
+            transaction.hide(it)
+        }
+        var currentFragment = parentFragmentManager.findFragmentByTag(tag)
+
+        if (currentFragment == null) {
+            currentFragment = fragment
+            transaction.add(R.id.fragment_container, currentFragment, tag)
+            Log.d("message", "if if if -> ${currentFragment.tag}")
+        } else {
+            transaction.show(currentFragment)
+            Log.d("message", "else else -> ${currentFragment.tag}")
+        }
+
         transaction.commit()
+        activeFragment = currentFragment
         fragmentSwitchListener?.currentFragment(selectedMenu)
     }
 
