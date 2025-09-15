@@ -14,17 +14,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/leaguespartan_medium"
-        tools:text="11"
         android:textColor="@color/black"
         android:textSize="24dp"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        tools:text="11" />
 
     <TextView
         android:id="@+id/dayOfWeekTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/league_spartan"
-        tools:text="WED"
         android:textColor="@color/black"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        tools:text="WED" />
 </LinearLayout>

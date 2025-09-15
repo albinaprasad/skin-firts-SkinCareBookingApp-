@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.medicalhealth.healthapplication.databinding.ActivitySignupBinding
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 
@@ -25,11 +26,12 @@ class SignupActivity : BaseActivity() {
 
         }
 
+
     private fun setUpOnObserver() {
         signupo.isResult.observe(this){
             it.onSuccess {
                 Toast.makeText(applicationContext, "Signup Successful", Toast.LENGTH_SHORT).show()
-                val intent =Intent(this@SignupActivity,MainActivity::class.java)
+                val intent =Intent(this@SignupActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
 
@@ -45,6 +47,10 @@ class SignupActivity : BaseActivity() {
 
     private fun setUpOnListener() {
         with(binding) {
+            tvTermsAndPolicy.setOnClickListener {
+                val intent = Intent(this@SignupActivity,PrivacyPolicyActivity::class.java)
+                startActivity(intent)
+            }
             btnBackSignUp.setOnClickListener {
                 val intent = Intent(this@SignupActivity, WelcomeScreenActivity::class.java)
                 startActivity(intent)

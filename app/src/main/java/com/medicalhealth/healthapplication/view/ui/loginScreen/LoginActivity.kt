@@ -9,7 +9,7 @@ import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
-import com.medicalhealth.healthapplication.view.MainActivity
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 import com.medicalhealth.healthapplication.view.SignupActivity
 
@@ -34,7 +34,7 @@ class LoginActivity : BaseActivity() {
         logino.isLogin.observe(this){
             it.onSuccess {
                 Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
-                val intent =Intent(this@LoginActivity,MainActivity::class.java)
+                val intent =Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }

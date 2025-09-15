@@ -12,4 +12,6 @@ class Enums {
         CARD_VIEW_DISPLAY(1)
     }
 
+    enum class NavigationDestination{HOME, CHAT, PROFILE, CALENDAR}
+
 }
