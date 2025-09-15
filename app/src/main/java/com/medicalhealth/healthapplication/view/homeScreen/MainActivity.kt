@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import com.medicalhealth.healthapplication.databinding.ActivityMainBinding
+import com.medicalhealth.healthapplication.utils.enums.Enums
 import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment
@@ -25,7 +26,7 @@ class MainActivity : BaseActivity(), BottomNavigationFragment.OnFragmentSwitchLi
         }
     }
 
-    override fun currentFragment(selectedFragment: BottomNavigationFragment.MenuTypes) {
+    override fun currentFragment(selectedFragment: Enums.MenuTypes) {
         Log.d("message", "Current Fragment: $selectedFragment")
     }
 }

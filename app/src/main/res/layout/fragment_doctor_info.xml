@@ -202,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/star_empty_1" />
+                            app:srcCompat="@drawable/star_unfilled" />
 
                         <TextView
                             android:id="@+id/tvrating"
@@ -237,7 +237,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="5dp"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/comment_blue_1" />
+                            app:srcCompat="@drawable/comment_blue" />
 
                         <TextView
                             android:id="@+id/tvcomment"

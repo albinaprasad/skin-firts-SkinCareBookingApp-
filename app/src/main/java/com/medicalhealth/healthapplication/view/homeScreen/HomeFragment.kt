@@ -27,48 +27,54 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        setUpRecyclerView()
-        setUpListeners()
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
+        observeViewModel()
+        setUpListeners()
+    }
+
     private fun setUpRecyclerView() {
-        viewModel.dates.value?.let { dates ->
-            val dateAdapter = DateAdapter(dates) { selectedDate ->
+        with(binding){
+            dateRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            val initialDates = viewModel.dates.value.orEmpty()
+            val dateAdapter = DateAdapter(initialDates) {selectedDate ->
                 viewModel.selectDate(selectedDate)
             }
-            with(binding) {
-                this.dateRecyclerView.layoutManager =
-                    LinearLayoutManager(
-                        requireContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false
-                    )
-                this.dateRecyclerView.adapter = dateAdapter
+            dateRecyclerView.adapter = dateAdapter
 
-                viewModel.dates.observe(viewLifecycleOwner) { updatedDates ->
-                    dateAdapter.notifyDataSetChanged()
-                }
+            scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            val initialAppointments = viewModel.appointment.value.orEmpty()
+            scheduleRecyclerView.adapter = ScheduleAdapter(initialAppointments)
+
+            doctorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+            val initialDoctors = viewModel.doctors.value.orEmpty()
+            val doctorAdapter = DoctorAdapter(initialDoctors){ doctor ->
+                viewModel.toggleFavoriteStatus(doctor.id)
+            }
+            doctorRecyclerView.adapter = doctorAdapter
+        }
+    }
+
+    private fun observeViewModel(){
+        viewModel.dates.observe(viewLifecycleOwner){ updatedDates ->
+            if (updatedDates != null) {
+                (binding.dateRecyclerView.adapter as? DateAdapter)?.updateData(updatedDates)
             }
         }
-        with(binding) {
-            this.scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            viewModel.appointment.observe(viewLifecycleOwner) { appointmentsList ->
-                val appointmentAdapter = ScheduleAdapter(appointmentsList)
-                this.scheduleRecyclerView.adapter = appointmentAdapter
-            }
-
-            this.doctorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            viewModel.doctors.observe(viewLifecycleOwner) { doctorsList ->
-                val adapter = doctorsList?.let {
-                    DoctorAdapter(it) { doctor ->
-                        viewModel.toggleFavoriteStatus(doctor.id)
-                    }
-                }
-                this.doctorRecyclerView.adapter = adapter
+        viewModel.appointment.observe(viewLifecycleOwner){ appointmentsList ->
+            if(appointmentsList != null){
+                (binding.scheduleRecyclerView.adapter as? ScheduleAdapter)?.updateData(appointmentsList)
             }
         }
-
+        viewModel.doctors.observe(viewLifecycleOwner){doctorsList ->
+            if(doctorsList != null) {
+                (binding.doctorRecyclerView.adapter as? DoctorAdapter)?.updateDate(doctorsList)
+            }
+        }
     }
 
     private fun setUpListeners(){
