@@ -8,58 +8,73 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-class DoctorListViewAdapter(val context: Context, val doctorDataList: ArrayList<Doctor>) :
-    RecyclerView.Adapter<DoctorListViewAdapter.DoctorlistViewHolder>() {
+class DoctorListViewAdapter(
+    private val context: Context,
+    private var dataList: List<Doctor>,
+    private val onInfoButtonClick:(Doctor) -> Unit
+) : RecyclerView.Adapter<DoctorListViewAdapter.MyViewHolder>() {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DoctorlistViewHolder {
-
-        val view =
+    ): MyViewHolder {
+        val binding =
             DoctorsListCardviewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return DoctorlistViewHolder(view)
+        return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(
-        holder: DoctorlistViewHolder,
+        holder: MyViewHolder,
         position: Int
     ) {
-        val doctorData = doctorDataList[position]
+        val currentItem = dataList[position]
 
-        holder.doctorBinding.doctorImage.setImageResource(doctorData.profileImageUrl)
-        holder.doctorBinding.doctorName.text = doctorData.name
-        holder.doctorBinding.specification.text = doctorData.specialization
+        // Bind data to the views using the binding object
+        holder.binding.doctorImage.setImageResource(currentItem.profileImageUrl)
+        holder.binding.doctorName.text = currentItem.name
+        holder.binding.specification.text = currentItem.specialization
 
-        holder.doctorBinding.infoButton.setOnClickListener {
-            showToast("info")
+
+        holder.binding.infoButton.setOnClickListener {
+            onInfoButtonClick(currentItem)
+
         }
 
-        holder.doctorBinding.calenderBtn.setOnClickListener {
-            showToast("calender")
+        holder.binding.calenderBtn.setOnClickListener {
+            showToast(context, "calender")
         }
 
-        holder.doctorBinding.moreinfoBtn.setOnClickListener {
-            showToast("info")
+        holder.binding.moreinfoBtn.setOnClickListener {
+            showToast(context, "info")
         }
 
-        holder.doctorBinding.aboutwhatBtn.setOnClickListener {
-            showToast("?")
+        holder.binding.aboutwhatBtn.setOnClickListener {
+            showToast(context, "?")
         }
 
-        holder.doctorBinding.favBtn.setOnClickListener {
-            showToast("fav")
+        holder.binding.favBtn.setOnClickListener {
+            showToast(context, "fav")
         }
     }
 
     override fun getItemCount(): Int {
-        return doctorDataList.size
+        return dataList.size
     }
 
-    class DoctorlistViewHolder(val doctorBinding: DoctorsListCardviewBinding) :
-        RecyclerView.ViewHolder(doctorBinding.root) {
-    }
-    fun showToast(message: String) {
 
+    class MyViewHolder(val binding: DoctorsListCardviewBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+
+    private fun showToast(context: Context, message: String) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
+
+
+    fun updateData(newData: List<Doctor>) {
+        dataList = newData
+        notifyDataSetChanged()
+    }
+
+
 }

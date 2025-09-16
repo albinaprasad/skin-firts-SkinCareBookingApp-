@@ -6,14 +6,4 @@ import com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragmen
 
 abstract class BaseActivity : AppCompatActivity() {
 
-
-    fun setSelectedMenu(menuTypes: BottomNavigationFragment.MenuTypes) {
-        val menuFragment = supportFragmentManager.findFragmentById(R.id.fragmentNavigation)
-        if (menuFragment is BottomNavigationFragment) {
-            menuFragment.setSelectedMenu(menuTypes)
-        }
-    }
-
-
-
 }

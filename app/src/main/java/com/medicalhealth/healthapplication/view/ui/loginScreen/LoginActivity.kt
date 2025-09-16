@@ -9,38 +9,33 @@ import com.medicalhealth.healthapplication.databinding.ActivityLoginBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.SetPasswordActivity
 import com.medicalhealth.healthapplication.view.WelcomeScreenActivity
-import com.medicalhealth.healthapplication.view.MainActivity
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.viewModel.AuthenticationViewModel
 import com.medicalhealth.healthapplication.view.SignupActivity
 
 class LoginActivity : BaseActivity() {
-    private lateinit var binding:ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
     val logino:AuthenticationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityLoginBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-
         setUpOnListener()
         setUpOnObserver()
-
-
-
     }
 
     private fun setUpOnObserver() {
         logino.isLogin.observe(this){
             it.onSuccess {
                 Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_SHORT).show()
-                val intent =Intent(this@LoginActivity,MainActivity::class.java)
+                val intent =Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
             it.onFailure{ exception ->
                 Toast.makeText(this, "{$exception.email}", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
@@ -70,7 +65,6 @@ class LoginActivity : BaseActivity() {
 
                 }
             }
-
         }
         }
     }

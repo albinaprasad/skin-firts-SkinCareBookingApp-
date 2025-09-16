@@ -7,7 +7,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ItemDoctorProfileBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-class DoctorAdapter(private val doctors: List<Doctor>, private val onFavoriteClicked: (Doctor) -> Unit) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
+class DoctorAdapter(private var doctors: List<Doctor>, private val onFavoriteClicked: (Doctor) -> Unit) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
     class DoctorViewHolder(val binding: ItemDoctorProfileBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -43,5 +43,10 @@ class DoctorAdapter(private val doctors: List<Doctor>, private val onFavoriteCli
 
     override fun getItemCount(): Int {
         return doctors.size
+    }
+
+    fun updateDate(newDoctorsList: List<Doctor>){
+        doctors = newDoctorsList
+        notifyDataSetChanged()
     }
 }
