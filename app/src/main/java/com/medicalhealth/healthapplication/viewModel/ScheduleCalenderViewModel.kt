@@ -15,7 +15,10 @@ class ScheduleCalenderViewModel: ViewModel() {
      private val _dateList = MutableLiveData<List<Date>>()
     val dateList: LiveData<List<Date>> get() = _dateList
 
+    private val _timeSlots = MutableLiveData<List<TimeSlot>>()
+    val timeSlot: LiveData<List<TimeSlot>> get() = _timeSlots
     private val dayNames = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+    private val slots = mutableListOf<TimeSlot>()
 
     init {
         _dateList.value=mutableListOf()
@@ -53,5 +56,23 @@ class ScheduleCalenderViewModel: ViewModel() {
             newDateList.add(date)
         }
         _dateList.value = newDateList
+    }
+
+    fun generateTimeSlots(){
+
+        val newTimeSlots = mutableListOf<TimeSlot>()
+        var time = LocalTime.of(9, 0)
+        while (time.isBefore(LocalTime.of(16, 1))) {
+            newTimeSlots.add(TimeSlot(time))
+            time = time.plusMinutes(30)
+        }
+        _timeSlots.value = newTimeSlots
+    }
+
+    fun selectTimeSlot(time: LocalTime) {
+        val updatedSlots = _timeSlots.value?.map { slot ->
+            slot.copy(isSelected = slot.time == time)
+        } ?: emptyList()
+        _timeSlots.value = updatedSlots
     }
 }

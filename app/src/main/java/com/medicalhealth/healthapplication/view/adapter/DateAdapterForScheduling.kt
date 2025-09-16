@@ -63,20 +63,6 @@ class DateAdapterForScheduling(var dateList: MutableList<Date>): RecyclerView.Ad
                     binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
                 }
 
-                date.isSelected -> {
-
-                    val selectedDrawable = GradientDrawable().apply {
-                        shape = GradientDrawable.RECTANGLE
-                        setColor(ContextCompat.getColor(context, R.color.white))
-                        cornerRadius = 40f // Curved corners
-                    }
-                    binding.dateContainer.background = selectedDrawable
-
-
-                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
-                    binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
-                }
-
                 else -> {
 
                     val selectedDrawable = GradientDrawable().apply {
