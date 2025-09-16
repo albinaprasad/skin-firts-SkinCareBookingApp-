@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
-import com.medicalhealth.healthapplication.model.data.TimeSlot
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
@@ -34,10 +33,8 @@ class ScheduleActivity : BaseActivity() {
 
         spinnerSetUp()
         dateRecyclerViewSetUp()
-
         timeslotAdapterSetup()
     }
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun timeslotAdapterSetup() {
         val timeSlotAdapter = TimeSlotAdapterForScheduling(viewModel)
@@ -50,7 +47,6 @@ class ScheduleActivity : BaseActivity() {
     }
 
     private fun spinnerSetUp() {
-
         val spinner = binding.monthSpinner
         val months = arrayOf(
             "January", "February", "March", "April", "May", "June",
@@ -70,7 +66,6 @@ class ScheduleActivity : BaseActivity() {
                 position: Int,
                 id: Long
             ) {
-
                 val selectedMonth = months[position]
                 Toast.makeText(
                     this@ScheduleActivity,
@@ -79,13 +74,13 @@ class ScheduleActivity : BaseActivity() {
                 ).show()
                 viewModel.generateMonthDates(position)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun dateRecyclerViewSetUp() {
-       val dateAdapter = DateAdapterForScheduling(mutableListOf())
+        val dateAdapter = DateAdapterForScheduling(mutableListOf())
 
         with(binding) {
             scheduleRecyclerView.layoutManager = LinearLayoutManager(
@@ -93,13 +88,11 @@ class ScheduleActivity : BaseActivity() {
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
-
             scheduleRecyclerView.adapter = dateAdapter
             viewModel.dateList.observe(this@ScheduleActivity) { newDateList ->
                 dateAdapter.updateDates(newDateList)
             }
         }
     }
-
 }
 

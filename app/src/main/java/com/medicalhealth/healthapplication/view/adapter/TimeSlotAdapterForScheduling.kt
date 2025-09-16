@@ -15,7 +15,6 @@ import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 class TimeSlotAdapterForScheduling (
                                     private val viewModel: ScheduleCalenderViewModel
 ): RecyclerView.Adapter<TimeSlotAdapterForScheduling.TimeViewHolder>(){
-
     private lateinit var timeSlots: List<TimeSlot>
 
     override fun onCreateViewHolder(
@@ -49,27 +48,25 @@ class TimeSlotAdapterForScheduling (
             binding.dateTextView.text = item.timeString
             binding.root.setOnClickListener {
                 viewModel.selectTimeSlot(item.time)
-
             }
             updateBackground(item.isSelected)
-
         }
         private fun updateBackground(isSelected: Boolean) {
-            binding.dateContainer.background = ContextCompat.getDrawable(
-                itemView.context,
-                R.drawable.round_corner_hint_bluecolor
-            )
-            binding.dateContainer.isSelected = isSelected // Trigger state change
-            // Set text color based on selection
-            binding.dateTextView.setTextColor(
-                ContextCompat.getColor(
+            with(binding)
+            {
+
+                dateContainer.background = ContextCompat.getDrawable(
                     itemView.context,
-                    if (isSelected) R.color.white else R.color.hintColor
+                    R.drawable.round_corner_hint_bluecolor
                 )
-            )
+                dateContainer.isSelected = isSelected
+                dateTextView.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        if (isSelected) R.color.white else R.color.hintColor
+                    )
+                )
+            }
         }
-
-
     }
-
 }
