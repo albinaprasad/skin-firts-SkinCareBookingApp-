@@ -103,7 +103,7 @@
 
             android:padding="4dp"
             android:textColor="@color/text_black"
-            app:drawableStartCompat="@drawable/star_empty"
+            app:drawableStartCompat="@drawable/star_unfilled"
 
             tools:text="4.5" />
 

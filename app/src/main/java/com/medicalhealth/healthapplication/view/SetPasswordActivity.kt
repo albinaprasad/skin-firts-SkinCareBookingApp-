@@ -3,10 +3,6 @@ package com.medicalhealth.healthapplication.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivitySetPasswordBinding
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 

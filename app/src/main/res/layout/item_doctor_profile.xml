@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/doctorProfileCardView"
     android:layout_width="match_parent"
     android:layout_height="74dp"
-    android:layout_marginBottom="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="@color/off_blue"
-    app:cardCornerRadius="17dp">
+    app:cardCornerRadius="17dp"
+    android:layout_marginBottom="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/doctorProfileConstraint"
@@ -73,31 +73,29 @@
             android:layout_height="18dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="13dp"
+            app:layout_constraintStart_toStartOf="@id/doctorDetailsCardView"
+            app:layout_constraintTop_toBottomOf="@+id/doctorDetailsCardView"
             app:layout_constraintBottom_toBottomOf="@id/doctorProfileConstraint"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toStartOf="@id/doctorDetailsCardView"
-            app:layout_constraintTop_toBottomOf="@+id/doctorDetailsCardView">
-
+            app:layout_constraintHorizontal_bias="0">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="3dp"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:layout_marginStart="3dp">
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/star_empty" />
+                    android:src="@drawable/star_unfilled"/>
 
                 <TextView
                     android:id="@+id/ratingTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:fontFamily="@font/league_spartan_light"
+                    tools:text="5"
                     android:textSize="12dp"
-                    tools:text="5" />
+                    android:fontFamily="@font/league_spartan_light"
+                    android:layout_marginStart="3dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -105,32 +103,30 @@
             android:id="@+id/commentCardView"
             android:layout_width="43dp"
             android:layout_height="18dp"
-            android:layout_marginStart="6dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="13dp"
-            app:layout_constraintBottom_toBottomOf="@id/doctorProfileConstraint"
+            android:layout_marginStart="6dp"
             app:layout_constraintStart_toEndOf="@id/ratingCardView"
-            app:layout_constraintTop_toBottomOf="@+id/doctorDetailsCardView">
-
+            app:layout_constraintTop_toBottomOf="@+id/doctorDetailsCardView"
+            app:layout_constraintBottom_toBottomOf="@id/doctorProfileConstraint">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="3dp"
-                android:gravity="center_vertical">
-
+                android:gravity="center_vertical"
+                android:layout_marginStart="3dp">
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/comment_blue" />
+                    android:src="@drawable/comment_blue"/>
 
                 <TextView
                     android:id="@+id/commentCountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:fontFamily="@font/league_spartan_light"
+                    tools:text="60"
                     android:textSize="12dp"
-                    tools:text="60" />
+                    android:fontFamily="@font/league_spartan_light"
+                    android:layout_marginStart="3dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -140,9 +136,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
             android:src="@drawable/help_image"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/favoriteLayout"
-            app:layout_constraintTop_toBottomOf="@id/doctorDetailsCardView" />
+            app:layout_constraintTop_toBottomOf="@id/doctorDetailsCardView"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <LinearLayout
             android:id="@+id/favoriteLayout"
