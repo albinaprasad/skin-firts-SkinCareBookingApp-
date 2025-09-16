@@ -35,7 +35,7 @@ class ScheduleCalenderViewModel: ViewModel() {
         calendar.set(java.util.Calendar.DAY_OF_MONTH, 1)
 
         val daysInMonth = calendar.getActualMaximum(java.util.Calendar.DAY_OF_MONTH)
-        for(day in 1..daysInMonth+1)
+        for(day in 1..daysInMonth)
         {
             calendar.set(java.util.Calendar.DAY_OF_MONTH, day)
             val dayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK)

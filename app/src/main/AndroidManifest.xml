@@ -18,6 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".view.scheduleScreen.ScheduleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:exported="false" />
         <activity
             android:name=".view.settingScreen.SettingsActivity"

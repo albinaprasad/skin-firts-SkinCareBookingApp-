@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
@@ -18,11 +19,9 @@ import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 import kotlin.getValue
-
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
     private val viewModel: ScheduleCalenderViewModel by viewModels()
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +33,7 @@ class ScheduleActivity : BaseActivity() {
         spinnerSetUp()
         dateRecyclerViewSetUp()
         timeslotAdapterSetup()
+        listenToButtonClicks()
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun timeslotAdapterSetup() {
@@ -77,7 +77,6 @@ class ScheduleActivity : BaseActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
-
     @RequiresApi(Build.VERSION_CODES.O)
     fun dateRecyclerViewSetUp() {
         val dateAdapter = DateAdapterForScheduling(mutableListOf())
@@ -92,6 +91,70 @@ class ScheduleActivity : BaseActivity() {
             viewModel.dateList.observe(this@ScheduleActivity) { newDateList ->
                 dateAdapter.updateDates(newDateList)
             }
+        }
+    }
+    fun listenToButtonClicks(){
+
+        with(binding)
+        {
+            dateFwdBtn.setOnClickListener {
+                scheduleRecyclerView.smoothScrollBy(300,0)
+            }
+
+            dateBackwardBtn.setOnClickListener {
+                scheduleRecyclerView.smoothScrollBy(-300,0)
+            }
+            maleBtn.setOnClickListener {
+                GenderButtonSelection(maleBtn)
+            }
+            femaleBtn.setOnClickListener {
+                GenderButtonSelection(femaleBtn)
+            }
+            otherBtn.setOnClickListener {
+                GenderButtonSelection(otherBtn)
+            }
+            yourselfTV.setOnClickListener {
+                personalDetailsButtonSelection(yourselfTV)
+            }
+            anotherPersonTV.setOnClickListener {
+                personalDetailsButtonSelection(anotherPersonTV)
+            }
+        }
+    }
+     fun personalDetailsButtonSelection(selectedTV: android.widget.TextView)
+    {
+        with(binding)
+        {
+            yourselfTV.background =
+                ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            yourselfTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
+
+            anotherPersonTV.background =
+                ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            anotherPersonTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
+
+            selectedTV.background= ContextCompat.getDrawable(this@ScheduleActivity,R.drawable.dark_blue_round_corner)
+            selectedTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity,R.color.white))
+        }
+    }
+    private fun GenderButtonSelection(selectedBtn: android.widget.TextView) {
+
+        with(binding) {
+
+            maleBtn.background =
+                ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            maleBtn.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
+
+            femaleBtn.background =
+                ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            femaleBtn.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
+
+            otherBtn.background =
+                ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            otherBtn.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
+
+            selectedBtn.background= ContextCompat.getDrawable(this@ScheduleActivity,R.drawable.dark_blue_round_corner)
+            selectedBtn.setTextColor(ContextCompat.getColor(this@ScheduleActivity,R.color.white))
         }
     }
 }

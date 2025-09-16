@@ -60,13 +60,14 @@
         app:layout_constraintVertical_bias="0.086"
         app:layout_constraintWidth_percent="0.30">
         <ImageButton
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
             android:background="@drawable/button_blue_round_background"
             android:padding="8dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/phone_icon"
             />
         <ImageButton
@@ -76,7 +77,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/button_blue_round_background"
             android:padding="8dp"
             android:src="@drawable/video_icon" />
@@ -86,7 +87,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="3dp"
             android:layout_weight="1"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/button_blue_round_background"
             android:padding="6dp"
             android:src="@drawable/chat_icon_small" />
@@ -95,7 +96,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
             android:layout_weight="1"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="3dp"
             android:background="@drawable/round_button_offblue"
             android:padding="8dp"
@@ -106,7 +107,7 @@
             android:layout_marginStart="3dp"
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/round_button_offblue"
             android:padding="8dp"
             android:src="@drawable/fav_icon_filled_darkblue" />
@@ -434,6 +435,7 @@
                 android:fontFamily="@font/leaguespartan_medium"
                 android:gravity="center_vertical"
                 android:hint="@string/thirty_number"
+                android:inputType="number"
                 android:includeFontPadding="false"
                 android:paddingStart="12dp"
                 android:textColorHint="@color/hintColor"
@@ -586,7 +588,7 @@
                 android:gravity="start"
                 android:hint="@string/enter_your_problem_here"
                 android:includeFontPadding="false"
-                android:padding="12dp"
+                android:padding="14dp"
                 android:textColorHint="@color/black"
                 app:layout_constraintDimensionRatio="295:107"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
