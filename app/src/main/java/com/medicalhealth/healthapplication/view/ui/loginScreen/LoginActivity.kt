@@ -21,10 +21,8 @@ class LoginActivity : BaseActivity() {
         binding= ActivityLoginBinding.inflate(layoutInflater)
         enableEdgeToEdge()
         setContentView(binding.root)
-
         setUpOnListener()
         setUpOnObserver()
-
     }
 
     private fun setUpOnObserver() {
@@ -38,7 +36,6 @@ class LoginActivity : BaseActivity() {
             it.onFailure{ exception ->
                 Toast.makeText(this, "{$exception.email}", Toast.LENGTH_SHORT).show()
             }
-
         }
     }
 
@@ -68,7 +65,6 @@ class LoginActivity : BaseActivity() {
 
                 }
             }
-
         }
         }
     }

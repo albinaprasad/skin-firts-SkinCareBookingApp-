@@ -30,6 +30,5 @@ class DoctorsActivity : BaseActivity() {
         sharedViewModel.titleChange.observe(this){newTitle ->
             binding.titleText.text = newTitle
         }
-
     }
 }
