@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.ItemProfileScreenListBinding
 import com.medicalhealth.healthapplication.model.data.ProfileOption
-import com.medicalhealth.healthapplication.util.ViewExtension.gone
-import com.medicalhealth.healthapplication.util.ViewExtension.show
+import com.medicalhealth.healthapplication.utils.ViewExtension.gone
+import com.medicalhealth.healthapplication.utils.ViewExtension.show
 
 class MyProfileAdapter(
     private var profileOptionList: List<ProfileOption>,

@@ -21,7 +21,6 @@ class DoctorsActivity : BaseActivity() {
 
         var doctorList= ArrayList<Doctor>()
 
-        //TODO:Replace these dummy data with real data from firebase in the future
 
          doctorList = arrayListOf(
                 Doctor(
