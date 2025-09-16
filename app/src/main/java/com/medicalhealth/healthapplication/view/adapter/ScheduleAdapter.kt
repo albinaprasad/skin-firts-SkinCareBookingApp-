@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.ItemScheduleAppointmentBinding
 import com.medicalhealth.healthapplication.model.data.Appointment
 
-class ScheduleAdapter(private val appointments: List<Appointment>) :
+class ScheduleAdapter(private var appointments: List<Appointment>) :
     RecyclerView.Adapter<ScheduleAdapter.AppointmentViewHolder>() {
     class AppointmentViewHolder(val binding: ItemScheduleAppointmentBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -32,6 +32,11 @@ class ScheduleAdapter(private val appointments: List<Appointment>) :
 
     override fun getItemCount(): Int {
         return appointments.size
+    }
+
+    fun updateData(newAppointmentList: List<Appointment>){
+        appointments = newAppointmentList
+        notifyDataSetChanged()
     }
 
 

@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.ItemProfileScreenListBinding
 import com.medicalhealth.healthapplication.model.data.ItemOption
-import com.medicalhealth.healthapplication.util.ViewExtension.gone
-import com.medicalhealth.healthapplication.util.ViewExtension.show
+import com.medicalhealth.healthapplication.utils.ViewExtension.gone
+import com.medicalhealth.healthapplication.utils.ViewExtension.show
 
 class MyProfileAdapter(
-    private var itemOptionList: List<ItemOption>,
+    private var profileOptionList: List<ItemOption>,
     private val onOptionSelected: (ItemOption) -> Unit
 ) : RecyclerView.Adapter<MyProfileAdapter.OptionViewHolder>() {
 
@@ -22,7 +22,7 @@ class MyProfileAdapter(
     }
 
     override fun onBindViewHolder(holder: MyProfileAdapter.OptionViewHolder, position: Int) {
-        val option = itemOptionList[position]
+        val option = profileOptionList[position]
         with(holder.binding){
             imageIconImageView.setImageResource(option.iconResId)
             optionNameTextView.text = option.optionName
@@ -38,13 +38,13 @@ class MyProfileAdapter(
     }
 
     override fun getItemCount(): Int {
-        return itemOptionList.size
+        return profileOptionList.size
     }
 
     inner class OptionViewHolder(val binding: ItemProfileScreenListBinding): RecyclerView.ViewHolder(binding.root)
 
     fun updateData(newOptionsList: List<ItemOption>){
-        itemOptionList = newOptionsList
+        profileOptionList = newOptionsList
         notifyDataSetChanged()
     }
 
