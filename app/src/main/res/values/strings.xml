@@ -76,4 +76,9 @@
     <string name="dermato_Endocrinology">Dermato-Endocrinology</string>
     <string name="re_Book">Re-Book</string>
     <string name="add_Review">Add Review</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_appointment">All Appointment</string>
+    <string name="complete">Complete</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="cancelled">Cancelled</string>
 </resources>

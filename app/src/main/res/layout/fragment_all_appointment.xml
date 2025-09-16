@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AllAppointmentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:autoSizeMaxTextSize="32dp"
+            android:autoSizeMinTextSize="20dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/leaguespartan_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:text="@string/all_appointment"
+            android:textColor="@color/button_blue"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="184:20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.09375"
+            app:layout_constraintWidth_percent="0.511" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/back_button"
+            app:layout_constraintBottom_toBottomOf="@+id/textView2"
+            app:layout_constraintHeight_percent="0.02"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            app:layout_constraintWidth_percent="0.038"
+            tools:layout_editor_absoluteX="41dp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="113dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="37dp"
+            android:autoSizeMaxTextSize="20dp"
+            android:autoSizeMinTextSize="12dp"
+            android:autoSizeTextType="uniform"
+            android:backgroundTint="@color/button_blue"
+            android:fontFamily="@font/leaguespartan_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/complete"
+            app:layout_constraintDimensionRatio="94:35"
+            app:layout_constraintEnd_toStartOf="@+id/button4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintWidth_percent="0.261" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="37dp"
+            android:autoSizeMaxTextSize="24dp"
+            android:autoSizeMinTextSize="12dp"
+            android:autoSizeTextType="uniform"
+            android:backgroundTint="@color/off_blue"
+            android:fontFamily="@font/leaguespartan_regular"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/upcoming"
+            android:textColor="@color/button_blue"
+            app:layout_constraintDimensionRatio="96:35"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintWidth_percent="0.266"
+            tools:layout_editor_absoluteX="152dp" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="37dp"
+            android:autoSizeMaxTextSize="24dp"
+            android:autoSizeMinTextSize="12dp"
+            android:autoSizeTextType="uniform"
+            android:backgroundTint="@color/off_blue"
+            android:fontFamily="@font/leaguespartan_regular"
+            android:includeFontPadding="false"
+            android:text="@string/cancelled"
+            android:textColor="@color/button_blue"
+            app:layout_constraintDimensionRatio="96:35"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button4"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintWidth_percent="0.266" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.795"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button4"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/complete_appointment" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
