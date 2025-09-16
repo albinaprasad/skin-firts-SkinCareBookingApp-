@@ -15,6 +15,8 @@ import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
+import com.medicalhealth.healthapplication.view.notificationSetting.NotificationSettingsActivity
+import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -85,6 +87,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
             notificationBtn.setOnClickListener {
                 val intent = Intent(requireActivity(), NotificationActivity::class.java)
+                startActivity(intent)
+            }
+            settingsBtn.setOnClickListener {
+                val intent = Intent(requireActivity(), NotificationSettingsActivity::class.java)
                 startActivity(intent)
             }
         }

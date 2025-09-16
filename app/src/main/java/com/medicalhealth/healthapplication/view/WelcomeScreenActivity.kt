@@ -22,6 +22,5 @@ class WelcomeScreenActivity : BaseActivity() {
             val intent = Intent(this@WelcomeScreenActivity,SignupActivity::class.java)
             startActivity(intent)
         }
-
     }
 }

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".view.profileScreen.EditProfileActivity">
+
+    <TextView
+        android:id="@+id/myProfileTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="24dp"
+        android:autoSizeMinTextSize="15dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/profile_text"
+        android:textColor="@color/button_blue"
+        android:textStyle="bold"
+        app:layout_constraintDimensionRatio="121:28"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topGuideLine"
+        app:layout_constraintWidth_percent="0.336">
+
+    </TextView>
+
+    <ImageButton
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:background="@color/white"
+        android:src="@drawable/back_icon"
+        app:layout_constraintBottom_toBottomOf="@id/myProfileTextView"
+        app:layout_constraintDimensionRatio="23:23"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/myProfileTextView"
+        app:layout_constraintWidth_percent="0.0582">
+
+    </ImageButton>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/myProfileTextView"
+        app:layout_constraintDimensionRatio="27:27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/myProfileTextView"
+        app:layout_constraintWidth_percent="0.0687">
+
+        <ImageView
+            android:id="@+id/backgroundSettingsEllipse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/background_ellipse_blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settingsImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/settings_img_white"
+            app:layout_constraintBottom_toBottomOf="@+id/backgroundSettingsEllipse"
+            app:layout_constraintEnd_toEndOf="@+id/backgroundSettingsEllipse"
+            app:layout_constraintStart_toStartOf="@+id/backgroundSettingsEllipse"
+            app:layout_constraintTop_toTopOf="@+id/backgroundSettingsEllipse" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileImageConstraint"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintDimensionRatio="106:107"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myProfileTextView"
+        app:layout_constraintWidth_percent="0.2697">
+
+        <ImageView
+            android:id="@+id/profilePictureImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_picture_big"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/edit_icon_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintWidth_percent="0.2641" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/fullNameTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/league_spartan_medium"
+        android:includeFontPadding="false"
+        android:text="@string/fullname"
+        android:gravity="bottom"
+        android:textColor="@color/black"
+        app:autoSizeMaxTextSize="20dp"
+        app:autoSizeMinTextSize="12dp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/middleGuideLine"
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/fullNameEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_round_edges"
+        android:fontFamily="@font/leaguespartan_medium"
+        android:hint="@string/john_doe"
+        android:includeFontPadding="false"
+        android:paddingStart="18dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullNameTextView"
+        app:layout_constraintWidth_percent="0.830">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/phoneNumberTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/league_spartan_medium"
+        android:includeFontPadding="false"
+        android:text="@string/phone_number_text"
+        android:gravity="bottom"
+        android:textColor="@color/black"
+        app:autoSizeMaxTextSize="20dp"
+        app:autoSizeMinTextSize="12dp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="0.480"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/fullNameEditText"
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/phoneNumberEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_round_edges"
+        android:fontFamily="@font/leaguespartan_medium"
+        android:hint="@string/phone_number"
+        android:paddingStart="18dp"
+        android:textColorHint="@color/black"
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/phoneNumberTextView"
+
+        app:layout_constraintWidth_percent="0.830">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/league_spartan_medium"
+        android:text="@string/email"
+        android:gravity="bottom"
+        android:textColor="@color/black"
+        app:autoSizeMaxTextSize="20dp"
+        app:autoSizeMinTextSize="12dp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneNumberEditText"
+        android:includeFontPadding="false"
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_round_edges"
+        android:fontFamily="@font/leaguespartan_medium"
+        android:hint="@string/johndoe_email_text"
+        android:paddingStart="18dp"
+        android:textColorHint="@color/black"
+
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailTextView"
+
+        app:layout_constraintWidth_percent="0.830">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/dobTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/league_spartan_medium"
+        android:text="@string/dob"
+        android:textColor="@color/black"
+        app:autoSizeMaxTextSize="20dp"
+        app:autoSizeMinTextSize="12dp"
+        android:gravity="bottom"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="214:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.480"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+
+        app:layout_constraintWidth_percent="0.830">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/dobEditText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_shape"
+        android:ems="10"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:hint="@string/dob_format"
+        android:inputType="text"
+        android:paddingStart="18dp"
+        android:textColorHint="@color/backgroundColor"
+        android:textSize="20dp"
+        app:layout_constraintDimensionRatio="299:45"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/dobTextView"
+        app:layout_constraintWidth_percent="0.8305" />
+
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/button_blue"
+        android:fontFamily="@font/leaguespartan_medium"
+
+        android:text="@string/update_profile_text"
+        app:autoSizeMaxTextSize="40dp"
+        app:autoSizeMinTextSize="20sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintDimensionRatio="207:60"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515278"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="@+id/bottomGuideLine"
+        app:layout_constraintWidth_percent="0.5036">
+
+    </Button>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.070" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middleGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3125" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottomGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.86" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

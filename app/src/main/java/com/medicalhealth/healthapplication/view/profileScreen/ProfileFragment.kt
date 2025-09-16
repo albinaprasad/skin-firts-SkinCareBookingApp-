@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.profileScreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         with(binding){
             val adapter = MyProfileAdapter(emptyList()){ optionSelected ->
                 Toast.makeText(context, optionSelected.optionName, Toast.LENGTH_SHORT).show()
+                if(optionSelected.optionName == "Profile"){
+                    val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+                    startActivity(intent)
+                }
             }
             profileOptionRecyclerView.adapter = adapter
             viewModel.profileOptions.observe(viewLifecycleOwner){ optionList->

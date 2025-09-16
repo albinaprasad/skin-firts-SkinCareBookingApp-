@@ -3,8 +3,6 @@ package com.medicalhealth.healthapplication.view.doctorScreen
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
@@ -26,17 +24,11 @@ class DoctorsActivity : BaseActivity() {
                 .commit()
         }
         setUpOnObserver()
-
-
-
     }
 
     private fun setUpOnObserver() {
         sharedViewModel.titleChange.observe(this){newTitle ->
             binding.titleText.text = newTitle
         }
-
     }
-
-
 }
