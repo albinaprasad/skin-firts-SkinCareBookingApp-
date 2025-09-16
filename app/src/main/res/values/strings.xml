@@ -57,6 +57,12 @@
     <string name="phone_number">+123 567 89000</string>
     <string name="johndoe_email_text">johndoe@example.com</string>
     <string name="update_profile_text">Update Profile</string>
+    <string name="help_center">Help Center</string>
+    <string name="how_can_we_help_you">How Can We Help You?</string>
+    <string name="search">Search…</string>
+    <string name="faq">FAQ</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="customer_service">Customer Service</string>
     <string name="my_profile_text">My Profile</string>
     <string name="news">News</string>
     <string name="scheduled_change">Scheduled Change</string>

@@ -35,10 +35,10 @@
             android:name=".view.notificationScreen.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.profileScreen.EditProfileActivity"
+            android:name=".view.HelpCenterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ProfileActivity"
+            android:name=".view.profileScreen.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".view.SetPasswordActivity"

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-
 class DoctorListViewAdapter(
     private val context: Context,
     private var dataList: List<Doctor>,
