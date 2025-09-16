@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentProfileBinding
-import com.medicalhealth.healthapplication.view.EditProfileActivity
 import com.medicalhealth.healthapplication.view.HelpCenterActivity
 import com.medicalhealth.healthapplication.view.adapter.MyProfileAdapter
 import com.medicalhealth.healthapplication.viewModel.ProfileViewModel
