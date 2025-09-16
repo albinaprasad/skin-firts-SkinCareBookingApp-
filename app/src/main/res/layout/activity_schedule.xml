@@ -125,10 +125,45 @@
         app:layout_constraintTop_toTopOf="@id/main"
         app:layout_constraintWidth_percent="1">
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/spinner_month_background"
+            app:layout_constraintBottom_toTopOf="@+id/scheduleRecyclerView"
+            app:layout_constraintEnd_toEndOf="@+id/dateContainer"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toStartOf="@+id/dateBackwardBtn"
+            app:layout_constraintTop_toTopOf="@+id/dateContainer"
+            app:layout_constraintVertical_bias="0.68"
+            >
+
+            <Spinner
+                android:id="@+id/monthSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/off_blue"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="32dp" />
+
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="8dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:src="@drawable/arrow_down" />
+
+        </FrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scheduleRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="1dp"
             app:layout_constraintDimensionRatio="284:61"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="@+id/dateContainer"
@@ -235,8 +270,9 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="13dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -245,7 +281,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/scrollConstraintLL"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/patientDetailsTV"
@@ -271,19 +307,19 @@
             </TextView>
 
             <TextView
-                android:padding="2dp"
                 android:id="@+id/yourselfTV"
                 android:layout_width="0dp"
-                android:layout_marginTop="7dp"
                 android:layout_height="0dp"
-                android:background="@drawable/white_background_with_stroke"
+                android:layout_marginTop="7dp"
                 android:autoSizeMaxTextSize="13dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/white_background_with_stroke"
                 android:fontFamily="@font/league_spartan_light"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:padding="2dp"
                 android:text="@string/yourself"
                 android:textColor="@color/edittext_hintColor"
                 app:layout_constraintDimensionRatio="62:19"
@@ -296,19 +332,19 @@
             </TextView>
 
             <TextView
-                android:padding="2dp"
                 android:id="@+id/anotherPersonTV"
                 android:layout_width="0dp"
-                android:layout_marginTop="7dp"
                 android:layout_height="0dp"
-                android:background="@drawable/dark_blue_round_corner"
+                android:layout_marginTop="7dp"
                 android:autoSizeMaxTextSize="13dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/dark_blue_round_corner"
                 android:fontFamily="@font/league_spartan_light"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:padding="2dp"
                 android:text="@string/another_person"
                 android:textColor="@color/white"
                 app:layout_constraintDimensionRatio="87:19"
@@ -323,8 +359,8 @@
             <TextView
                 android:id="@+id/fullNameTV"
                 android:layout_width="0dp"
-                android:layout_marginTop="24dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="24dp"
                 android:autoSizeMaxTextSize="12dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
@@ -339,39 +375,36 @@
                 app:layout_constraintHorizontal_bias="0.135"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/yourselfTV"
-                app:layout_constraintWidth_percent="0.133">
-            </TextView>
+                app:layout_constraintWidth_percent="0.133"></TextView>
 
             <EditText
                 android:id="@+id/fullNameET"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="2dp"
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="12dp"
                 android:autoSizeStepGranularity="0.5dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/round_corner_23px_light_blue"
+                android:fontFamily="@font/leaguespartan_medium"
                 android:gravity="center_vertical"
+                android:hint="@string/jane_doe"
                 android:includeFontPadding="false"
                 android:paddingStart="12dp"
-                android:fontFamily="@font/leaguespartan_medium"
                 android:textColorHint="@color/hintColor"
-                android:hint="@string/jane_doe"
-                android:layout_marginTop="2dp"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="299:35"
-                app:layout_constraintWidth_percent="0.833"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.6"
-                android:background="@drawable/round_corner_23px_light_blue"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/fullNameTV"
-                >
-            </EditText>
+                app:layout_constraintWidth_percent="0.833"></EditText>
 
             <TextView
                 android:id="@+id/AgeTV"
                 android:layout_width="0dp"
-                android:layout_marginTop="14dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="14dp"
                 android:autoSizeMaxTextSize="12dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
@@ -386,39 +419,36 @@
                 app:layout_constraintHorizontal_bias="0.135"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/fullNameET"
-                app:layout_constraintWidth_percent="0.133">
-            </TextView>
+                app:layout_constraintWidth_percent="0.133"></TextView>
 
             <EditText
                 android:id="@+id/ageET"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="3dp"
                 android:autoSizeMaxTextSize="16dp"
                 android:autoSizeMinTextSize="12dp"
                 android:autoSizeStepGranularity="0.5dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/round_corner_23px_light_blue"
+                android:fontFamily="@font/leaguespartan_medium"
                 android:gravity="center_vertical"
+                android:hint="@string/thirty_number"
                 android:includeFontPadding="false"
                 android:paddingStart="12dp"
-                android:fontFamily="@font/leaguespartan_medium"
                 android:textColorHint="@color/hintColor"
-                android:hint="@string/thirty_number"
-                android:layout_marginTop="2dp"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
                 app:layout_constraintDimensionRatio="299:35"
-                app:layout_constraintWidth_percent="0.833"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.6"
-                android:background="@drawable/round_corner_23px_light_blue"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/AgeTV"
-                >
-            </EditText>
+                app:layout_constraintWidth_percent="0.833"></EditText>
 
             <TextView
                 android:id="@+id/GenderTV"
                 android:layout_width="0dp"
-                android:layout_marginTop="12dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="12dp"
                 android:autoSizeMaxTextSize="12dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
@@ -433,23 +463,22 @@
                 app:layout_constraintHorizontal_bias="0.135"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/ageET"
-                app:layout_constraintWidth_percent="0.133">
-            </TextView>
+                app:layout_constraintWidth_percent="0.133"></TextView>
 
             <TextView
-                android:padding="2dp"
                 android:id="@+id/maleBtn"
                 android:layout_width="0dp"
-                android:layout_marginTop="7dp"
                 android:layout_height="0dp"
-                android:background="@drawable/white_background_with_stroke"
+                android:layout_marginTop="7dp"
                 android:autoSizeMaxTextSize="13dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/white_background_with_stroke"
                 android:fontFamily="@font/league_spartan_light"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:padding="2dp"
                 android:text="@string/male"
                 android:textColor="@color/edittext_hintColor"
                 app:layout_constraintDimensionRatio="62:19"
@@ -460,20 +489,21 @@
                 app:layout_constraintWidth_percent="0.163">
 
             </TextView>
+
             <TextView
-                android:padding="2dp"
                 android:id="@+id/femaleBtn"
                 android:layout_width="0dp"
-                android:layout_marginTop="7dp"
                 android:layout_height="0dp"
-                android:background="@drawable/dark_blue_round_corner"
+                android:layout_marginTop="7dp"
                 android:autoSizeMaxTextSize="13dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/dark_blue_round_corner"
                 android:fontFamily="@font/league_spartan_light"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:padding="2dp"
                 android:text="@string/female"
                 android:textColor="@color/white"
                 app:layout_constraintDimensionRatio="61:19"
@@ -481,23 +511,22 @@
                 app:layout_constraintHorizontal_bias="0.349"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/GenderTV"
-                app:layout_constraintWidth_percent="0.16313">
-            </TextView>
+                app:layout_constraintWidth_percent="0.16313"></TextView>
 
             <TextView
-                android:padding="2dp"
                 android:id="@+id/otherBtn"
                 android:layout_width="0dp"
-                android:layout_marginTop="7dp"
                 android:layout_height="0dp"
-                android:background="@drawable/white_background_with_stroke"
+                android:layout_marginTop="7dp"
                 android:autoSizeMaxTextSize="13dp"
                 android:autoSizeMinTextSize="10dp"
                 android:autoSizeStepGranularity="0.5dp"
                 android:autoSizeTextType="uniform"
+                android:background="@drawable/white_background_with_stroke"
                 android:fontFamily="@font/league_spartan_light"
                 android:gravity="center"
                 android:includeFontPadding="false"
+                android:padding="2dp"
                 android:text="@string/other"
                 android:textColor="@color/edittext_hintColor"
                 app:layout_constraintDimensionRatio="61:19"
@@ -508,6 +537,88 @@
                 app:layout_constraintWidth_percent="0.16313">
 
             </TextView>
+
+            <ImageView
+                android:id="@+id/LineTwoImageView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/line_icon"
+                app:layout_constraintDimensionRatio="292:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/maleBtn"
+                app:layout_constraintVertical_bias="0.0250"
+                app:layout_constraintWidth_percent="0.81" />
+
+            <TextView
+                android:id="@+id/descriptionTV"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="12dp"
+                android:autoSizeMaxTextSize="14dp"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="bottom"
+                android:includeFontPadding="false"
+                android:text="@string/describe_your_problem"
+                android:textColor="@color/text_black"
+                app:layout_constraintDimensionRatio="106:11"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.16"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/LineTwoImageView"
+                app:layout_constraintWidth_percent="0.2933"></TextView>
+
+            <EditText
+                android:id="@+id/descriptionET"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="3dp"
+                android:autoSizeMaxTextSize="10dp"
+                android:autoSizeMinTextSize="8dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:background="@drawable/white_background_with_stroke"
+                android:fontFamily="@font/league_spartan_light"
+                android:gravity="start"
+                android:hint="@string/enter_your_problem_here"
+                android:includeFontPadding="false"
+                android:padding="12dp"
+                android:textColorHint="@color/black"
+                app:layout_constraintDimensionRatio="295:107"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTV"
+                app:layout_constraintWidth_percent="0.819"
+                app:layout_goneMarginTop="3dp"></EditText>
+
+            <Button
+                android:id="@+id/doctorBtn"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:autoSizeMaxTextSize="20dp"
+                android:autoSizeMinTextSize="17dp"
+                android:autoSizeStepGranularity="0.5dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="@color/button_blue"
+                android:fontFamily="@font/leaguespartan_regular"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/submit"
+
+                app:layout_constraintDimensionRatio="290:40"
+                app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
+                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintBottom_toBottomOf="@+id/scrollConstraintLL"
+                app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionET"
+                app:layout_constraintWidth_percent="0.8397">
+
+            </Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

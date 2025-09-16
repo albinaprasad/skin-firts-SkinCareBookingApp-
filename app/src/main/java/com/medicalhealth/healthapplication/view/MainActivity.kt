@@ -43,7 +43,6 @@ class MainActivity : BaseActivity() {
     private fun setUpRecyclerView() {
             viewModel.dates.value?.let { dates ->
                 val dateAdapter = DateAdapter(dates) { selectedDate ->
-
                     viewModel.selectDate(selectedDate)
                 }
                 with(mainBinding) {

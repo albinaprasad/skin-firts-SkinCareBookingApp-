@@ -13,4 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
             menuFragment.setSelectedMenu(menuTypes)
         }
     }
+
+
+
 }
