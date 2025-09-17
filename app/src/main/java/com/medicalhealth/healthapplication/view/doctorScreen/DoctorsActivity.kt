@@ -7,6 +7,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.DoctorsList
+import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
@@ -31,13 +32,30 @@ class DoctorsActivity : BaseActivity() {
     private fun buttonClickListener() {
         with(binding)
         {
-           ratingBtn.setOnClickListener {
-              ratingBtnClickSetUp()
+            ratingBtn.setOnClickListener {
+                ratingBtnClickSetUp()
             }
             sortButton.setOnClickListener {
-                sharedViewModel.updateButtons("DoctorListFragment",binding.ratingBtn,binding.sortButton)
+                sharedViewModel.updateButtons(
+                    "DoctorListFragment",
+                    binding.ratingBtn,
+                    binding.sortButton,
+                    binding.favBtn
+                )
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, DoctorsList())
+                    .commit()
+            }
+
+            favBtn.setOnClickListener {
+                sharedViewModel.updateButtons(
+                    "FavouriteFragment",
+                    binding.ratingBtn,
+                    binding.sortButton,
+                    binding.favBtn
+                )
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, FavouriteDoctorsFragment())
                     .commit()
             }
         }
@@ -45,14 +63,19 @@ class DoctorsActivity : BaseActivity() {
 
     private fun ratingBtnClickSetUp() {
 
-        sharedViewModel.updateButtons("ratingFragment",binding.ratingBtn,binding.sortButton)
+        sharedViewModel.updateButtons(
+            "ratingFragment",
+            binding.ratingBtn,
+            binding.sortButton,
+            binding.favBtn
+        )
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, RatingFragment())
             .commit()
     }
 
     private fun setUpOnObserver() {
-        sharedViewModel.titleChange.observe(this){newTitle ->
+        sharedViewModel.titleChange.observe(this) { newTitle ->
             binding.titleText.text = newTitle
         }
     }

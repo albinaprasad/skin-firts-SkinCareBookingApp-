@@ -26,33 +26,41 @@ class SharedViewModel: ViewModel() {
         _titleChange.value = title
     }
 
+    fun updateButtons(
+        fragmentName: String,
+        ratingBtn: ImageButton,
+        sortButton: Button,
+        favBtn: ImageButton,
+    ) {
+        resetAllButtons(ratingBtn, sortButton, favBtn)
 
-    fun updateButtons(fragmentName: String, ratingBtn: ImageButton, sortButton: Button,)
-    {
-        when(fragmentName)
-        {
-            "ratingFragment"->{
-
+        when (fragmentName) {
+            "ratingFragment" -> {
                 ratingBtn.setImageResource(R.drawable.star_icon_white)
                 ratingBtn.setBackgroundResource(R.drawable.background_ellipse_blue)
-                sortButton.backgroundTintList = ContextCompat.getColorStateList(sortButton.context,R.color.off_blue)
-                sortButton.setTextColor(ContextCompat.getColor(sortButton.context, R.color.button_blue))
             }
-            "DoctorListFragment"->{
-                ratingBtn.setImageResource(R.drawable.star_icon)
-                ratingBtn.setBackgroundResource(R.drawable.round_button_offblue)
-                sortButton.backgroundTintList = ContextCompat.getColorStateList(sortButton.context,R.color.button_blue)
+
+            "DoctorListFragment" -> {
+                sortButton.backgroundTintList =
+                    ContextCompat.getColorStateList(sortButton.context, R.color.button_blue)
                 sortButton.setTextColor(ContextCompat.getColor(sortButton.context, R.color.white))
+            }
+
+            "FavouriteFragment" -> {
+                favBtn.setImageResource(R.drawable.fav_white_filled)
+                favBtn.setBackgroundResource(R.drawable.background_ellipse_blue)
             }
         }
     }
-
-
-
-
-
-
-
-
-
+    fun resetAllButtons(
+        ratingBtn: ImageButton, sortButton: Button, favBtn: ImageButton
+    ) {
+        sortButton.backgroundTintList =
+            ContextCompat.getColorStateList(sortButton.context, R.color.off_blue)
+        sortButton.setTextColor(ContextCompat.getColor(sortButton.context, R.color.button_blue))
+        ratingBtn.setImageResource(R.drawable.star_icon)
+        ratingBtn.setBackgroundResource(R.drawable.round_button_offblue)
+        favBtn.setImageResource(R.drawable.fav_icon)
+        favBtn.setBackgroundResource(R.drawable.round_button_offblue)
+    }
 }
