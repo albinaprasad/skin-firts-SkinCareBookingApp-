@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.viewbinding.ViewBinding
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentDoctorInfoBinding
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
