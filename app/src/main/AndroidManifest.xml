@@ -22,9 +22,6 @@
         <activity
             android:name=".view.passwordManagerScreen.PasswordManagerActivity"
             android:exported="false" />
-        <activity
-            android:name=".view.favoriteScreen.FavoriteDoctorsActivity"
-            android:exported="false" />
 
         <activity
             android:name=".view.notificationSetting.NotificationSettingsActivity"

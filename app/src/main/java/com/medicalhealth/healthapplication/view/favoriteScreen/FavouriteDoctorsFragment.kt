@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentFavouriteDoctorsBinding
 import com.medicalhealth.healthapplication.view.adapter.FavDoctorAdapter
-import com.medicalhealth.healthapplication.view.adapter.RatingsAdapter
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import kotlin.getValue
 
