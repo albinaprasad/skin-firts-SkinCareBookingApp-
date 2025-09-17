@@ -111,6 +111,7 @@
     <string name="enter_your_problem_here">Enter Your Problem Here...</string>
     <string name="submit">Submit</string>
     <string name="month_prompt">Month</string>
+    <string name="your_appointment">Your appointment</string>
 
     <string-array name="months">
         <item>January</item>
