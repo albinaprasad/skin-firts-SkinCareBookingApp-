@@ -18,7 +18,6 @@ class SharedViewModel: ViewModel() {
     private val _titleChange = MutableLiveData<String>()
     val titleChange:LiveData<String> = _titleChange
 
-
     fun selectDoctor(doctor: Doctor) {
         _selectedDoctor.value = doctor
     }
