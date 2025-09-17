@@ -16,7 +16,7 @@
     <string name="or">or</string>
     <string name="signup_hint_text">example@example.com</string>
     <string name="new_account">New Account</string>
-    <string name="fullname">Full name</string>
+    <string name="fullname">Full Name</string>
     <string name="email">Email</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="dob">Date Of Birth</string>
@@ -95,4 +95,36 @@
     <string name="asteric">***********</string>
     <string name="settings">Settings</string>
     <string name="delete_account">Delete Account</string>
+    <string name="nine_am">9:00 AM</string>
+    <string name="available_time">Available Time</string>
+    <string name="patient_details">Patient Details</string>
+    <string name="yourself">Yourself</string>
+    <string name="jane_doe">Jane Doe</string>
+    <string name="age">Age</string>
+    <string name="thirty_number">30</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="another_person">Another Person</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="describe_your_problem">Describe your problem</string>
+    <string name="enter_your_problem_here">Enter Your Problem Here...</string>
+    <string name="submit">Submit</string>
+    <string name="month_prompt">Month</string>
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
 </resources>
