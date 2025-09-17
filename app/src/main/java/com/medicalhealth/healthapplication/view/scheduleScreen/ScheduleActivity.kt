@@ -48,11 +48,7 @@ class ScheduleActivity : BaseActivity() {
 
     private fun spinnerSetUp() {
         val spinner = binding.monthSpinner
-        val months = arrayOf(
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        )
-
+        val months = resources.getStringArray(R.array.months)
         val adapter = ArrayAdapter(this, R.layout.spinnner_month_item, months)
         adapter.setDropDownViewResource(R.layout.spinner_month_dropdown)
         spinner.adapter = adapter

@@ -111,4 +111,20 @@
     <string name="enter_your_problem_here">Enter Your Problem Here...</string>
     <string name="submit">Submit</string>
     <string name="month_prompt">Month</string>
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+
 </resources>

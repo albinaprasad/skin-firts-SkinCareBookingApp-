@@ -23,18 +23,10 @@ class DoctorInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         binding = FragmentDoctorInfoBinding.inflate(inflater, container, false)
-
         buttonClickListeners()
-
         return binding.root
-
-
-
-
-
-
     }
 
      fun buttonClickListeners() {
@@ -46,13 +38,10 @@ class DoctorInfoFragment : Fragment() {
                  startActivity(intent)
              }
          }
-
     }
 
     override fun onResume() {
         super.onResume()
         sharedViewModel.setTitle(getString(R.string.doctor_info))
     }
-
-
 }
