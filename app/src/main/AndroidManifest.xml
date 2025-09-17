@@ -25,9 +25,7 @@
         <activity
             android:name=".view.favoriteScreen.FavoriteDoctorsActivity"
             android:exported="false" />
-        <activity
-            android:name=".view.ratingScreen.RatingActivity"
-            android:exported="false" />
+
         <activity
             android:name=".view.notificationSetting.NotificationSettingsActivity"
             android:exported="false" />

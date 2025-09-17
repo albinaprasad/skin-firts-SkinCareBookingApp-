@@ -9,7 +9,6 @@ import com.medicalhealth.healthapplication.databinding.ActivityFavoriteDoctorsBi
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.FavDoctorAdapter
 import com.medicalhealth.healthapplication.model.data.Doctor
-import com.medicalhealth.healthapplication.view.ratingScreen.RatingActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import kotlin.getValue
 
@@ -34,10 +33,6 @@ class FavoriteDoctorsActivity : BaseActivity() {
                 }
             }
 
-            ratingButton.setOnClickListener {
-                val intent = Intent(this@FavoriteDoctorsActivity, RatingActivity::class.java)
-                startActivity(intent)
-            }
         }
     }
 }

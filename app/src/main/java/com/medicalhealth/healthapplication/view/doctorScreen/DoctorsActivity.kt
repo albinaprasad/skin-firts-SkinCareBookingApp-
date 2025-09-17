@@ -7,6 +7,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.DoctorsList
+import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
 class DoctorsActivity : BaseActivity() {
@@ -24,6 +25,30 @@ class DoctorsActivity : BaseActivity() {
                 .commit()
         }
         setUpOnObserver()
+        buttonClickListener()
+    }
+
+    private fun buttonClickListener() {
+        with(binding)
+        {
+           ratingBtn.setOnClickListener {
+              ratingBtnClickSetUp()
+            }
+            sortButton.setOnClickListener {
+                sharedViewModel.updateButtons("DoctorListFragment",binding.ratingBtn,binding.sortButton)
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, DoctorsList())
+                    .commit()
+            }
+        }
+    }
+
+    private fun ratingBtnClickSetUp() {
+
+        sharedViewModel.updateButtons("ratingFragment",binding.ratingBtn,binding.sortButton)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, RatingFragment())
+            .commit()
     }
 
     private fun setUpOnObserver() {
@@ -32,3 +57,5 @@ class DoctorsActivity : BaseActivity() {
         }
     }
 }
+
+
