@@ -299,12 +299,11 @@
                 android:textColor="@color/button_blue"
                 app:layout_constraintDimensionRatio="85:13"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintHorizontal_bias="0.12"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toTopOf="@id/scrollConstraintLL"
                 app:layout_constraintVertical_bias="0.15"
                 app:layout_constraintWidth_percent="0.231">
-
             </TextView>
 
             <TextView
@@ -325,11 +324,10 @@
                 android:textColor="@color/edittext_hintColor"
                 app:layout_constraintDimensionRatio="62:19"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/patientDetailsTV"
                 app:layout_constraintWidth_percent="0.163">
-
             </TextView>
 
             <TextView
@@ -350,11 +348,10 @@
                 android:textColor="@color/white"
                 app:layout_constraintDimensionRatio="87:19"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.369"
+                app:layout_constraintHorizontal_bias="0.3519"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/patientDetailsTV"
                 app:layout_constraintWidth_percent="0.2313">
-
             </TextView>
 
             <TextView
@@ -373,10 +370,11 @@
                 android:textColor="@color/text_black"
                 app:layout_constraintDimensionRatio="48:11"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/yourselfTV"
-                app:layout_constraintWidth_percent="0.133"></TextView>
+                app:layout_constraintWidth_percent="0.133">
+            </TextView>
 
             <EditText
                 android:id="@+id/fullNameET"
@@ -396,10 +394,11 @@
                 android:textColorHint="@color/hintColor"
                 app:layout_constraintDimensionRatio="299:35"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/fullNameTV"
-                app:layout_constraintWidth_percent="0.833"></EditText>
+                app:layout_constraintWidth_percent="0.833">
+            </EditText>
 
             <TextView
                 android:id="@+id/AgeTV"
@@ -417,10 +416,11 @@
                 android:textColor="@color/text_black"
                 app:layout_constraintDimensionRatio="48:11"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/fullNameET"
-                app:layout_constraintWidth_percent="0.133"></TextView>
+                app:layout_constraintWidth_percent="0.133">
+            </TextView>
 
             <EditText
                 android:id="@+id/ageET"
@@ -441,10 +441,11 @@
                 android:textColorHint="@color/hintColor"
                 app:layout_constraintDimensionRatio="299:35"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/AgeTV"
-                app:layout_constraintWidth_percent="0.833"></EditText>
+                app:layout_constraintWidth_percent="0.833">
+            </EditText>
 
             <TextView
                 android:id="@+id/GenderTV"
@@ -462,10 +463,11 @@
                 android:textColor="@color/text_black"
                 app:layout_constraintDimensionRatio="48:11"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/ageET"
-                app:layout_constraintWidth_percent="0.133"></TextView>
+                app:layout_constraintWidth_percent="0.133">
+            </TextView>
 
             <TextView
                 android:id="@+id/maleBtn"
@@ -485,11 +487,10 @@
                 android:textColor="@color/edittext_hintColor"
                 app:layout_constraintDimensionRatio="62:19"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintHorizontal_bias="0.120"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/GenderTV"
                 app:layout_constraintWidth_percent="0.163">
-
             </TextView>
 
             <TextView
@@ -510,10 +511,11 @@
                 android:textColor="@color/white"
                 app:layout_constraintDimensionRatio="61:19"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.349"
+                app:layout_constraintHorizontal_bias="0.339"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/GenderTV"
-                app:layout_constraintWidth_percent="0.16313"></TextView>
+                app:layout_constraintWidth_percent="0.16313">
+            </TextView>
 
             <TextView
                 android:id="@+id/otherBtn"
@@ -537,7 +539,6 @@
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/GenderTV"
                 app:layout_constraintWidth_percent="0.16313">
-
             </TextView>
 
             <ImageView
@@ -552,7 +553,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/maleBtn"
                 app:layout_constraintVertical_bias="0.0250"
                 app:layout_constraintWidth_percent="0.81" />
-
             <TextView
                 android:id="@+id/descriptionTV"
                 android:layout_width="0dp"
@@ -569,10 +569,11 @@
                 android:textColor="@color/text_black"
                 app:layout_constraintDimensionRatio="106:11"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.16"
+                app:layout_constraintHorizontal_bias="0.14"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/LineTwoImageView"
-                app:layout_constraintWidth_percent="0.2933"></TextView>
+                app:layout_constraintWidth_percent="0.2933">
+            </TextView>
 
             <EditText
                 android:id="@+id/descriptionET"
@@ -592,11 +593,12 @@
                 android:textColorHint="@color/black"
                 app:layout_constraintDimensionRatio="295:107"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@id/descriptionTV"
                 app:layout_constraintWidth_percent="0.819"
-                app:layout_goneMarginTop="3dp"></EditText>
+                app:layout_goneMarginTop="3dp">
+            </EditText>
 
             <Button
                 android:id="@+id/doctorBtn"
@@ -611,15 +613,13 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/submit"
-
                 app:layout_constraintDimensionRatio="290:40"
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
-                app:layout_constraintHorizontal_bias="0.64"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintBottom_toBottomOf="@+id/scrollConstraintLL"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionET"
                 app:layout_constraintWidth_percent="0.8397">
-
             </Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -635,6 +635,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.8250"
         tools:layout="@layout/bottom_navigation_layout">
-
     </androidx.fragment.app.FragmentContainerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
