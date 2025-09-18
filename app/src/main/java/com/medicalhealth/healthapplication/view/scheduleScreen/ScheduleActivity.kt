@@ -144,7 +144,6 @@ class ScheduleActivity : BaseActivity() {
 
 
             if (selectedTV == yourselfTV) {
-                // Disable EditTexts when "Yourself" is selected
                 fullNameET.isEnabled = false
                 ageET.isEnabled = false
                 fullNameET.alpha = 0.5f
