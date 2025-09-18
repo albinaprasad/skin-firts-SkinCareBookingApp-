@@ -30,7 +30,7 @@ class AppointmentAdapter(
 
         return when (doctorList[position]) {
             is AppointmentItem.Complete -> VIEW_TYPE_COMPLETE
-            is AppointmentItem.Upcoming-> VIEW_TYPE_UPCOMING
+            is AppointmentItem.Upcoming -> VIEW_TYPE_UPCOMING
             is AppointmentItem.Cancelled -> VIEW_TYPE_CANCELLED
 
             else -> throw IllegalArgumentException("Invalid view type at position $position")
@@ -65,6 +65,7 @@ class AppointmentAdapter(
                 UpcomingAppointmentViewHolder(binding)
 
             }
+
             VIEW_TYPE_CANCELLED -> {
                 val binding = CancelledAppointmentBinding.inflate(
                     LayoutInflater.from(parent.context),
@@ -83,10 +84,6 @@ class AppointmentAdapter(
     }
 
 
-
-
-
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = doctorList[position]) {
             is AppointmentItem.Complete -> {
@@ -97,6 +94,7 @@ class AppointmentAdapter(
             is AppointmentItem.Upcoming -> {
                 (holder as UpcomingAppointmentViewHolder).bind(item.upcoming, context)
             }
+
             is AppointmentItem.Cancelled -> {
 
                 (holder as CancelledAppointmentViewHolder).bind(item.doctor, context)
@@ -130,7 +128,9 @@ class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
     }
 
 }
-class CancelledAppointmentViewHolder(val binding: CancelledAppointmentBinding) : RecyclerView.ViewHolder(binding.root) {
+
+class CancelledAppointmentViewHolder(val binding: CancelledAppointmentBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     fun bind(cancelled: Doctor, context: Context) {
         binding.tvDoctorNameCancelled.text = cancelled.name
         binding.tvSpecializationCancelled.text = cancelled.specialization
@@ -142,20 +142,20 @@ class CancelledAppointmentViewHolder(val binding: CancelledAppointmentBinding) :
     }
 }
 
-    class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(upcoming: UpcomingAppointment, context: Context) {
-            binding.ivDoctorPic.setImageResource(upcoming.doctor.profileImageUrl)
-            binding.tvDoctorName.text = upcoming.doctor.name
-            binding.tvSpecialization.text = upcoming.doctor.specialization
-            binding.tvDateOfAppointment.text = upcoming.schedule.day
-            binding.tvTimeOfAppointment.text = upcoming.schedule.time
-            binding.cvDetails.setOnClickListener {
-                Toast.makeText(context, "Details...", Toast.LENGTH_SHORT).show()
-            }
-
+class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding) :
+    RecyclerView.ViewHolder(binding.root) {
+    fun bind(upcoming: UpcomingAppointment, context: Context) {
+        binding.ivDoctorPic.setImageResource(upcoming.doctor.profileImageUrl)
+        binding.tvDoctorName.text = upcoming.doctor.name
+        binding.tvSpecialization.text = upcoming.doctor.specialization
+        binding.tvDateOfAppointment.text = upcoming.schedule.day
+        binding.tvTimeOfAppointment.text = upcoming.schedule.time
+        binding.cvDetails.setOnClickListener {
+            Toast.makeText(context, "Details...", Toast.LENGTH_SHORT).show()
         }
 
     }
+
+}
 
 
