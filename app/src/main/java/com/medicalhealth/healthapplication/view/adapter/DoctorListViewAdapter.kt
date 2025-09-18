@@ -1,10 +1,12 @@
 package com.medicalhealth.healthapplication.view.adapter
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
@@ -30,10 +32,11 @@ class DoctorListViewAdapter(
         val currentItem = dataList[position]
 
         // Bind data to the views using the binding object
-        holder.binding.doctorImage.setImageResource(currentItem.profileImageUrl)
+        val inputStream = holder.itemView.context.assets.open("doctor_images/${currentItem.profileImageUrl}.png")
+        val bitmap = BitmapFactory.decodeStream(inputStream)
         holder.binding.doctorName.text = currentItem.name
         holder.binding.specification.text = currentItem.specialization
-
+        holder.binding.doctorImage.setImageBitmap(bitmap)
 
         holder.binding.infoButton.setOnClickListener {
             onInfoButtonClick(currentItem)

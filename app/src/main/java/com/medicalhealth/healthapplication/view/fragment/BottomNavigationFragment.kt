@@ -74,26 +74,27 @@ class BottomNavigationFragment: Fragment() {
         }
     }
 
-    private fun onMenuSelected(menuTypes: MenuTypes) {
+    fun onMenuSelected(menuTypes: MenuTypes) {
         updateButtonState(menuTypes)
-        when (menuTypes) {
-            MenuTypes.HOME -> {
-                showFragment(HomeFragment(), "Home", menuTypes)
-
-            }
-
-            MenuTypes.MESSAGES -> {
-
-            }
-
-            MenuTypes.PROFILE -> {
-                showFragment(ProfileFragment(), "Profile", menuTypes)
-            }
-
-            MenuTypes.CALENDER -> {
-
-            }
-        }
+        fragmentSwitchListener?.currentFragment(menuTypes)
+//        when (menuTypes) {
+//            MenuTypes.HOME -> {
+//                showFragment(HomeFragment(), "Home", menuTypes)
+//
+//            }
+//
+//            MenuTypes.MESSAGES -> {
+//
+//            }
+//
+//            MenuTypes.PROFILE -> {
+//                showFragment(ProfileFragment(), "Profile", menuTypes)
+//            }
+//
+//            MenuTypes.CALENDER -> {
+//
+//            }
+//        }
     }
 
     private fun updateButtonState(selectedOption: MenuTypes) {

@@ -1,27 +1,47 @@
 package com.medicalhealth.healthapplication.viewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.medicalhealth.healthapplication.R
-import com.medicalhealth.healthapplication.model.data.Appointment
-import com.medicalhealth.healthapplication.model.data.Date
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Doctor
-import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
+import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepository
+import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepositoryImpl
+import com.medicalhealth.healthapplication.utils.Resource
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
+class DoctorsListViewModel(private val repository: DoctorDetailsRepository = DoctorDetailsRepositoryImpl(
+    FirebaseFirestore.getInstance())) : ViewModel() {
 
-class DoctorsListViewModel: ViewModel() {
-
-    private val _doctors = MutableLiveData<List<Doctor>>()
-    val doctors: LiveData<List<Doctor>> get() = _doctors
+    private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(
+        value = Resource.Loading()
+    )
+    val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
 
     init {
-
-        _doctors.value = listOf(
-            Doctor("1", R.drawable.doctor_image_one, "Dr. Olivia Turner, M.D.", "Dermato-Endocrinology", 5.0, 60, true),
-            Doctor("2", R.drawable.doctor_image_two, "Dr. Alexander Bennett, Ph.D.", "Dermato-Genetics", 4.5, 40, false),
-            Doctor("3", R.drawable.doctor_image_three, "Dr. Sophia Martinez, Ph.D.", "Cosmetic Bioengineering", 5.0, 150, false),
-            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
-        )
+        fetchAllDoctors()
+        //addDoctorDetails()
     }
+
+    private fun fetchAllDoctors() {
+        viewModelScope.launch {
+            repository.getDoctors().collect { result ->
+                _doctors.value = result
+                Log.d("message", "->>>>>${result.data}")
+            }
+        }
+    }
+
+//    private fun addDoctorDetails(){
+//        val doctors = listOf(
+//            Doctor("2",  "Dr. Sophia Martinez, Ph.D.","sophia_martinez", "Cosmetic Bioengineering",23,"Focus: The impact of hormonal imbalances on skin conditions, specializing in acne, hirsutism, and other skin disorders.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 9,17, 0, 7,4.8, 90),
+//            Doctor("3",  "Dr. Olivia Turner, M.D.","olivia_turner", "Dermato-Endocrinology",23,"Focus: The impact of hormonal imbalances on skin conditions, specializing in acne, hirsutism, and other skin disorders.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 9,17, 0, 7,4.8, 90),
+//            Doctor("4",  "Dr. Michael Davidson, M.D.","micheal_davidson", "Solar Dermatology",23,"Focus: The impact of hormonal imbalances on skin conditions, specializing in acne, hirsutism, and other skin disorders.", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 9,17, 0, 7,4.8, 90)
+//        )
+//        for (doctor in doctors){
+//            repository.addDoctor(doctor)
+//        }
+//    }
 }

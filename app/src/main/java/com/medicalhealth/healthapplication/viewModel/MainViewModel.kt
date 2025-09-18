@@ -36,13 +36,13 @@ class MainViewModel: ViewModel() {
         )
 
         _doctors.value = listOf(
-            Doctor("1", R.drawable.doctor_image_one, "Dr. Olivia Turner, M.D.", "Dermato-Endocrinology", 5.0, 60, true),
-            Doctor("2", R.drawable.doctor_image_two, "Dr. Alexander Bennett, Ph.D.", "Dermato-Genetics", 4.5, 40, false),
-            Doctor("3", R.drawable.doctor_image_three, "Dr. Sophia Martinez, Ph.D.", "Cosmetic Bioengineering", 5.0, 150, false),
-            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
-            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
-            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
-            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true)
+            Doctor("1",  "Dr. Olivia Turner, M.D.", "alexander_bennett","Dermato-Endocrinology",15, "","", "","",9,17,17, 0, 5.0,40),
+            Doctor("2",  "Dr. Alexander Bennett, Ph.D.","alexander_bennett", "Dermato-Genetics",15,"", "","","", 9,17, 0, 7,4.5, 40),
+            Doctor("3",  "Dr. Sophia Martinez, Ph.D.","alexander_bennett", "Cosmetic Bioengineering",15,"", "","","", 9,17, 0, 7,5.0, 150),
+            Doctor("4",  "Dr. Michael Davidson, M.D.","alexander_bennett", "Nano-Dermatology",15,"", "","","", 9,17, 0, 7,4.8, 90),
+            Doctor("4",  "Dr. Michael Davidson, M.D.","alexander_bennett", "Nano-Dermatology",15,"", "","","", 9,17, 0, 7,4.8, 90),
+            Doctor("4",  "Dr. Michael Davidson, M.D.","alexander_bennett", "Nano-Dermatology", 15,"", "","","",9,17, 0, 7,4.8, 90),
+            Doctor("4",  "Dr. Michael Davidson, M.D.","alexander_bennett", "Nano-Dermatology",15,"", "","","", 9,17, 0, 7,4.8, 90)
         )
     }
 
@@ -55,13 +55,6 @@ class MainViewModel: ViewModel() {
     }
 
     fun toggleFavoriteStatus(doctorId: String){
-        val updatedList = _doctors.value?.map { doctor ->
-            if(doctor.id == doctorId){
-                doctor.copy(isFavorite = !doctor.isFavorite)
-            }else{
-                doctor
-            }
-        }
-        _doctors.value = updatedList!!
+
     }
 }

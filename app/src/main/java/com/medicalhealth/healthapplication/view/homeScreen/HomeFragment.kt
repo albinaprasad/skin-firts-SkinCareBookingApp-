@@ -55,7 +55,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             doctorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             val initialDoctors = viewModel.doctors.value.orEmpty()
             val doctorAdapter = DoctorAdapter(initialDoctors){ doctor ->
-                viewModel.toggleFavoriteStatus(doctor.id)
+                viewModel.toggleFavoriteStatus("")
             }
             doctorRecyclerView.adapter = doctorAdapter
         }
@@ -82,8 +82,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun setUpListeners(){
         with(binding){
             allDoctorsBtn.setOnClickListener {
-                val intent = Intent(requireActivity(), DoctorsActivity::class.java)
-                startActivity(intent)
+                (activity as? MainActivity)?.startDoctorActivity()
             }
             notificationBtn.setOnClickListener {
                 val intent = Intent(requireActivity(), NotificationActivity::class.java)

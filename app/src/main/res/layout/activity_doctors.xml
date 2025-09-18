@@ -194,16 +194,15 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
-        android:name="com.medicalhealth.healthapplication.view.DoctorsList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/filterButtons"
         app:layout_constraintWidth_percent="1"
-        tools:layout="@layout/fragment_doctor_info" />
+        tools:layout="@layout/fragment_doctors_list" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentNavigation"
