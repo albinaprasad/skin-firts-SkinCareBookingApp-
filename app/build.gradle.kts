@@ -45,6 +45,7 @@ android {
 dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
+    implementation ("com.squareup.picasso:picasso:2.8")
 
     // Now, declare all your Firebase dependencies without a version number
     implementation("com.google.firebase:firebase-auth")

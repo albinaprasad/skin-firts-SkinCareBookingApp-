@@ -25,26 +25,78 @@ class AllAppointmentFragment : Fragment() {
     private lateinit var adapter: AppointmentAdapter
     private val sharedViewModel: SharedViewModel by activityViewModels()
 
-    private val allDoctors:List<Doctor> by lazy{
+    private val allDoctors: List<Doctor> by lazy {
         listOf(
-            Doctor("1", R.drawable.doctor_image_one, "Dr. Olivia Turner, M.D.", "Dermato-Endocrinology", 5.0, 60, true),
-            Doctor("2", R.drawable.doctor_image_two, "Dr. Alexander Bennett, Ph.D.", "Dermato-Genetics", 4.5, 40, false),
-            Doctor("3", R.drawable.doctor_image_three, "Dr. Sophia Martinez, Ph.D.", "Cosmetic Bioengineering", 5.0, 150, false),
-            Doctor("4", R.drawable.doctor_image_four, "Dr. Michael Davidson, M.D.", "Nano-Dermatology", 4.8, 90, true),
+            Doctor(
+                "1",
+                R.drawable.doctor_image_one,
+                "Dr. Olivia Turner, M.D.",
+                "Dermato-Endocrinology",
+                5.0,
+                60,
+                true
+            ),
+            Doctor(
+                "2",
+                R.drawable.doctor_image_two,
+                "Dr. Alexander Bennett, Ph.D.",
+                "Dermato-Genetics",
+                4.5,
+                40,
+                false
+            ),
+            Doctor(
+                "3",
+                R.drawable.doctor_image_three,
+                "Dr. Sophia Martinez, Ph.D.",
+                "Cosmetic Bioengineering",
+                5.0,
+                150,
+                false
+            ),
+            Doctor(
+                "4",
+                R.drawable.doctor_image_four,
+                "Dr. Michael Davidson, M.D.",
+                "Nano-Dermatology",
+                4.8,
+                90,
+                true
+            ),
         )
     }
-    private val completeAppointments:List<AppointmentItem> by lazy{
+    private val completeAppointments: List<AppointmentItem> by lazy {
         allDoctors.map { AppointmentItem.Complete(it) }
     }
-    private val upcomingAppointment:List<AppointmentItem> by lazy{
+    private val upcomingAppointment: List<AppointmentItem> by lazy {
         listOf(
-            AppointmentItem.Upcoming(UpcomingAppointment(allDoctors[0], Schedule("Sunday,12 June", "9.30AM-10.00AM"))),
-            AppointmentItem.Upcoming(UpcomingAppointment(allDoctors[1], Schedule("Friday,20 June", "2.30PM-3.00PM"))),
-            AppointmentItem.Upcoming(UpcomingAppointment(allDoctors[2], Schedule("Tuesday,15 June", "9.30AM-10.00AM"))),
-            AppointmentItem.Upcoming(UpcomingAppointment(allDoctors[3], Schedule("Monday,14 June", "3.00PM-3.30PM"))),
+            AppointmentItem.Upcoming(
+                UpcomingAppointment(
+                    allDoctors[0],
+                    Schedule("Sunday,12 June", "9.30AM-10.00AM")
+                )
+            ),
+            AppointmentItem.Upcoming(
+                UpcomingAppointment(
+                    allDoctors[1],
+                    Schedule("Friday,20 June", "2.30PM-3.00PM")
+                )
+            ),
+            AppointmentItem.Upcoming(
+                UpcomingAppointment(
+                    allDoctors[2],
+                    Schedule("Tuesday,15 June", "9.30AM-10.00AM")
+                )
+            ),
+            AppointmentItem.Upcoming(
+                UpcomingAppointment(
+                    allDoctors[3],
+                    Schedule("Monday,14 June", "3.00PM-3.30PM")
+                )
+            ),
         )
     }
-    private val cancelledAppointments:List<AppointmentItem> by lazy{
+    private val cancelledAppointments: List<AppointmentItem> by lazy {
         allDoctors.map { AppointmentItem.Cancelled(it) }
     }
 
@@ -73,33 +125,28 @@ class AllAppointmentFragment : Fragment() {
 
         sharedViewModel.setData(completeAppointments)
         binding.btnComplete.isActivated = true
-
-
-
-        binding.btnComplete.setOnClickListener {
-            updateButtonState(binding.btnComplete)
-
-            sharedViewModel.setData(completeAppointments)
-        }
-        binding.btnUpcoming.setOnClickListener {
-            updateButtonState(binding.btnUpcoming)
-
-
-
-
-            sharedViewModel.setData(upcomingAppointment)
-        }
-        binding.btnCancelled.setOnClickListener {
-            updateButtonState(binding.btnCancelled)
-
-
-            sharedViewModel.setData(cancelledAppointments)
-        }
+        setUpOnListener()
 
 
     }
 
-    private fun updateButtonState(activeButton:View) {
+    private fun setUpOnListener() {
+
+        binding.btnComplete.setOnClickListener {
+            updateButtonState(binding.btnComplete)
+            sharedViewModel.setData(completeAppointments)
+        }
+        binding.btnUpcoming.setOnClickListener {
+            updateButtonState(binding.btnUpcoming)
+            sharedViewModel.setData(upcomingAppointment)
+        }
+        binding.btnCancelled.setOnClickListener {
+            updateButtonState(binding.btnCancelled)
+            sharedViewModel.setData(cancelledAppointments)
+        }
+    }
+
+    private fun updateButtonState(activeButton: View) {
         binding.btnComplete.isActivated = (activeButton == binding.btnComplete)
         binding.btnUpcoming.isActivated = (activeButton == binding.btnUpcoming)
         binding.btnCancelled.isActivated = (activeButton == binding.btnCancelled)

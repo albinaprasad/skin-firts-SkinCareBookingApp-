@@ -11,6 +11,7 @@ import com.medicalhealth.healthapplication.databinding.UpcomingAppointmentBindin
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.UpcomingAppointment
+import com.squareup.picasso.Picasso
 
 class AppointmentAdapter(
     private val context: Context,
@@ -34,11 +35,8 @@ class AppointmentAdapter(
             is AppointmentItem.Cancelled -> VIEW_TYPE_CANCELLED
 
             else -> throw IllegalArgumentException("Invalid view type at position $position")
-
-
         }
     }
-
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -73,16 +71,11 @@ class AppointmentAdapter(
                     false
                 )
                 CancelledAppointmentViewHolder(binding)
-
             }
 
             else -> throw IllegalArgumentException("Invalid view type")
-
         }
-
-
     }
-
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = doctorList[position]) {
@@ -114,45 +107,56 @@ class AppointmentAdapter(
 class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(appointment: Doctor, context: Context) {
-        binding.ivDoctorPic.setImageResource(appointment.profileImageUrl)
-        binding.tvDoctorName.text = appointment.name
-        binding.tvSpecialization.text = appointment.specialization
-        binding.tvDoctorRating.text = appointment.rating.toString()
-        binding.tvRebook.setOnClickListener {
-            Toast.makeText(context, "Rebooking..", Toast.LENGTH_SHORT).show()
+        with(binding){
+            Picasso.get()
+                .load(appointment.profileImageUrl)
+                .into(ivDoctorPic)
+            tvDoctorName.text = appointment.name
+            tvSpecialization.text = appointment.specialization
+            tvDoctorRating.text = appointment.rating.toString()
+            tvRebook.setOnClickListener {
+                Toast.makeText(context, "Rebooking..", Toast.LENGTH_SHORT).show()
+            }
+            tvAddReview.setOnClickListener {
+                Toast.makeText(context, "Adding review...", Toast.LENGTH_SHORT).show()
+            }
         }
-        binding.tvAddReview.setOnClickListener {
-            Toast.makeText(context, "Adding review...", Toast.LENGTH_SHORT).show()
-        }
-
     }
 
-}
+    }
 
 class CancelledAppointmentViewHolder(val binding: CancelledAppointmentBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(cancelled: Doctor, context: Context) {
-        binding.tvDoctorNameCancelled.text = cancelled.name
-        binding.tvSpecializationCancelled.text = cancelled.specialization
-        binding.ivDoctorPicCancelled.setImageResource(cancelled.profileImageUrl)
-        binding.btnAddReview.setOnClickListener {
-            Toast.makeText(context, "Adding...", Toast.LENGTH_SHORT).show()
+        with(binding) {
+            Picasso.get()
+                .load(cancelled.profileImageUrl)
+                .into(ivDoctorPicCancelled)
+            tvDoctorNameCancelled.text = cancelled.name
+            tvSpecializationCancelled.text = cancelled.specialization
+            btnAddReview.setOnClickListener {
+                Toast.makeText(context, "Adding...", Toast.LENGTH_SHORT).show()
+            }
         }
-
     }
 }
 
 class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(upcoming: UpcomingAppointment, context: Context) {
-        binding.ivDoctorPic.setImageResource(upcoming.doctor.profileImageUrl)
-        binding.tvDoctorName.text = upcoming.doctor.name
-        binding.tvSpecialization.text = upcoming.doctor.specialization
-        binding.tvDateOfAppointment.text = upcoming.schedule.day
-        binding.tvTimeOfAppointment.text = upcoming.schedule.time
-        binding.cvDetails.setOnClickListener {
-            Toast.makeText(context, "Details...", Toast.LENGTH_SHORT).show()
+        with(binding) {
+            Picasso.get()
+                .load(upcoming.doctor.profileImageUrl)
+                .into(ivDoctorPic)
+            tvDoctorName.text = upcoming.doctor.name
+            tvSpecialization.text = upcoming.doctor.specialization
+            tvDateOfAppointment.text = upcoming.schedule.day
+            tvTimeOfAppointment.text = upcoming.schedule.time
+            cvDetails.setOnClickListener {
+                Toast.makeText(context, "Details...", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
     }
 
