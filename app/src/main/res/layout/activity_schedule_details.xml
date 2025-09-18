@@ -369,6 +369,7 @@
         android:id="@+id/ProblemTV"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="5dp"
         android:autoSizeMaxTextSize="15dp"
         android:autoSizeMinTextSize="12dp"
         android:autoSizeStepGranularity="0.5dp"
