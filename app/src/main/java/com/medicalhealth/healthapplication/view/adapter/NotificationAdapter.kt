@@ -84,6 +84,5 @@ class NotificationAdapter(val context: Context, val notificationList: List<Notif
 
     class NotificationCardDisplayViewHolder(val notificationCardBinding: NotificationCardDeatilsBinding) :
         RecyclerView.ViewHolder(notificationCardBinding.root) {
-
     }
 }

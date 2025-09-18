@@ -55,8 +55,6 @@ class BottomNavigationFragment: Fragment() {
         updateButtonState(selectedMenu)
     }
 
-
-
     private fun setUpListener() {
         with(binding) {
             homeButton.setOnClickListener {
@@ -115,7 +113,6 @@ class BottomNavigationFragment: Fragment() {
             }
         }
     }
-
 
     private fun showFragment(fragment: Fragment, tag: String, selectedMenu: MenuTypes) {
         val transaction = parentFragmentManager.beginTransaction()

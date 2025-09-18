@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentProfileBinding
+import com.medicalhealth.healthapplication.view.HelpCenterActivity
 import com.medicalhealth.healthapplication.view.adapter.MyProfileAdapter
 import com.medicalhealth.healthapplication.viewModel.ProfileViewModel
 
@@ -27,19 +28,38 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
+        observeViewModel()
+    }
+
     private fun setUpRecyclerView(){
         with(binding){
             val adapter = MyProfileAdapter(emptyList()){ optionSelected ->
                 Toast.makeText(context, optionSelected.optionName, Toast.LENGTH_SHORT).show()
-                if(optionSelected.optionName == "Profile"){
-                    val intent = Intent(requireActivity(), EditProfileActivity::class.java)
-                    startActivity(intent)
-                }
+                startActivity(optionSelected.optionName)
             }
             profileOptionRecyclerView.adapter = adapter
-            viewModel.profileOptions.observe(viewLifecycleOwner){ optionList->
-                adapter.updateData(optionList)
+        }
+    }
+
+    private fun observeViewModel(){
+        viewModel.itemOptions.observe(viewLifecycleOwner){ optionList->
+            if(optionList != null){
+                (binding.profileOptionRecyclerView.adapter as? MyProfileAdapter)?.updateData(optionList)
             }
+        }
+    }
+
+    private fun startActivity(selectedOption: String){
+        if(selectedOption == "Profile") {
+            val intent = Intent(requireActivity(), EditProfileActivity::class.java)
+            startActivity(intent)
+        }
+        else if(selectedOption == "Help"){
+            val intent = Intent(requireActivity(), HelpCenterActivity::class.java)
+            startActivity(intent)
         }
     }
 }

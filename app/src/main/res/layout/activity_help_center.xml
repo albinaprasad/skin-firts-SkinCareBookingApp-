@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.HelpCenterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/blueConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/button_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.22"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topGuideLine">
+
+        <ImageButton
+            android:id="@+id/backImageBtn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/back_button_white"
+            app:layout_constraintBottom_toBottomOf="@id/helpCenterTextView"
+            app:layout_constraintDimensionRatio="7:6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/helpCenterTextView"
+            app:layout_constraintWidth_percent="0.038" />
+
+        <TextView
+            android:id="@+id/helpCenterTextView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            android:autoSizeMaxTextSize="24dp"
+            android:autoSizeMinTextSize="12dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/leaguespartan_semibold"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="@string/help_center"
+            android:textColor="@color/white"
+            app:layout_constraintDimensionRatio="156:23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.43" />
+
+        <TextView
+            android:id="@+id/helpYouText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/leaguespartan_regular"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:text="@string/how_can_we_help_you"
+            android:textColor="@color/white"
+            app:layout_constraintDimensionRatio="156:23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/helpCenterTextView"
+            app:layout_constraintWidth_percent="0.43" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edittext_rounded_50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="300:38"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/helpYouText"
+            app:layout_constraintWidth_percent="0.83">
+
+            <ImageButton
+                android:id="@+id/searchIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/search_icon_svg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/leaguespartan_regular"
+                android:hint="@string/search"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:textColorHint="@color/off_blue"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/searchIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/faqBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:autoSizeMaxTextSize="20dp"
+        android:autoSizeMinTextSize="17dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/off_blue"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/faq"
+        android:textColor="@color/button_blue"
+        app:layout_constraintDimensionRatio="143:41"
+        app:layout_constraintEnd_toStartOf="@+id/contactBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/blueConstraint"
+        app:layout_constraintWidth_percent="0.3972" />
+
+    <Button
+        android:id="@+id/contactBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="20dp"
+        android:autoSizeMinTextSize="17dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/button_blue"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="@string/contact_us"
+        app:layout_constraintDimensionRatio="143:41"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/faqBtn"
+        app:layout_constraintTop_toTopOf="@id/faqBtn"
+        app:layout_constraintBottom_toBottomOf="@id/faqBtn"
+        app:layout_constraintWidth_percent="0.3972" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/helpCenterRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/middleGuideLine"
+        tools:listitem="@layout/item_help_center"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middleGuideLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

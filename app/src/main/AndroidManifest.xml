@@ -17,6 +17,10 @@
             android:name=".view.PrivacyPolicyActivity"
             android:exported="false" />
         <activity
+            android:name=".view.scheduleScreen.ScheduleActivity"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            android:exported="false" />
+        <activity
             android:name=".view.settingScreen.SettingsActivity"
             android:exported="false" />
         <activity
@@ -35,10 +39,10 @@
             android:name=".view.notificationScreen.NotificationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.profileScreen.EditProfileActivity"
+            android:name=".view.HelpCenterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ProfileActivity"
+            android:name=".view.profileScreen.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".view.SetPasswordActivity"
