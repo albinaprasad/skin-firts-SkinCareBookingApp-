@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -121,6 +122,10 @@ class ScheduleActivity : BaseActivity() {
             anotherPersonTV.setOnClickListener {
                 personalDetailsButtonSelection(anotherPersonTV)
             }
+           submitButton.setOnClickListener {
+               val intent= Intent(this@ScheduleActivity, ScheduleDetailsActivity::class.java)
+               startActivity(intent)
+           }
         }
     }
 

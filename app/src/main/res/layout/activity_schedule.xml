@@ -601,7 +601,7 @@
             </EditText>
 
             <Button
-                android:id="@+id/doctorBtn"
+                android:id="@+id/submitButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:autoSizeMaxTextSize="20dp"
