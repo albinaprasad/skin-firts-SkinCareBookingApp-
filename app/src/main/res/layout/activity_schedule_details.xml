@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.scheduleScreen.ScheduleDetailsActivity">
@@ -35,13 +36,10 @@
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="235:25"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.089"
@@ -54,17 +52,372 @@
         android:layout_height="0dp"
         android:background="@color/white"
         android:src="@drawable/back_icon"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="14:14"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.102"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095"
         app:layout_constraintWidth_percent="0.038" />
 
+    <ImageView
+        android:id="@+id/LineOneImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/line_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="292:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.306"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintWidth_percent="0.81" />
 
+    <TextView
+        android:id="@+id/DateBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="16dp"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:background="@drawable/dark_blue_round_corner"
+        android:fontFamily="@font/league_spartan_medium"
+        android:gravity="start|center_vertical"
+        android:includeFontPadding="false"
+        android:paddingStart="14dp"
+        android:text="@string/month_24_year"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="154:25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.18"
+        app:layout_constraintVertical_bias="0.351"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4277">
+
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/filterButtons"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="54:27"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.895"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.351"
+        app:layout_constraintWidth_percent="0.147">
+
+    <ImageButton
+        android:layout_gravity="start"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/button_blue_round_background"
+        android:src="@drawable/tick_white"
+        />
+    <ImageButton
+        android:layout_gravity="end"
+        android:id="@+id/favBtn"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_marginStart="3dp"
+        android:background="@drawable/button_blue_round_background"
+        android:padding="8dp"
+        android:src="@drawable/close"
+        app:tint="@color/white" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/GenderTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="12dp"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:text="@string/wed_10_00_am"
+        android:textColor="@color/backgroundColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="135:15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.23"
+        app:layout_constraintVertical_bias="0.388"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.373">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/LineTwoImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/line_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="292:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4496"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintWidth_percent="0.81" />
+
+    <LinearLayout
+        android:id="@+id/bookingLL"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="261:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.51"
+        app:layout_constraintWidth_percent="0.725">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="@string/booking_for"
+        android:fontFamily="@font/league_spartan_light"
+        android:autoSizeMaxTextSize="15dp"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:includeFontPadding="false"
+        android:gravity="start|center_vertical"
+        />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/another_person"
+            android:fontFamily="@font/league_spartan_medium"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            android:gravity="end|center_vertical"
+            >
+</TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/NameLL"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="261:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintWidth_percent="0.725">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/fullname"
+            android:fontFamily="@font/league_spartan_light"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            android:gravity="start|center_vertical"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/jane_doe"
+            android:fontFamily="@font/league_spartan_medium"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            android:gravity="end|center_vertical"
+            >
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ageLL"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="261:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.59"
+        app:layout_constraintWidth_percent="0.725">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/age"
+            android:fontFamily="@font/league_spartan_light"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            android:gravity="start|center_vertical"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/thirty_number"
+            android:fontFamily="@font/league_spartan_medium"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            android:gravity="end|center_vertical"
+            >
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/genderLL"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="261:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.631"
+        app:layout_constraintWidth_percent="0.725">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/gender"
+            android:fontFamily="@font/league_spartan_light"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            android:gravity="start|center_vertical"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/female"
+            android:fontFamily="@font/league_spartan_medium"
+            android:autoSizeMaxTextSize="15dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="0.5dp"
+            android:autoSizeTextType="uniform"
+            android:includeFontPadding="false"
+            android:gravity="end|center_vertical">
+        </TextView>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/LineThreeImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/line_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="292:3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.676"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintWidth_percent="0.81" />
+
+    <TextView
+        android:id="@+id/ProblemTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="15dp"
+        android:autoSizeMinTextSize="12dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/league_spartan_light"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:text="@string/problem"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="39:11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintVertical_bias="0.7288"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.208">
+    </TextView>
+    <TextView
+        android:id="@+id/ProblemDescriptionTV"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:autoSizeMaxTextSize="16dp"
+        android:autoSizeMinTextSize="12dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/league_spartan_light"
+        android:padding="5dp"
+        android:includeFontPadding="false"
+        android:text="@string/lorem_ipsum"
+        android:textColor="@color/black"
+        app:layout_constraintDimensionRatio="261:67"
+        app:layout_constraintVertical_bias="0.7288"
+        app:layout_constraintStart_toStartOf="@+id/ProblemTV"
+        app:layout_constraintTop_toBottomOf="@+id/ProblemTV"
+        app:layout_constraintWidth_percent="0.725">
+    </TextView>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentNavigation"
+        android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:foregroundGravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.0594"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8250"
+        tools:layout="@layout/bottom_navigation_layout">
+    </androidx.fragment.app.FragmentContainerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
