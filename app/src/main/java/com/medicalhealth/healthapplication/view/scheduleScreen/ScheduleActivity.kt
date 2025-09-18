@@ -130,17 +130,17 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 
-    fun personalDetailsButtonSelection(selectedTV: TextView) {
+    fun personalDetailsButtonSelection(selectedTextView: TextView) {
         with(binding) {
 
             yourselfTextView.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
             yourselfTextView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
             anotherPersonTextView.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
             anotherPersonTextView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
-            selectedTV.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.dark_blue_round_corner)
-            selectedTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.white))
+            selectedTextView.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.dark_blue_round_corner)
+            selectedTextView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.white))
 
-            if (selectedTV == yourselfTextView) {
+            if (selectedTextView == yourselfTextView) {
                 fullNameEditText.isEnabled = false
                 ageET.isEnabled = false
                 fullNameEditText.alpha = 0.5f
