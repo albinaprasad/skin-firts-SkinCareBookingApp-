@@ -36,5 +36,10 @@ class Enums {
 
         }
     }
+    enum class ViewType {
+        COMPLETE,
+        UPCOMING,
+        CANCELLED
+    }
 
 }

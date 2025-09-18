@@ -432,7 +432,7 @@
             app:layout_constraintWidth_percent="0.7916" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvRebook"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="23dp"
@@ -460,7 +460,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.576"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView5"
+            app:layout_constraintTop_toBottomOf="@id/tvRebook"
             app:layout_constraintWidth_percent="0.7916" />
 
         <TextView
