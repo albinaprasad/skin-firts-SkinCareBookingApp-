@@ -130,35 +130,32 @@ class ScheduleActivity : BaseActivity() {
     }
 
     fun personalDetailsButtonSelection(selectedTV: android.widget.TextView) {
-        with(binding)
-        {
-            yourselfTV.background =
-                ContextCompat.getDrawable(
-                    this@ScheduleActivity,
-                    R.drawable.white_background_with_stroke
-                )
-            yourselfTV.setTextColor(
-                ContextCompat.getColor(
-                    this@ScheduleActivity,
-                    R.color.edittext_hintColor
-                )
-            )
+        with(binding) {
 
-            anotherPersonTV.background =
-                ContextCompat.getDrawable(
-                    this@ScheduleActivity,
-                    R.drawable.white_background_with_stroke
-                )
-            anotherPersonTV.setTextColor(
-                ContextCompat.getColor(
-                    this@ScheduleActivity,
-                    R.color.edittext_hintColor
-                )
-            )
+            yourselfTV.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            yourselfTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
 
-            selectedTV.background =
-                ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.dark_blue_round_corner)
+            anotherPersonTV.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            anotherPersonTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
+
+
+            selectedTV.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.dark_blue_round_corner)
             selectedTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.white))
+
+
+            if (selectedTV == yourselfTV) {
+                // Disable EditTexts when "Yourself" is selected
+                fullNameET.isEnabled = false
+                ageET.isEnabled = false
+                fullNameET.alpha = 0.5f
+                ageET.alpha = 0.5f
+            } else {
+
+                fullNameET.isEnabled = true
+                ageET.isEnabled = true
+                fullNameET.alpha = 1.0f
+                ageET.alpha = 1.0f
+            }
         }
     }
 
