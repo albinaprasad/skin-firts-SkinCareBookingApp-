@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -19,6 +20,7 @@ import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
+import java.util.Calendar
 import kotlin.getValue
 
 class ScheduleActivity : BaseActivity() {
@@ -37,12 +39,11 @@ class ScheduleActivity : BaseActivity() {
         timeslotAdapterSetup()
         listenToButtonClicks()
     }
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun timeslotAdapterSetup() {
         val timeSlotAdapter = TimeSlotAdapterForScheduling(viewModel)
-        binding.TimeRV.layoutManager = GridLayoutManager(this, 5)
-        binding.TimeRV.adapter = timeSlotAdapter
+        binding.TimeRecyclerView.layoutManager = GridLayoutManager(this, 5)
+        binding.TimeRecyclerView.adapter = timeSlotAdapter
         viewModel.timeSlot.observe(this) { newTimeSlots ->
             timeSlotAdapter.updateTimeSlots(newTimeSlots)
         }
@@ -56,7 +57,7 @@ class ScheduleActivity : BaseActivity() {
         adapter.setDropDownViewResource(R.layout.spinner_month_dropdown)
         spinner.adapter = adapter
 
-        val currentMonth = java.util.Calendar.getInstance().get(java.util.Calendar.MONTH)
+        val currentMonth = Calendar.getInstance().get(Calendar.MONTH)
         spinner.setSelection(currentMonth)
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             @RequiresApi(Build.VERSION_CODES.O)
@@ -116,11 +117,11 @@ class ScheduleActivity : BaseActivity() {
             otherBtn.setOnClickListener {
                 GenderButtonSelection(otherBtn)
             }
-            yourselfTV.setOnClickListener {
-                personalDetailsButtonSelection(yourselfTV)
+            yourselfTextView.setOnClickListener {
+                personalDetailsButtonSelection(yourselfTextView)
             }
-            anotherPersonTV.setOnClickListener {
-                personalDetailsButtonSelection(anotherPersonTV)
+            anotherPersonTextView.setOnClickListener {
+                personalDetailsButtonSelection(anotherPersonTextView)
             }
            submitButton.setOnClickListener {
                val intent= Intent(this@ScheduleActivity, ScheduleDetailsActivity::class.java)
@@ -129,36 +130,32 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 
-    fun personalDetailsButtonSelection(selectedTV: android.widget.TextView) {
+    fun personalDetailsButtonSelection(selectedTV: TextView) {
         with(binding) {
 
-            yourselfTV.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
-            yourselfTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
-
-            anotherPersonTV.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
-            anotherPersonTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
-
-
+            yourselfTextView.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            yourselfTextView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
+            anotherPersonTextView.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.white_background_with_stroke)
+            anotherPersonTextView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.edittext_hintColor))
             selectedTV.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.dark_blue_round_corner)
             selectedTV.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.white))
 
-
-            if (selectedTV == yourselfTV) {
-                fullNameET.isEnabled = false
+            if (selectedTV == yourselfTextView) {
+                fullNameEditText.isEnabled = false
                 ageET.isEnabled = false
-                fullNameET.alpha = 0.5f
+                fullNameEditText.alpha = 0.5f
                 ageET.alpha = 0.5f
             } else {
 
-                fullNameET.isEnabled = true
+                fullNameEditText.isEnabled = true
                 ageET.isEnabled = true
-                fullNameET.alpha = 1.0f
+                fullNameEditText.alpha = 1.0f
                 ageET.alpha = 1.0f
             }
         }
     }
 
-    private fun GenderButtonSelection(selectedBtn: android.widget.TextView) {
+    private fun GenderButtonSelection(selectedBtn: TextView) {
 
         with(binding) {
 

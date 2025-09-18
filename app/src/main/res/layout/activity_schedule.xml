@@ -208,7 +208,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/availableTimeTV"
+        android:id="@+id/availableTimeTextView"
         android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -240,13 +240,13 @@
         app:layout_constraintEnd_toEndOf="@+id/main"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/main"
-        app:layout_constraintTop_toBottomOf="@+id/availableTimeTV"
+        app:layout_constraintTop_toBottomOf="@+id/availableTimeTextView"
         app:layout_constraintVertical_bias="0.357"
         app:layout_constraintWidth_percent="0.81">
 
         <androidx.recyclerview.widget.RecyclerView
             android:paddingTop="3dp"
-            android:id="@+id/TimeRV"
+            android:id="@+id/TimeRecyclerView"
             android:orientation="horizontal"
             android:layout_weight="1"
             android:layout_width="match_parent"
@@ -285,7 +285,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/patientDetailsTV"
+                android:id="@+id/patientDetailsTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:autoSizeMaxTextSize="13dp"
@@ -307,7 +307,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/yourselfTV"
+                android:id="@+id/yourselfTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="7dp"
@@ -326,12 +326,12 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/patientDetailsTV"
+                app:layout_constraintTop_toBottomOf="@id/patientDetailsTextView"
                 app:layout_constraintWidth_percent="0.163">
             </TextView>
 
             <TextView
-                android:id="@+id/anotherPersonTV"
+                android:id="@+id/anotherPersonTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="7dp"
@@ -350,12 +350,12 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.3519"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/patientDetailsTV"
+                app:layout_constraintTop_toBottomOf="@id/patientDetailsTextView"
                 app:layout_constraintWidth_percent="0.2313">
             </TextView>
 
             <TextView
-                android:id="@+id/fullNameTV"
+                android:id="@+id/fullNameTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="24dp"
@@ -372,12 +372,12 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/yourselfTV"
+                app:layout_constraintTop_toBottomOf="@id/yourselfTextView"
                 app:layout_constraintWidth_percent="0.133">
             </TextView>
 
             <EditText
-                android:id="@+id/fullNameET"
+                android:id="@+id/fullNameEditText"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="2dp"
@@ -396,12 +396,12 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/fullNameTV"
+                app:layout_constraintTop_toBottomOf="@id/fullNameTextView"
                 app:layout_constraintWidth_percent="0.833">
             </EditText>
 
             <TextView
-                android:id="@+id/AgeTV"
+                android:id="@+id/AgeTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="14dp"
@@ -418,7 +418,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.115"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/fullNameET"
+                app:layout_constraintTop_toBottomOf="@id/fullNameEditText"
                 app:layout_constraintWidth_percent="0.133">
             </TextView>
 
@@ -443,12 +443,12 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/AgeTV"
+                app:layout_constraintTop_toBottomOf="@id/AgeTextView"
                 app:layout_constraintWidth_percent="0.833">
             </EditText>
 
             <TextView
-                android:id="@+id/GenderTV"
+                android:id="@+id/GenderTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
@@ -489,7 +489,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.120"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/GenderTV"
+                app:layout_constraintTop_toBottomOf="@id/GenderTextView"
                 app:layout_constraintWidth_percent="0.163">
             </TextView>
 
@@ -513,7 +513,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.339"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/GenderTV"
+                app:layout_constraintTop_toBottomOf="@id/GenderTextView"
                 app:layout_constraintWidth_percent="0.16313">
             </TextView>
 
@@ -537,7 +537,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.562"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/GenderTV"
+                app:layout_constraintTop_toBottomOf="@id/GenderTextView"
                 app:layout_constraintWidth_percent="0.16313">
             </TextView>
 
@@ -554,7 +554,7 @@
                 app:layout_constraintVertical_bias="0.0250"
                 app:layout_constraintWidth_percent="0.81" />
             <TextView
-                android:id="@+id/descriptionTV"
+                android:id="@+id/descriptionTextView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="12dp"
@@ -576,10 +576,11 @@
             </TextView>
 
             <EditText
-                android:id="@+id/descriptionET"
+
+                android:id="@+id/descriptionEditText"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="4dp"
                 android:autoSizeMaxTextSize="10dp"
                 android:autoSizeMinTextSize="8dp"
                 android:autoSizeStepGranularity="0.5dp"
@@ -595,12 +596,13 @@
                 app:layout_constraintEnd_toEndOf="@+id/scrollConstraintLL"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@id/descriptionTV"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
                 app:layout_constraintWidth_percent="0.819"
                 app:layout_goneMarginTop="3dp">
             </EditText>
 
             <Button
+                android:layout_marginTop="3dp"
                 android:id="@+id/submitButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -618,7 +620,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintBottom_toBottomOf="@+id/scrollConstraintLL"
                 app:layout_constraintStart_toStartOf="@+id/scrollConstraintLL"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionET"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionEditText"
                 app:layout_constraintWidth_percent="0.8397">
             </Button>
         </androidx.constraintlayout.widget.ConstraintLayout>
