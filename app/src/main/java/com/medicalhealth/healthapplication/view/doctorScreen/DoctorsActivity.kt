@@ -54,7 +54,7 @@ class DoctorsActivity : BaseActivity() {
                     binding.sortButton,
                     binding.favBtn
                 )
-               sharedViewModel.setTitle("Favorite")
+               sharedViewModel.setTitle(getString(R.string.favorite))
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, FavouriteDoctorsFragment())
                     .commit()
@@ -70,7 +70,7 @@ class DoctorsActivity : BaseActivity() {
             binding.sortButton,
             binding.favBtn
         )
-        sharedViewModel.setTitle("Rating")
+        sharedViewModel.setTitle(getString(R.string.rating))
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, RatingFragment())
             .commit()
