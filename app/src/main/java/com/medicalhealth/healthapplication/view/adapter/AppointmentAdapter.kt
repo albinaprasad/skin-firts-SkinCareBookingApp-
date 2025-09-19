@@ -1,6 +1,7 @@
 package com.medicalhealth.healthapplication.view.adapter
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -12,6 +13,7 @@ import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.UpcomingAppointment
 import com.squareup.picasso.Picasso
+
 
 class AppointmentAdapter(
     private val context: Context,
@@ -109,7 +111,7 @@ class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
     fun bind(appointment: Doctor, context: Context) {
         with(binding){
             Picasso.get()
-                .load(appointment.profileImageUrl)
+                .load("file:///android_asset/doctor_images/${appointment.profileImageUrl}.png")
                 .into(ivDoctorPic)
             tvDoctorName.text = appointment.name
             tvSpecialization.text = appointment.specialization
@@ -130,7 +132,7 @@ class CancelledAppointmentViewHolder(val binding: CancelledAppointmentBinding) :
     fun bind(cancelled: Doctor, context: Context) {
         with(binding) {
             Picasso.get()
-                .load(cancelled.profileImageUrl)
+                .load("file:///android_asset/doctor_images/${cancelled.profileImageUrl}.png")
                 .into(ivDoctorPicCancelled)
             tvDoctorNameCancelled.text = cancelled.name
             tvSpecializationCancelled.text = cancelled.specialization
@@ -146,7 +148,7 @@ class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding) :
     fun bind(upcoming: UpcomingAppointment, context: Context) {
         with(binding) {
             Picasso.get()
-                .load(upcoming.doctor.profileImageUrl)
+                .load("file:///android_asset/doctor_images/${upcoming.doctor.profileImageUrl}.png")
                 .into(ivDoctorPic)
             tvDoctorName.text = upcoming.doctor.name
             tvSpecialization.text = upcoming.doctor.specialization

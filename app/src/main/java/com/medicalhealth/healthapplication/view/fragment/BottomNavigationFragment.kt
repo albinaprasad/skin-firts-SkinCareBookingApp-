@@ -11,8 +11,6 @@ import androidx.fragment.app.replace
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.utils.enums.Enums.*
-import com.medicalhealth.healthapplication.view.homeScreen.HomeFragment
-import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 
 class BottomNavigationFragment: Fragment() {
 
@@ -75,27 +73,27 @@ class BottomNavigationFragment: Fragment() {
         }
     }
 
-    private fun onMenuSelected(menuTypes: MenuTypes) {
+    fun onMenuSelected(menuTypes: MenuTypes) {
         updateButtonState(menuTypes)
-        when (menuTypes) {
-            MenuTypes.HOME -> {
-                showFragment(HomeFragment(), "Home", menuTypes)
-
-            }
-
-            MenuTypes.MESSAGES -> {
-
-            }
-
-            MenuTypes.PROFILE -> {
-                showFragment(ProfileFragment(), "Profile", menuTypes)
-            }
-
-            MenuTypes.CALENDER -> {
-                showFragment(AllAppointmentFragment(), "Calender", menuTypes)
-
-            }
-        }
+        fragmentSwitchListener?.currentFragment(menuTypes)
+//        when (menuTypes) {
+//            MenuTypes.HOME -> {
+//                showFragment(HomeFragment(), "Home", menuTypes)
+//
+//            }
+//
+//            MenuTypes.MESSAGES -> {
+//
+//            }
+//
+//            MenuTypes.PROFILE -> {
+//                showFragment(ProfileFragment(), "Profile", menuTypes)
+//            }
+//
+//            MenuTypes.CALENDER -> {
+//
+//            }
+//        }
     }
 
     private fun updateButtonState(selectedOption: MenuTypes) {
@@ -122,7 +120,7 @@ class BottomNavigationFragment: Fragment() {
         var currentFragment = parentFragmentManager.findFragmentByTag(tag)
 
 
-            transaction.replace(R.id.fragment_container, fragment, tag)
+            transaction.replace(R.id.fragment_container_main, fragment, tag)
             Log.d("message", "if if if -> ${fragment.tag}")
 
 

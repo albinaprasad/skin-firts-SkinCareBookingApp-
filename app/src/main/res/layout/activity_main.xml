@@ -9,7 +9,7 @@
     tools:context=".view.homeScreen.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container"
+        android:id="@+id/fragment_container_main"
         android:name="com.medicalhealth.healthapplication.view.homeScreen.HomeFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -28,18 +28,17 @@
         app:layout_constraintHeight_percent="0.090"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentNavigation"
-            android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
+        <include
+            android:id="@+id/bottom_navigation_bar"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.62"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.8250"
-            tools:layout="@layout/bottom_navigation_layout" />
+            layout="@layout/bottom_navigation_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
