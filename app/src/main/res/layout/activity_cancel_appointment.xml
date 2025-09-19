@@ -8,11 +8,14 @@
     android:layout_height="match_parent"
     tools:context=".view.CancelAppointment">
 
+
+
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="36dp"
         android:includeFontPadding="false"
         android:autoSizeMaxTextSize="24dp"
         android:autoSizeMinTextSize="18dp"
@@ -39,6 +42,21 @@
         app:layout_constraintWidth_percent="0.0388"
         app:srcCompat="@drawable/back_button" />
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/reviewBottomNavigation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="0dp"
@@ -52,9 +70,9 @@
         app:layout_constraintDimensionRatio="285:50"
         app:layout_constraintWidth_percent="0.791"
         android:layout_marginStart="30dp"
-        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="5dp"
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="119dp" />
 
@@ -70,7 +88,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/off_blue"
+        app:cardBackgroundColor="@"
         tools:layout_editor_absoluteX="54dp"
         tools:layout_editor_absoluteY="209dp" >
 
@@ -376,6 +394,7 @@
         tools:layout_editor_absoluteY="119dp" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvReason"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/subtitle_two"
@@ -390,18 +409,70 @@
 
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/tv_Reason"
             android:layout_width="match_parent"
-            android:layout_height="195dp"
-            android:ems="10"
-            android:textSize="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="13dp"
-            android:textColorHint="@color/light_blue"
-            android:gravity="top|start"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:gravity="start"
+            android:hint="Enter Your Reason Here..."
+            android:background="@android:color/transparent"
             android:inputType="text"
-            android:hint="Enter Your Reason Here..." />
+            android:textColorHint="@color/light_blue"
+            android:textSize="15dp" />
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/cancel_appointment"
+        app:layout_constraintTop_toBottomOf="@+id/cvReason"
+        android:layout_marginTop="70dp"
+        android:includeFontPadding="false"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="24dp"
+        android:autoSizeMinTextSize="18dp"
+        app:layout_constraintDimensionRatio="256:48"
+        app:layout_constraintWidth_percent="0.711"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:backgroundTint="@color/button_blue"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/reviewBottomNavigation"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.090"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <include
+                    android:id="@+id/review_bottom_navigation_bar"
+                    layout="@layout/bottom_navigation_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.62"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.8250" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

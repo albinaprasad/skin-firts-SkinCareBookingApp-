@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -31,13 +32,21 @@ class ScheduleDetailsActivity : BaseActivity() {
         }
 
         val doctor = Doctor(
-            name = "Dr. Sarah Johnson, M.D.",
-            specialization = "Cardiology",
-            rating = 4.8,
-            commentCount = 120,
-            profileImageUrl = R.drawable.doctor_image_one,
-            id = "doc1",
-            isFavorite = true
+            "4",
+            "Dr. Michael Davidson, M.D.",
+            "alexander_bennett",
+            "Nano-Dermatology",
+            15,
+            "",
+            "",
+            "",
+            "",
+            9,
+            17,
+            0,
+            7,
+            4.8,
+            90
         )
 
         viewModel.selectDoctor(doctor)
@@ -45,9 +54,10 @@ class ScheduleDetailsActivity : BaseActivity() {
 
     private fun updateDoctorProfile(doctor: Doctor) {
         val doctorProfileBinding = ItemDoctorProfileBinding.inflate(layoutInflater)
-
+        val inputStream = assets.open("doctor_images/${doctor.profileImageUrl}.png")
+        val bitmap = BitmapFactory.decodeStream(inputStream)
         with(doctorProfileBinding) {
-            doctorProfilePicture.setImageResource(doctor.profileImageUrl)
+            doctorProfilePicture.setImageBitmap(bitmap)
             doctorNameTextView.text = doctor.name
             doctorSpecializationTextView.text = doctor.specialization
             ratingTextView.text = doctor.rating.toString()
