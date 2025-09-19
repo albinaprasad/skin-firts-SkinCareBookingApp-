@@ -111,6 +111,11 @@
     <string name="enter_your_problem_here">Enter Your Problem Here...</string>
     <string name="submit">Submit</string>
     <string name="month_prompt">Month</string>
+    <string name="your_appointment">Your appointment</string>
+    <string name="month_24_year">Month 24, Year</string>
+    <string name="wed_10_00_am">Wed, 10:00 AM</string>
+    <string name="booking_for">Booking For</string>
+    <string name="problem">Problem</string>
 
     <string-array name="months">
         <item>January</item>
