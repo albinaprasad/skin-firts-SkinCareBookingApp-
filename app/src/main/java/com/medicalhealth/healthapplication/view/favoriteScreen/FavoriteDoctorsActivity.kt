@@ -11,7 +11,6 @@ import com.medicalhealth.healthapplication.view.adapter.FavDoctorAdapter
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import kotlin.getValue
-
 class FavoriteDoctorsActivity : BaseActivity() {
     lateinit var docbinding: ActivityFavoriteDoctorsBinding
 
