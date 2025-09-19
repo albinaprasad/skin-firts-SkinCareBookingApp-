@@ -7,22 +7,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentHomeBinding
+import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.utils.ViewExtension.gone
+import com.medicalhealth.healthapplication.utils.ViewExtension.show
 import com.medicalhealth.healthapplication.view.adapter.DateAdapter
 import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
-import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
 import com.medicalhealth.healthapplication.view.notificationSetting.NotificationSettingsActivity
-import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
+    private var doctorAdapter: DoctorAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,9 +58,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             scheduleRecyclerView.adapter = ScheduleAdapter(initialAppointments)
 
             doctorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-            val initialDoctors = viewModel.doctors.value.orEmpty()
-            val doctorAdapter = DoctorAdapter(initialDoctors){ doctor ->
-                viewModel.toggleFavoriteStatus(doctor.id)
+            val initialDoctors = emptyList<Doctor>()
+            doctorAdapter = DoctorAdapter(initialDoctors){ doctor ->
+                viewModel.toggleFavoriteStatus("")
             }
             doctorRecyclerView.adapter = doctorAdapter
         }
@@ -72,9 +77,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 (binding.scheduleRecyclerView.adapter as? ScheduleAdapter)?.updateData(appointmentsList)
             }
         }
-        viewModel.doctors.observe(viewLifecycleOwner){doctorsList ->
-            if(doctorsList != null) {
-                (binding.doctorRecyclerView.adapter as? DoctorAdapter)?.updateDate(doctorsList)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.doctors.collect{ result ->
+                when(result){
+                    is Resource.Error -> {
+                    }
+                    is Resource.Loading -> {
+                        binding.doctorRecyclerView.gone()
+                    }
+                    is Resource.Success -> {
+                        binding.doctorRecyclerView.show()
+                        result.data?.let { doctorAdapter?.updateDate(it) }
+                    }
+                }
+
             }
         }
     }
@@ -82,8 +98,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun setUpListeners(){
         with(binding){
             allDoctorsBtn.setOnClickListener {
-                val intent = Intent(requireActivity(), DoctorsActivity::class.java)
-                startActivity(intent)
+                (activity as? MainActivity)?.startDoctorActivity()
             }
             notificationBtn.setOnClickListener {
                 val intent = Intent(requireActivity(), NotificationActivity::class.java)

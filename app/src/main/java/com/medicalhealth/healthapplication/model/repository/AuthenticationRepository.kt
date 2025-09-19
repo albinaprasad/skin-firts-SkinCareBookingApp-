@@ -12,7 +12,7 @@ class AuthenticationRepository {
 
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
-    private val userCollection = firestore.collection("Users")
+    private val userCollection = firestore.collection("users")
 
     suspend fun signUp(email:String,password:String,userName:String,mobileNumber:Long,dob:String):Result<FirebaseUser?> {
         return try {
@@ -37,23 +37,15 @@ class AuthenticationRepository {
                     .await()
             }
                 Result.success(userAuth.user)
-
-
-
-
-
         }
         catch (e:Exception){
-
             Result.failure(e)
-
         }
     }
     suspend fun login(email:String,password:String):Result<FirebaseUser?>{
         return try{
             val userAuth = auth.signInWithEmailAndPassword(email,password).await()
             Result.success(userAuth.user)
-
         }
         catch (e:Exception){
             Result.failure(e)

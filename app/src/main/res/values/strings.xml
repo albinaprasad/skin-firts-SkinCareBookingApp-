@@ -116,6 +116,11 @@
     <string name="weather_conditions">Weather Conditions</string>
     <string name="unexpected_work">Unexpected Work</string>
     <string name="others">Others</string>
+    <string name="your_appointment">Your appointment</string>
+    <string name="month_24_year">Month 24, Year</string>
+    <string name="wed_10_00_am">Wed, 10:00 AM</string>
+    <string name="booking_for">Booking For</string>
+    <string name="problem">Problem</string>
 
     <string-array name="months">
         <item>January</item>
