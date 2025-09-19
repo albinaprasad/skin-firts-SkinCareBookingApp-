@@ -111,6 +111,11 @@
     <string name="enter_your_problem_here">Enter Your Problem Here...</string>
     <string name="submit">Submit</string>
     <string name="month_prompt">Month</string>
+    <string name="cancel_appointment">Cancel Appointment</string>
+    <string name="rescheduling">Rescheduling</string>
+    <string name="weather_conditions">Weather Conditions</string>
+    <string name="unexpected_work">Unexpected Work</string>
+    <string name="others">Others</string>
 
     <string-array name="months">
         <item>January</item>
