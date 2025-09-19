@@ -10,7 +10,9 @@ import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.DoctorsList
+import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
+import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
 class DoctorsActivity : BaseActivity() {
@@ -31,6 +33,54 @@ class DoctorsActivity : BaseActivity() {
         bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
         setUpListeners()
         setUpOnObserver()
+        buttonClickListener()
+    }
+
+    private fun buttonClickListener() {
+        with(binding)
+        {
+            ratingBtn.setOnClickListener {
+                ratingBtnClickSetUp()
+            }
+            sortButton.setOnClickListener {
+                sharedViewModel.updateButtons(
+                    "DoctorListFragment",
+                    binding.ratingBtn,
+                    binding.sortButton,
+                    binding.favBtn
+                )
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_doctor, DoctorsList())
+                    .commit()
+            }
+
+            favBtn.setOnClickListener {
+                sharedViewModel.updateButtons(
+                    "FavouriteFragment",
+                    binding.ratingBtn,
+                    binding.sortButton,
+                    binding.favBtn
+                )
+               sharedViewModel.setTitle(getString(R.string.favorite))
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_doctor, FavouriteDoctorsFragment())
+                    .commit()
+            }
+        }
+    }
+
+    private fun ratingBtnClickSetUp() {
+
+        sharedViewModel.updateButtons(
+            "ratingFragment",
+            binding.ratingBtn,
+            binding.sortButton,
+            binding.favBtn
+        )
+        sharedViewModel.setTitle(getString(R.string.rating))
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_doctor, RatingFragment())
+            .commit()
     }
 
     private fun setUpListeners(){
@@ -64,3 +114,5 @@ class DoctorsActivity : BaseActivity() {
     }
 
 }
+
+

@@ -11,7 +11,7 @@ import com.medicalhealth.healthapplication.model.data.Doctor
 class RatingsAdapter( ) :
     RecyclerView.Adapter<RatingsAdapter.RatingViewHolder>() {
 
-    lateinit var doctors: List<Doctor>
+    private var doctors: List<Doctor> = emptyList()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
