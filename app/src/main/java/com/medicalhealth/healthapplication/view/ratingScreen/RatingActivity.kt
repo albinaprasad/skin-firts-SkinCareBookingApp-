@@ -27,7 +27,7 @@ class RatingActivity : BaseActivity() {
             ratingsRecyclerView.layoutManager = LinearLayoutManager(this@RatingActivity)
             ratingsRecyclerView.adapter = adapter
         }
-        viewModel.doctors.observe(this@RatingActivity){doctors ->
+        viewModel.dummyDoctors.observe(this@RatingActivity){doctors ->
             if (doctors != null) {
                 adapter.updateData(doctors)
             }
@@ -40,7 +40,7 @@ class RatingActivity : BaseActivity() {
     {
         with(binding)
         {
-            binding.favBtn.setOnClickListener {
+            favBtn.setOnClickListener {
                 val intent = Intent(this@RatingActivity, FavoriteDoctorsActivity::class.java)
                 startActivity(intent)
             }

@@ -37,23 +37,15 @@ class AuthenticationRepository {
                     .await()
             }
                 Result.success(userAuth.user)
-
-
-
-
-
         }
         catch (e:Exception){
-
             Result.failure(e)
-
         }
     }
     suspend fun login(email:String,password:String):Result<FirebaseUser?>{
         return try{
             val userAuth = auth.signInWithEmailAndPassword(email,password).await()
             Result.success(userAuth.user)
-
         }
         catch (e:Exception){
             Result.failure(e)

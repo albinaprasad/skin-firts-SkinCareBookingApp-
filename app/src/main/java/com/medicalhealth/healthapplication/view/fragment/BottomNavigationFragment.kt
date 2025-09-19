@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.utils.enums.Enums.*
-import com.medicalhealth.healthapplication.view.homeScreen.HomeFragment
-import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 
 class BottomNavigationFragment: Fragment() {
 
@@ -122,7 +120,7 @@ class BottomNavigationFragment: Fragment() {
 
         if (currentFragment == null) {
             currentFragment = fragment
-            transaction.add(R.id.fragment_container, currentFragment, tag)
+            transaction.add(R.id.fragment_container_main, currentFragment, tag)
             Log.d("message", "if if if -> ${currentFragment.tag}")
         } else {
             transaction.show(currentFragment)
