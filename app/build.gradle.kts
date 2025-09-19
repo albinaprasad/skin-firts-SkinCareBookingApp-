@@ -44,8 +44,10 @@ android {
 
 dependencies {
 
-    implementation(platform("com.google.firebase:firebase-bom:34.2.0")) // 34.1.0
+    implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
+    implementation ("com.squareup.picasso:picasso:2.8")
 
+    // Now, declare all your Firebase dependencies without a version number
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
@@ -67,7 +69,7 @@ dependencies {
     // Lifecycle and Fragment KTX
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
-    implementation("androidx.fragment:fragment-ktx:1.8.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     // Other dependencies
     implementation("androidx.activity:activity-ktx:1.9.0")

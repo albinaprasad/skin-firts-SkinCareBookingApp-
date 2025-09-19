@@ -2,6 +2,8 @@ package com.medicalhealth.healthapplication.viewModel
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Doctor
@@ -11,6 +13,8 @@ import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import com.medicalhealth.healthapplication.model.data.Schedule
+import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
 
 class DoctorsListViewModel(private val repository: DoctorDetailsRepository = DoctorDetailsRepositoryImpl(
     FirebaseFirestore.getInstance())) : ViewModel() {
@@ -20,9 +24,18 @@ class DoctorsListViewModel(private val repository: DoctorDetailsRepository = Doc
     )
     val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
 
+    private val _date = MutableLiveData<List<Schedule>>()
+    val date: LiveData<List<Schedule>> get() = _date
+
     init {
         fetchAllDoctors()
         //addDoctorDetails()
+        _date.value = listOf(
+            Schedule("Sunday,12 June","9.30AM-10.00AM"),
+            Schedule("Friday,20 June","2.30PM-3.00PM"),
+            Schedule("Tuesday,15 June","9.30AM-10.00AM"),
+            Schedule("Monday,14 June","3.00PM-3.30PM")
+        )
     }
 
     private fun fetchAllDoctors() {

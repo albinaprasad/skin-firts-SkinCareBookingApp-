@@ -86,7 +86,6 @@
     <string name="promo_and_discount">Promo and discount</string>
     <string name="cashback">Cashback</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="password_manager">Password Manager</string>
     <string name="current_password">Current Password</string>
     <string name="new_password">New Password</string>
@@ -132,4 +131,13 @@
         <item>December</item>
     </string-array>
 
+    <string name="dermato_Endocrinology">Dermato-Endocrinology</string>
+    <string name="re_Book">Re-Book</string>
+    <string name="add_Review">Add Review</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_appointment">All Appointment</string>
+    <string name="complete">Complete</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="details">Details</string>
 </resources>

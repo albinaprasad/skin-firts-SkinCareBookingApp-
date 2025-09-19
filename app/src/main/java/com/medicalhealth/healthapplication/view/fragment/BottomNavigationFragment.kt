@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.utils.enums.Enums.*
@@ -118,14 +119,10 @@ class BottomNavigationFragment: Fragment() {
         }
         var currentFragment = parentFragmentManager.findFragmentByTag(tag)
 
-        if (currentFragment == null) {
-            currentFragment = fragment
-            transaction.add(R.id.fragment_container_main, currentFragment, tag)
-            Log.d("message", "if if if -> ${currentFragment.tag}")
-        } else {
-            transaction.show(currentFragment)
-            Log.d("message", "else else -> ${currentFragment.tag}")
-        }
+
+            transaction.replace(R.id.fragment_container_main, fragment, tag)
+            Log.d("message", "if if if -> ${fragment.tag}")
+
 
         transaction.commit()
         activeFragment = currentFragment
