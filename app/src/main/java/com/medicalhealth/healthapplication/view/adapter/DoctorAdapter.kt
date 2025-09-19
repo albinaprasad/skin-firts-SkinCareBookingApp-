@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,16 +25,16 @@ class DoctorAdapter(private var doctors: List<Doctor>, private val onFavoriteCli
 
     override fun onBindViewHolder(holder: DoctorAdapter.DoctorViewHolder, position: Int) {
          val doctor = doctors[position]
+        val inputStream = holder.itemView.context.assets.open("doctor_images/${doctor.profileImageUrl}.png")
+        val bitmap = BitmapFactory.decodeStream(inputStream)
         holder.binding.apply {
-            doctorProfilePicture.setImageResource(doctor.profileImageUrl)
+            doctorProfilePicture.setImageBitmap(bitmap)
             doctorNameTextView.text = doctor.name
             doctorSpecializationTextView.text = doctor.specialization
             ratingTextView.text = doctor.rating.toString()
             commentCountTextView.text = doctor.commentCount.toString()
 
-            favoriteImageView.setImageResource(
-                if(doctor.isFavorite) R.drawable.favorite_filled else R.drawable.favorite_image
-            )
+            favoriteImageView.setImageResource(R.drawable.favorite_image)
 
             favoriteLayout.setOnClickListener {
                 onFavoriteClicked(doctor)
@@ -49,4 +50,5 @@ class DoctorAdapter(private var doctors: List<Doctor>, private val onFavoriteCli
         doctors = newDoctorsList
         notifyDataSetChanged()
     }
+
 }

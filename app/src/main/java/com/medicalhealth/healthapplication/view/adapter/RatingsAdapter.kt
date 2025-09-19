@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -32,8 +33,10 @@ class RatingsAdapter( ) :
         position: Int
     ) {
         val doctor = doctors[position]
+        val inputStream = holder.itemView.context.assets.open("doctor_images/${doctor.profileImageUrl}.png")
+        val bitmap = BitmapFactory.decodeStream(inputStream)
         holder.ratingBinding.apply {
-            doctorImage.setImageResource(doctor.profileImageUrl)
+            doctorImage.setImageBitmap(bitmap)
             nameTV.text = doctor.name
             specificationTV.text = doctor.specialization
             ratingTV.text = doctor.rating.toString()
