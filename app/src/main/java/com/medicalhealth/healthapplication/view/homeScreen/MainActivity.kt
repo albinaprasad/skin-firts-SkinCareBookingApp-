@@ -13,6 +13,7 @@ import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBin
 import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
+import com.medicalhealth.healthapplication.view.fragment.AllAppointmentFragment
 import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 
 
@@ -82,7 +83,11 @@ class MainActivity : BaseActivity(){
                 bottomNavBinding.profileButton.setImageResource(R.drawable.profile_icon_blue)
                 replaceFragment(ProfileFragment())
             }
-            "calendar" -> bottomNavBinding.calenderButton.setImageResource(R.drawable.calender_ic_blue)
+            "calendar" -> {
+                bottomNavBinding.calenderButton.setImageResource(R.drawable.calender_ic_blue)
+                replaceFragment(AllAppointmentFragment())
+            }
+
             else -> bottomNavBinding.chatButton.setImageResource(R.drawable.chat_icon_blue)
         }
     }
