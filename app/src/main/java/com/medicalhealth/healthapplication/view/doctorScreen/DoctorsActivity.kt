@@ -11,6 +11,7 @@ import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBin
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.DoctorsList
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
@@ -49,7 +50,7 @@ class DoctorsActivity : BaseActivity() {
                     binding.favBtn
                 )
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, DoctorsList())
+                    .replace(R.id.fragment_container_doctor, DoctorsList())
                     .commit()
             }
 
@@ -62,7 +63,7 @@ class DoctorsActivity : BaseActivity() {
                 )
                sharedViewModel.setTitle(getString(R.string.favorite))
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, FavouriteDoctorsFragment())
+                    .replace(R.id.fragment_container_doctor, FavouriteDoctorsFragment())
                     .commit()
             }
         }
@@ -78,7 +79,7 @@ class DoctorsActivity : BaseActivity() {
         )
         sharedViewModel.setTitle(getString(R.string.rating))
         supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, RatingFragment())
+            .replace(R.id.fragment_container_doctor, RatingFragment())
             .commit()
     }
 
