@@ -116,6 +116,20 @@
     <string name="booking_for">Booking For</string>
     <string name="problem">Problem</string>
 
+    <string name="review">Review</string>
+    <string name="dermato_endocrinology">Dermato-Endocrinology</string>
+    <string name="add_review">Add Review</string>
+
+    <string name="dermato_Endocrinology">Dermato-Endocrinology</string>
+    <string name="re_Book">Re-Book</string>
+    <string name="add_Review">Add Review</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_appointment">All Appointment</string>
+    <string name="complete">Complete</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="details">Details</string>
+
     <string-array name="months">
         <item>January</item>
         <item>February</item>
@@ -130,14 +144,4 @@
         <item>November</item>
         <item>December</item>
     </string-array>
-
-    <string name="dermato_Endocrinology">Dermato-Endocrinology</string>
-    <string name="re_Book">Re-Book</string>
-    <string name="add_Review">Add Review</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="all_appointment">All Appointment</string>
-    <string name="complete">Complete</string>
-    <string name="upcoming">Upcoming</string>
-    <string name="cancelled">Cancelled</string>
-    <string name="details">Details</string>
 </resources>

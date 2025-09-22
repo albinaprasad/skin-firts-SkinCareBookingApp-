@@ -106,7 +106,7 @@
                         android:layout_gravity="center_horizontal"
                         android:scaleType="centerInside"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_empty" />
+                        app:srcCompat="@drawable/star_icon" />
 
                     <TextView
                         android:id="@+id/tvDoctorRating"

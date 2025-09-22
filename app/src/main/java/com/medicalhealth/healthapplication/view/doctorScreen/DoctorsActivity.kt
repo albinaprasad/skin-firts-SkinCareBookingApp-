@@ -9,7 +9,6 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
-import com.medicalhealth.healthapplication.view.DoctorsList
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
@@ -27,7 +26,7 @@ class DoctorsActivity : BaseActivity() {
         setContentView(binding.root)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_doctor, DoctorsList())
+                .replace(R.id.fragment_container_doctor, DoctorsListFragment())
                 .commit()
         }
         bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
@@ -50,7 +49,7 @@ class DoctorsActivity : BaseActivity() {
                     binding.favBtn
                 )
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container_doctor, DoctorsList())
+                    .replace(R.id.fragment_container_doctor, DoctorsListFragment())
                     .commit()
             }
 
