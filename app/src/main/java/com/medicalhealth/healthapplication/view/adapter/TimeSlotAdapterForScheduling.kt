@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.adapter
 
+import android.graphics.drawable.GradientDrawable
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -12,10 +13,10 @@ import com.medicalhealth.healthapplication.model.data.TimeSlot
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
-class TimeSlotAdapterForScheduling (
-                                    private val viewModel: ScheduleCalenderViewModel
-): RecyclerView.Adapter<TimeSlotAdapterForScheduling.TimeViewHolder>(){
-    private lateinit var timeSlots: List<TimeSlot>
+class TimeSlotAdapterForScheduling(
+    private val viewModel: ScheduleCalenderViewModel
+) : RecyclerView.Adapter<TimeSlotAdapterForScheduling.TimeViewHolder>() {
+    private var timeSlots: MutableList<TimeSlot> = mutableListOf()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,34 +39,78 @@ class TimeSlotAdapterForScheduling (
      fun updateTimeSlots(
         newTimeSlots: List<TimeSlot>
     ) {
-        timeSlots=newTimeSlots
-        notifyDataSetChanged()
+         timeSlots.clear()
+         timeSlots.addAll(newTimeSlots)
+         notifyDataSetChanged()
     }
     inner class TimeViewHolder(val binding: TimeItemBinding): RecyclerView.ViewHolder(
-        binding.root){
+        binding.root) {
 
-        fun bind(item:TimeSlot){
+        fun bind(item: TimeSlot) {
             binding.dateTextView.text = item.timeString
             binding.root.setOnClickListener {
-                viewModel.selectTimeSlot(item.time)
+                if (item.isAvailable) {
+                    viewModel.selectTimeSlot(item.time)
+                }
             }
-            updateBackground(item.isSelected)
+            updateBackground(item.isSelected, item.isAvailable)
         }
-        private fun updateBackground(isSelected: Boolean) {
+
+        private fun updateBackground(isSelected: Boolean, isAvailable: Boolean) {
             with(binding)
             {
+                val context = itemView.context
+                when {
+                    // UNAVAILABLE (booked)
+                    !isAvailable -> {
+                        dateContainer.background = createRoundedBackground(
+                            ContextCompat.getColor(context, R.color.off_blue),
+                        )
 
-                dateContainer.background = ContextCompat.getDrawable(
-                    itemView.context,
-                    R.drawable.round_corner_hint_bluecolor
-                )
-                dateContainer.isSelected = isSelected
-                dateTextView.setTextColor(
-                    ContextCompat.getColor(
-                        itemView.context,
-                        if (isSelected) R.color.white else R.color.hintColor
-                    )
-                )
+                        dateTextView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
+
+                        dateContainer.alpha = 0.5f
+                        itemView.isEnabled = false
+                    }
+
+                    // SELECTED & AVAILABLE
+                    isSelected -> {
+
+                        dateContainer.background = ContextCompat.getDrawable(
+                            context,
+                            R.drawable.dark_blue_round_corner
+                        )
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                        dateContainer.alpha = 1.0f
+                        itemView.isEnabled = true
+                    }
+
+                    // AVAILABLE BUT NOT SELECTED
+                    else -> {
+                        // Default available style (not selected)
+                        dateContainer.background = ContextCompat.getDrawable(
+                            context,
+                            R.drawable.white_background_with_stroke
+                        )
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        dateContainer.alpha = 1.0f
+                        itemView.isEnabled = true
+                    }
+
+
+                }
+            }
+        }
+        private fun createRoundedBackground(color: Int): GradientDrawable {
+            return GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                setColor(color)
+                cornerRadius = 40f
             }
         }
     }

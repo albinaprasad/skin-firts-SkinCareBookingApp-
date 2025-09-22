@@ -1,6 +1,5 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -40,6 +39,7 @@ class ScheduleActivity : BaseActivity() {
         dateRecyclerViewSetUp()
         timeslotAdapterSetup()
         listenToButtonClicks()
+        viewModel.setCurrentDoctor("albin123")
         observeBookingStatus()
     }
 
@@ -140,7 +140,8 @@ class ScheduleActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun dateRecyclerViewSetUp() {
-        val dateAdapter = DateAdapterForScheduling(mutableListOf())
+        val dateAdapter = DateAdapterForScheduling(mutableListOf(),onDateClick = { selectedDate ->
+            viewModel.onDateSelected(selectedDate) })
 
         with(binding) {
             scheduleRecyclerView.layoutManager = LinearLayoutManager(
@@ -155,6 +156,7 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun listenToButtonClicks() {
 
         with(binding)
@@ -187,6 +189,7 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun createBooking() {
 
         with(binding)
@@ -213,6 +216,13 @@ class ScheduleActivity : BaseActivity() {
 
             val problemDescription = descriptionEditText.text.toString()
 
+            viewModel.createBooking(
+                patientName = patientName,
+                patientAge = patientAge,
+                patientGender = patientGender,
+                problemDescription = problemDescription,
+                userId = "1234"
+            )
         }
     }
         private fun isYourselfSelected(): Boolean {

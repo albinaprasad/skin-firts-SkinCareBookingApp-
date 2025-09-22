@@ -9,7 +9,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ItemDateBinding
 import com.medicalhealth.healthapplication.model.data.Date
 
-class DateAdapterForScheduling(var dateList: MutableList<Date>): RecyclerView.Adapter<DateAdapterForScheduling.DateViewHolder>() {
+class DateAdapterForScheduling(var dateList: MutableList<Date>, private val onDateClick: (Date) -> Unit ): RecyclerView.Adapter<DateAdapterForScheduling.DateViewHolder>() {
 
 
     fun updateDates(newDateList: List<Date>) {
@@ -45,6 +45,11 @@ class DateAdapterForScheduling(var dateList: MutableList<Date>): RecyclerView.Ad
 
     inner class DateViewHolder(val binding: ItemDateBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(date: Date) {
+
+            binding.root.setOnClickListener {
+                onDateClick(date)
+            }
+
             binding.dateTextView.text = date.dayOfMonth
             binding.dayOfWeekTextView.text = date.dayOfWeek
             val context = binding.root.context
@@ -59,6 +64,17 @@ class DateAdapterForScheduling(var dateList: MutableList<Date>): RecyclerView.Ad
                     binding.dateContainer.background = todayDrawable
 
                     // White text for today
+                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                    binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                }
+                date.isSelected -> {
+                    // Selected date styling
+                    val selectedDrawable = GradientDrawable().apply {
+                        shape = GradientDrawable.RECTANGLE
+                        setColor(ContextCompat.getColor(context, R.color.backgroundColor)) // Your selected color
+                        cornerRadius = 40f
+                    }
+                    binding.dateContainer.background = selectedDrawable
                     binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
                     binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
                 }

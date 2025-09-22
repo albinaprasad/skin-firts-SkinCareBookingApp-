@@ -5,21 +5,32 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.DoctorBooking
 import com.medicalhealth.healthapplication.model.data.TimeSlot
+import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
+import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
+import kotlinx.coroutines.launch
 import java.time.LocalTime
+import java.util.Calendar
 
 @RequiresApi(Build.VERSION_CODES.O)
 class ScheduleCalenderViewModel: ViewModel() {
-     private val _dateList = MutableLiveData<List<Date>>()
+
+    private val bookingRepository: BookingRepository =
+        BookingRepositoryImpl(FirebaseFirestore.getInstance())
+
+    private val _dateList = MutableLiveData<List<Date>>()
     val dateList: LiveData<List<Date>> get() = _dateList
 
     private val _timeSlots = MutableLiveData<List<TimeSlot>>()
     val timeSlot: LiveData<List<TimeSlot>> get() = _timeSlots
     private val dayNames = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
-
+    private val _selectedTimeSlot = MutableLiveData<TimeSlot?>()
+    val selectedTimeSlot: LiveData<TimeSlot?> get() = _selectedTimeSlot
     private val _bookingStatus = MutableLiveData<Resource<Boolean>>()
     val bookingStatus: LiveData<Resource<Boolean>> get() = _bookingStatus
     private val _availabilityStatus = MutableLiveData<Resource<List<String>>>()
@@ -27,6 +38,10 @@ class ScheduleCalenderViewModel: ViewModel() {
     private val _userBookings = MutableLiveData<Resource<List<DoctorBooking>>>()
     val userBookings: LiveData<Resource<List<DoctorBooking>>> get() = _userBookings
 
+    private val _selectedDate = MutableLiveData<Date?>()
+    val selectedDate: LiveData<Date?> get() = _selectedDate
+    private var currentDoctorId: String = ""
+    private var currentMonth: Int = 0
 
     init {
         _dateList.value=mutableListOf()
@@ -72,9 +87,150 @@ class ScheduleCalenderViewModel: ViewModel() {
     }
 
     fun selectTimeSlot(time: LocalTime) {
+        val selectedSlot = _timeSlots.value?.find { it.time == time }
+
+
+        if (selectedSlot?.isAvailable == true) {
+            _selectedTimeSlot.value = selectedSlot
+
+
+            val updatedSlots = _timeSlots.value?.map { slot ->
+                slot.copy(isSelected = slot.time == time)
+            } ?: emptyList()
+            _timeSlots.value = updatedSlots
+        }
+
+    }
+
+    fun setCurrentDoctor(doctorId: String) {
+        currentDoctorId = doctorId
+    }
+
+    fun onDateSelected(selectedDate: Date){
+        _selectedDate.value =selectedDate
+
+        val updatedDates = _dateList.value?.map { date ->
+            date.copy(isSelected = date.dayOfMonth == selectedDate.dayOfMonth)
+        } ?: emptyList()
+        _dateList.value = updatedDates
+
+        checkSlotAvailability(selectedDate)
+
+    }
+
+    private fun checkSlotAvailability(selectedDate: Date) {
+
+        viewModelScope.launch {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = currentMonth + 1
+            val day = selectedDate.dayOfMonth.padStart(2, '0')
+            val formattedDate = "$year-${month.toString().padStart(2, '0')}-$day"
+
+            bookingRepository.getBookedSlots(currentDoctorId, formattedDate).collect { resource ->
+                _availabilityStatus.value = resource
+
+                when (resource) {
+                    is Resource.Success -> {
+                        val bookedTimes = resource.data ?: emptyList()
+                        updateTimeSlotAvailability(bookedTimes)
+                    }
+
+                    is Resource.Error -> {
+                        // Error handled by UI, time slots remain unchanged (safe fallback)
+                    }
+
+                    is Resource.Loading -> {
+                        // Loading state handled by UI
+                    }
+                }
+            }
+
+
+        }
+    }
+    private fun updateTimeSlotAvailability(bookedTimes: List<String>) {
+
         val updatedSlots = _timeSlots.value?.map { slot ->
-            slot.copy(isSelected = slot.time == time)
+            slot.copy(
+                isAvailable = slot.timeString !in bookedTimes,
+                isSelected = false
+            )
         } ?: emptyList()
         _timeSlots.value = updatedSlots
     }
+
+    fun createBooking(
+        patientName: String,
+        patientAge: Int,
+        patientGender: String,
+        problemDescription: String,
+        userId: String
+    ) {
+        val selectedDate = _selectedDate.value
+        val selectedSlot = _selectedTimeSlot.value
+
+
+        if (selectedDate == null || selectedSlot == null) {
+            _bookingStatus.value = Resource.Error("Please select date and time")
+            return
+        }
+
+        if (!selectedSlot.isAvailable) {
+            _bookingStatus.value = Resource.Error("Selected time slot is no longer available")
+            return
+        }
+
+        if (patientName.isBlank()) {
+            _bookingStatus.value = Resource.Error("Please enter patient name")
+            return
+        }
+
+        if (patientAge <= 0) {
+            _bookingStatus.value = Resource.Error("Please enter valid age")
+            return
+        }
+
+        if (patientGender.isBlank()) {
+            _bookingStatus.value = Resource.Error("Please select gender")
+            return
+        }
+
+        if (currentDoctorId.isEmpty()) {
+            _bookingStatus.value = Resource.Error("Doctor information missing")
+            return
+        }
+        viewModelScope.launch {
+            // Format the booking date
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = currentMonth + 1
+            val day = selectedDate.dayOfMonth.padStart(2, '0')
+            val formattedDate = "$year-${month.toString().padStart(2, '0')}-$day"
+
+            // Create the booking object
+            val booking = DoctorBooking(
+                userId = userId,
+                doctorId = currentDoctorId,
+                patientFullName = patientName,
+                patientAge = patientAge,
+                patientGender = patientGender,
+                problemDescription = problemDescription,
+                bookingDate = formattedDate,
+                bookingTime = selectedSlot.timeString
+            )
+
+            // Save booking using repository
+            bookingRepository.createBooking(booking).collect { resource ->
+                _bookingStatus.value = resource // UI automatically handles all states
+
+                // If booking successful, refresh availability to show the newly booked slot
+                if (resource is Resource.Success) {
+                    checkSlotAvailability(selectedDate)
+                }
+            }
+        }
+    }
 }
+
+
