@@ -111,7 +111,6 @@
     <string name="enter_your_problem_here">Enter Your Problem Here...</string>
     <string name="submit">Submit</string>
     <string name="month_prompt">Month</string>
-
     <string-array name="months">
         <item>January</item>
         <item>February</item>
@@ -126,5 +125,8 @@
         <item>November</item>
         <item>December</item>
     </string-array>
+    <string name="review">Review</string>
+    <string name="dermato_endocrinology">Dermato-Endocrinology</string>
+    <string name="add_review">Add Review</string>
 
 </resources>

@@ -14,12 +14,15 @@
         android:theme="@style/Theme.HealthApplication"
         tools:targetApi="31">
         <activity
+            android:name=".view.reviewScreen.ReviewActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.PrivacyPolicyActivity"
             android:exported="false" />
         <activity
             android:name=".view.scheduleScreen.ScheduleActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".view.settingScreen.SettingsActivity"
             android:exported="false" />

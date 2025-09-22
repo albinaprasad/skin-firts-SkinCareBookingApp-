@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.medicalhealth.healthapplication.databinding.ActivitySplashScreenBinding
+import com.medicalhealth.healthapplication.view.reviewScreen.ReviewActivity
 
 class SplashScreenActivity : BaseActivity() {
 
@@ -24,7 +25,7 @@ class SplashScreenActivity : BaseActivity() {
             insets
         }
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity,WelcomeScreenActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity,ReviewActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000)    // Delay for 3 seconds
