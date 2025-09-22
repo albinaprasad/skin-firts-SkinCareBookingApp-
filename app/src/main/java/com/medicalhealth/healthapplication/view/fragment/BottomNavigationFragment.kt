@@ -7,11 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.replace
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.utils.enums.Enums.*
-import com.medicalhealth.healthapplication.view.homeScreen.HomeFragment
-import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 
 class BottomNavigationFragment: Fragment() {
 
@@ -74,26 +73,27 @@ class BottomNavigationFragment: Fragment() {
         }
     }
 
-    private fun onMenuSelected(menuTypes: MenuTypes) {
+    fun onMenuSelected(menuTypes: MenuTypes) {
         updateButtonState(menuTypes)
-        when (menuTypes) {
-            MenuTypes.HOME -> {
-                showFragment(HomeFragment(), "Home", menuTypes)
-
-            }
-
-            MenuTypes.MESSAGES -> {
-
-            }
-
-            MenuTypes.PROFILE -> {
-                showFragment(ProfileFragment(), "Profile", menuTypes)
-            }
-
-            MenuTypes.CALENDER -> {
-
-            }
-        }
+        fragmentSwitchListener?.currentFragment(menuTypes)
+//        when (menuTypes) {
+//            MenuTypes.HOME -> {
+//                showFragment(HomeFragment(), "Home", menuTypes)
+//
+//            }
+//
+//            MenuTypes.MESSAGES -> {
+//
+//            }
+//
+//            MenuTypes.PROFILE -> {
+//                showFragment(ProfileFragment(), "Profile", menuTypes)
+//            }
+//
+//            MenuTypes.CALENDER -> {
+//
+//            }
+//        }
     }
 
     private fun updateButtonState(selectedOption: MenuTypes) {
@@ -119,14 +119,10 @@ class BottomNavigationFragment: Fragment() {
         }
         var currentFragment = parentFragmentManager.findFragmentByTag(tag)
 
-        if (currentFragment == null) {
-            currentFragment = fragment
-            transaction.add(R.id.fragment_container, currentFragment, tag)
-            Log.d("message", "if if if -> ${currentFragment.tag}")
-        } else {
-            transaction.show(currentFragment)
-            Log.d("message", "else else -> ${currentFragment.tag}")
-        }
+
+            transaction.replace(R.id.fragment_container_main, fragment, tag)
+            Log.d("message", "if if if -> ${fragment.tag}")
+
 
         transaction.commit()
         activeFragment = currentFragment

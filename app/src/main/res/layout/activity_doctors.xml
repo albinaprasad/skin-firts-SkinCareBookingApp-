@@ -152,6 +152,7 @@
         app:layout_constraintWidth_percent="0.30">
 
         <ImageButton
+            android:id="@+id/ratingBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="3dp"
@@ -161,6 +162,7 @@
             android:src="@drawable/star_icon" />
 
         <ImageButton
+            android:id="@+id/favBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
@@ -193,31 +195,38 @@
 
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragment_container"
-        android:name="com.medicalhealth.healthapplication.view.DoctorsList"
+        android:id="@+id/fragment_container_doctor"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/filterButtons"
+        app:layout_constraintTop_toBottomOf="@id/filterButtons"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintWidth_percent="1"
-        tools:layout="@layout/fragment_doctor_info" />
+        tools:layout="@layout/fragment_doctors_list" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentNavigation"
-        android:name="com.medicalhealth.healthapplication.view.fragment.BottomNavigationFragment"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
-        android:foregroundGravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.0594"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.8250"
-        tools:layout="@layout/bottom_navigation_layout" />
+        app:layout_constraintHeight_percent="0.090"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.62"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8250"
+            layout="@layout/bottom_navigation_layout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

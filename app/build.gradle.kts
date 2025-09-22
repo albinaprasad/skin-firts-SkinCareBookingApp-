@@ -45,12 +45,14 @@ android {
 dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
+    implementation ("com.squareup.picasso:picasso:2.8")
 
     // Now, declare all your Firebase dependencies without a version number
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-storage")
+
 
     // AndroidX dependencies from libs catalog
     implementation(libs.androidx.core.ktx)
@@ -67,7 +69,7 @@ dependencies {
     // Lifecycle and Fragment KTX
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
-    implementation("androidx.fragment:fragment-ktx:1.8.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     // Other dependencies
     implementation("androidx.activity:activity-ktx:1.9.0")
@@ -77,4 +79,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Firebase Firestore
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.10.2")
 }
