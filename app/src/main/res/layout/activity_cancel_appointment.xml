@@ -84,11 +84,13 @@
         app:layout_constraintWidth_percent="0.83"
         app:cardCornerRadius="30dp"
         android:layout_marginTop="27dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintTop_toBottomOf="@id/textView3"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@"
+        app:cardBackgroundColor="@color/selector_bar_color"
         tools:layout_editor_absoluteX="54dp"
         tools:layout_editor_absoluteY="209dp" >
 
@@ -126,7 +128,7 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/tvRescheduling"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:text="@string/rescheduling"
@@ -159,11 +161,13 @@
         app:layout_constraintWidth_percent="0.83"
         app:cardCornerRadius="30dp"
         android:layout_marginTop="6dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintTop_toBottomOf="@id/cvSelectorbar"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/off_blue"
+        app:cardBackgroundColor="@color/selector_bar_color"
         tools:layout_editor_absoluteX="54dp"
         tools:layout_editor_absoluteY="209dp" >
 
@@ -233,11 +237,13 @@
         app:layout_constraintWidth_percent="0.83"
         app:cardCornerRadius="30dp"
         android:layout_marginTop="6dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintTop_toBottomOf="@id/cvSelectorbarWeather"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
         app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/off_blue"
+        app:cardBackgroundColor="@color/selector_bar_color"
         tools:layout_editor_absoluteX="54dp"
         tools:layout_editor_absoluteY="209dp" >
 
@@ -307,10 +313,13 @@
         app:layout_constraintWidth_percent="0.83"
         app:cardCornerRadius="30dp"
         android:layout_marginTop="6dp"
+        android:clickable="true"
+        android:focusable="true"
         app:layout_constraintTop_toBottomOf="@id/cvSelectorbarUnexpected"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
-        app:cardBackgroundColor="@color/off_blue"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/selector_bar_color"
         tools:layout_editor_absoluteX="54dp"
         tools:layout_editor_absoluteY="209dp" >
 
