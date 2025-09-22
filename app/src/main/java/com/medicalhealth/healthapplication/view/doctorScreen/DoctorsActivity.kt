@@ -26,7 +26,7 @@ class DoctorsActivity : BaseActivity() {
         setContentView(binding.root)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_doctor, DoctorsList())
+                .replace(R.id.fragment_container_doctor, DoctorsListFragment())
                 .commit()
         }
         bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
@@ -49,7 +49,7 @@ class DoctorsActivity : BaseActivity() {
                     binding.favBtn
                 )
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container_doctor, DoctorsList())
+                    .replace(R.id.fragment_container_doctor, DoctorsListFragment())
                     .commit()
             }
 

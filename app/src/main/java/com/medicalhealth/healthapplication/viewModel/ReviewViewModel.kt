@@ -12,11 +12,7 @@ class ReviewViewModel: ViewModel() {
     val ratingNumber: LiveData<Int> = _ratingNumber
 
     fun toggleFavoriteButton(){
-        if(_isFavorite.value == true){
-            _isFavorite.value = false
-        }else{
-            _isFavorite.value = true
-        }
+        _isFavorite.value = !(_isFavorite.value ?: false)
     }
 
     fun setRating(ratingNumber: Int){
