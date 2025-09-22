@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
+import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
@@ -38,7 +40,63 @@ class ScheduleActivity : BaseActivity() {
         dateRecyclerViewSetUp()
         timeslotAdapterSetup()
         listenToButtonClicks()
+        observeBookingStatus()
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun observeBookingStatus() {
+
+        viewModel.bookingStatus.observe(this) { resource ->
+
+            //observe booking status
+            when (resource) {
+                is Resource.Loading -> {
+                    binding.submitButton.isEnabled = false
+                    binding.submitButton.text = getString(R.string.creating_booking)
+                }
+
+                is Resource.Success -> {
+
+                    binding.submitButton.isEnabled = true
+                    binding.submitButton.text = "Book Appointment"
+                    val intent = Intent(this, ScheduleDetailsActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+
+                is Resource.Error -> {
+                    binding.submitButton.isEnabled = true
+                    binding.submitButton.text = getString(R.string.make_appointment)
+                    Toast.makeText(this, resource.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+
+        //availability checking
+        viewModel.availabilityStatus.observe(this) { resource ->
+            when (resource) {
+                is Resource.Loading -> {
+                    binding.TimeRecyclerView.alpha = 0.5f
+                }
+
+                is Resource.Success -> {
+                    binding.TimeRecyclerView.alpha = 1.0f
+                }
+
+                is Resource.Error -> {
+                    binding.TimeRecyclerView.alpha = 1.0f
+                    Toast.makeText(
+                        this,
+                        "Could not check availability",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun timeslotAdapterSetup() {
         val timeSlotAdapter = TimeSlotAdapterForScheduling(viewModel)
@@ -124,12 +182,42 @@ class ScheduleActivity : BaseActivity() {
                 personalDetailsButtonSelection(anotherPersonTextView)
             }
            submitButton.setOnClickListener {
-               val intent= Intent(this@ScheduleActivity, ScheduleDetailsActivity::class.java)
-               startActivity(intent)
+               createBooking()
            }
         }
     }
 
+    private fun createBooking() {
+
+        with(binding)
+        {
+            val patientName = if (isYourselfSelected()) {
+                 "Current user"
+            } else {
+                fullNameEditText.text.toString().trim()
+            }
+
+            val patientAge = if (isYourselfSelected()) {
+               30
+            } else {
+                ageEditText.text.toString().toIntOrNull() ?: 0
+            }
+
+            val patientGender = when {
+                binding.maleBtn.isSelected -> "Male"
+                binding.femaleBtn.isSelected -> "Female"
+                binding.otherBtn.isSelected -> "Other"
+                else -> ""
+
+            }
+
+            val problemDescription = descriptionEditText.text.toString()
+
+        }
+    }
+        private fun isYourselfSelected(): Boolean {
+            return binding.yourselfTextView.isSelected
+        }
     fun personalDetailsButtonSelection(selectedTextView: TextView) {
         with(binding) {
 
@@ -140,22 +228,25 @@ class ScheduleActivity : BaseActivity() {
             selectedTextView.background = ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.dark_blue_round_corner)
             selectedTextView.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.white))
 
+            yourselfTextView.isSelected = (selectedTextView == yourselfTextView)
+            anotherPersonTextView.isSelected = (selectedTextView == anotherPersonTextView)
+
             if (selectedTextView == yourselfTextView) {
                 fullNameEditText.isEnabled = false
-                ageET.isEnabled = false
+                ageEditText.isEnabled = false
                 fullNameEditText.alpha = 0.5f
-                ageET.alpha = 0.5f
+                ageEditText.alpha = 0.5f
             } else {
 
                 fullNameEditText.isEnabled = true
-                ageET.isEnabled = true
+                ageEditText.isEnabled = true
                 fullNameEditText.alpha = 1.0f
-                ageET.alpha = 1.0f
+                ageEditText.alpha = 1.0f
             }
         }
     }
 
-    private fun GenderButtonSelection(selectedBtn: TextView) {
+     fun GenderButtonSelection(selectedBtn: TextView) {
 
         with(binding) {
 
@@ -198,6 +289,10 @@ class ScheduleActivity : BaseActivity() {
             selectedBtn.background =
                 ContextCompat.getDrawable(this@ScheduleActivity, R.drawable.dark_blue_round_corner)
             selectedBtn.setTextColor(ContextCompat.getColor(this@ScheduleActivity, R.color.white))
+
+            maleBtn.isSelected = (selectedBtn == maleBtn)
+            femaleBtn.isSelected = (selectedBtn == femaleBtn)
+            otherBtn.isSelected = (selectedBtn == otherBtn)
         }
     }
 }

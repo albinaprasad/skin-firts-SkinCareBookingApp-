@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.medicalhealth.healthapplication.model.data.Date
+import com.medicalhealth.healthapplication.model.data.DoctorBooking
 import com.medicalhealth.healthapplication.model.data.TimeSlot
+import com.medicalhealth.healthapplication.utils.Resource
 import java.time.LocalTime
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -17,6 +19,14 @@ class ScheduleCalenderViewModel: ViewModel() {
     private val _timeSlots = MutableLiveData<List<TimeSlot>>()
     val timeSlot: LiveData<List<TimeSlot>> get() = _timeSlots
     private val dayNames = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+
+    private val _bookingStatus = MutableLiveData<Resource<Boolean>>()
+    val bookingStatus: LiveData<Resource<Boolean>> get() = _bookingStatus
+    private val _availabilityStatus = MutableLiveData<Resource<List<String>>>()
+    val availabilityStatus: LiveData<Resource<List<String>>> get() = _availabilityStatus
+    private val _userBookings = MutableLiveData<Resource<List<DoctorBooking>>>()
+    val userBookings: LiveData<Resource<List<DoctorBooking>>> get() = _userBookings
+
 
     init {
         _dateList.value=mutableListOf()
