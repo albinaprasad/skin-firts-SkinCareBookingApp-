@@ -1,7 +1,6 @@
 package com.medicalhealth.healthapplication.view.adapter
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -12,6 +11,7 @@ import com.medicalhealth.healthapplication.databinding.UpcomingAppointmentBindin
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.UpcomingAppointment
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.squareup.picasso.Picasso
 
 
@@ -120,7 +120,7 @@ class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
                 Toast.makeText(context, "Rebooking..", Toast.LENGTH_SHORT).show()
             }
             tvAddReview.setOnClickListener {
-                Toast.makeText(context, "Adding review...", Toast.LENGTH_SHORT).show()
+                (context as? MainActivity)?.startReviewActivity()
             }
         }
     }
@@ -137,7 +137,7 @@ class CancelledAppointmentViewHolder(val binding: CancelledAppointmentBinding) :
             tvDoctorNameCancelled.text = cancelled.name
             tvSpecializationCancelled.text = cancelled.specialization
             btnAddReview.setOnClickListener {
-                Toast.makeText(context, "Adding...", Toast.LENGTH_SHORT).show()
+                (context as? MainActivity)?.startReviewActivity()
             }
         }
     }

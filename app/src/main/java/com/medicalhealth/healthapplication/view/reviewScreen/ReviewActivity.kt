@@ -1,5 +1,7 @@
 package com.medicalhealth.healthapplication.view.reviewScreen
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -9,12 +11,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityReviewBinding
+import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.viewModel.ReviewViewModel
 
 class ReviewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityReviewBinding
     private val viewModel: ReviewViewModel by viewModels()
     private lateinit var stars: List<ImageView>
+    private lateinit var bottomNavBinding: BottomNavigationLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +33,7 @@ class ReviewActivity : AppCompatActivity() {
         }
 
         stars = listOf(binding.starOne, binding.starTwo, binding.starThree, binding.starFour, binding.starFive)
-
+        bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.reviewBottomNavigationBar.root)
         setUpListeners()
         setUpObserveViewModel()
     }
@@ -47,7 +52,20 @@ class ReviewActivity : AppCompatActivity() {
             }
         }
 
-
+        with(bottomNavBinding){
+            homeButton.setOnClickListener {
+                returnToMain("home")
+            }
+            chatButton.setOnClickListener {
+                returnToMain("chat")
+            }
+            profileButton.setOnClickListener {
+                returnToMain("profile")
+            }
+            calenderButton.setOnClickListener {
+                returnToMain("calendar")
+            }
+        }
     }
 
     private fun setUpObserveViewModel(){
@@ -70,6 +88,13 @@ class ReviewActivity : AppCompatActivity() {
                  imageView.setImageResource(R.drawable.star_icon)
              }
          }
+    }
+
+    private fun returnToMain(tab: String){
+        val resultIntent = Intent()
+        resultIntent.putExtra(MainActivity.FRAGMENT_TO_LOAD_KEY, tab)
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
     }
 
 }

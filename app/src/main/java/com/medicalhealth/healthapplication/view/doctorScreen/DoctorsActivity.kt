@@ -9,7 +9,6 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
-import com.medicalhealth.healthapplication.view.DoctorsList
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
