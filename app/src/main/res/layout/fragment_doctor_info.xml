@@ -6,7 +6,7 @@
     android:id="@+id/doctorinfofragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.DoctorInfoFragment">
+    tools:context=".view.doctorScreen.DoctorInfoFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -202,7 +202,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/star_unfilled" />
+                            app:srcCompat="@drawable/star_filled" />
 
                         <TextView
                             android:id="@+id/tvrating"

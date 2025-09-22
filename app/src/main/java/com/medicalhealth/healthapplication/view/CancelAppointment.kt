@@ -26,7 +26,7 @@ class CancelAppointment : AppCompatActivity() {
             insets
         }
         with(binding){
-            item = listOf(optionOne,optionWeather,optionThree,optionFour)
+            item = listOf(optionRescheduling,optionWeather,optionUnexpected,optionOthers)
             item.forEach { radioButton ->
                 radioButton.setOnClickListener{
                     handleTheColor(radioButton)
