@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory
 import android.view.View
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowInsetsCompat
-import com.medicalhealth.healthapplication.model.Constants
 
 object utils {
     inline fun WindowInsetsCompat.getSystemBarInsets(view: View, action: (insets: Insets) -> Unit): WindowInsetsCompat {
