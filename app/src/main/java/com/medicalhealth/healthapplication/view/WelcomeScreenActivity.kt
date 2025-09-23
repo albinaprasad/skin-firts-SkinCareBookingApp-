@@ -15,7 +15,7 @@ class WelcomeScreenActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.btnlogin.setOnClickListener {
-            val Loginintent = Intent(this, CancelAppointment::class.java)
+            val Loginintent = Intent(this,LoginActivity::class.java)
             startActivity(Loginintent)
         }
         binding.btnsignup.setOnClickListener {
