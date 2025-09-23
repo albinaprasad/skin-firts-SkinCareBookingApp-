@@ -11,15 +11,14 @@ import kotlinx.coroutines.tasks.await
 
 class BookingRepositoryImpl(val firestore:FirebaseFirestore): BookingRepository{
     override suspend fun createBooking(booking: DoctorBooking): Flow<Resource<Boolean>> = flow {
-        emit(Resource.Loading()) // UI shows loading state
+        emit(Resource.Loading())
         try {
-
             firestore.collection("bookings")
                 .add(booking)
                 .await()
 
             Log.d("BookingRepo", "Booking created successfully")
-            emit(Resource.Success(true)) // UI shows success
+            emit(Resource.Success(true))
         } catch (e: Exception) {
 
             Log.e("BookingRepo", "Error creating booking")
@@ -48,8 +47,6 @@ class BookingRepositoryImpl(val firestore:FirebaseFirestore): BookingRepository{
             Log.e("BookingRepo", "Error fetching booked slots")
             emit(Resource.Error("Failed to check availability"))
         }
-
-
     }
 
     override suspend fun getUserBookings(userId: String): Flow<Resource<List<DoctorBooking>>> = flow {

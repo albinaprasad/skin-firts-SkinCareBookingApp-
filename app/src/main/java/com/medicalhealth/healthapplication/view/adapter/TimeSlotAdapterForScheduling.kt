@@ -53,74 +53,48 @@ class TimeSlotAdapterForScheduling(
                     viewModel.selectTimeSlot(item.time)
                 }
             }
-            updateBackground(item.isSelected, item.isAvailable)
+            applySlotStyling(item)
         }
 
-        private fun updateBackground(isSelected: Boolean, isAvailable: Boolean) {
-            with(binding)
-            {
-                val context = itemView.context
-                when {
-                    // UNAVAILABLE (booked)
-                    !isAvailable -> {
-                        dateContainer.background = createRoundedBackground(
-                            ContextCompat.getColor(context, R.color.off_blue),
-                        )
+        fun applySlotStyling(item: TimeSlot)
+        {
+            val context=binding.root.context
+            when{
+                !item.isAvailable -> {
+                    binding.dateContainer.background = createRoundedBackground(
+                        ContextCompat.getColor(context, R.color.off_blue)
+                    )
+                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.hintColor))
+                    binding.root.isClickable = false
+                    binding.root.alpha = 0.9f
 
-                        dateTextView.setTextColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.black
-                            )
-                        )
-
-                        dateContainer.alpha = 1f
-                        itemView.isEnabled = false
-                    }
-
-                    // SELECTED & AVAILABLE
-                    isSelected -> {
-                        dateContainer.background = createRoundedBackground(
-                            ContextCompat.getColor(context, R.color.backgroundColor),
-                        )
-
-                        dateTextView.setTextColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.white
-                            )
-                        )
-
-                        dateContainer.alpha = 1f
-                        itemView.isEnabled = true
-                    }
-
-                    // AVAILABLE BUT NOT SELECTED
-                    else ->  {
-                        dateContainer.background = createRoundedBackground(
-                            ContextCompat.getColor(context, R.color.edittext_hintColor),
-                        )
-
-                        dateTextView.setTextColor(
-                            ContextCompat.getColor(
-                                context,
-                                R.color.black
-                            )
-                        )
-
-                        dateContainer.alpha = 1f
-                        itemView.isEnabled = true
-                    }
+                }
+                item.isSelected -> {
+                    binding.dateContainer.background = createRoundedBackground(
+                        ContextCompat.getColor(context, R.color.backgroundColor)
+                    )
+                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                    binding.root.isClickable = true
+                    binding.root.alpha = 1.0f
+                }
+                else -> {
+                    binding.dateContainer.background = createRoundedBackground(
+                        ContextCompat.getColor(context, R.color.off_blue)
+                    )
+                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                    binding.root.isClickable = true
+                    binding.root.alpha = 1.0f
 
                 }
             }
         }
-//        private fun createRoundedBackground(color: Int): GradientDrawable {
-//            return GradientDrawable().apply {
-//                shape = GradientDrawable.RECTANGLE
-//                setColor(color)
-//                cornerRadius = 40f
-//            }
-//        }
     }
+    private fun createRoundedBackground(color: Int): GradientDrawable {
+        return GradientDrawable().apply {
+            shape = GradientDrawable.RECTANGLE
+            setColor(color)
+            cornerRadius = 40f
+        }
+    }
+
 }

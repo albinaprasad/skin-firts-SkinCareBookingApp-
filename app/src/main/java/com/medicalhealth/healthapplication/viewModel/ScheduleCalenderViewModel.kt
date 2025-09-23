@@ -18,7 +18,7 @@ import java.time.LocalTime
 import java.util.Calendar
 
 @RequiresApi(Build.VERSION_CODES.O)
-class ScheduleCalenderViewModel: ViewModel() {
+class ScheduleCalenderViewModel : ViewModel() {
 
     private val bookingRepository: BookingRepository =
         BookingRepositoryImpl(FirebaseFirestore.getInstance())
@@ -44,10 +44,10 @@ class ScheduleCalenderViewModel: ViewModel() {
     private var currentMonth: Int = 0
 
     init {
-        _dateList.value=mutableListOf()
+        _dateList.value = mutableListOf()
     }
-    fun generateMonthDates(monthIndex:Int)
-    {
+
+    fun generateMonthDates(monthIndex: Int) {
         currentMonth = monthIndex
 
         val newDateList = mutableListOf<Date>()
@@ -62,11 +62,10 @@ class ScheduleCalenderViewModel: ViewModel() {
         calendar.set(java.util.Calendar.DAY_OF_MONTH, 1)
 
         val daysInMonth = calendar.getActualMaximum(java.util.Calendar.DAY_OF_MONTH)
-        for(day in 1..daysInMonth)
-        {
+        for (day in 1..daysInMonth) {
             calendar.set(java.util.Calendar.DAY_OF_MONTH, day)
             val dayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK)
-            val isToday = (monthIndex == currentMonth && day == currentDay)
+            val isToday = (monthIndex == todayMonth && day == currentDay)
             val date = Date(
                 dayOfMonth = day.toString(),
                 dayOfWeek = dayNames[dayOfWeek - 1],
@@ -78,7 +77,7 @@ class ScheduleCalenderViewModel: ViewModel() {
         _dateList.value = newDateList
     }
 
-    fun generateTimeSlots(){
+    fun generateTimeSlots() {
         val newTimeSlots = mutableListOf<TimeSlot>()
         var time = LocalTime.of(9, 0)
         while (time.isBefore(LocalTime.of(16, 1))) {
@@ -99,13 +98,12 @@ class ScheduleCalenderViewModel: ViewModel() {
             _timeSlots.value = updatedSlots
         }
     }
-
     fun setCurrentDoctor(doctorId: String) {
         currentDoctorId = doctorId
     }
 
-    fun onDateSelected(selectedDate: Date){
-        _selectedDate.value =selectedDate
+    fun onDateSelected(selectedDate: Date) {
+        _selectedDate.value = selectedDate
 
         val updatedDates = _dateList.value?.map { date ->
             date.copy(isSelected = date.dayOfMonth == selectedDate.dayOfMonth)
@@ -135,18 +133,15 @@ class ScheduleCalenderViewModel: ViewModel() {
                     }
 
                     is Resource.Error -> {
-                        // Error handled by UI, time slots remain unchanged (safe fallback)
                     }
 
                     is Resource.Loading -> {
-                        // Loading state handled by UI
                     }
                 }
             }
-
-
         }
     }
+
     private fun updateTimeSlotAvailability(bookedTimes: List<String>) {
 
         val updatedSlots = _timeSlots.value?.map { slot ->
@@ -167,7 +162,6 @@ class ScheduleCalenderViewModel: ViewModel() {
     ) {
         val selectedDate = _selectedDate.value
         val selectedSlot = _selectedTimeSlot.value
-
 
         if (selectedDate == null || selectedSlot == null) {
             _bookingStatus.value = Resource.Error("Please select date and time")
@@ -199,14 +193,14 @@ class ScheduleCalenderViewModel: ViewModel() {
             return
         }
         viewModelScope.launch {
-            // Format the booking date
+
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = currentMonth + 1
             val day = selectedDate.dayOfMonth.padStart(2, '0')
             val formattedDate = "$year-${month.toString().padStart(2, '0')}-$day"
 
-            // Create the booking object
+
             val booking = DoctorBooking(
                 userId = userId,
                 doctorId = currentDoctorId,
@@ -218,11 +212,9 @@ class ScheduleCalenderViewModel: ViewModel() {
                 bookingTime = selectedSlot.timeString
             )
 
-            // Save booking using repository
             bookingRepository.createBooking(booking).collect { resource ->
-                _bookingStatus.value = resource // UI automatically handles all states
+                _bookingStatus.value = resource
 
-                // If booking successful, refresh availability to show the newly booked slot
                 if (resource is Resource.Success) {
                     checkSlotAvailability(selectedDate)
                 }

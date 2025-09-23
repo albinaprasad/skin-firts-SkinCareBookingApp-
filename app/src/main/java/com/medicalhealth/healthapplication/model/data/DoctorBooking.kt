@@ -10,6 +10,6 @@ data class DoctorBooking(
     val problemDescription: String = "",
     val bookingDate: String = "", // "2025-09-22" format
     val bookingTime: String = "", // "09:30 AM" format
-    val appointmentDateTime: Long = 0L,
+    val status: String = "UPCOMING",
     val createdAt: Long = System.currentTimeMillis()
 )

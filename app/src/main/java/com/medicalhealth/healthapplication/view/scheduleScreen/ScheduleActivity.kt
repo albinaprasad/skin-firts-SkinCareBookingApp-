@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
+import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
@@ -43,32 +44,29 @@ class ScheduleActivity : BaseActivity() {
         observeBookingStatus()
     }
 
-
     @RequiresApi(Build.VERSION_CODES.O)
     private fun observeBookingStatus() {
 
         viewModel.bookingStatus.observe(this) { resource ->
 
-            //observe booking status
             when (resource) {
                 is Resource.Loading -> {
                     binding.submitButton.isEnabled = false
                     binding.submitButton.text = getString(R.string.creating_booking)
+                    binding.submitButton.setTextColor(ContextCompat.getColor(this,android.R.color.white))
                 }
-
                 is Resource.Success -> {
-
                     binding.submitButton.isEnabled = true
-                    binding.submitButton.text = "Book Appointment"
+                    binding.submitButton.text = getString(R.string.book_appointment)
+                    Toast.makeText(this,  getString(R.string.booking_failed), Toast.LENGTH_LONG).show()
                     val intent = Intent(this, ScheduleDetailsActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
-
                 is Resource.Error -> {
                     binding.submitButton.isEnabled = true
                     binding.submitButton.text = getString(R.string.make_appointment)
-                    Toast.makeText(this, resource.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,  getString(R.string.booking_sucess), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -140,7 +138,19 @@ class ScheduleActivity : BaseActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun dateRecyclerViewSetUp() {
-        val dateAdapter = DateAdapterForScheduling(mutableListOf(),onDateClick = { selectedDate ->
+
+        //TODO replace this with actuall doctor object
+         val dummyDoctor = Doctor(
+            id = "DOC001",
+            name = "Dr. John Smith",
+            specialization = "Cardiologist",
+            experience = 10,
+            startDay = Calendar.MONDAY,
+            endDay = Calendar.SATURDAY,
+            startTime = 9,
+            endTime = 17
+        )
+        val dateAdapter = DateAdapterForScheduling(mutableListOf(),dummyDoctor,onDateClick = { selectedDate ->
             viewModel.onDateSelected(selectedDate) })
 
         with(binding) {
@@ -210,7 +220,7 @@ class ScheduleActivity : BaseActivity() {
                 binding.maleBtn.isSelected -> "Male"
                 binding.femaleBtn.isSelected -> "Female"
                 binding.otherBtn.isSelected -> "Other"
-                else -> ""
+                else -> "Male"
 
             }
 
