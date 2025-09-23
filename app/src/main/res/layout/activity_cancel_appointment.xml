@@ -8,8 +8,34 @@
     android:layout_height="match_parent"
     tools:context=".view.CancelAppointment">
 
+    <RadioGroup
+        android:id="@+id/rg_cancel_reasons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <RadioButton
+            android:id="@+id/option_Rescheduling_logic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <RadioButton
+            android:id="@+id/option_weather_logic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/option_Unexpected_logic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:id="@+id/option_Others_logic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/tvCancelAppointment"
@@ -42,445 +68,370 @@
         app:layout_constraintWidth_percent="0.0388"
         app:srcCompat="@drawable/back_button" />
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tvCancelAppointment"
         android:layout_marginTop="15dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/reviewBottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/reviewBottomNavigation">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCancelAppointment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-    <TextView
-        android:id="@+id/tvDescriptionCancel"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/lorem_ipsum"
-        android:includeFontPadding="false"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="12dp"
-        android:autoSizeMaxTextSize="14dp"
-        android:fontFamily="@font/leaguespartan_regular"
-        app:layout_constraintDimensionRatio="285:50"
-        app:layout_constraintWidth_percent="0.791"
-        android:layout_marginStart="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="5dp"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="119dp" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvSelectorbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="300:33"
-        app:layout_constraintWidth_percent="0.83"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="27dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/tvDescriptionCancel"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/selector_bar_color"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="209dp" >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-            <RadioGroup
-                android:id="@+id/rgBackground"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginStart="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="33dp">
-
-                <RadioButton
-                    android:id="@+id/option_Rescheduling"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/radio_button_selector"
-                    android:button="@null"
-                    android:padding="8dp" />
-            </RadioGroup>
-
             <TextView
-                android:id="@+id/tvRescheduling"
+                android:id="@+id/tvDescriptionCancel"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="@string/rescheduling"
-                app:layout_constraintDimensionRatio="180:20"
-                app:layout_constraintWidth_percent="0.5"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:layout_marginTop="11dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginBottom="11dp"
-                android:autoSizeTextType="uniform"
-                android:includeFontPadding="false"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:autoSizeMaxTextSize="14dp"
                 android:autoSizeMinTextSize="12dp"
-                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeTextType="uniform"
                 android:fontFamily="@font/leaguespartan_regular"
-                app:layout_constraintStart_toEndOf="@+id/rgBackground"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="31dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvSelectorbarWeather"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="300:33"
-        app:layout_constraintWidth_percent="0.83"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="6dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/cvSelectorbar"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/selector_bar_color"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="209dp" >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-            <RadioGroup
-                android:id="@+id/rgBackgroundWeather"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ellipse_icon"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginStart="5dp"
+                android:includeFontPadding="false"
+                android:text="@string/lorem_ipsum"
+                app:layout_constraintDimensionRatio="285:50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="33dp">
+                app:layout_constraintWidth_percent="0.791"
+                tools:layout_editor_absoluteX="106dp"
+                tools:layout_editor_absoluteY="119dp" />
 
-                <RadioButton
-                    android:id="@+id/option_weather"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/radio_button_selector"
-                    android:button="@null"
-                    android:padding="8dp" />
-            </RadioGroup>
-
-            <TextView
-                android:id="@+id/tvWeather"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSelectorbar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="@string/weather_conditions"
-                app:layout_constraintDimensionRatio="180:20"
-                app:layout_constraintWidth_percent="0.5"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:layout_marginTop="11dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginBottom="11dp"
-                android:autoSizeTextType="uniform"
-                android:includeFontPadding="false"
-                android:autoSizeMinTextSize="12dp"
-                android:autoSizeMaxTextSize="16dp"
-                android:fontFamily="@font/leaguespartan_regular"
-                app:layout_constraintStart_toEndOf="@+id/rgBackgroundWeather"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="31dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvSelectorbarUnexpected"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="300:33"
-        app:layout_constraintWidth_percent="0.83"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="6dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/cvSelectorbarWeather"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/selector_bar_color"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="209dp" >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-            <RadioGroup
-                android:id="@+id/rgBackgroundUnexpected"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ellipse_icon"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="27dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/selector_bar_color"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="300:33"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="33dp">
+                app:layout_constraintTop_toBottomOf="@id/tvDescriptionCancel"
+                app:layout_constraintWidth_percent="0.83"
+                tools:layout_editor_absoluteX="54dp"
+                tools:layout_editor_absoluteY="209dp">
 
-                <RadioButton
-                    android:id="@+id/option_Unexpected"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/radio_button_selector"
-                    android:button="@null"
-                    android:padding="8dp" />
-            </RadioGroup>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_Unexpected"
+                    <RadioButton
+                        android:id="@+id/rbRescheduling"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/radio_button_selector"
+                        android:button="@null"
+                        android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvRescheduling"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="9dp"
+                        android:autoSizeMaxTextSize="16dp"
+                        android:autoSizeMinTextSize="12dp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/leaguespartan_regular"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="@string/rescheduling"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="180:20"
+                        app:layout_constraintStart_toEndOf="@+id/rbRescheduling"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.5"
+                        tools:layout_editor_absoluteX="31dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSelectorbarWeather"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="@string/unexpected_work"
-                app:layout_constraintDimensionRatio="180:20"
-                app:layout_constraintWidth_percent="0.5"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:layout_marginTop="11dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginBottom="11dp"
-                android:autoSizeTextType="uniform"
-                android:includeFontPadding="false"
-                android:autoSizeMinTextSize="12dp"
-                android:autoSizeMaxTextSize="16dp"
-                android:fontFamily="@font/leaguespartan_regular"
-                app:layout_constraintStart_toEndOf="@+id/rgBackgroundUnexpected"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="31dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvSelectorbarOthers"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="300:33"
-        app:layout_constraintWidth_percent="0.83"
-        app:cardCornerRadius="30dp"
-        android:layout_marginTop="6dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:layout_constraintTop_toBottomOf="@id/cvSelectorbarUnexpected"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="@color/selector_bar_color"
-        tools:layout_editor_absoluteX="54dp"
-        tools:layout_editor_absoluteY="209dp" >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-            <RadioGroup
-                android:id="@+id/rgBackgroundOthers"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:background="@drawable/ellipse_icon"
-                android:orientation="horizontal"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="7dp"
-                android:layout_marginStart="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/selector_bar_color"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="300:33"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="33dp">
+                app:layout_constraintTop_toBottomOf="@id/cvSelectorbar"
+                app:layout_constraintWidth_percent="0.83"
+                tools:layout_editor_absoluteX="54dp"
+                tools:layout_editor_absoluteY="209dp">
 
-                <RadioButton
-                    android:id="@+id/option_Others"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/radio_button_selector"
-                    android:button="@null"
-                    android:padding="8dp" />
-            </RadioGroup>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_others"
+                    <RadioButton
+                        android:id="@+id/rbWeather"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/radio_button_selector"
+                        android:button="@null"
+                        android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvWeather"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginBottom="11dp"
+                        android:autoSizeMaxTextSize="16dp"
+                        android:autoSizeMinTextSize="12dp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/leaguespartan_regular"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="@string/weather_conditions"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="180:20"
+                        app:layout_constraintStart_toEndOf="@+id/rbWeather"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.5"
+                        tools:layout_editor_absoluteX="31dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSelectorbarUnexpected"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:text="@string/others"
-                app:layout_constraintDimensionRatio="180:20"
-                app:layout_constraintWidth_percent="0.5"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"
-                android:layout_marginTop="11dp"
-                android:layout_marginStart="9dp"
-                android:layout_marginBottom="11dp"
-                android:autoSizeTextType="uniform"
-                android:includeFontPadding="false"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/selector_bar_color"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="300:33"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvSelectorbarWeather"
+                app:layout_constraintWidth_percent="0.83"
+                tools:layout_editor_absoluteX="54dp"
+                tools:layout_editor_absoluteY="209dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rbUnexpected"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/radio_button_selector"
+                        android:button="@null"
+                        android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_Unexpected"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginBottom="11dp"
+                        android:autoSizeMaxTextSize="16dp"
+                        android:autoSizeMinTextSize="12dp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/leaguespartan_regular"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="@string/unexpected_work"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="180:20"
+                        app:layout_constraintStart_toEndOf="@+id/rbUnexpected"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.5"
+                        tools:layout_editor_absoluteX="31dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSelectorbarOthers"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/selector_bar_color"
+                app:cardCornerRadius="30dp"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="300:33"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvSelectorbarUnexpected"
+                app:layout_constraintWidth_percent="0.83"
+                tools:layout_editor_absoluteX="54dp"
+                tools:layout_editor_absoluteY="209dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/rbOthers"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/radio_button_selector"
+                        android:button="@null"
+                        android:padding="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_others"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_marginBottom="11dp"
+                        android:autoSizeMaxTextSize="16dp"
+                        android:autoSizeMinTextSize="12dp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="@font/leaguespartan_regular"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:text="@string/others"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="180:20"
+                        app:layout_constraintStart_toEndOf="@+id/rbOthers"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.5"
+                        tools:layout_editor_absoluteX="31dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/subtitle_two"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="14dp"
+                android:autoSizeMaxTextSize="14dp"
                 android:autoSizeMinTextSize="12dp"
-                android:autoSizeMaxTextSize="16dp"
+                android:autoSizeTextType="uniform"
                 android:fontFamily="@font/leaguespartan_regular"
-                app:layout_constraintStart_toEndOf="@+id/rgBackgroundOthers"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="31dp" />
+                android:includeFontPadding="false"
+                android:text="@string/lorem_ipsum"
+                android:textColor="@color/lavender"
+                app:layout_constraintDimensionRatio="285:50"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvSelectorbarOthers"
+                app:layout_constraintWidth_percent="0.791"
+                tools:layout_editor_absoluteX="106dp"
+                tools:layout_editor_absoluteY="119dp" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvReason"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="30dp"
+                app:cardBackgroundColor="@color/blue_white"
+                app:cardCornerRadius="18dp"
+                app:layout_constraintDimensionRatio="300:166"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/subtitle_two"
+                app:layout_constraintWidth_percent="0.833"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="464dp">
+
+                <EditText
+                    android:id="@+id/tv_Reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@android:color/transparent"
+                    android:ems="10"
+                    android:gravity="start"
+                    android:hint="Enter Your Reason Here..."
+                    android:inputType="text"
+                    android:textColorHint="@color/light_blue"
+                    android:textSize="15dp" />
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btnCancelAppointment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="70dp"
+                android:autoSizeMaxTextSize="24dp"
+                android:autoSizeMinTextSize="18dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="@color/button_blue"
+                android:fontFamily="@font/leaguespartan_regular"
+                android:includeFontPadding="false"
+                android:text="@string/cancel_appointment"
+                app:layout_constraintDimensionRatio="256:48"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvReason"
+                app:layout_constraintWidth_percent="0.711" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/subtitle_two"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/lorem_ipsum"
-        android:includeFontPadding="false"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="12dp"
-        android:autoSizeMaxTextSize="14dp"
-        android:textColor="@color/lavender"
-        android:fontFamily="@font/leaguespartan_regular"
-        app:layout_constraintDimensionRatio="285:50"
-        app:layout_constraintWidth_percent="0.791"
-        android:layout_marginStart="30dp"
-        app:layout_constraintTop_toBottomOf="@id/cvSelectorbarOthers"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="14dp"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="119dp" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvReason"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/subtitle_two"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="30dp"
-        app:cardCornerRadius="18dp"
-        app:cardBackgroundColor="@color/blue_white"
-        app:layout_constraintDimensionRatio="300:166"
-        app:layout_constraintWidth_percent="0.833"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="464dp" >
-
-
-        <EditText
-            android:id="@+id/tv_Reason"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="13dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:gravity="start"
-            android:hint="Enter Your Reason Here..."
-            android:background="@android:color/transparent"
-            android:inputType="text"
-            android:textColorHint="@color/light_blue"
-            android:textSize="15dp" />
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/btnCancelAppointment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/cancel_appointment"
-        app:layout_constraintTop_toBottomOf="@+id/cvReason"
-        android:layout_marginTop="70dp"
-        android:includeFontPadding="false"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMaxTextSize="24dp"
-        android:autoSizeMinTextSize="18dp"
-        app:layout_constraintDimensionRatio="256:48"
-        app:layout_constraintWidth_percent="0.711"
-        android:fontFamily="@font/leaguespartan_regular"
-        android:backgroundTint="@color/button_blue"
-        android:layout_marginStart="2dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/reviewBottomNavigation"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHeight_percent="0.090"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/reviewBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.090"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
 
-                <include
-                    android:id="@+id/review_bottom_navigation_bar"
-                    layout="@layout/bottom_navigation_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHeight_percent="0.62"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintWidth_percent="0.8250" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
+        <include
+            android:id="@+id/review_bottom_navigation_bar"
+            layout="@layout/bottom_navigation_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.62"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8250" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

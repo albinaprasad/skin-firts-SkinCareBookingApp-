@@ -1,53 +1,74 @@
 package com.medicalhealth.healthapplication.view
 
 import android.os.Bundle
-import android.view.View
-import android.widget.RadioButton
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityCancelAppointmentBinding
 
-class CancelAppointment : AppCompatActivity() {
+class CancelAppointment : BaseActivity() {
+
     private lateinit var binding: ActivityCancelAppointmentBinding
-    private lateinit var item: List<RadioButton>
+    private lateinit var rgReasons: RadioGroup
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityCancelAppointmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
+        rgReasons = binding.rgCancelReasons
         with(binding){
-            item = listOf(optionRescheduling,optionWeather,optionUnexpected,optionOthers)
-            item.forEach { radioButton ->
-                radioButton.setOnClickListener{
-                    handleTheColor(radioButton)
-                }
+            cvSelectorbar.setOnClickListener {
+                rgReasons.check(R.id.option_Rescheduling_logic)
+            }
 
+            cvSelectorbarWeather.setOnClickListener {
+                rgReasons.check(R.id.option_weather_logic)
+            }
+
+            cvSelectorbarUnexpected.setOnClickListener {
+                rgReasons.check(R.id.option_Unexpected_logic)
+            }
+
+            cvSelectorbarOthers.setOnClickListener {
+                rgReasons.check(R.id.option_Others_logic)
             }
         }
+        rgReasons.setOnCheckedChangeListener { _, checkedId ->
+            updateVisuals(checkedId)
+        }
+    }
+
+    private fun updateVisuals(checkedId: Int) {
+        with(binding){
+
+            rbRescheduling.isChecked = false
+            rbWeather.isChecked = false
+            rbUnexpected.isChecked = false
+            rbOthers.isChecked = false
+
+            cvSelectorbar.isSelected = false
+            cvSelectorbarWeather.isSelected = false
+            cvSelectorbarUnexpected.isSelected = false
+            cvSelectorbarOthers.isSelected = false
         }
 
-    fun handleTheColor(selectedButton: RadioButton) {
-        item.forEach { radioButton ->
-            if(radioButton != selectedButton){
-                 val parentCardView: View?= radioButton.parent.parent.parent as? CardView
-                parentCardView?.isSelected = false
-                radioButton.isSelected = false
-
+        when (checkedId) {
+            R.id.option_Rescheduling_logic -> {
+                binding.rbRescheduling.isChecked = true
+                binding.cvSelectorbar.isSelected = true
             }
-            else{
-                val parentCardView: View?= selectedButton.parent.parent.parent as? CardView
-                parentCardView?.isSelected = true
-                radioButton.isSelected = true
+            R.id.option_weather_logic -> {
+                binding.rbWeather.isChecked = true
+                binding.cvSelectorbarWeather.isSelected = true
+            }
+            R.id.option_Unexpected_logic -> {
+                binding.rbUnexpected.isChecked = true
+                binding.cvSelectorbarUnexpected.isSelected = true
+            }
+            R.id.option_Others_logic -> {
+                binding.rbOthers.isChecked = true
+                binding.cvSelectorbarOthers.isSelected = true
             }
         }
     }
