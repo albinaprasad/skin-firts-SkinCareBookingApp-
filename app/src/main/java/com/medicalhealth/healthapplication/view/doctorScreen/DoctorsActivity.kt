@@ -3,9 +3,12 @@ package com.medicalhealth.healthapplication.view.doctorScreen
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
+import androidx.fragment.app.Fragment
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
@@ -18,8 +21,10 @@ import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
 class DoctorsActivity : BaseActivity() {
     lateinit var binding: ActivityDoctorsBinding
-    private val sharedViewModel: SharedViewModel by viewModels()
+    val sharedViewModel: SharedViewModel by viewModels()
     private lateinit var bottomNavBinding: BottomNavigationLayoutBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,47 +51,25 @@ class DoctorsActivity : BaseActivity() {
         with(binding)
         {
             ratingBtn.setOnClickListener {
-                ratingBtnClickSetUp()
+                filterBtnClickSetUp("RatingFragment", getString(R.string.rating), RatingFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
             }
+
             sortButton.setOnClickListener {
-                sharedViewModel.updateButtons(
-                    "DoctorListFragment",
-                    binding.ratingBtn,
-                    binding.sortButton,
-                    binding.favBtn
-                )
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container_doctor, DoctorsListFragment())
-                    .commit()
+                filterBtnClickSetUp("DoctorListFragment", getString(R.string.doctors), DoctorsListFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
             }
 
             favBtn.setOnClickListener {
-                sharedViewModel.updateButtons(
-                    "FavouriteFragment",
-                    binding.ratingBtn,
-                    binding.sortButton,
-                    binding.favBtn
-                )
-               sharedViewModel.setTitle(getString(R.string.favorite))
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container_doctor, FavouriteDoctorsFragment())
-                    .commit()
+                filterBtnClickSetUp("FavouriteFragment", getString(R.string.favorite), FavouriteDoctorsFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
+            }
+
+            femaleBtn.setOnClickListener {
+                filterBtnClickSetUp("FemaleListFragment", getString(R.string.female), DoctorsListFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
+            }
+
+            maleBtn.setOnClickListener {
+                filterBtnClickSetUp("MaleListFragment", getString(R.string.male), DoctorsListFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
             }
         }
-    }
-
-    private fun ratingBtnClickSetUp() {
-
-        sharedViewModel.updateButtons(
-            "ratingFragment",
-            binding.ratingBtn,
-            binding.sortButton,
-            binding.favBtn
-        )
-        sharedViewModel.setTitle(getString(R.string.rating))
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_doctor, RatingFragment())
-            .commit()
     }
 
     private fun setUpListeners(){
@@ -117,6 +100,30 @@ class DoctorsActivity : BaseActivity() {
         resultIntent.putExtra(MainActivity.FRAGMENT_TO_LOAD_KEY, tab)
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
+    }
+
+    private fun filterBtnClickSetUp(
+        fragmentName: String,
+        titleName: String,
+        fragment: Fragment,
+        ratingBtn: ImageButton,
+        sortButton: Button,
+        favBtn: ImageButton,
+        femaleBtn: ImageButton,
+        maleBtn: ImageButton
+    ) {
+        sharedViewModel.updateButtons(
+            fragmentName,
+            ratingBtn,
+            sortButton,
+            favBtn,
+            femaleBtn,
+            maleBtn
+        )
+        sharedViewModel.setTitle(titleName)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_doctor, fragment)
+            .commit()
     }
 
 }

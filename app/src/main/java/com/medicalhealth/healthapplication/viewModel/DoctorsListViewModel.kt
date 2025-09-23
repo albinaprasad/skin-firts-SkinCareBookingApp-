@@ -24,6 +24,12 @@ class DoctorsListViewModel(private val repository: DoctorDetailsRepository = Doc
     )
     val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
 
+    private val _maleDoctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
+    val maleDoctors: StateFlow<Resource<List<Doctor>>> = _maleDoctors
+
+    private val _femaleDoctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
+    val femaleDoctors: StateFlow<Resource<List<Doctor>>> = _femaleDoctors
+
     private val _date = MutableLiveData<List<Schedule>>()
     val date: LiveData<List<Schedule>> get() = _date
 
@@ -41,7 +47,9 @@ class DoctorsListViewModel(private val repository: DoctorDetailsRepository = Doc
     private fun fetchAllDoctors() {
         viewModelScope.launch {
             repository.getDoctors().collect { result ->
-                _doctors.value = result
+                _doctors.value = Resource.Success(result.data?.sortedBy { it.name } ?: emptyList())
+                _maleDoctors.value = Resource.Success(result.data?.filter { it.gender == 0 } ?: emptyList())
+                _femaleDoctors.value = Resource.Success(result.data?.filter { it.gender == 1 } ?: emptyList())
                 Log.d("message", "->>>>>${result.data}")
             }
         }

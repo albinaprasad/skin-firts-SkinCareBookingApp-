@@ -38,11 +38,13 @@ class SharedViewModel: ViewModel() {
         ratingBtn: ImageButton,
         sortButton: Button,
         favBtn: ImageButton,
+        femaleBtn: ImageButton,
+        maleBtn: ImageButton
     ) {
-        resetAllButtons(ratingBtn, sortButton, favBtn)
+        resetAllButtons(ratingBtn, sortButton, favBtn, femaleBtn, maleBtn)
 
         when (fragmentName) {
-            "ratingFragment" -> {
+            "RatingFragment" -> {
                 ratingBtn.setImageResource(R.drawable.star_icon_white)
                 ratingBtn.setBackgroundResource(R.drawable.background_ellipse_blue)
             }
@@ -57,11 +59,21 @@ class SharedViewModel: ViewModel() {
                 favBtn.setImageResource(R.drawable.fav_white_filled)
                 favBtn.setBackgroundResource(R.drawable.background_ellipse_blue)
             }
+
+            "MaleListFragment" -> {
+                maleBtn.setImageResource(R.drawable.male_icon_white)
+                maleBtn.setBackgroundResource(R.drawable.background_ellipse_blue)
+            }
+
+            "FemaleListFragment" -> {
+                femaleBtn.setImageResource(R.drawable.female_icon_white)
+                femaleBtn.setBackgroundResource(R.drawable.background_ellipse_blue)
+            }
         }
     }
 
     fun resetAllButtons(
-        ratingBtn: ImageButton, sortButton: Button, favBtn: ImageButton
+        ratingBtn: ImageButton, sortButton: Button, favBtn: ImageButton, femaleBtn: ImageButton, maleBtn: ImageButton
     ) {
         sortButton.backgroundTintList =
             ContextCompat.getColorStateList(sortButton.context, R.color.off_blue)
@@ -70,6 +82,10 @@ class SharedViewModel: ViewModel() {
         ratingBtn.setBackgroundResource(R.drawable.round_button_offblue)
         favBtn.setImageResource(R.drawable.fav_icon)
         favBtn.setBackgroundResource(R.drawable.round_button_offblue)
+        femaleBtn.setImageResource(R.drawable.female_icon)
+        femaleBtn.setBackgroundResource(R.drawable.round_button_offblue)
+        maleBtn.setImageResource(R.drawable.male_icon)
+        maleBtn.setBackgroundResource(R.drawable.round_button_offblue)
     }
 
     fun formatSchedule(startDay: Int, endDay: Int, startTime: Int, endTime: Int): String{

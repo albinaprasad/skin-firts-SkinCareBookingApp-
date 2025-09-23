@@ -37,8 +37,10 @@ class DoctorsListFragment : Fragment() {
         binding = FragmentDoctorsListBinding.inflate(inflater, container, false)
         val view = binding.root
         recyclerView = binding.doctorsRecyclerView
+
         return view
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -78,11 +80,8 @@ class DoctorsListFragment : Fragment() {
                     }
             }
         }
+
     }
 
-    override fun onResume() {
-        super.onResume()
-        sharedViewModel.setTitle(getString(R.string.doctors))
-    }
 
 }

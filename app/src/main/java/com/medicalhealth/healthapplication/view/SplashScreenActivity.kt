@@ -25,7 +25,7 @@ class SplashScreenActivity : BaseActivity() {
             insets
         }
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity,WelcomeScreenActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity,MainActivity::class.java)
             startActivity(intent)
             finish()
         }, 3000)    // Delay for 3 seconds
