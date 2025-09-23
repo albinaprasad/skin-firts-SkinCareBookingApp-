@@ -49,8 +49,8 @@
     <string name="doctorname_sample_without_nxtLine">Dr. Alexander Bennett, Ph.D.</string>
     <string name="doctor_sample_specification">Dermato-Genetics</string>
     <string name="schedule">Schedule</string>
-    <string name="exp_year"><b>15 years \n</b>experience</string>
-    <string name="focus_description"><b>Focus:</b> The impact of hormonal imbalances on skin conditions, specializing in acne, hirsutism, and other skin disorders.</string>
+    <string name="doctor_experience_years">"&lt;b&gt;%1$d years&lt;/b&gt; experience"</string>
+    <string name="doctor_focus_text">"&lt;b&gt;Focus:&lt;/b&gt; %1$s"</string>
     <string name="info">Info</string>
     <string name="profile_text">Profile</string>
     <string name="phone_number_text">Phone Number</string>

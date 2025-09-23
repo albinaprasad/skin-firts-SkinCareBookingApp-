@@ -96,7 +96,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.4"
                             android:fontFamily="@font/leaguespartan_regular"
-                            android:text="@string/exp_year"
+                            android:text="@string/doctor_experience_years"
                             android:textColor="@color/white"
                             android:textSize="12dp" />
 
@@ -109,8 +109,6 @@
                     android:id="@+id/focusCardView"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-
-
                     android:layout_marginTop="5dp"
                     app:cardBackgroundColor="@color/button_blue"
                     app:cardCornerRadius="18dp"
@@ -130,7 +128,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="@font/leaguespartan_regular"
-                        android:text="@string/focus_description"
+                        android:text="@string/doctor_focus_text"
                         android:textColor="@color/white"
 
                         android:textSize="12dp" />
@@ -205,7 +203,7 @@
                             app:srcCompat="@drawable/star_filled" />
 
                         <TextView
-                            android:id="@+id/tvrating"
+                            android:id="@+id/tvRating"
                             android:layout_width="21dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -240,7 +238,7 @@
                             app:srcCompat="@drawable/comment_blue" />
 
                         <TextView
-                            android:id="@+id/tvcomment"
+                            android:id="@+id/tvComment"
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="2dp"
@@ -395,105 +393,107 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/textProfile"
-            android:layout_width="0dp"
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="34dp"
-            android:fontFamily="@font/leaguespartan_semibold"
-            android:gravity="center_vertical"
-            android:text="@string/profile"
-            android:textColor="@color/button_blue"
-            android:textSize="16dp"
-
-            app:layout_constraintBottom_toTopOf="@id/tvProfile"
-            app:layout_constraintDimensionRatio="282:18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.55"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cvDoctor"
-            app:layout_constraintWidth_percent="0.7833" />
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/tvProfile"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/leaguespartan_regular"
-            android:text="@string/lorem_ipsum_long"
-            android:textSize="12dp"
-            app:layout_constraintDimensionRatio="285:50"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.576"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textProfile"
-            app:layout_constraintWidth_percent="0.7916" />
+                <TextView
+                    android:id="@+id/textProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/leaguespartan_semibold"
+                    android:gravity="center_vertical"
+                    android:text="@string/profile"
+                    android:textColor="@color/button_blue"
+                    android:textSize="16dp"
 
-        <TextView
-            android:id="@+id/tvRebook"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="23dp"
-            android:fontFamily="@font/leaguespartan_medium"
-            android:text="@string/career_path"
-            android:textColor="@color/button_blue"
-            app:layout_constraintBottom_toTopOf="@+id/tvCareerPath"
-            app:layout_constraintDimensionRatio="282:18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.55"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProfile"
-            app:layout_constraintVertical_bias="0.6878"
-            app:layout_constraintWidth_percent="0.7833" />
+                    app:layout_constraintDimensionRatio="282:18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.7833" />
 
-        <TextView
-            android:id="@+id/tvCareerPath"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/leaguespartan_regular"
-            android:text="@string/lorem_ipsum_long"
-            android:textSize="12dp"
-            app:layout_constraintDimensionRatio="285:50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.576"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRebook"
-            app:layout_constraintWidth_percent="0.7916" />
+                <TextView
+                    android:id="@+id/tvProfile"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/leaguespartan_regular"
+                    android:text="@string/lorem_ipsum_long"
+                    android:textSize="12dp"
+                    app:layout_constraintDimensionRatio="285:50"
+                    app:layout_constraintStart_toStartOf="@id/textProfile"
+                    app:layout_constraintTop_toBottomOf="@+id/textProfile"
+                    app:layout_constraintWidth_percent="0.7916" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/leaguespartan_medium"
-            android:text="@string/highlights"
-            android:textColor="@color/button_blue"
-            app:layout_constraintDimensionRatio="282:18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.561"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCareerPath"
-            app:layout_constraintWidth_percent="0.7833" />
+                <TextView
+                    android:id="@+id/textCareer"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="23dp"
+                    android:fontFamily="@font/leaguespartan_medium"
+                    android:text="@string/career_path"
+                    android:textColor="@color/button_blue"
+                    app:layout_constraintDimensionRatio="282:18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProfile"
+                    app:layout_constraintWidth_percent="0.7833" />
 
-        <TextView
-            android:id="@+id/tvHighlights"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="2dp"
+                <TextView
+                    android:id="@+id/tvCareerPath"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/leaguespartan_regular"
+                    android:text="@string/lorem_ipsum_long"
+                    android:textSize="12dp"
+                    app:layout_constraintDimensionRatio="285:50"
+                    app:layout_constraintStart_toStartOf="@id/textCareer"
+                    app:layout_constraintTop_toBottomOf="@id/textCareer"
+                    app:layout_constraintWidth_percent="0.7916" />
 
-            android:fontFamily="@font/leaguespartan_regular"
-            android:text="@string/lorem_ipsum_long"
-            android:textSize="12dp"
+                <TextView
+                    android:id="@+id/textHighlights"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/leaguespartan_medium"
+                    android:text="@string/highlights"
+                    android:textColor="@color/button_blue"
+                    app:layout_constraintDimensionRatio="282:18"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCareerPath"
+                    app:layout_constraintWidth_percent="0.7833" />
 
-            app:layout_constraintDimensionRatio="285:50"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.588"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView7"
-            app:layout_constraintWidth_percent="0.7916" />
+                <TextView
+                    android:id="@+id/tvHighlights"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/leaguespartan_regular"
+                    android:text="@string/lorem_ipsum_long"
+                    android:textSize="12dp"
+                    app:layout_constraintDimensionRatio="285:50"
+                    app:layout_constraintStart_toStartOf="@id/textHighlights"
+                    app:layout_constraintTop_toBottomOf="@id/textHighlights"
+                    app:layout_constraintWidth_percent="0.7916" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
