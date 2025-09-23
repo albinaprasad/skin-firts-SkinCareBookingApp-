@@ -54,9 +54,10 @@
 
             <TextView
                 android:id="@+id/tvDescriptionCancel"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginTop="5dp"
                 android:autoSizeMaxTextSize="14dp"
                 android:autoSizeMinTextSize="12dp"
@@ -64,10 +65,9 @@
                 android:fontFamily="@font/leaguespartan_regular"
                 android:includeFontPadding="false"
                 android:text="@string/lorem_ipsum"
-                app:layout_constraintDimensionRatio="285:50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.791"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:layout_editor_absoluteX="106dp"
                 tools:layout_editor_absoluteY="119dp" />
 
@@ -77,106 +77,82 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvDescriptionCancel"
                 android:orientation="vertical">
 
 
-                <LinearLayout
-                    android:id="@+id/selectorRescheduling"
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/radio_selector_background">
 
 
                 <RadioButton
                     android:id="@+id/option_Rescheduling_logic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/rescheduling"
                     android:button="@null"
-                    android:layout_marginStart="5dp"
+                    android:paddingStart="5dp"
                     android:drawableStart="@drawable/radio_button_selector"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/leaguespartan_regular"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
-                </LinearLayout>
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
 
-
-                <LinearLayout
-                    android:id="@+id/selectorWeather"
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/radio_selector_background">
 
                 <RadioButton
                     android:id="@+id/option_weather_logic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/weather_conditions"
                     android:button="@null"
-                    android:layout_marginStart="5dp"
+                    android:paddingStart="5dp"
                     android:drawableStart="@drawable/radio_button_selector"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/leaguespartan_regular"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:id="@+id/selectorUnexpected"
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/radio_selector_background">
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
 
                 <RadioButton
                     android:id="@+id/option_Unexpected_logic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/unexpected_work"
                     android:button="@null"
-                    android:layout_marginStart="5dp"
+                    android:paddingStart="5dp"
                     android:drawableStart="@drawable/radio_button_selector"
                     android:drawablePadding="8dp"
                     android:fontFamily="@font/leaguespartan_regular"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/selectorOthers"
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:orientation="horizontal"
-                    android:background="@drawable/radio_selector_background">
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
 
                 <RadioButton
                     android:id="@+id/option_Others_logic"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/others"
                     android:button="@null"
+
                     android:drawableStart="@drawable/radio_button_selector"
                     android:drawablePadding="8dp"
-                    android:layout_marginStart="5dp"
+                    android:paddingStart="5dp"
                     android:fontFamily="@font/leaguespartan_regular"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp"/>
-                </LinearLayout>
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
+
             </RadioGroup>
 
 
 
             <TextView
                 android:id="@+id/subtitle_two"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:layout_marginTop="14dp"
                 android:autoSizeMaxTextSize="14dp"
                 android:autoSizeMinTextSize="12dp"
@@ -185,41 +161,34 @@
                 android:includeFontPadding="false"
                 android:text="@string/lorem_ipsum"
                 android:textColor="@color/lavender"
-                app:layout_constraintDimensionRatio="285:50"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rg_cancel_reasons"
-                app:layout_constraintWidth_percent="0.791"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:layout_editor_absoluteX="106dp"
                 tools:layout_editor_absoluteY="119dp" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvReason"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="30dp"
-                app:cardBackgroundColor="@color/blue_white"
-                app:cardCornerRadius="18dp"
-                app:layout_constraintDimensionRatio="300:166"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subtitle_two"
-                app:layout_constraintWidth_percent="0.833"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="464dp">
+
 
                 <EditText
                     android:id="@+id/tv_Reason"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="13dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="15dp"
-                    android:background="@android:color/transparent"
+                    android:paddingTop="20dp"
+                    android:paddingStart="13dp"
+                    android:background="@drawable/description_background_layout"
+                    app:layout_constraintDimensionRatio="300:166"
                     android:ems="10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/subtitle_two"
                     android:gravity="start"
+                    app:layout_constraintWidth_percent="0.833"
                     android:hint="Enter Your Reason Here..."
                     android:inputType="text"
                     android:textColorHint="@color/light_blue"
                     android:textSize="15dp" />
-            </androidx.cardview.widget.CardView>
+
 
             <Button
                 android:id="@+id/btnCancelAppointment"
@@ -238,7 +207,7 @@
                 app:layout_constraintDimensionRatio="256:48"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvReason"
+                app:layout_constraintTop_toBottomOf="@+id/tv_Reason"
                 app:layout_constraintWidth_percent="0.711" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
