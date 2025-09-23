@@ -7,14 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.databinding.FragmentRatingBinding
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.adapter.RatingsAdapter
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
-import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import kotlinx.coroutines.launch
 import kotlin.getValue
 
@@ -29,6 +27,11 @@ class RatingFragment : Fragment() {
         ratingBinding = FragmentRatingBinding.inflate(inflater, container, false)
         setUpAdapter()
         return (ratingBinding.root)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.loadDoctors("ALL")
     }
 
     private fun setUpAdapter() {

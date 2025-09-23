@@ -1,6 +1,7 @@
 package com.medicalhealth.healthapplication.view.doctorScreen
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +18,16 @@ import com.medicalhealth.healthapplication.utils.ViewExtension.show
 import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
 class DoctorsListFragment : Fragment() {
     private lateinit var binding: FragmentDoctorsListBinding
 
-    private val viewModel: DoctorsListViewModel by viewModels()
+    private var filterType: String = "ALL"
+
+    private val viewModel: DoctorsListViewModel by activityViewModels()
     private val sharedViewModel:SharedViewModel by activityViewModels()
 
     private lateinit var recyclerView: RecyclerView
@@ -37,7 +41,9 @@ class DoctorsListFragment : Fragment() {
         binding = FragmentDoctorsListBinding.inflate(inflater, container, false)
         val view = binding.root
         recyclerView = binding.doctorsRecyclerView
-
+        arguments?.let {
+            filterType = it.getString(ARG_FILTER_TYPE, "ALL")
+        }
         return view
     }
 
@@ -50,6 +56,7 @@ class DoctorsListFragment : Fragment() {
         }
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
+        viewModel.loadDoctors(filterType)
         observeViewModel()
     }
 
@@ -63,24 +70,39 @@ class DoctorsListFragment : Fragment() {
     }
 
     private fun observeViewModel(){
-        viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.doctors.collect{ result ->
-                    when(result){
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.doctors.collectLatest { result ->
+                    when (result) {
                         is Resource.Error -> {
                         }
+
                         is Resource.Loading -> {
                             recyclerView.show()
                         }
+
                         is Resource.Success -> {
                             recyclerView.show()
-                            result.data?.let{
+                            result.data?.let {
                                 adapter.updateData(it)
                             }
                         }
                     }
-            }
-        }
+                }
 
+            }
+
+    }
+
+    companion object{
+        const val ARG_FILTER_TYPE = "filter_type"
+
+        fun newInstance(filterType: String): DoctorsListFragment{
+            val fragment = DoctorsListFragment()
+            val args = Bundle()
+            args.putString(ARG_FILTER_TYPE, filterType)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
 

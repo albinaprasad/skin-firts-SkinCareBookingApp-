@@ -55,7 +55,7 @@ class DoctorsActivity : BaseActivity() {
             }
 
             sortButton.setOnClickListener {
-                filterBtnClickSetUp("DoctorListFragment", getString(R.string.doctors), DoctorsListFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
+                filterBtnClickSetUp("DoctorListFragment", getString(R.string.doctors), DoctorsListFragment.newInstance("ALL"), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
             }
 
             favBtn.setOnClickListener {
@@ -63,11 +63,11 @@ class DoctorsActivity : BaseActivity() {
             }
 
             femaleBtn.setOnClickListener {
-                filterBtnClickSetUp("FemaleListFragment", getString(R.string.female), DoctorsListFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
+                filterBtnClickSetUp("FemaleListFragment", getString(R.string.female), DoctorsListFragment.newInstance("Female"), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
             }
 
             maleBtn.setOnClickListener {
-                filterBtnClickSetUp("MaleListFragment", getString(R.string.male), DoctorsListFragment(), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
+                filterBtnClickSetUp("MaleListFragment", getString(R.string.male), DoctorsListFragment.newInstance("Male"), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
             }
         }
     }
