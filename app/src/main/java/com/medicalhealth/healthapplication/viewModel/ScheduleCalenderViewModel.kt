@@ -48,10 +48,12 @@ class ScheduleCalenderViewModel: ViewModel() {
     }
     fun generateMonthDates(monthIndex:Int)
     {
+        currentMonth = monthIndex
+
         val newDateList = mutableListOf<Date>()
         val today = java.util.Calendar.getInstance()
         val currentYear = today.get(java.util.Calendar.YEAR)
-        val currentMonth = today.get(java.util.Calendar.MONTH)
+        val todayMonth = today.get(java.util.Calendar.MONTH)
         val currentDay = today.get(java.util.Calendar.DAY_OF_MONTH)
         val calendar = java.util.Calendar.getInstance()
 
@@ -89,17 +91,13 @@ class ScheduleCalenderViewModel: ViewModel() {
     fun selectTimeSlot(time: LocalTime) {
         val selectedSlot = _timeSlots.value?.find { it.time == time }
 
-
         if (selectedSlot?.isAvailable == true) {
             _selectedTimeSlot.value = selectedSlot
-
-
             val updatedSlots = _timeSlots.value?.map { slot ->
                 slot.copy(isSelected = slot.time == time)
             } ?: emptyList()
             _timeSlots.value = updatedSlots
         }
-
     }
 
     fun setCurrentDoctor(doctorId: String) {
