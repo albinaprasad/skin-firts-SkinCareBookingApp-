@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.view
+package com.medicalhealth.healthapplication.view.doctorScreen
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,7 +20,7 @@ import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import kotlinx.coroutines.launch
 
 
-class DoctorsList : Fragment() {
+class DoctorsListFragment : Fragment() {
     private lateinit var binding: FragmentDoctorsListBinding
 
     private val viewModel: DoctorsListViewModel by viewModels()

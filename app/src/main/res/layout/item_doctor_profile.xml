@@ -86,7 +86,7 @@
                 <ImageView
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/star_unfilled"/>
+                    android:src="@drawable/star_filled"/>
 
                 <TextView
                     android:id="@+id/ratingTextView"

@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.view
+package com.medicalhealth.healthapplication.view.doctorScreen
 
 import android.content.Intent
 import android.os.Bundle

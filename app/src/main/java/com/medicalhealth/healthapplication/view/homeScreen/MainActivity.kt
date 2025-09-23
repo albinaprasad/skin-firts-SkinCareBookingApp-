@@ -15,6 +15,7 @@ import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.fragment.AllAppointmentFragment
 import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
+import com.medicalhealth.healthapplication.view.reviewScreen.ReviewActivity
 
 
 class MainActivity : BaseActivity(){
@@ -104,6 +105,10 @@ class MainActivity : BaseActivity(){
      fun startDoctorActivity(){
         val intent = Intent(this@MainActivity, DoctorsActivity::class.java)
         resultLauncher.launch(intent)
+    }
 
+    fun startReviewActivity(){
+        val intent = Intent(this@MainActivity, ReviewActivity::class.java)
+        resultLauncher.launch(intent)
     }
 }
