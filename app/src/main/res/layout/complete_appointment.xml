@@ -150,7 +150,7 @@
                 app:layout_constraintWidth_percent="0.322" >
 
                 <TextView
-                    android:id="@+id/tvRebook"
+                    android:id="@+id/textCareer"
                     android:textAlignment="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

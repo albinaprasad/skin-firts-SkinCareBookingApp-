@@ -12,7 +12,6 @@ import com.medicalhealth.healthapplication.model.data.Doctor
 
 class SharedViewModel: ViewModel() {
 
-
     private val _selectedDoctor = MutableLiveData<Doctor>()
     val selectedDoctor: LiveData<Doctor> = _selectedDoctor
 
@@ -25,9 +24,11 @@ class SharedViewModel: ViewModel() {
     fun selectDoctor(doctor: Doctor) {
         _selectedDoctor.value = doctor
     }
+
     fun setTitle(title:String){
         _titleChange.value = title
     }
+
     fun setData(data: List<AppointmentItem>) {
         _currentDataList.value = data
     }
@@ -58,6 +59,7 @@ class SharedViewModel: ViewModel() {
             }
         }
     }
+
     fun resetAllButtons(
         ratingBtn: ImageButton, sortButton: Button, favBtn: ImageButton
     ) {
@@ -68,5 +70,35 @@ class SharedViewModel: ViewModel() {
         ratingBtn.setBackgroundResource(R.drawable.round_button_offblue)
         favBtn.setImageResource(R.drawable.fav_icon)
         favBtn.setBackgroundResource(R.drawable.round_button_offblue)
+    }
+
+    fun formatSchedule(startDay: Int, endDay: Int, startTime: Int, endTime: Int): String{
+        val formattedStartTime = convertToTwelveHourFormat(startTime)
+        val formattedEndTime = convertToTwelveHourFormat(endTime)
+        val startDayOfWeek = mapIntToDayOfWeek(startDay)
+        val endDayOfWeek = mapIntToDayOfWeek(endDay)
+        return "$startDayOfWeek - $endDayOfWeek / $formattedStartTime - $formattedEndTime"
+    }
+
+    private fun mapIntToDayOfWeek(index: Int): String{
+        return when(index){
+            0 -> "Sun"
+            1 -> "Mon"
+            2 -> "Tue"
+            3 -> "Wed"
+            4 -> "Thu"
+            5 -> "Fri"
+            6 -> "Sat"
+            else -> {"N/A"}
+        }
+    }
+
+    private fun convertToTwelveHourFormat(timeIn24Hour: Int): String{
+        require(timeIn24Hour in 0..23) {"Time must be between 0 and 23."}
+        val hour = timeIn24Hour % 12
+        val amPm = if(timeIn24Hour >= 12) "PM" else "AM"
+        val formattedHour = if(hour == 0) 12 else hour
+        return "$formattedHour:00$amPm"
+
     }
 }

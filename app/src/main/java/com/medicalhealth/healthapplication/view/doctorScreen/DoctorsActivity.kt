@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
+import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
@@ -24,6 +26,11 @@ class DoctorsActivity : BaseActivity() {
         enableEdgeToEdge()
         binding = ActivityDoctorsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            insets.getSystemBarInsets(v) {
+                binding.root.setPadding(0, 0, 0, it.bottom)
+            }
+        }
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_doctor, DoctorsListFragment())
