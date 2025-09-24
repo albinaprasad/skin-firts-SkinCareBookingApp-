@@ -42,7 +42,6 @@ class DateAdapterForScheduling(
     override fun getItemCount(): Int {
         return dateList.size
     }
-
     inner class DateViewHolder(val binding: ItemDateBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(date: Date) {
             val context = binding.root.context

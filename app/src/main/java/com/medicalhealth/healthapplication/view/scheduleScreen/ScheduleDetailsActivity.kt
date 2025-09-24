@@ -98,7 +98,6 @@ class ScheduleDetailsActivity : BaseActivity() {
         return Triple(monthDay,dayName,yearString)
 
     }
-
     fun buttonClickListeners(){
         with(binding){
             bookBtn.setOnClickListener {

@@ -160,8 +160,6 @@ class AllAppointmentFragment : Fragment() {
         sharedViewModel.setData(completeAppointments)
         binding.btnComplete.isActivated = true
         setUpOnListener()
-
-
     }
 
     private fun setUpOnListener() {
