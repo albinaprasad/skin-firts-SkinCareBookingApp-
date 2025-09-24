@@ -58,38 +58,48 @@ class TimeSlotAdapterForScheduling(
 
         fun applySlotStyling(item: TimeSlot)
         {
-            val context=binding.root.context
-            when{
-                !item.isAvailable -> {
-                 with(binding){
-                   dateContainer.background = createRoundedBackground(
-                         ContextCompat.getColor(context, R.color.off_blue)
-                     )
-                    dateTextView.setTextColor(ContextCompat.getColor(context, R.color.hintColor))
-                    root.isClickable = false
-                    root.alpha = 0.9f
-                 }
+            with(binding) {
+                val context = binding.root.context
+                when {
+                    !item.isAvailable -> {
 
-                }
-                item.isSelected -> {
-                    with(binding){
-                       dateContainer.background = createRoundedBackground(
+                        dateContainer.background = createRoundedBackground(
+                            ContextCompat.getColor(context, R.color.off_blue)
+                        )
+                        dateTextView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.hintColor
+                            )
+                        )
+                        root.isClickable = false
+                        root.alpha = 0.9f
+
+
+                    }
+
+                    item.isSelected -> {
+
+                        dateContainer.background = createRoundedBackground(
                             ContextCompat.getColor(context, R.color.backgroundColor)
                         )
-                      dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
-                      root.isClickable = true
-                      root.alpha = 1.0f
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                        root.isClickable = true
+                        root.alpha = 1.0f
+
                     }
-                }
-                else -> {
-                    with(binding){
-                       dateContainer.background = createRoundedBackground(
+
+                    else -> {
+
+                        dateContainer.background = createRoundedBackground(
                             ContextCompat.getColor(context, R.color.off_blue)
                         )
                         dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
                         root.isClickable = true
                         root.alpha = 1.0f
+
                     }
+
                 }
             }
         }

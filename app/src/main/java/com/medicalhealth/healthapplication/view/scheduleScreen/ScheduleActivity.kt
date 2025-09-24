@@ -232,10 +232,10 @@ class ScheduleActivity : BaseActivity() {
             val patientGender =
                 with(binding){
                     when {
-                   maleBtn.isSelected -> "Male"
-                   femaleBtn.isSelected -> "Female"
-                   otherBtn.isSelected -> "Other"
-                    else -> "Male"
+                   maleBtn.isSelected -> getString(R.string.male)
+                   femaleBtn.isSelected -> getString(R.string.female)
+                   otherBtn.isSelected -> getString(R.string.other)
+                    else -> getString(R.string.male)
                 }
             }
 
