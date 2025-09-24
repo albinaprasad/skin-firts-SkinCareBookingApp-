@@ -27,8 +27,22 @@ import kotlin.getValue
 
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
+    var isYourself:Boolean = true
     private val viewModel: ScheduleCalenderViewModel by viewModels()
-
+    //TODO replace this with actuall doctor object
+    val dummyDoctor = Doctor(
+        id = "DOC001",
+        name = "Dr. John Smith",
+        specialization = "Cardiologist",
+        experience = 10,
+        profileImageUrl ="olivia_turner",
+        commentCount = 30,
+        rating = 4.5,
+        startDay = Calendar.MONDAY,
+        endDay = Calendar.SATURDAY,
+        startTime = 9,
+        endTime = 4
+    )
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +54,10 @@ class ScheduleActivity : BaseActivity() {
         dateRecyclerViewSetUp()
         timeslotAdapterSetup()
         listenToButtonClicks()
+        //TODO replace with original doctor ID
         viewModel.setCurrentDoctor("albin123")
         observeBookingStatus()
+        personalDetailsButtonSelection(binding.yourselfTextView)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -58,15 +74,12 @@ class ScheduleActivity : BaseActivity() {
                 is Resource.Success -> {
                     binding.submitButton.isEnabled = true
                     binding.submitButton.text = getString(R.string.book_appointment)
-                    Toast.makeText(this,  getString(R.string.booking_failed), Toast.LENGTH_LONG).show()
-                    val intent = Intent(this, ScheduleDetailsActivity::class.java)
-                    startActivity(intent)
-                    finish()
+
                 }
                 is Resource.Error -> {
                     binding.submitButton.isEnabled = true
-                    binding.submitButton.text = getString(R.string.make_appointment)
-                    Toast.makeText(applicationContext,  getString(R.string.booking_sucess), Toast.LENGTH_LONG).show()
+                    binding.submitButton.text = getString(R.string.book_appointment)
+                    Toast.makeText(applicationContext,  getString(R.string.booking_failed), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -139,17 +152,7 @@ class ScheduleActivity : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun dateRecyclerViewSetUp() {
 
-        //TODO replace this with actuall doctor object
-         val dummyDoctor = Doctor(
-            id = "DOC001",
-            name = "Dr. John Smith",
-            specialization = "Cardiologist",
-            experience = 10,
-            startDay = Calendar.MONDAY,
-            endDay = Calendar.SATURDAY,
-            startTime = 9,
-            endTime = 17
-        )
+
         val dateAdapter = DateAdapterForScheduling(mutableListOf(),dummyDoctor,onDateClick = { selectedDate ->
             viewModel.onDateSelected(selectedDate) })
 
@@ -179,13 +182,13 @@ class ScheduleActivity : BaseActivity() {
                 scheduleRecyclerView.smoothScrollBy(-300, 0)
             }
             maleBtn.setOnClickListener {
-                GenderButtonSelection(maleBtn)
+                genderButtonSelection(maleBtn)
             }
             femaleBtn.setOnClickListener {
-                GenderButtonSelection(femaleBtn)
+                genderButtonSelection(femaleBtn)
             }
             otherBtn.setOnClickListener {
-                GenderButtonSelection(otherBtn)
+                genderButtonSelection(otherBtn)
             }
             yourselfTextView.setOnClickListener {
                 personalDetailsButtonSelection(yourselfTextView)
@@ -205,12 +208,14 @@ class ScheduleActivity : BaseActivity() {
         with(binding)
         {
             val patientName = if (isYourselfSelected()) {
+                //TODO add actuall user here
                  "Current user"
             } else {
                 fullNameEditText.text.toString().trim()
             }
 
             val patientAge = if (isYourselfSelected()) {
+                //TODO add actuall user age here
                30
             } else {
                 ageEditText.text.toString().toIntOrNull() ?: 0
@@ -226,13 +231,27 @@ class ScheduleActivity : BaseActivity() {
 
             val problemDescription = descriptionEditText.text.toString()
 
-            viewModel.createBooking(
+            val personType = if (isYourselfSelected()) {
+                "Yourself"
+            } else {
+                "AnotherPerson"
+            }
+           val bookedObject= viewModel.createBooking(
                 patientName = patientName,
                 patientAge = patientAge,
                 patientGender = patientGender,
                 problemDescription = problemDescription,
-                userId = "1234"
-            )
+                personType=personType,
+                //Todo add actuall use ID here
+                userId = "1234")
+
+               if( bookedObject != null ){
+                   val intent = Intent(this@ScheduleActivity, ScheduleDetailsActivity::class.java)
+                   intent.putExtra("booking_object", bookedObject)
+                   intent.putExtra("doctor_object", dummyDoctor)
+                   startActivity(intent)
+               }
+
         }
     }
         private fun isYourselfSelected(): Boolean {
@@ -266,7 +285,7 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 
-     fun GenderButtonSelection(selectedBtn: TextView) {
+     fun genderButtonSelection(selectedBtn: TextView) {
 
         with(binding) {
 

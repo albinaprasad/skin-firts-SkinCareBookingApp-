@@ -158,69 +158,67 @@ class ScheduleCalenderViewModel : ViewModel() {
         patientAge: Int,
         patientGender: String,
         problemDescription: String,
-        userId: String
-    ) {
+        userId: String,
+        personType: String
+    ):DoctorBooking? {
         val selectedDate = _selectedDate.value
         val selectedSlot = _selectedTimeSlot.value
 
         if (selectedDate == null || selectedSlot == null) {
             _bookingStatus.value = Resource.Error("Please select date and time")
-            return
+            return null
         }
 
         if (!selectedSlot.isAvailable) {
             _bookingStatus.value = Resource.Error("Selected time slot is no longer available")
-            return
+            return null
         }
 
         if (patientName.isBlank()) {
             _bookingStatus.value = Resource.Error("Please enter patient name")
-            return
+            return null
         }
 
         if (patientAge <= 0) {
             _bookingStatus.value = Resource.Error("Please enter valid age")
-            return
+            return null
         }
 
         if (patientGender.isBlank()) {
             _bookingStatus.value = Resource.Error("Please select gender")
-            return
+            return null
         }
 
         if (currentDoctorId.isEmpty()) {
             _bookingStatus.value = Resource.Error("Doctor information missing")
-            return
+            return null
         }
-        viewModelScope.launch {
-
-            val calendar = Calendar.getInstance()
-            val year = calendar.get(Calendar.YEAR)
-            val month = currentMonth + 1
-            val day = selectedDate.dayOfMonth.padStart(2, '0')
-            val formattedDate = "$year-${month.toString().padStart(2, '0')}-$day"
 
 
-            val booking = DoctorBooking(
-                userId = userId,
-                doctorId = currentDoctorId,
-                patientFullName = patientName,
-                patientAge = patientAge,
-                patientGender = patientGender,
-                problemDescription = problemDescription,
-                bookingDate = formattedDate,
-                bookingTime = selectedSlot.timeString
-            )
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = currentMonth + 1
+        val day = selectedDate.dayOfMonth.padStart(2, '0')
+        val formattedDate = "$year-${month.toString().padStart(2, '0')}-$day"
 
-            bookingRepository.createBooking(booking).collect { resource ->
-                _bookingStatus.value = resource
-
-                if (resource is Resource.Success) {
-                    checkSlotAvailability(selectedDate)
-                }
-            }
-        }
+        val booking = DoctorBooking(
+            userId = userId,
+            doctorId = currentDoctorId,
+            patientFullName = patientName,
+            patientAge = patientAge,
+            patientGender = patientGender,
+            problemDescription = problemDescription,
+            bookingDate = formattedDate,
+            personType =personType,
+            bookingTime = selectedSlot.timeString,
+            status = "UPCOMING"
+        )
+        _bookingStatus.value = Resource.Success(true)
+        return booking
     }
 }
+
+
+
 
 

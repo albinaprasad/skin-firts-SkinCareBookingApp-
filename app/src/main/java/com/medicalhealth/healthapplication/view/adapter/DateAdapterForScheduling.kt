@@ -40,7 +40,6 @@ class DateAdapterForScheduling(
         val dateAtThisPosition = dateList[position]
         holder.bind(dateAtThisPosition)
     }
-
     override fun getItemCount(): Int {
         return dateList.size
     }
@@ -48,7 +47,6 @@ class DateAdapterForScheduling(
     inner class DateViewHolder(val binding: ItemDateBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(date: Date) {
             val context = binding.root.context
-
 
             val currentDay = date.dayOfWeek.uppercase()
             val currentDayNumber = Enums.DayOfWeek.entries.find {

@@ -82,7 +82,7 @@
         app:layout_constraintWidth_percent="0.81" />
 
     <TextView
-        android:id="@+id/DateBtn"
+        android:id="@+id/dateBtn"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoSizeMaxTextSize="16dp"
@@ -123,6 +123,7 @@
         app:layout_constraintWidth_percent="0.147">
 
     <ImageButton
+        android:id="@+id/bookBtn"
         android:layout_gravity="start"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -132,8 +133,9 @@
         android:src="@drawable/tick_white"
         />
     <ImageButton
+
         android:layout_gravity="end"
-        android:id="@+id/favBtn"
+        android:id="@+id/cancelBtn"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -144,7 +146,7 @@
         app:tint="@color/white" />
     </LinearLayout>
     <TextView
-        android:id="@+id/GenderTV"
+        android:id="@+id/dayAndTimeTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:autoSizeMaxTextSize="12dp"
@@ -211,6 +213,7 @@
         />
 
         <TextView
+            android:id="@+id/bookedPersonType"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -256,6 +259,7 @@
             />
 
         <TextView
+            android:id="@+id/bookedPersonName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -300,6 +304,7 @@
             />
 
         <TextView
+            android:id="@+id/bookedPersonAge"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -343,6 +348,7 @@
             />
 
         <TextView
+            android:id="@+id/bookedPersonSex"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -395,7 +401,7 @@
         app:layout_constraintWidth_percent="0.208">
     </TextView>
     <TextView
-        android:id="@+id/ProblemDescriptionTV"
+        android:id="@+id/ProblemDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"

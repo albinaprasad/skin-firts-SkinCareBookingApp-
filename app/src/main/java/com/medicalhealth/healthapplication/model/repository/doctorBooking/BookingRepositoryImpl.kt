@@ -17,11 +17,9 @@ class BookingRepositoryImpl(val firestore:FirebaseFirestore): BookingRepository{
                 .add(booking)
                 .await()
 
-            Log.d("BookingRepo", "Booking created successfully")
             emit(Resource.Success(true))
         } catch (e: Exception) {
 
-            Log.e("BookingRepo", "Error creating booking")
             emit(Resource.Error("Failed to create booking"))
         }
     }
