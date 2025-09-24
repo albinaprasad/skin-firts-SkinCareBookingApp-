@@ -1,7 +1,6 @@
 package com.medicalhealth.healthapplication.view.adapter
 
-import android.graphics.drawable.GradientDrawable
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -59,25 +58,32 @@ class DateAdapterForScheduling(
             val isAvailable = currentDayNumber in startDayNumber..endDayNumber
 
             if (isAvailable) {
-                binding.root.isEnabled = true
-                binding.root.isClickable = true
-                binding.dateContainer.alpha = 1.0f
-                binding.dateTextView.alpha = 1.0f
-                binding.dayOfWeekTextView.alpha = 1.0f
-                binding.root.setOnClickListener {
-                    selectedDate?.isSelected = false
-                    date.isSelected = true
-                    selectedDate = date
-                    notifyDataSetChanged()
-                    onDateClick(date)
-                }
+
+               with(binding)
+               {
+                  root.isEnabled = true
+                  root.isClickable = true
+                  dateContainer.alpha = 1.0f
+                  dateTextView.alpha = 1.0f
+                  dayOfWeekTextView.alpha = 1.0f
+                  root.setOnClickListener {
+                       selectedDate?.isSelected = false
+                       date.isSelected = true
+                       selectedDate = date
+                       notifyDataSetChanged()
+                       onDateClick(date)
+                   }
+               }
             } else {
-                binding.root.isEnabled = false
-                binding.root.isClickable = false
-                binding.dateContainer.alpha = 0.3f
-                binding.dateTextView.alpha = 0.3f
-                binding.dayOfWeekTextView.alpha = 0.3f
-                binding.root.setOnClickListener(null)
+
+                with(binding){
+                   root.isEnabled = false
+                   root.isClickable = false
+                   dateContainer.alpha = 0.3f
+                   dateTextView.alpha = 0.3f
+                   dayOfWeekTextView.alpha = 0.3f
+                   root.setOnClickListener(null)
+                }
             }
 
             binding.dateTextView.text = date.dayOfMonth
@@ -85,26 +91,31 @@ class DateAdapterForScheduling(
 
             when {
                 !isAvailable -> {
-
-                    binding.dateContainer.isSelected = false
-                    binding.dateContainer.isEnabled = true
-                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.hintColor))
-                    binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
-                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                with(binding){
+                   dateContainer.isSelected = false
+                   dateContainer.isEnabled = true
+                   dateTextView.setTextColor(ContextCompat.getColor(context, R.color.hintColor))
+                   dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                   dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                    }
                 }
                 date.isToday || date.isSelected -> {
 
-                    binding.dateContainer.isSelected = true
-                    binding.dateContainer.isEnabled = true
-                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
-                    binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                    with(binding){
+                        dateContainer.isSelected = true
+                        dateContainer.isEnabled = true
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                        dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                    }
                 }
                 else -> {
 
-                    binding.dateContainer.isSelected = false
-                    binding.dateContainer.isEnabled = true
-                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
-                    binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                  with(binding){
+                     dateContainer.isSelected = false
+                     dateContainer.isEnabled = true
+                     dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                     dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                  }
                 }
             }
         }

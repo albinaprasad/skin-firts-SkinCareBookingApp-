@@ -67,18 +67,26 @@ class ScheduleActivity : BaseActivity() {
 
             when (resource) {
                 is Resource.Loading -> {
-                    binding.submitButton.isEnabled = false
-                    binding.submitButton.text = getString(R.string.creating_booking)
-                    binding.submitButton.setTextColor(ContextCompat.getColor(this,android.R.color.white))
-                }
-                is Resource.Success -> {
-                    binding.submitButton.isEnabled = true
-                    binding.submitButton.text = getString(R.string.book_appointment)
 
+                    with(binding){
+                       submitButton.isEnabled = false
+                       submitButton.text = getString(R.string.creating_booking)
+                       submitButton.setTextColor(ContextCompat.getColor(this@ScheduleActivity,android.R.color.white))
+
+                    }
+              }
+                is Resource.Success -> {
+                  with(binding){
+                     submitButton.isEnabled = true
+                     submitButton.text = getString(R.string.book_appointment)
+
+                  }
                 }
                 is Resource.Error -> {
-                    binding.submitButton.isEnabled = true
-                    binding.submitButton.text = getString(R.string.book_appointment)
+                   with(binding){
+                     submitButton.isEnabled = true
+                     submitButton.text = getString(R.string.book_appointment)
+                   }
                     Toast.makeText(applicationContext,  getString(R.string.booking_failed), Toast.LENGTH_LONG).show()
                 }
             }
@@ -221,12 +229,14 @@ class ScheduleActivity : BaseActivity() {
                 ageEditText.text.toString().toIntOrNull() ?: 0
             }
 
-            val patientGender = when {
-                binding.maleBtn.isSelected -> "Male"
-                binding.femaleBtn.isSelected -> "Female"
-                binding.otherBtn.isSelected -> "Other"
-                else -> "Male"
-
+            val patientGender =
+                with(binding){
+                    when {
+                   maleBtn.isSelected -> "Male"
+                   femaleBtn.isSelected -> "Female"
+                   otherBtn.isSelected -> "Other"
+                    else -> "Male"
+                }
             }
 
             val problemDescription = descriptionEditText.text.toString()
