@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.CancelAppointment">
+
+    <TextView
+        android:id="@+id/tvCancelAppointment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="36dp"
+        android:includeFontPadding="false"
+        android:autoSizeMaxTextSize="24dp"
+        android:autoSizeMinTextSize="18dp"
+        android:autoSizeTextType="uniform"
+        android:fontFamily="@font/leaguespartan_semibold"
+        android:gravity="center"
+        android:text="@string/cancel_appointment"
+        android:textColor="@color/button_blue"
+        app:layout_constraintDimensionRatio="238:25"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.661" />
+
+    <ImageView
+        android:id="@+id/btnBackCancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCancelAppointment"
+        app:layout_constraintDimensionRatio="14:14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvCancelAppointment"
+        app:layout_constraintWidth_percent="0.0388"
+        app:srcCompat="@drawable/back_button" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toTopOf="@id/reviewBottomNavigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCancelAppointment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvDescriptionCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="5dp"
+                android:autoSizeMaxTextSize="14dp"
+                android:autoSizeMinTextSize="12dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/leaguespartan_regular"
+                android:includeFontPadding="false"
+                android:text="@string/lorem_ipsum"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteX="106dp"
+                tools:layout_editor_absoluteY="119dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_cancel_reasons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescriptionCancel"
+                android:orientation="vertical">
+
+
+
+
+                <RadioButton
+                    android:id="@+id/option_Rescheduling_logic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rescheduling"
+                    android:button="@null"
+                    android:paddingStart="5dp"
+                    android:drawableStart="@drawable/radio_button_selector"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/leaguespartan_regular"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
+
+
+                <RadioButton
+                    android:id="@+id/option_weather_logic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weather_conditions"
+                    android:button="@null"
+                    android:paddingStart="5dp"
+                    android:drawableStart="@drawable/radio_button_selector"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/leaguespartan_regular"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
+
+                <RadioButton
+                    android:id="@+id/option_Unexpected_logic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unexpected_work"
+                    android:button="@null"
+                    android:paddingStart="5dp"
+                    android:drawableStart="@drawable/radio_button_selector"
+                    android:drawablePadding="8dp"
+                    android:fontFamily="@font/leaguespartan_regular"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
+
+                <RadioButton
+                    android:id="@+id/option_Others_logic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/others"
+                    android:button="@null"
+
+                    android:drawableStart="@drawable/radio_button_selector"
+                    android:drawablePadding="8dp"
+                    android:paddingStart="5dp"
+                    android:fontFamily="@font/leaguespartan_regular"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/radio_selector_background"/>
+
+            </RadioGroup>
+
+
+
+            <TextView
+                android:id="@+id/subtitle_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="14dp"
+                android:autoSizeMaxTextSize="14dp"
+                android:autoSizeMinTextSize="12dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/leaguespartan_regular"
+                android:includeFontPadding="false"
+                android:text="@string/lorem_ipsum"
+                android:textColor="@color/lavender"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rg_cancel_reasons"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteX="106dp"
+                tools:layout_editor_absoluteY="119dp" />
+
+
+
+                <EditText
+                    android:id="@+id/tv_Reason"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="15dp"
+                    android:paddingTop="20dp"
+                    android:paddingStart="13dp"
+                    android:background="@drawable/description_background_layout"
+                    app:layout_constraintDimensionRatio="300:166"
+                    android:ems="10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/subtitle_two"
+                    android:gravity="start"
+                    app:layout_constraintWidth_percent="0.833"
+                    android:hint="Enter Your Reason Here..."
+                    android:inputType="text"
+                    android:textColorHint="@color/light_blue"
+                    android:textSize="15dp" />
+
+
+            <Button
+                android:id="@+id/btnCancelAppointment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="70dp"
+                android:autoSizeMaxTextSize="24dp"
+                android:autoSizeMinTextSize="18dp"
+                android:autoSizeTextType="uniform"
+                android:backgroundTint="@color/button_blue"
+                android:fontFamily="@font/leaguespartan_regular"
+                android:includeFontPadding="false"
+                android:text="@string/cancel_appointment"
+                app:layout_constraintDimensionRatio="256:48"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_Reason"
+                app:layout_constraintWidth_percent="0.711" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/reviewBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.090"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include
+            android:id="@+id/review_bottom_navigation_bar"
+            layout="@layout/bottom_navigation_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.62"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.8250" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

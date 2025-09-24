@@ -14,37 +14,59 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import com.medicalhealth.healthapplication.model.data.Schedule
-import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
 
-class DoctorsListViewModel(private val repository: DoctorDetailsRepository = DoctorDetailsRepositoryImpl(
-    FirebaseFirestore.getInstance())) : ViewModel() {
+class DoctorsListViewModel(
+    private val repository: DoctorDetailsRepository = DoctorDetailsRepositoryImpl(
+        FirebaseFirestore.getInstance()
+    )
+) : ViewModel() {
 
     private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(
         value = Resource.Loading()
     )
     val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
 
+    private var allDoctors: List<Doctor>? = null
+
     private val _date = MutableLiveData<List<Schedule>>()
     val date: LiveData<List<Schedule>> get() = _date
 
     init {
-        fetchAllDoctors()
         //addDoctorDetails()
         _date.value = listOf(
-            Schedule("Sunday,12 June","9.30AM-10.00AM"),
-            Schedule("Friday,20 June","2.30PM-3.00PM"),
-            Schedule("Tuesday,15 June","9.30AM-10.00AM"),
-            Schedule("Monday,14 June","3.00PM-3.30PM")
+            Schedule("Sunday,12 June", "9.30AM-10.00AM"),
+            Schedule("Friday,20 June", "2.30PM-3.00PM"),
+            Schedule("Tuesday,15 June", "9.30AM-10.00AM"),
+            Schedule("Monday,14 June", "3.00PM-3.30PM")
         )
     }
 
-    private fun fetchAllDoctors() {
-        viewModelScope.launch {
-            repository.getDoctors().collect { result ->
-                _doctors.value = result
-                Log.d("message", "->>>>>${result.data}")
-            }
+     fun loadDoctors(filterType: String) {
+         if (allDoctors != null) {
+             filterAndEmit(allDoctors!!, filterType)
+         } else {
+             viewModelScope.launch {
+                 repository.getDoctors().collect { result ->
+                     if (result is Resource.Success) {
+                         allDoctors = result.data?.sortedBy { it.name }
+                         filterAndEmit(allDoctors!!, filterType)
+                         Log.d("message", "All doctors fetched: ${allDoctors?.size}")
+                     } else {
+                         _doctors.value = result
+                     }
+                 }
+             }
+         }
+     }
+
+    private fun filterAndEmit(doctorsList: List<Doctor>, filterType: String) {
+        val filteredList = when (filterType) {
+            "Male" -> doctorsList.filter { it.gender == 0 }
+            "Female" -> doctorsList.filter { it.gender == 1 }
+            else -> doctorsList
         }
+        _doctors.value = Resource.Success(filteredList)
+        Log.d("message", "Filtered list for $filterType: ${filteredList.size}")
     }
 
 //    private fun addDoctorDetails(){
