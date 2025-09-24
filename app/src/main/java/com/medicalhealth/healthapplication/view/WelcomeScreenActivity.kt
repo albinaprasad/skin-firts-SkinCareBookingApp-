@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBinding
-import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
-import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 
 class WelcomeScreenActivity : BaseActivity() {
@@ -17,7 +15,7 @@ class WelcomeScreenActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.btnlogin.setOnClickListener {
-            val Loginintent = Intent(this,ScheduleActivity::class.java)
+            val Loginintent = Intent(this, LoginActivity::class.java)
             startActivity(Loginintent)
         }
         binding.btnsignup.setOnClickListener {
