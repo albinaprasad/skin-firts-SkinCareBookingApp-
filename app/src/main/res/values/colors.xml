@@ -11,4 +11,7 @@
     <color name="backgroundColor">#2260FF</color>
     <color name="edittext_backgroundColor">#ECF1FF</color>
     <color name="edittext_hintColor">#809CFF</color>
+    <color name="blue_white">#ECF1FF</color>
+    <color name="lavender">#809CFF</color>
+    <color name="light_blue">#2260FF</color>
 </resources>
