@@ -96,8 +96,6 @@ class AppointmentAdapter(
             }
 
         }
-
-
     }
 
     override fun getItemCount(): Int {
@@ -116,7 +114,7 @@ class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
             tvDoctorName.text = appointment.name
             tvSpecialization.text = appointment.specialization
             tvDoctorRating.text = appointment.rating.toString()
-            textCareer.setOnClickListener {
+            tvRebook.setOnClickListener {
                 Toast.makeText(context, "Rebooking..", Toast.LENGTH_SHORT).show()
             }
             tvAddReview.setOnClickListener {

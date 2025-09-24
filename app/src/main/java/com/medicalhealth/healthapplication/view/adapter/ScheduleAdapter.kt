@@ -25,8 +25,8 @@ class ScheduleAdapter(private var appointments: List<Appointment>) :
     override fun onBindViewHolder(holder: ScheduleAdapter.AppointmentViewHolder, position: Int) {
         val appointment = appointments[position]
         with(holder.binding){
-            doctorNameTextView.text = appointment.doctorName
-            treatmentTextView.text = appointment.treatment
+            doctorNameTextView.text = appointment.doctorId
+            treatmentTextView.text = appointment.problemDescription
         }
     }
 

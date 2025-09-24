@@ -26,23 +26,16 @@ class MainViewModel(
     private val _appointments = MutableLiveData<List<Appointment>>()
     val appointment: LiveData<List<Appointment>> get() = _appointments
 
-    private val _dummyDoctors = MutableLiveData<List<Doctor>>()
-    val dummyDoctors: LiveData<List<Doctor>> get() = _dummyDoctors
-
     private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
     val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
 
+    private val dayNames = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+
     init {
         fetchAllDoctors()
-        _dates.value = listOf(
-            Date("9", "MON", false),
-            Date("10", "TUE", false),
-            Date("11", "WED", true),
-            Date("12", "THU", false),
-            Date("13", "FRI", true),
-            Date("14", "SAT", true),
-        )
-        _appointments.value = listOf(
+        _dates.value = mutableListOf()
+        generateMonthDates()
+      _appointments.value = listOf(
             Appointment(
                 "1",
                 "10 AM",
@@ -75,127 +68,7 @@ class MainViewModel(
             )
         )
 
-        _dummyDoctors.value = listOf(
-            Doctor(
-                "1",
-                "Dr. Olivia Turner, M.D.",
-                "alexander_bennett",
-                "Dermato-Endocrinology",
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                17,
-                0,
-                5.0,
-                40
-            ),
-            Doctor(
-                "2",
-                "Dr. Alexander Bennett, Ph.D.",
-                "alexander_bennett",
-                "Dermato-Genetics",
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                0,
-                7,
-                4.5,
-                40
-            ),
-            Doctor(
-                "3",
-                "Dr. Sophia Martinez, Ph.D.",
-                "alexander_bennett",
-                "Cosmetic Bioengineering",
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                0,
-                7,
-                5.0,
-                150
-            ),
-            Doctor(
-                "4",
-                "Dr. Michael Davidson, M.D.",
-                "alexander_bennett",
-                "Nano-Dermatology",
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                0,
-                7,
-                4.8,
-                90
-            ),
-            Doctor(
-                "4",
-                "Dr. Michael Davidson, M.D.",
-                "alexander_bennett",
-                "Nano-Dermatology",
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                0,
-                7,
-                4.8,
-                90
-            ),
-            Doctor(
-                "4",
-                "Dr. Michael Davidson, M.D.",
-                "alexander_bennett",
-                "Nano-Dermatology",
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                0,
-                7,
-                4.8,
-                90
-            ),
-            Doctor(
-                "4",
-                "Dr. Michael Davidson, M.D.",
-                "alexander_bennett",
-                "Nano-Dermatology",
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                0,
-                7,
-                4.8,
-                90
-            )
-        )
+
     }
 
     fun selectDate(selectedDate: Date) {
@@ -216,5 +89,20 @@ class MainViewModel(
                 _doctors.value = it
             }
         }
+    }
+
+    private fun generateMonthDates(){
+        val newDateList = mutableListOf<Date>()
+        val today = java.util.Calendar.getInstance()
+        val currentDay = today.get(java.util.Calendar.DAY_OF_MONTH)
+        val daysInMonth = today.getActualMaximum(java.util.Calendar.DAY_OF_MONTH)
+        for(day in 1..daysInMonth){
+            today.set(java.util.Calendar.DAY_OF_MONTH, day)
+            val dayOfWeek = today.get(java.util.Calendar.DAY_OF_WEEK)
+            val isToday = (day == currentDay)
+            val date = Date(day.toString(), dayNames[dayOfWeek - 1], false, isToday)
+            newDateList.add(date)
+        }
+        _dates.value = newDateList
     }
 }

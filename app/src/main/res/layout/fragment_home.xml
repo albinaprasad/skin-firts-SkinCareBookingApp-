@@ -271,14 +271,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dateRecyclerView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingVertical="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/scheduleContainer"
             app:layout_constraintEnd_toEndOf="@id/scheduleContainer"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@id/scheduleContainer"
             app:layout_constraintTop_toTopOf="@id/offBlueConstraint"
             tools:listitem="@layout/item_date" />

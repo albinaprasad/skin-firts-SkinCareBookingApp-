@@ -2,6 +2,7 @@ package com.medicalhealth.healthapplication.view.homeScreen
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,6 +43,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setUpRecyclerView()
         observeViewModel()
         setUpListeners()
+        val today = java.util.Calendar.getInstance()
+        Log.d("message", "Month: ${today.get(java.util.Calendar.MONTH)}")
+        Log.d("message", "Days: ${today.getActualMaximum(java.util.Calendar.DAY_OF_MONTH)}")
+        val currentDay = today.get(java.util.Calendar.DAY_OF_MONTH)
+        Log.d("message", "$today")
     }
 
     private fun setUpRecyclerView() {
