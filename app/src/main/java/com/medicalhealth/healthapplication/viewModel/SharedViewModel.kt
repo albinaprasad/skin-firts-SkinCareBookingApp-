@@ -12,7 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
-import com.medicalhealth.healthapplication.model.data.DoctorBooking
+import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
@@ -131,7 +131,7 @@ class SharedViewModel: ViewModel() {
 
     }
 
-    fun confrimBooking(booking: DoctorBooking, context: ScheduleDetailsActivity) {
+    fun confrimBooking(booking: Appointment, context: ScheduleDetailsActivity) {
         viewModelScope.launch {
             bookingRepository.createBooking(booking).collect { resource ->
                 when(resource)

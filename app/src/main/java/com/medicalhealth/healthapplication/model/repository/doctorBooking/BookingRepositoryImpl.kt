@@ -3,14 +3,14 @@ package com.medicalhealth.healthapplication.model.repository.doctorBooking
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
-import com.medicalhealth.healthapplication.model.data.DoctorBooking
+import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
 class BookingRepositoryImpl(val firestore:FirebaseFirestore): BookingRepository{
-    override suspend fun createBooking(booking: DoctorBooking): Flow<Resource<Boolean>> = flow {
+    override suspend fun createBooking(booking: Appointment): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
             firestore.collection("bookings")
@@ -47,7 +47,7 @@ class BookingRepositoryImpl(val firestore:FirebaseFirestore): BookingRepository{
         }
     }
 
-    override suspend fun getUserBookings(userId: String): Flow<Resource<List<DoctorBooking>>> = flow {
+    override suspend fun getUserBookings(userId: String): Flow<Resource<List<Appointment>>> = flow {
 
         emit(Resource.Loading())
         try {
@@ -57,7 +57,7 @@ class BookingRepositoryImpl(val firestore:FirebaseFirestore): BookingRepository{
                 .await()
 
             val userBookings = snapshot.documents.mapNotNull { documentSnapshot ->
-                documentSnapshot.toObject<DoctorBooking>()
+                documentSnapshot.toObject<Appointment>()
             }
             emit(Resource.Success(userBookings))
         }

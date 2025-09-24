@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Date
-import com.medicalhealth.healthapplication.model.data.DoctorBooking
+import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.TimeSlot
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
@@ -35,8 +35,8 @@ class ScheduleCalenderViewModel : ViewModel() {
     val bookingStatus: LiveData<Resource<Boolean>> get() = _bookingStatus
     private val _availabilityStatus = MutableLiveData<Resource<List<String>>>()
     val availabilityStatus: LiveData<Resource<List<String>>> get() = _availabilityStatus
-    private val _userBookings = MutableLiveData<Resource<List<DoctorBooking>>>()
-    val userBookings: LiveData<Resource<List<DoctorBooking>>> get() = _userBookings
+    private val _userBookings = MutableLiveData<Resource<List<Appointment>>>()
+    val userBookings: LiveData<Resource<List<Appointment>>> get() = _userBookings
 
     private val _selectedDate = MutableLiveData<Date?>()
     val selectedDate: LiveData<Date?> get() = _selectedDate
@@ -160,7 +160,7 @@ class ScheduleCalenderViewModel : ViewModel() {
         problemDescription: String,
         userId: String,
         personType: String
-    ):DoctorBooking? {
+    ):Appointment? {
         val selectedDate = _selectedDate.value
         val selectedSlot = _selectedTimeSlot.value
 
@@ -201,7 +201,7 @@ class ScheduleCalenderViewModel : ViewModel() {
         val day = selectedDate.dayOfMonth.padStart(2, '0')
         val formattedDate = "$year-${month.toString().padStart(2, '0')}-$day"
 
-        val booking = DoctorBooking(
+        val booking = Appointment(
             userId = userId,
             doctorId = currentDoctorId,
             patientFullName = patientName,

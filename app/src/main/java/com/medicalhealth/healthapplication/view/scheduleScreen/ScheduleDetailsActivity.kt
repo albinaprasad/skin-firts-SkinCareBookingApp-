@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.medicalhealth.healthapplication.R
-import com.medicalhealth.healthapplication.model.data.DoctorBooking
+import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleDetailsBinding
 import com.medicalhealth.healthapplication.databinding.ItemDoctorProfileBinding
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
@@ -18,7 +18,7 @@ class ScheduleDetailsActivity : BaseActivity() {
     private lateinit var binding: ActivityScheduleDetailsBinding
     private val viewModel: SharedViewModel by viewModels()
 
-    private lateinit var booking: DoctorBooking
+    private lateinit var booking: Appointment
     private lateinit var doctor: Doctor
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class ScheduleDetailsActivity : BaseActivity() {
         }
 
          doctor =intent.getSerializableExtra("doctor_object") as Doctor
-        booking=intent.getSerializableExtra("booking_object")as DoctorBooking
+        booking=intent.getSerializableExtra("booking_object")as Appointment
 
         viewModel.selectDoctor(doctor)
 
@@ -76,7 +76,7 @@ class ScheduleDetailsActivity : BaseActivity() {
     }
 
     private fun splitDayAndMonthFromDate(): Triple<String, String, String> {
-        val dateString = booking.bookingDate.toString()
+        val dateString = booking.bookingDate
         val dateParts = dateString.split("-")
         val year = dateParts[0].toInt()
         val month= dateParts[1].toInt()
