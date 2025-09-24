@@ -36,6 +36,7 @@ class ScheduleDetailsActivity : BaseActivity() {
             "Dr. Michael Davidson, M.D.",
             "alexander_bennett",
             "Nano-Dermatology",
+            0,
             15,
             "",
             "",

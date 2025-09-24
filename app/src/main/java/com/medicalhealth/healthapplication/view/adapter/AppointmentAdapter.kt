@@ -1,6 +1,7 @@
 package com.medicalhealth.healthapplication.view.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.medicalhealth.healthapplication.databinding.UpcomingAppointmentBindin
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.UpcomingAppointment
+import com.medicalhealth.healthapplication.view.CancelAppointment
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.squareup.picasso.Picasso
 
@@ -152,6 +154,10 @@ class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding) :
             tvSpecialization.text = upcoming.doctor.specialization
             tvDateOfAppointment.text = upcoming.schedule.day
             tvTimeOfAppointment.text = upcoming.schedule.time
+            btnCross.setOnClickListener {
+                val intent = Intent(context,CancelAppointment::class.java)
+                context.startActivity(intent)
+            }
             cvDetails.setOnClickListener {
                 Toast.makeText(context, "Details...", Toast.LENGTH_SHORT).show()
             }

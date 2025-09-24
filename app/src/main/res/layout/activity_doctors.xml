@@ -173,6 +173,7 @@
             android:src="@drawable/fav_icon" />
 
         <ImageButton
+            android:id="@+id/femaleBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="4dp"
@@ -183,6 +184,7 @@
             android:src="@drawable/female_icon" />
 
         <ImageButton
+            android:id="@+id/maleBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"

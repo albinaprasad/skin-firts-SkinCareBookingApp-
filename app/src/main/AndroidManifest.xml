@@ -22,6 +22,9 @@
             android:name=".view.reviewScreen.ReviewActivity"
             android:exported="false" />
         <activity
+            android:name=".view.CancelAppointment"
+            android:exported="false" />
+        <activity
             android:name=".view.PrivacyPolicyActivity"
             android:exported="false" />
         <activity
