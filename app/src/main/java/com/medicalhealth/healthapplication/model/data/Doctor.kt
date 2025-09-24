@@ -5,6 +5,7 @@ data class Doctor(
     val name: String = "",
     val profileImageUrl: String = "",
     val specialization: String = "",
+    val gender: Int = 0,
     val experience: Int = 0,
     val focus: String = "",
     val profile: String = "",

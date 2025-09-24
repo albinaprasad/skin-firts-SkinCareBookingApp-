@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.databinding.FragmentRatingBinding
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.adapter.RatingsAdapter
-import com.medicalhealth.healthapplication.viewModel.MainViewModel
+import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
 import kotlinx.coroutines.launch
 import kotlin.getValue
 
 
 class RatingFragment : Fragment() {
     lateinit var ratingBinding: FragmentRatingBinding
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: DoctorsListViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -27,6 +27,11 @@ class RatingFragment : Fragment() {
         ratingBinding = FragmentRatingBinding.inflate(inflater, container, false)
         setUpAdapter()
         return (ratingBinding.root)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.loadDoctors("ALL")
     }
 
     private fun setUpAdapter() {
@@ -39,9 +44,7 @@ class RatingFragment : Fragment() {
             viewModel.doctors.collect { resource ->
                 when (resource) {
                     is Resource.Success -> {
-                        resource.data?.let { doctorsList ->
-                            adapter.updateData(doctorsList)
-                        }
+                        adapter.updateData(resource.data?.sortedWith(compareByDescending{it.rating}) ?: emptyList())
                     }
 
                     else -> {
