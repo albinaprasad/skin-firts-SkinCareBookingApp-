@@ -27,7 +27,7 @@ import kotlin.getValue
 
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
-    var isYourself:Boolean = true
+  
     private val viewModel: ScheduleCalenderViewModel by viewModels()
     //TODO replace this with actuall doctor object
     val dummyDoctor = Doctor(
