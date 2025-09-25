@@ -3,6 +3,7 @@ package com.medicalhealth.healthapplication.view.scheduleScreen
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -30,19 +31,21 @@ class ScheduleActivity : BaseActivity() {
 
     private val viewModel: ScheduleCalenderViewModel by viewModels()
     //TODO replace this with actuall doctor object
-    val dummyDoctor = Doctor(
-        id = "DOC001",
-        name = "Dr. John Smith",
-        specialization = "Cardiologist",
-        experience = 10,
-        profileImageUrl ="olivia_turner",
-        commentCount = 30,
-        rating = 4.5,
-        startDay = Calendar.MONDAY,
-        endDay = Calendar.SATURDAY,
-        startTime = 9,
-        endTime = 4
-    )
+//    val dummyDoctor = Doctor(
+//        id = "DOC001",
+//        name = "Dr. John Smith",
+//        specialization = "Cardiologist",
+//        experience = 10,
+//        profileImageUrl ="olivia_turner",
+//        commentCount = 30,
+//        rating = 4.5,
+//        startDay = Calendar.MONDAY,
+//        endDay = Calendar.SATURDAY,
+//        startTime = 9,
+//        endTime = 4
+//    )
+lateinit var dummyDoctor: Doctor
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,14 +53,26 @@ class ScheduleActivity : BaseActivity() {
         binding = ActivityScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+        getDoctorData()
         spinnerSetUp()
         dateRecyclerViewSetUp()
         timeslotAdapterSetup()
         listenToButtonClicks()
-        //TODO replace with original doctor ID
-        viewModel.setCurrentDoctor("albin123")
         observeBookingStatus()
+
+        viewModel.setCurrentDoctor(dummyDoctor.id)
         personalDetailsButtonSelection(binding.yourselfTextView)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getDoctorData() {
+        dummyDoctor =intent.getSerializableExtra("clicked_doctor") as Doctor
+        viewModel.setDoctor(dummyDoctor)
+        viewModel.currentDoctor.observe(this){ doctor->
+          binding.titleText.text=doctor.name
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -69,6 +84,7 @@ class ScheduleActivity : BaseActivity() {
                 is Resource.Loading -> {
 
                     with(binding){
+
                        submitButton.isEnabled = false
                        submitButton.text = getString(R.string.creating_booking)
                        submitButton.setTextColor(ContextCompat.getColor(this@ScheduleActivity,android.R.color.white))
@@ -261,7 +277,6 @@ class ScheduleActivity : BaseActivity() {
                    intent.putExtra("doctor_object", dummyDoctor)
                    startActivity(intent)
                }
-
         }
     }
         private fun isYourselfSelected(): Boolean {
@@ -345,4 +360,6 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 }
+
+
 

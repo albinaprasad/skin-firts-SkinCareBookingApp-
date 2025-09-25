@@ -122,7 +122,6 @@ class DateAdapterForScheduling(
 
                     else -> {
 
-
                         dateContainer.isSelected = false
                         dateContainer.isEnabled = true
                         dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
@@ -132,7 +131,6 @@ class DateAdapterForScheduling(
                                 R.color.black
                             )
                         )
-
                     }
                 }
             }

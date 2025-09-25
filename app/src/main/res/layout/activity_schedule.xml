@@ -32,8 +32,8 @@
         android:text="@string/dr_olivia_turner_m_d"
         android:textColor="@color/white"
         android:includeFontPadding="false"
-        android:autoSizeMinTextSize="13dp"
-        android:autoSizeMaxTextSize="16dp"
+        android:autoSizeMinTextSize="12dp"
+        android:autoSizeMaxTextSize="14dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +43,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.089"
-        app:layout_constraintWidth_percent="0.4356" />
+        app:layout_constraintWidth_percent="0.4356"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:paddingStart="5dp"
+        android:singleLine="true"/>
 
     <LinearLayout
         android:id="@+id/filterButtons"
@@ -273,10 +277,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="13dp"
+        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintTop_toBottomOf="@+id/LineOneImageView">
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Appointment
+import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.TimeSlot
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
@@ -19,6 +20,9 @@ import java.util.Calendar
 
 @RequiresApi(Build.VERSION_CODES.O)
 class ScheduleCalenderViewModel : ViewModel() {
+
+    private var _currentDoctor = MutableLiveData<Doctor>()
+    val currentDoctor: LiveData<Doctor> get() = _currentDoctor
 
     private val bookingRepository: BookingRepository =
         BookingRepositoryImpl(FirebaseFirestore.getInstance())
@@ -160,7 +164,7 @@ class ScheduleCalenderViewModel : ViewModel() {
         problemDescription: String,
         userId: String,
         personType: String
-    ):Appointment? {
+        ):Appointment? {
         val selectedDate = _selectedDate.value
         val selectedSlot = _selectedTimeSlot.value
 
@@ -215,6 +219,10 @@ class ScheduleCalenderViewModel : ViewModel() {
         )
         _bookingStatus.value = Resource.Success(true)
         return booking
+    }
+
+    fun setDoctor(dummyDoctor: Doctor) {
+        _currentDoctor.value= dummyDoctor
     }
 }
 
