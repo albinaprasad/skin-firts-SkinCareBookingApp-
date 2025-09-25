@@ -2,15 +2,28 @@ package com.medicalhealth.healthapplication.viewModel
 
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.model.data.Appointment
+import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
+import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
+import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleDetailsActivity
+import kotlinx.coroutines.launch
 
 class SharedViewModel: ViewModel() {
+
+
+    private val bookingRepository: BookingRepository =
+        BookingRepositoryImpl(FirebaseFirestore.getInstance())
 
     private val _selectedDoctor = MutableLiveData<Doctor>()
     val selectedDoctor: LiveData<Doctor> = _selectedDoctor
@@ -116,5 +129,24 @@ class SharedViewModel: ViewModel() {
         val formattedHour = if(hour == 0) 12 else hour
         return "$formattedHour:00$amPm"
 
+    }
+
+    fun confrimBooking(booking: Appointment, context: ScheduleDetailsActivity) {
+        viewModelScope.launch {
+            bookingRepository.createBooking(booking).collect { resource ->
+                when(resource)
+                {
+                    is Resource.Success->{
+                        Toast.makeText(context, context.getString(R.string.booking_sucess), Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Error<*> -> {
+                        Toast.makeText(context,context.getString(R.string.booking_failed) , Toast.LENGTH_SHORT).show()
+                    }
+                    else -> {
+
+                    }
+                }
+            }
+        }
     }
 }

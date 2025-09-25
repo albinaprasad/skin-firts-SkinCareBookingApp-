@@ -5,15 +5,21 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.medicalhealth.healthapplication.R
+import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleDetailsBinding
 import com.medicalhealth.healthapplication.databinding.ItemDoctorProfileBinding
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.utils.enums.Enums
 import com.medicalhealth.healthapplication.view.BaseActivity
+import java.util.Calendar
 
 class ScheduleDetailsActivity : BaseActivity() {
     private lateinit var binding: ActivityScheduleDetailsBinding
     private val viewModel: SharedViewModel by viewModels()
+
+    private lateinit var booking: Appointment
+    private lateinit var doctor: Doctor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +28,7 @@ class ScheduleDetailsActivity : BaseActivity() {
         setContentView(binding.root)
 
         setupDoctorData()
+        buttonClickListeners()
     }
 
     private fun setupDoctorData() {
@@ -31,26 +38,11 @@ class ScheduleDetailsActivity : BaseActivity() {
             }
         }
 
-        val doctor = Doctor(
-            "4",
-            "Dr. Michael Davidson, M.D.",
-            "alexander_bennett",
-            "Nano-Dermatology",
-            0,
-            15,
-            "",
-            "",
-            "",
-            "",
-            9,
-            17,
-            0,
-            7,
-            4.8,
-            90
-        )
+         doctor =intent.getSerializableExtra("doctor_object") as Doctor
+        booking=intent.getSerializableExtra("booking_object")as Appointment
 
         viewModel.selectDoctor(doctor)
+
     }
 
     private fun updateDoctorProfile(doctor: Doctor) {
@@ -66,6 +58,55 @@ class ScheduleDetailsActivity : BaseActivity() {
         }
         binding.doctorCardContainer.removeAllViews()
         binding.doctorCardContainer.addView(doctorProfileBinding.root)
+
+        val (monthDay, dayName, year) = splitDayAndMonthFromDate()
+
+        with(binding){
+
+            dateBtn.text = monthDay+","+year
+            dayAndTimeTextView.text= "$dayName,${booking.bookingTime}"
+
+            bookedPersonName.text=booking.patientFullName
+            bookedPersonAge.text=booking.patientAge.toString()
+            bookedPersonSex.text=booking.patientGender
+            ProblemDescriptionTextView.text=booking.problemDescription
+            bookedPersonType.text=booking.personType
+
+        }
+    }
+
+    private fun splitDayAndMonthFromDate(): Triple<String, String, String> {
+        val dateString = booking.bookingDate
+        val dateParts = dateString.split("-")
+        val year = dateParts[0].toInt()
+        val month= dateParts[1].toInt()
+        val day =dateParts[2].toInt()
+
+          val calendar = Calendar.getInstance()
+        calendar.set(year, month - 1, day)
+
+        val months = resources.getStringArray(R.array.months)
+        val monthName = months[month - 1]
+
+        val dayOfWeekInt = calendar.get(Calendar.DAY_OF_WEEK)
+        val dayOfWeek = Enums.DayOfWeek.entries.find { it.calendarNumber == dayOfWeekInt }?.name ?: "UNKNOWN"
+
+        val monthDay = "$monthName $day"
+        val dayName = dayOfWeek
+        val yearString = year.toString()
+
+        return Triple(monthDay,dayName,yearString)
+
+    }
+    fun buttonClickListeners(){
+        with(binding){
+            bookBtn.setOnClickListener {
+                viewModel.confrimBooking(booking,this@ScheduleDetailsActivity)
+            }
+            cancelBtn.setOnClickListener {
+                finish()
+            }
+        }
 
     }
 }

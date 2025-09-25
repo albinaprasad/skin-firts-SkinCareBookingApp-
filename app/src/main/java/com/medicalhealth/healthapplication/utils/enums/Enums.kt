@@ -1,6 +1,7 @@
 package com.medicalhealth.healthapplication.utils.enums
 
 import com.medicalhealth.healthapplication.R
+import java.util.Calendar
 
 class Enums {
     enum class MessageType(val value: String) {
@@ -42,4 +43,15 @@ class Enums {
         CANCELLED
     }
 
+    enum class DayOfWeek(val calendarNumber: Int) {
+
+        SUN(Calendar.SUNDAY),
+        MON(Calendar.MONDAY),
+        TUE(Calendar.TUESDAY),
+        WED(Calendar.WEDNESDAY),
+        THU(Calendar.THURSDAY),
+        FRI(Calendar.FRIDAY),
+        SAT(Calendar.SATURDAY)
+
+    }
 }
