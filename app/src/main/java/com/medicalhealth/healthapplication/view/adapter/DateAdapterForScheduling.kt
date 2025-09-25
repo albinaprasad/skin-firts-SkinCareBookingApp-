@@ -1,6 +1,6 @@
 package com.medicalhealth.healthapplication.view.adapter
 
-import android.graphics.drawable.GradientDrawable
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -8,9 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ItemDateBinding
 import com.medicalhealth.healthapplication.model.data.Date
+import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.utils.enums.Enums
+import java.util.Calendar
 
-class DateAdapterForScheduling(var dateList: MutableList<Date>): RecyclerView.Adapter<DateAdapterForScheduling.DateViewHolder>() {
+class DateAdapterForScheduling(
+    var dateList: MutableList<Date>,
+    private val doctorObj: Doctor,
+    private val onDateClick: (Date) -> Unit
+) : RecyclerView.Adapter<DateAdapterForScheduling.DateViewHolder>() {
 
+    private var selectedDate: Date? = null
 
     fun updateDates(newDateList: List<Date>) {
         dateList.clear()
@@ -18,10 +26,7 @@ class DateAdapterForScheduling(var dateList: MutableList<Date>): RecyclerView.Ad
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): DateViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DateViewHolder {
         val view = ItemDateBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
@@ -30,54 +35,107 @@ class DateAdapterForScheduling(var dateList: MutableList<Date>): RecyclerView.Ad
         return DateViewHolder(view)
     }
 
-
-    override fun onBindViewHolder(
-        holder: DateViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: DateViewHolder, position: Int) {
         val dateAtThisPosition = dateList[position]
         holder.bind(dateAtThisPosition)
     }
-
     override fun getItemCount(): Int {
-      return dateList.size
+        return dateList.size
     }
-
-    inner class DateViewHolder(val binding: ItemDateBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class DateViewHolder(val binding: ItemDateBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(date: Date) {
-            binding.dateTextView.text = date.dayOfMonth
-            binding.dayOfWeekTextView.text = date.dayOfWeek
             val context = binding.root.context
-            when {
-                date.isToday -> {
-                    // Create curved background for today's date
-                    val todayDrawable = GradientDrawable().apply {
-                        shape = GradientDrawable.RECTANGLE
-                        setColor(ContextCompat.getColor(context, R.color.backgroundColor))
-                        cornerRadius = 40f // Curved corners
-                    }
-                    binding.dateContainer.background = todayDrawable
 
-                    // White text for today
-                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
-                    binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+            val currentDay = date.dayOfWeek.uppercase()
+            val currentDayNumber = Enums.DayOfWeek.entries.find {
+                it.name == currentDay
+            }?.calendarNumber ?: Enums.DayOfWeek.MON.calendarNumber
+
+            val startDayNumber = if (doctorObj.startDay in 1..7) doctorObj.startDay else Calendar.MONDAY
+            val endDayNumber = if (doctorObj.endDay in 1..7) doctorObj.endDay else Calendar.SATURDAY
+
+            val isAvailable = currentDayNumber in startDayNumber..endDayNumber
+
+            with(binding) {
+
+                if (isAvailable) {
+                    root.isEnabled = true
+                    root.isClickable = true
+                    dateContainer.alpha = 1.0f
+                    dateTextView.alpha = 1.0f
+                    dayOfWeekTextView.alpha = 1.0f
+                    root.setOnClickListener {
+                        selectedDate?.isSelected = false
+                        date.isSelected = true
+                        selectedDate = date
+                        notifyDataSetChanged()
+                        onDateClick(date)
+                    }
+
+                } else {
+
+                    root.isEnabled = false
+                    root.isClickable = false
+                    dateContainer.alpha = 0.3f
+                    dateTextView.alpha = 0.3f
+                    dayOfWeekTextView.alpha = 0.3f
+                    root.setOnClickListener(null)
+
                 }
 
-                else -> {
+               dateTextView.text = date.dayOfMonth
+               dayOfWeekTextView.text = date.dayOfWeek
 
-                    val selectedDrawable = GradientDrawable().apply {
-                        shape = GradientDrawable.RECTANGLE
-                        setColor(ContextCompat.getColor(context, R.color.white))
-                        cornerRadius = 40f // Curved corners
+                when {
+                    !isAvailable -> {
+
+                        dateContainer.isSelected = false
+                        dateContainer.isEnabled = true
+                        dateTextView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.hintColor
+                            )
+                        )
+                        dayOfWeekTextView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
                     }
-                    binding.dateContainer.background = selectedDrawable
+                    date.isToday || date.isSelected -> {
 
 
-                    binding.dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
-                    binding.dayOfWeekTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        dateContainer.isSelected = true
+                        dateContainer.isEnabled = true
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
+                        dayOfWeekTextView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.white
+                            )
+                        )
+
+                    }
+
+                    else -> {
+
+
+                        dateContainer.isSelected = false
+                        dateContainer.isEnabled = true
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        dayOfWeekTextView.setTextColor(
+                            ContextCompat.getColor(
+                                context,
+                                R.color.black
+                            )
+                        )
+
+                    }
                 }
             }
         }
-
     }
 }

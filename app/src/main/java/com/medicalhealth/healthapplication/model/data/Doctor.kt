@@ -1,5 +1,7 @@
 package com.medicalhealth.healthapplication.model.data
 
+import java.io.Serializable
+
 data class Doctor(
     val id: String = "",
     val name: String = "",
@@ -17,4 +19,4 @@ data class Doctor(
     val endDay: Int = 0,
     val rating: Double = 0.0,
     val commentCount: Int = 0,
-)
+): Serializable

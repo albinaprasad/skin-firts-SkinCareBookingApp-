@@ -9,14 +9,12 @@
     >
 
     <TextView
-
         android:id="@+id/dateTextView"
         android:layout_width="55dp"
         android:layout_height="25dp"
         android:fontFamily="@font/league_spartan_light"
         tools:text="@string/nine_am"
         android:textColor="@color/hintColor"
-        android:background="@drawable/round_corner_hint_bluecolor"
         android:autoSizeMinTextSize="10dp"
         android:autoSizeMaxTextSize="12dp"
         android:autoSizeStepGranularity="1dp"

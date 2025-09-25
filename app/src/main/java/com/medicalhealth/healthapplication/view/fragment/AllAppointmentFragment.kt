@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentAllAppointmentBinding
-import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Schedule
@@ -162,8 +160,6 @@ class AllAppointmentFragment : Fragment() {
         sharedViewModel.setData(completeAppointments)
         binding.btnComplete.isActivated = true
         setUpOnListener()
-
-
     }
 
     private fun setUpOnListener() {
