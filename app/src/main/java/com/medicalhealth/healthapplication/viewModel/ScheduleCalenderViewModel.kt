@@ -55,20 +55,20 @@ class ScheduleCalenderViewModel : ViewModel() {
         currentMonth = monthIndex
 
         val newDateList = mutableListOf<Date>()
-        val today = java.util.Calendar.getInstance()
-        val currentYear = today.get(java.util.Calendar.YEAR)
-        val todayMonth = today.get(java.util.Calendar.MONTH)
-        val currentDay = today.get(java.util.Calendar.DAY_OF_MONTH)
-        val calendar = java.util.Calendar.getInstance()
+        val today =Calendar.getInstance()
+        val currentYear = today.get(Calendar.YEAR)
+        val todayMonth = today.get(Calendar.MONTH)
+        val currentDay = today.get(Calendar.DAY_OF_MONTH)
+        val calendar = Calendar.getInstance()
 
-        calendar.set(java.util.Calendar.YEAR, currentYear)
-        calendar.set(java.util.Calendar.MONTH, monthIndex)
-        calendar.set(java.util.Calendar.DAY_OF_MONTH, 1)
+        calendar.set(Calendar.YEAR, currentYear)
+        calendar.set(Calendar.MONTH, monthIndex)
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
 
-        val daysInMonth = calendar.getActualMaximum(java.util.Calendar.DAY_OF_MONTH)
+        val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         for (day in 1..daysInMonth) {
-            calendar.set(java.util.Calendar.DAY_OF_MONTH, day)
-            val dayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK)
+            calendar.set(Calendar.DAY_OF_MONTH, day)
+            val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
             val isToday = (monthIndex == todayMonth && day == currentDay)
             val date = Date(
                 dayOfMonth = day.toString(),

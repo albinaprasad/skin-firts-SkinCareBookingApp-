@@ -53,8 +53,6 @@ lateinit var dummyDoctor: Doctor
         binding = ActivityScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         getDoctorData()
         spinnerSetUp()
         dateRecyclerViewSetUp()
@@ -62,13 +60,17 @@ lateinit var dummyDoctor: Doctor
         listenToButtonClicks()
         observeBookingStatus()
 
-        viewModel.setCurrentDoctor(dummyDoctor.id)
+
         personalDetailsButtonSelection(binding.yourselfTextView)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getDoctorData() {
         dummyDoctor =intent.getSerializableExtra("clicked_doctor") as Doctor
+        viewModel.setCurrentDoctor(dummyDoctor.id)
+        Log.d("Doctor","${dummyDoctor.startDay   }${dummyDoctor.endDay   }")
+
+        viewModel.setCurrentDoctor(dummyDoctor.id)
         viewModel.setDoctor(dummyDoctor)
         viewModel.currentDoctor.observe(this){ doctor->
           binding.titleText.text=doctor.name
