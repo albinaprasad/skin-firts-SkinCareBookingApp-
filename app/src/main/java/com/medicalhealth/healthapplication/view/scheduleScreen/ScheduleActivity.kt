@@ -60,7 +60,7 @@ lateinit var dummyDoctor: Doctor
         listenToButtonClicks()
         observeBookingStatus()
 
-
+        viewModel.selectTodayDateAsDefault()
         personalDetailsButtonSelection(binding.yourselfTextView)
     }
 
@@ -105,7 +105,7 @@ lateinit var dummyDoctor: Doctor
                      submitButton.isEnabled = true
                      submitButton.text = getString(R.string.book_appointment)
                    }
-                    Toast.makeText(applicationContext,  getString(R.string.booking_failed), Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,  getString(R.string.month_unavailable), Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -362,6 +362,8 @@ lateinit var dummyDoctor: Doctor
         }
     }
 }
+
+
 
 
 

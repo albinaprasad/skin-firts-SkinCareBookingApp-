@@ -54,8 +54,8 @@ class DateAdapterForScheduling(
             val startDayNumber = if (doctorObj.startDay in 1..7) doctorObj.startDay else Calendar.MONDAY
             val endDayNumber = if (doctorObj.endDay in 1..7) doctorObj.endDay else Calendar.SATURDAY
 
-            val isAvailable = currentDayNumber in startDayNumber..endDayNumber
-
+            val isDoctorAvailable = currentDayNumber in startDayNumber..endDayNumber
+            val isAvailable = isDoctorAvailable && date.isAvailable
             with(binding) {
 
                 if (isAvailable) {

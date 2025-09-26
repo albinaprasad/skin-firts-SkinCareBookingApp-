@@ -70,15 +70,34 @@ class ScheduleCalenderViewModel : ViewModel() {
             calendar.set(Calendar.DAY_OF_MONTH, day)
             val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
             val isToday = (monthIndex == todayMonth && day == currentDay)
+            val isBeforeToday =if (monthIndex < todayMonth && currentYear == calendar.get(Calendar.YEAR)){
+                true
+            }else if(monthIndex == todayMonth && day < currentDay &&  currentYear == calendar.get(Calendar.YEAR )){
+                true
+                }
+            else{
+                false
+            }
             val date = Date(
                 dayOfMonth = day.toString(),
                 dayOfWeek = dayNames[dayOfWeek - 1],
-                isSelected = false,
-                isToday = isToday
+                isSelected = isToday &&  monthIndex == todayMonth,
+                isToday = isToday,
+                isAvailable= !isBeforeToday
             )
             newDateList.add(date)
         }
         _dateList.value = newDateList
+        _bookingStatus.value = Resource.Success(true)
+
+        if (monthIndex == todayMonth) {
+            val todayDate = newDateList.find { it.isToday && it.isAvailable }
+            if (todayDate != null) {
+                _selectedDate.value = todayDate
+                generateTimeSlots()
+                checkSlotAvailability(todayDate)
+            }
+        }
     }
 
     fun generateTimeSlots() {
@@ -114,7 +133,11 @@ class ScheduleCalenderViewModel : ViewModel() {
         } ?: emptyList()
         _dateList.value = updatedDates
 
-        checkSlotAvailability(selectedDate)
+        if (selectedDate.isAvailable) {
+            checkSlotAvailability(selectedDate)
+        } else {
+            _timeSlots.value = emptyList()
+        }
 
     }
 
@@ -223,6 +246,22 @@ class ScheduleCalenderViewModel : ViewModel() {
 
     fun setDoctor(dummyDoctor: Doctor) {
         _currentDoctor.value= dummyDoctor
+    }
+
+    fun selectTodayDateAsDefault() {
+        val today = Calendar.getInstance()
+        val todayMonth = today.get(Calendar.MONTH)
+        val currentYear = today.get(Calendar.YEAR)
+
+        if (currentMonth == todayMonth && currentYear == today.get(Calendar.YEAR)) {
+            val todayDate = _dateList.value?.find { it.isToday && it.isAvailable }
+            if (todayDate != null) {
+                _selectedDate.value = todayDate
+                generateTimeSlots()
+                // This will automatically trigger the availability check and display time slots
+                checkSlotAvailability(todayDate)
+            }
+        }
     }
 }
 
