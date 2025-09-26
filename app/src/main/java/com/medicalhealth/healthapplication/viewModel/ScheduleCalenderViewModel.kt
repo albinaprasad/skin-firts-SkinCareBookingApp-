@@ -6,26 +6,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.TimeSlot
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
-import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalTime
 import java.util.Calendar
+import javax.inject.Inject
 
+
+@HiltViewModel
 @RequiresApi(Build.VERSION_CODES.O)
-class ScheduleCalenderViewModel : ViewModel() {
+class ScheduleCalenderViewModel @Inject constructor(private val bookingRepository: BookingRepository): ViewModel() {
 
     private var _currentDoctor = MutableLiveData<Doctor>()
     val currentDoctor: LiveData<Doctor> get() = _currentDoctor
-
-    private val bookingRepository: BookingRepository =
-        BookingRepositoryImpl(FirebaseFirestore.getInstance())
 
     private val _dateList = MutableLiveData<List<Date>>()
     val dateList: LiveData<List<Date>> get() = _dateList

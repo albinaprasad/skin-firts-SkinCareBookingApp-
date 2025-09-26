@@ -18,7 +18,9 @@ import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsF
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DoctorsActivity : BaseActivity() {
     lateinit var binding: ActivityDoctorsBinding
     val sharedViewModel: SharedViewModel by viewModels()

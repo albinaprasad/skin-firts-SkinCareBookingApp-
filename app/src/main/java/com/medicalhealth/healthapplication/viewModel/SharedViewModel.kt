@@ -8,22 +8,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
-import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleDetailsActivity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SharedViewModel: ViewModel() {
-
-
-    private val bookingRepository: BookingRepository =
-        BookingRepositoryImpl(FirebaseFirestore.getInstance())
+@HiltViewModel
+class SharedViewModel @Inject constructor( private val bookingRepository : BookingRepository): ViewModel() {
 
     private val _selectedDoctor = MutableLiveData<Doctor>()
     val selectedDoctor: LiveData<Doctor> = _selectedDoctor

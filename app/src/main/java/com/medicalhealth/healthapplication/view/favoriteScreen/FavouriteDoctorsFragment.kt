@@ -13,9 +13,12 @@ import com.medicalhealth.healthapplication.databinding.FragmentFavouriteDoctorsB
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.adapter.FavDoctorAdapter
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.getValue
 
+
+@AndroidEntryPoint
 class FavouriteDoctorsFragment : Fragment() {
     lateinit var FavBinding: FragmentFavouriteDoctorsBinding
     private val viewModel: MainViewModel by viewModels()

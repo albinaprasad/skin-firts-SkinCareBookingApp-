@@ -21,8 +21,10 @@ import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
 import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
 import com.medicalhealth.healthapplication.view.notificationSetting.NotificationSettingsActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private lateinit var binding: FragmentHomeBinding

@@ -64,7 +64,6 @@
         app:layout_constraintVertical_bias="0.086"
         app:layout_constraintWidth_percent="0.30">
         <ImageButton
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="3dp"
@@ -96,6 +95,7 @@
             android:padding="6dp"
             android:src="@drawable/chat_icon_small" />
         <ImageButton
+            android:id="@+id/infoBtn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="3dp"
@@ -114,7 +114,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/round_button_offblue"
             android:padding="8dp"
-            android:src="@drawable/fav_icon_filled_darkblue" />
+            android:src="@drawable/fav_icon" />
     </LinearLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dateContainer"

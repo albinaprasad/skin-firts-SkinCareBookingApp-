@@ -13,8 +13,10 @@ import com.medicalhealth.healthapplication.databinding.FragmentRatingBinding
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.adapter.RatingsAdapter
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.getValue
+
 
 
 class RatingFragment : Fragment() {

@@ -23,27 +23,14 @@ import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 import kotlin.getValue
 
+@AndroidEntryPoint
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
-
     private val viewModel: ScheduleCalenderViewModel by viewModels()
-    //TODO replace this with actuall doctor object
-//    val dummyDoctor = Doctor(
-//        id = "DOC001",
-//        name = "Dr. John Smith",
-//        specialization = "Cardiologist",
-//        experience = 10,
-//        profileImageUrl ="olivia_turner",
-//        commentCount = 30,
-//        rating = 4.5,
-//        startDay = Calendar.MONDAY,
-//        endDay = Calendar.SATURDAY,
-//        startTime = 9,
-//        endTime = 4
-//    )
 lateinit var dummyDoctor: Doctor
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -225,6 +212,9 @@ lateinit var dummyDoctor: Doctor
            submitButton.setOnClickListener {
                createBooking()
            }
+            infoBtn.setOnClickListener {
+                finish()
+            }
         }
     }
 
