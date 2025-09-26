@@ -171,9 +171,16 @@ class ScheduleCalenderViewModel : ViewModel() {
 
     private fun updateTimeSlotAvailability(bookedTimes: List<String>) {
 
+        val currentTime = LocalTime.now()
+        val selectedDate = _selectedDate.value
+        val isToday = selectedDate?.isToday == true
+
         val updatedSlots = _timeSlots.value?.map { slot ->
+            val isBooked = slot.timeString in bookedTimes
+            val isPastTime = isToday && slot.time.isBefore(currentTime)
+
             slot.copy(
-                isAvailable = slot.timeString !in bookedTimes,
+                isAvailable = !isBooked && !isPastTime,
                 isSelected = false
             )
         } ?: emptyList()
