@@ -90,16 +90,51 @@ class ScheduleCalenderViewModel : ViewModel() {
         _dateList.value = newDateList
         _bookingStatus.value = Resource.Success(true)
 
-        if (monthIndex == todayMonth) {
-            val todayDate = newDateList.find { it.isToday && it.isAvailable }
+       autoSelectAvailableDay()
+    }
+    private fun autoSelectAvailableDay() {
+        val today = Calendar.getInstance()
+        val todayMonth = today.get(Calendar.MONTH)
+        val currentYear = today.get(Calendar.YEAR)
+        val currentDay = today.get(Calendar.DAY_OF_MONTH)
+        val currentHour = today.get(Calendar.HOUR_OF_DAY)
+        val todayDayOfWeek = today.get(Calendar.DAY_OF_WEEK)
+
+        if (currentMonth == todayMonth) {
+            val todayDate = _dateList.value?.find { it.isToday && it.isAvailable }
             if (todayDate != null) {
-                _selectedDate.value = todayDate
-                generateTimeSlots()
-                checkSlotAvailability(todayDate)
+                val doctor = _currentDoctor.value
+
+
+                val isWorkingDay = doctor?.let { doct ->
+                    if (doct.startDay <= doct.endDay) todayDayOfWeek in doct.startDay..doct.endDay
+                    else todayDayOfWeek >= doct.startDay || todayDayOfWeek <= doct.endDay
+                } ?: false
+
+                if (isWorkingDay ) {
+
+                    _selectedDate.value = todayDate
+                    generateTimeSlots()
+                    checkSlotAvailability(todayDate)
+                } else {
+                    // Find next available day in this month
+                    val nextAvailable = _dateList.value?.find { date ->
+                        val cal = Calendar.getInstance()
+                        cal.set(currentYear, currentMonth, date.dayOfMonth.toInt())
+                        val dayOfWeek = cal.get(Calendar.DAY_OF_WEEK)
+                        date.isAvailable && doctor?.let { d ->
+                            if (d.startDay <= d.endDay) dayOfWeek in d.startDay..d.endDay
+                            else dayOfWeek >= d.startDay || dayOfWeek <= d.endDay
+                        } == true
+                    }
+
+                    if (nextAvailable != null) {
+                        onDateSelected(nextAvailable)
+                    }
+                }
             }
         }
     }
-
     fun generateTimeSlots() {
         val newTimeSlots = mutableListOf<TimeSlot>()
         var time = LocalTime.of(9, 0)
