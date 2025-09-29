@@ -5,6 +5,9 @@ import android.graphics.BitmapFactory
 import android.view.View
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowInsetsCompat
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 object utils {
     inline fun WindowInsetsCompat.getSystemBarInsets(view: View, action: (insets: Insets) -> Unit): WindowInsetsCompat {
@@ -21,5 +24,25 @@ object utils {
             e.printStackTrace()
             null
         }
+    }
+    fun convertDateToDayMonthFormat(dateString: String): String {
+
+        val inputFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+
+
+        val date: Date = try {
+
+            inputFormat.parse(dateString) ?: return "Unknown Date"
+        } catch (e: Exception) {
+
+            android.util.Log.e("DateUtils", "Error parsing date: $dateString", e)
+            return "Invalid Date Format"
+        }
+
+
+        val outputFormat = SimpleDateFormat("EEEE, d MMMM", Locale.getDefault())
+
+
+        return outputFormat.format(date)
     }
 }

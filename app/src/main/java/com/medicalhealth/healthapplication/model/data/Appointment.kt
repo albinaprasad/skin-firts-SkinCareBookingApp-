@@ -1,8 +1,12 @@
 package com.medicalhealth.healthapplication.model.data
 
+import com.google.firebase.firestore.DocumentId
 import java.io.Serializable
 
 data class Appointment(
+    val bookingId:String = "",
+
+
     val userId: String = "",
     val doctorId: String = "",
     val patientFullName: String = "",
@@ -14,4 +18,9 @@ data class Appointment(
     val status: String = "",
     val personType:String="YOURSELF",
     val createdAt: Long = System.currentTimeMillis()
-): Serializable
+): Serializable{
+    var doctorName: String = ""
+    var doctorSpec: String = ""
+    var doctorPic:String =""
+    var rating: Double = 0.0
+}

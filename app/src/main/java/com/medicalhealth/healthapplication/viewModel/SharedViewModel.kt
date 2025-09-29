@@ -1,8 +1,8 @@
 package com.medicalhealth.healthapplication.viewModel
 
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,29 +10,46 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.R
-import com.medicalhealth.healthapplication.model.data.AppointmentItem
-import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Appointment
+import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.model.repository.AppointmentRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleDetailsActivity
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import android.widget.Toast
+
 
 class SharedViewModel: ViewModel() {
-
 
     private val bookingRepository: BookingRepository =
         BookingRepositoryImpl(FirebaseFirestore.getInstance())
 
+    private val appointmentRepository:AppointmentRepository =
+        AppointmentRepository(FirebaseFirestore.getInstance())
+
+    // LiveData for selected Doctor and Title (kept for existing functionality)
     private val _selectedDoctor = MutableLiveData<Doctor>()
     val selectedDoctor: LiveData<Doctor> = _selectedDoctor
 
-    private val _currentDataList = MutableLiveData<List<Any>>()
-    val currentDataList: LiveData<List<Any>> = _currentDataList
-
     private val _titleChange = MutableLiveData<String>()
     val titleChange:LiveData<String> = _titleChange
+
+    // StateFlow for ALL appointments fetched from Firestore
+    private val _appointmentList = MutableStateFlow<Resource<List<Appointment>>>(Resource.Loading())
+    val appointmentList:StateFlow<Resource<List<Appointment>>> = _appointmentList
+
+    // StateFlow for ALL doctors fetched from Firestore
+    private val _doctorList = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
+    val doctorList:StateFlow<Resource<List<Doctor>>> = _doctorList
+
+    // LiveData for the currently FILTERED list that the fragment will observe
+    private val _filteredAppointments = MutableLiveData<Resource<List<Appointment>>>()
+    val filteredAppointments: LiveData<Resource<List<Appointment>>> = _filteredAppointments
+
 
     fun selectDoctor(doctor: Doctor) {
         _selectedDoctor.value = doctor
@@ -42,8 +59,50 @@ class SharedViewModel: ViewModel() {
         _titleChange.value = title
     }
 
-    fun setData(data: List<AppointmentItem>) {
-        _currentDataList.value = data
+    init{
+        viewModelScope.launch {
+            fetchTheDoctor()
+            fetchTheAppointment()
+        }
+    }
+
+    fun ChangeTheStatus(documentId:String,status:String){
+        appointmentRepository.ChangeTheStatus(documentId,status)
+    }
+
+    private suspend fun fetchTheAppointment() {
+        appointmentRepository.fetchAllAppointments().collect{ result ->
+            _appointmentList.value = result
+            Log.d("message", "All Appointments: ${result.data?.size}")
+
+            // ⭐ Automatically filter for the initial status ("COMPLETED") after first fetch
+            if (result is Resource.Success && result.data != null) {
+                filterAppointmentsByStatus("COMPLETED")
+            }
+        }
+    }
+
+    private suspend fun fetchTheDoctor(){
+        appointmentRepository.fetchTheDoctor().collect{doctor ->
+            _doctorList.value = doctor
+            Log.d("message", "All Doctors: ${doctor.data?.size}")
+        }
+    }
+
+    fun filterAppointmentsByStatus(status:String){
+        // ⭐ FIX for NullPointerException and incorrect filtering logic
+        val allAppointmentsResource = _appointmentList.value
+
+        if (allAppointmentsResource is Resource.Success && allAppointmentsResource.data != null) {
+            // Correctly filter the list by the desired status
+            val filtered = allAppointmentsResource.data.filter { it.status == status }
+            // Now, enrich the filtered list with doctor details before publishing
+            val appointmentsWithDetails = getAndReplaceDoctorDetails(filtered)
+            _filteredAppointments.value = Resource.Success(appointmentsWithDetails)
+        } else {
+            // Handle loading or error state gracefully
+            _filteredAppointments.value = Resource.Success(emptyList())
+        }
     }
 
     fun updateButtons(
@@ -149,4 +208,25 @@ class SharedViewModel: ViewModel() {
             }
         }
     }
+
+    fun getDoctorDetails(): List<Doctor>? {
+        return doctorList.value.data
+    }
+
+    private fun getAndReplaceDoctorDetails(appointments: List<Appointment>): List<Appointment>{
+        val doctorList = getDoctorDetails()
+        val mutableAppointments = appointments.toMutableList()
+
+        mutableAppointments.forEach { appointment ->
+            if (doctorList != null) {
+                val doctor = doctorList.find { it.id == appointment.doctorId }
+                appointment.doctorName = doctor?.name ?: ""
+                appointment.doctorSpec = doctor?.specialization ?: ""
+                appointment.doctorPic = doctor?.profileImageUrl ?: ""
+                appointment.rating = doctor?.rating ?: 0.0
+            }
+        }
+        return mutableAppointments
+    }
+
 }
