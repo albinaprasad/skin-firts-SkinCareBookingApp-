@@ -25,7 +25,9 @@ class ScheduleAdapter(private var appointments: List<Appointment>) :
     override fun onBindViewHolder(holder: ScheduleAdapter.AppointmentViewHolder, position: Int) {
         val appointment = appointments[position]
         with(holder.binding){
-            doctorNameTextView.text = appointment.doctorId
+            startTimeTextView.text = appointment.bookingTime
+            endTimeTextView.text = appointment.endTime
+            doctorNameTextView.text = appointment.doctorName
             treatmentTextView.text = appointment.problemDescription
         }
     }
@@ -37,6 +39,10 @@ class ScheduleAdapter(private var appointments: List<Appointment>) :
     fun updateData(newAppointmentList: List<Appointment>){
         appointments = newAppointmentList
         notifyDataSetChanged()
+    }
+
+    fun getItemAt(position: Int): Appointment{
+        return appointments[position]
     }
 
 

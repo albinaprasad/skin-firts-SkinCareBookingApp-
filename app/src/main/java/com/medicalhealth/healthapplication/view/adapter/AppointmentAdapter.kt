@@ -99,11 +99,9 @@ class AppointmentAdapter(
 
         }
     }
-
     override fun getItemCount(): Int {
         return doctorList.size
     }
-
 }
 
 class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
@@ -124,7 +122,6 @@ class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
             }
         }
     }
-
     }
 
 class CancelledAppointmentViewHolder(val binding: CancelledAppointmentBinding) :
@@ -162,10 +159,7 @@ class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding) :
                 Toast.makeText(context, "Details...", Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
-
 }
 
 

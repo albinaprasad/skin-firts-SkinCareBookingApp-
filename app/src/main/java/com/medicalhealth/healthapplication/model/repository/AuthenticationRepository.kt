@@ -51,4 +51,12 @@ class AuthenticationRepository {
             Result.failure(e)
         }
     }
+
+    fun signOut(){
+        auth.signOut()
+    }
+
+    fun getCurrentUser():FirebaseUser?{
+        return auth.currentUser
+    }
 }
