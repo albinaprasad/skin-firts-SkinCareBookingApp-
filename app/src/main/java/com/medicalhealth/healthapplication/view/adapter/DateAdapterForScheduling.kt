@@ -76,11 +76,9 @@ class DateAdapterForScheduling(
 
                     root.isEnabled = false
                     root.isClickable = false
-                    dateContainer.alpha = 0.3f
-                    dateTextView.alpha = 0.3f
-                    dayOfWeekTextView.alpha = 0.3f
-                    root.setOnClickListener(null)
-
+//                    dateContainer.alpha = 0.7f
+//                    dateTextView.alpha = 0.7f
+//                    dayOfWeekTextView.alpha = 0.7f
                 }
 
                dateTextView.text = date.dayOfMonth
@@ -88,22 +86,21 @@ class DateAdapterForScheduling(
 
                 when {
                     !isAvailable -> {
-
                         dateContainer.isSelected = false
                         dateContainer.isEnabled = true
                         dateTextView.setTextColor(
                             ContextCompat.getColor(
                                 context,
-                                R.color.hintColor
+                                R.color.blueBorder
                             )
                         )
                         dayOfWeekTextView.setTextColor(
                             ContextCompat.getColor(
                                 context,
-                                R.color.black
+                                R.color.blueBorder
                             )
                         )
-                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.blueBorder))
                     }
                      date.isSelected -> {
                         dateContainer.isSelected = true

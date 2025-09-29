@@ -302,7 +302,6 @@ class ScheduleCalenderViewModel @Inject constructor(private val bookingRepositor
             if (todayDate != null) {
                 _selectedDate.value = todayDate
                 generateTimeSlots()
-                // This will automatically trigger the availability check and display time slots
                 checkSlotAvailability(todayDate)
             }
         }

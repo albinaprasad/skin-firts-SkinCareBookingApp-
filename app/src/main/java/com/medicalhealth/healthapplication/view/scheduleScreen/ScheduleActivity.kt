@@ -18,20 +18,25 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.Calendar
-import kotlin.getValue
 
 @AndroidEntryPoint
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
     private val viewModel: ScheduleCalenderViewModel by viewModels()
 lateinit var dummyDoctor: Doctor
+lateinit var userObj: Users
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +44,15 @@ lateinit var dummyDoctor: Doctor
         enableEdgeToEdge()
         binding = ActivityScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //TODO replace with actual user data
+        userObj = Users(
+            uid = "user001",
+            userName = "User ",
+            userEmail = "john.doe@example.com",
+            mobileNumber = 9876543210L,
+            dateOfBirth = "8/2/2000"
+        )
 
         getDoctorData()
         spinnerSetUp()
@@ -92,7 +106,7 @@ lateinit var dummyDoctor: Doctor
                      submitButton.isEnabled = true
                      submitButton.text = getString(R.string.book_appointment)
                    }
-                    Toast.makeText(applicationContext,  getString(R.string.month_unavailable), Toast.LENGTH_LONG).show()
+
                 }
             }
         }
@@ -234,15 +248,17 @@ lateinit var dummyDoctor: Doctor
         with(binding)
         {
             val patientName = if (isYourselfSelected()) {
-                //TODO add actuall user here
-                 "Current user"
+               userObj.userName
+
+
             } else {
                 fullNameEditText.text.toString().trim()
             }
 
             val patientAge = if (isYourselfSelected()) {
-                //TODO add actuall user age here
-               30
+
+              calculateAgeFromDob(userObj.dateOfBirth)?.toInt()
+
             } else {
                 ageEditText.text.toString().toIntOrNull() ?: 0
             }
@@ -265,13 +281,12 @@ lateinit var dummyDoctor: Doctor
                 "AnotherPerson"
             }
            val bookedObject= viewModel.createBooking(
-                patientName = patientName,
-                patientAge = patientAge,
+                patientName = patientName as String,
+                patientAge = patientAge as Int,
                 patientGender = patientGender,
                 problemDescription = problemDescription,
                 personType=personType,
-                //Todo add actuall use ID here
-                userId = "1234")
+                userId = userObj.uid)
 
                if( bookedObject != null ){
                    val intent = Intent(this@ScheduleActivity, ScheduleDetailsActivity::class.java)
@@ -281,9 +296,33 @@ lateinit var dummyDoctor: Doctor
                }
         }
     }
-        private fun isYourselfSelected(): Boolean {
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun calculateAgeFromDob(dob: String): Int? {
+        val formatters = listOf(
+            DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+            DateTimeFormatter.ofPattern("d/MM/yyyy"),
+            DateTimeFormatter.ofPattern("d/M/yyyy"),
+            DateTimeFormatter.ofPattern("dd/M/yyyy")
+        )
+        for( formatter in formatters){
+            try {
+                val birthDate = LocalDate.parse(dob, formatter)
+                val current_date= LocalDate.now()
+                return Period.between(birthDate, current_date).years
+            }
+            catch (e: DateTimeParseException) {
+                continue
+            }
+        }
+        return null
+    }
+
+    private fun isYourselfSelected(): Boolean {
+
             return binding.yourselfTextView.isSelected
         }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun personalDetailsButtonSelection(selectedTextView: TextView) {
         with(binding) {
 
@@ -302,12 +341,20 @@ lateinit var dummyDoctor: Doctor
                 ageEditText.isEnabled = false
                 fullNameEditText.alpha = 0.5f
                 ageEditText.alpha = 0.5f
+
+                fullNameEditText.hint = userObj.userName
+                val age = calculateAgeFromDob(userObj.dateOfBirth)
+                ageEditText.hint = age?.toString() ?: ""
+
             } else {
 
                 fullNameEditText.isEnabled = true
                 ageEditText.isEnabled = true
                 fullNameEditText.alpha = 1.0f
                 ageEditText.alpha = 1.0f
+
+                fullNameEditText.hint = ""
+                ageEditText.hint = ""
             }
         }
     }
