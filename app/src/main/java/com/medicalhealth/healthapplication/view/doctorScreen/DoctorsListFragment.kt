@@ -18,10 +18,12 @@ import com.medicalhealth.healthapplication.utils.ViewExtension.show
 import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
+@AndroidEntryPoint
 class DoctorsListFragment : Fragment() {
     private lateinit var binding: FragmentDoctorsListBinding
 

@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import com.medicalhealth.healthapplication.model.data.Users
 import kotlinx.coroutines.tasks.await
 
@@ -51,4 +52,20 @@ class AuthenticationRepository {
             Result.failure(e)
         }
     }
+
+//    suspend fun getUserFromFirestore(uid:String): Result<Users>
+//    {
+//        return try {
+//            val document = userCollection.document(uid).get().await()
+//            val userObj = document.toObject(Users::class.java)
+//            if (userObj != null) {
+//                Result.success(userObj)
+//            } else {
+//                Result.failure(Exception("User not found"))
+//            }
+//        }
+//        catch (e:Exception){
+//            Result.failure(e)
+//        }
+//    }
 }

@@ -210,6 +210,16 @@ lateinit var dummyDoctor: Doctor
                 personalDetailsButtonSelection(anotherPersonTextView)
             }
            submitButton.setOnClickListener {
+
+               if (viewModel.selectedDate.value == null) {
+                   Toast.makeText(this@ScheduleActivity, "Please select a date", Toast.LENGTH_SHORT).show()
+                   return@setOnClickListener
+               }
+
+               if (viewModel.selectedTimeSlot.value == null) {
+                   Toast.makeText(this@ScheduleActivity, "Please select a time slot", Toast.LENGTH_SHORT).show()
+                   return@setOnClickListener
+               }
                createBooking()
            }
             infoBtn.setOnClickListener {

@@ -18,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DoctorInfoFragment : Fragment() {
-
     private val sharedViewModel: SharedViewModel by activityViewModels()
     lateinit var binding: FragmentDoctorInfoBinding
     var doctorObj: Doctor? = null

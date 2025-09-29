@@ -87,9 +87,12 @@ class ScheduleCalenderViewModel @Inject constructor(private val bookingRepositor
             newDateList.add(date)
         }
         _dateList.value = newDateList
+        _selectedDate.value = null
         _bookingStatus.value = Resource.Success(true)
 
-       autoSelectAvailableDay()
+        if (monthIndex == todayMonth) {
+            autoSelectAvailableDay()
+        }
     }
     private fun autoSelectAvailableDay() {
         val today = Calendar.getInstance()

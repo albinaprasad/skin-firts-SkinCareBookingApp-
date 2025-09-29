@@ -32,4 +32,6 @@ object AppModule {
     fun provideDoctorRepository(firestore: FirebaseFirestore): DoctorDetailsRepository{
         return DoctorDetailsRepositoryImpl(firestore)
     }
+
+
 }

@@ -19,6 +19,7 @@ import kotlin.getValue
 
 
 
+@AndroidEntryPoint
 class RatingFragment : Fragment() {
     lateinit var ratingBinding: FragmentRatingBinding
     private val viewModel: DoctorsListViewModel by activityViewModels()

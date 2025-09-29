@@ -38,4 +38,10 @@ class AuthenticationViewModel(private val authenticationRepository: Authenticati
             _isLoading.value = false
         }
     }
+//
+//    fun getUserObject(uid:String){
+//        viewModelScope.launch{
+//            val fetchedUserObj = authenticationRepository.getUserFromFirestore(uid)
+//        }
+//    }
 }

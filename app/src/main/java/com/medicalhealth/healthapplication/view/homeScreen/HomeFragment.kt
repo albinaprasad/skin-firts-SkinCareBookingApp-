@@ -26,7 +26,6 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
-
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
     private var doctorAdapter: DoctorAdapter? = null

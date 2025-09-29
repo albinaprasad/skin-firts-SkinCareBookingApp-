@@ -105,9 +105,7 @@ class DateAdapterForScheduling(
                         )
                         dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
                     }
-                    date.isToday || date.isSelected -> {
-
-
+                     date.isSelected -> {
                         dateContainer.isSelected = true
                         dateContainer.isEnabled = true
                         dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
