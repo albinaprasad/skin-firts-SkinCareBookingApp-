@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.model.repository
+package com.medicalhealth.healthapplication.model.repository.authenticationRepository
 
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
@@ -12,13 +12,13 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
 
-class AuthenticationRepository {
+class AuthenticationRepositoryImpl: AuthenticationRepository {
 
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
     private val userCollection = firestore.collection("users")
 
-    suspend fun signUp(email:String,password:String,userName:String,mobileNumber:Long,dob:String):Result<FirebaseUser?> {
+    override suspend fun signUp(email:String, password:String, userName:String, mobileNumber:Long, dob:String):Result<FirebaseUser?> {
         return try {
             val userAuth = auth.createUserWithEmailAndPassword(email,password).await()
             val firebaseUser = userAuth.user
@@ -46,7 +46,7 @@ class AuthenticationRepository {
             Result.failure(e)
         }
     }
-    suspend fun login(email:String,password:String):Result<FirebaseUser?>{
+    override suspend fun login(email:String, password:String):Result<FirebaseUser?>{
         return try{
             val userAuth = auth.signInWithEmailAndPassword(email,password).await()
             Result.success(userAuth.user)
@@ -56,7 +56,7 @@ class AuthenticationRepository {
         }
     }
 
-    fun fetchCurrentUserDetails(): Flow<Resource<Users>> = flow {
+    override fun fetchCurrentUserDetails(): Flow<Resource<Users>> = flow {
         emit(Resource.Loading())
         try{
             val currentId = getCurrentUser()?.uid

@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Doctor
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepository
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepositoryImpl
+import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepository
+import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

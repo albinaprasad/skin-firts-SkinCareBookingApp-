@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.model.repository
+package com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
-class DoctorDetailsRepositoryImpl(private val firestore: FirebaseFirestore):DoctorDetailsRepository {
+class DoctorDetailsRepositoryImpl(private val firestore: FirebaseFirestore):
+    DoctorDetailsRepository {
     override suspend fun getDoctors(): Flow<Resource<List<Doctor>>> = flow {
         emit(Resource.Loading())
         try{

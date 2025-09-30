@@ -12,9 +12,9 @@ import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Users
-import com.medicalhealth.healthapplication.model.repository.AuthenticationRepository
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepository
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepositoryImpl
+import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepositoryImpl
+import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepository
+import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepositoryImpl
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
@@ -35,7 +35,7 @@ class MainViewModel(
     private val bookingRepository: BookingRepository =
         BookingRepositoryImpl(FirebaseFirestore.getInstance())
 
-    private val authRepository: AuthenticationRepository = AuthenticationRepository()
+    private val authRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
 
     private val _currentUserDetails = MutableStateFlow<Resource<Users>>(Resource.Loading())
     val currentUserDetails: StateFlow<Resource<Users>> = _currentUserDetails

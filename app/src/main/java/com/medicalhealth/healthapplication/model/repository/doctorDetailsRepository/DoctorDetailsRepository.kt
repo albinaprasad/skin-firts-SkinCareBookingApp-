@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.model.repository
+package com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository
 
 
 import com.medicalhealth.healthapplication.model.data.Doctor
