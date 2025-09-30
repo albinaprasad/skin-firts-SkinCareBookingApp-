@@ -143,7 +143,7 @@
                         android:layout_height="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/clock_1" />
+                        app:srcCompat="@drawable/clock" />
 
                     <TextView
                         android:id="@+id/tvTimeOfAppointment"

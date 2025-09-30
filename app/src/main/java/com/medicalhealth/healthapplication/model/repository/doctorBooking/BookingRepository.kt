@@ -8,5 +8,5 @@ interface BookingRepository {
     suspend fun createBooking(booking: Appointment): Flow<Resource<Boolean>>
     suspend fun getBookedSlots(doctorId: String, date: String): Flow<Resource<List<String>>>
     suspend fun getUserBookings(userId: String): Flow<Resource<List<Appointment>>>
-
+    fun getBookingsForCurrentUserAndMonth(startOfMonth: String, endOfMonth: String): Flow<Resource<List<Appointment>>>
 }

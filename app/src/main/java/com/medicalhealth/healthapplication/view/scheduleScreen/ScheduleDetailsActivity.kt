@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.core.view.ViewCompat
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleDetailsBinding
@@ -13,6 +14,7 @@ import com.medicalhealth.healthapplication.databinding.ItemDoctorProfileBinding
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.enums.Enums
+import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +33,11 @@ class ScheduleDetailsActivity : BaseActivity() {
         enableEdgeToEdge()
         binding = ActivityScheduleDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            insets.getSystemBarInsets(v) {
+                binding.root.setPadding(0, 0, 0, it.bottom)
+            }
+        }
 
         setupDoctorData()
         buttonClickListeners()

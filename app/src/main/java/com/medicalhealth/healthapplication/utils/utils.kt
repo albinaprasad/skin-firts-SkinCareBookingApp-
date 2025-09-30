@@ -5,6 +5,9 @@ import android.graphics.BitmapFactory
 import android.view.View
 import androidx.core.graphics.Insets
 import androidx.core.view.WindowInsetsCompat
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 object utils {
     inline fun WindowInsetsCompat.getSystemBarInsets(view: View, action: (insets: Insets) -> Unit): WindowInsetsCompat {
@@ -20,6 +23,22 @@ object utils {
         }catch (e: Exception){
             e.printStackTrace()
             null
+        }
+    }
+
+    fun addThirtyMinutes(timeString: String): String {
+        val formatter = SimpleDateFormat("hh:mm a", Locale.US)
+        try {
+            val date: java.util.Date? = formatter.parse(timeString)
+            if (date != null) {
+                val calendar = Calendar.getInstance()
+                calendar.time = date
+                calendar.add(Calendar.MINUTE, 30)
+                return formatter.format(calendar.time)
+            }
+            return "Parsing failed"
+        } catch (e: Exception) {
+            return "Error"
         }
     }
 }
