@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
+
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
+import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.utils.Resource
@@ -26,6 +28,8 @@ import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
+import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -36,13 +40,14 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.Calendar
+import kotlin.getValue
 
 @AndroidEntryPoint
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
     private val viewModel: ScheduleCalenderViewModel by viewModels()
-lateinit var dummyDoctor: Doctor
-lateinit var userObj: Users
+    lateinit var dummyDoctor: Doctor
+    lateinit var userObj: Users
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,10 +83,11 @@ lateinit var userObj: Users
                             userObj = resource.data
                             getDoctorData()
                             spinnerSetUp()
-                            dateRecyclerViewSetUp()
-                            timeslotAdapterSetup()
-                            listenToButtonClicks()
-                            observeBookingStatus()
+                            setUpListeners()
+        dateRecyclerViewSetUp()
+        timeslotAdapterSetup()
+        listenToButtonClicks()
+        observeBookingStatus()
 
                             viewModel.selectTodayDateAsDefault()
                             personalDetailsButtonSelection(binding.yourselfTextView)
@@ -92,6 +98,32 @@ lateinit var userObj: Users
         }
     }
 
+    private fun setUpListeners(){
+       val bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
+
+        with(bottomNavBinding){
+            homeButton.setOnClickListener {
+                returnToMain("home")
+            }
+            chatButton.setOnClickListener {
+                returnToMain("chat")
+            }
+            profileButton.setOnClickListener {
+                returnToMain("profile")
+            }
+            calenderButton.setOnClickListener {
+                returnToMain("calendar")
+            }
+
+        }
+    }
+    fun returnToMain(tab: String){
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(MainActivity.FRAGMENT_TO_LOAD_KEY, tab)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getDoctorData() {
         dummyDoctor =intent.getSerializableExtra("clicked_doctor") as Doctor
@@ -228,6 +260,9 @@ lateinit var userObj: Users
 
         with(binding)
         {
+            backButton.setOnClickListener {
+                onBackPressed()
+            }
             dateFwdBtn.setOnClickListener {
                 scheduleRecyclerView.smoothScrollBy(300, 0)
             }
@@ -264,7 +299,12 @@ lateinit var userObj: Users
                createBooking()
            }
             infoBtn.setOnClickListener {
-                finish()
+
+                // Navigate to DoctorsActivity which will show DoctorInfoFragment
+                val intent = Intent(this@ScheduleActivity, DoctorsActivity::class.java)
+                intent.putExtra("SHOW_DOCTOR_INFO", true)
+                intent.putExtra("doctor_object", dummyDoctor)
+                startActivity(intent)
             }
         }
     }

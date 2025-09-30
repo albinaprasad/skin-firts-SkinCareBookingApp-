@@ -19,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class DoctorsListViewModel @Inject constructor(
     private val repository: DoctorDetailsRepository) : ViewModel() {
-
     private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(
         value = Resource.Loading()
     )

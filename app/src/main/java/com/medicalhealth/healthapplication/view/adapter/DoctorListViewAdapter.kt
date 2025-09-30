@@ -12,7 +12,8 @@ import com.medicalhealth.healthapplication.model.data.Doctor
 class DoctorListViewAdapter(
     private val context: Context,
     private var dataList: List<Doctor>,
-    private val onInfoButtonClick:(Doctor) -> Unit
+    private val onInfoButtonClick:(Doctor) -> Unit,
+    val onCalenderButtonClick:(Doctor) -> Unit
 ) : RecyclerView.Adapter<DoctorListViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -43,7 +44,7 @@ class DoctorListViewAdapter(
         }
 
         holder.binding.calenderBtn.setOnClickListener {
-            showToast(context, "calender")
+            onCalenderButtonClick(currentItem)
         }
 
         holder.binding.moreinfoBtn.setOnClickListener {
