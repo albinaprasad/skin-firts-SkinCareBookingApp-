@@ -1,14 +1,17 @@
 package com.medicalhealth.healthapplication.viewModel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.model.repository.AuthenticationRepository
 import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepository
 import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepositoryImpl
@@ -34,12 +37,14 @@ class MainViewModel(
 
     private val authRepository: AuthenticationRepository = AuthenticationRepository()
 
+    private val _currentUserDetails = MutableStateFlow<Resource<Users>>(Resource.Loading())
+    val currentUserDetails: StateFlow<Resource<Users>> = _currentUserDetails
+
     private val _dates = MutableLiveData<List<Date>?>()
     val dates: MutableLiveData<List<Date>?> get() = _dates
 
     private val _appointments = MutableStateFlow<Resource<List<Appointment>>>(Resource.Loading())
     val appointments: StateFlow<Resource<List<Appointment>>> = _appointments
-
 
     private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
     val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
@@ -50,6 +55,7 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
+            fetchCurrentUserDetails()
             fetchAllDoctors()
             fetchBookingsForCurrentMonth()
         }
@@ -60,7 +66,38 @@ class MainViewModel(
     }
 
     fun toggleFavoriteStatus(doctorId: String) {
+        val currentResource = _currentUserDetails.value
 
+        if(currentResource is Resource.Success){
+            val user = currentResource.data ?: return
+
+            val currentFavourite = user.favouriteDoctors
+            val newFavourite = if(currentFavourite.contains(doctorId)){
+                currentFavourite - doctorId
+            }else{
+                currentFavourite + doctorId
+            }
+
+            val updatedUser = user.copy(favouriteDoctors = newFavourite)
+            _currentUserDetails.value = Resource.Success(updatedUser)
+
+            viewModelScope.launch {
+                val updatedResult = repository.updateFavoriteDoctors(user.uid, newFavourite)
+
+                if(updatedResult is Resource.Error){
+                    Log.d("message", "ViewModel issue: ${updatedResult.message}")
+                }
+            }
+        }
+    }
+
+    private suspend fun fetchCurrentUserDetails(){
+        authRepository.fetchCurrentUserDetails().collect{ result ->
+            if(result is Resource.Success){
+                _currentUserDetails.value = result
+            }
+
+        }
     }
 
     private suspend fun fetchAllDoctors() {
@@ -69,7 +106,7 @@ class MainViewModel(
         }
     }
 
-    private suspend fun fetchBookingsForCurrentMonth() {
+    suspend fun fetchBookingsForCurrentMonth() {
         val calender = Calendar.getInstance()
         val year = calender.get(Calendar.YEAR)
         val month = calender.get(Calendar.MONTH) + 1
@@ -130,23 +167,7 @@ class MainViewModel(
         return doctors.value.data ?: emptyList()
     }
 
-    fun addThirtyMinutes(timeString: String): String {
-        val formatter = SimpleDateFormat("hh:mm a", Locale.US)
-        try {
-            val date: java.util.Date? = formatter.parse(timeString)
-            if (date != null) {
-                val calendar = Calendar.getInstance()
-                calendar.time = date
-                calendar.add(Calendar.MINUTE, 30)
-                return formatter.format(calendar.time)
-            }
-            return "Parsing failed"
-        } catch (e: Exception) {
-            return "Error"
-        }
-    }
-
-    fun formatRelativeDate(dateString: String): String {
+    fun formatRelativeDate(context: Context?, dateString: String): String {
         val inputFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         val outputFormatter = SimpleDateFormat("dd EEEE", Locale.getDefault())
 
@@ -169,23 +190,23 @@ class MainViewModel(
             val differenceInMilli = inputCal.timeInMillis - today.timeInMillis
             val daysDifference = TimeUnit.MILLISECONDS.toDays(differenceInMilli)
 
-            val relativeTerm = when (daysDifference) {
-                0L -> "Today"
-                1L -> "Tomorrow"
-                -1L -> "Yesterday"
+            val resourceId = when (daysDifference) {
+                0L -> R.string.today
+                1L -> R.string.tomorrow
+                -1L -> R.string.yesterday
                 in 2L..6L -> {
                     if(inputCal.get(Calendar.DAY_OF_WEEK) > today.get(Calendar.DAY_OF_WEEK)){
-                        "This Week"
+                        R.string.this_week
                     }else{
-                        "Next Week"
+                        R.string.next_week
                     }
                 }
-                in 7L..13L -> "Next Week"
-                else -> ""
+                in 7L..13L -> R.string.next_week
+                else -> 0
             }
             val formattedDate = outputFormatter.format(inputDate)
-            return if (relativeTerm.isNotEmpty()) {
-                "$formattedDate - $relativeTerm"
+            return if (resourceId != 0) {
+                "$formattedDate - ${context?.getString(resourceId)}"
             } else {
                 formattedDate
             }

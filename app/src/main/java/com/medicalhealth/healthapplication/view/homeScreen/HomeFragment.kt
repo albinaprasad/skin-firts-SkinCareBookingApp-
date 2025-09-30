@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +17,7 @@ import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.utils.ViewExtension.gone
 import com.medicalhealth.healthapplication.utils.ViewExtension.show
+import com.medicalhealth.healthapplication.utils.utils.addThirtyMinutes
 import com.medicalhealth.healthapplication.view.adapter.DateAdapter
 import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
@@ -30,6 +32,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: MainViewModel by activityViewModels()
     private var doctorAdapter: DoctorAdapter? = null
     private var scheduleAdapter: ScheduleAdapter? = null
+    private var isFavoriteList: List<String> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +47,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setUpRecyclerView()
         observeViewModel()
         setUpListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.fetchBookingsForCurrentMonth()
+        }
+
     }
 
     private fun setUpRecyclerView() {
@@ -63,8 +74,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             doctorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             val initialDoctors = emptyList<Doctor>()
-            doctorAdapter = DoctorAdapter(initialDoctors){ doctor ->
-                viewModel.toggleFavoriteStatus("")
+            doctorAdapter = DoctorAdapter(initialDoctors){ doctor, position ->
+
+                viewModel.toggleFavoriteStatus(doctor.id)
+                val currentList = doctorAdapter?.doctors?.toMutableList() ?: return@DoctorAdapter
+
+                val actualIndex = currentList.indexOfFirst { it.id == doctor.id }
+
+                if(actualIndex != -1){
+                    val newFavStatus = !doctor.isFavorite
+                    val copiedDoctor = doctor.copy()
+                    copiedDoctor.isFavorite = newFavStatus
+                    currentList[actualIndex] = copiedDoctor
+                    doctorAdapter?.updateDate(currentList)
+                }
             }
             doctorRecyclerView.adapter = doctorAdapter
         }
@@ -78,9 +101,30 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.currentUserDetails.collect{result ->
+                when(result){
+                    is Resource.Error -> {
+                        val errorMessage = result.message ?: "An Unknown error occurred"
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                    is Resource.Loading -> {
+
+                    }
+                    is Resource.Success -> {
+                        val user = result.data
+                        binding.userNameTextView.text = user?.userName ?: "User Data Missing"
+                        isFavoriteList = user?.favouriteDoctors ?: emptyList()
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.appointments.collect{ result ->
                 when(result){
                     is Resource.Error -> {
+                        val errorMessage = result.message ?: "An Unknown error occurred"
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Loading -> {
                     }
@@ -89,8 +133,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         val doctors = viewModel.getDoctors()
                         appointments.forEach { appointment ->
                             appointment.doctorName = doctors.find { it.id == appointment.doctorId }?.name
-                            appointment.endTime = viewModel.addThirtyMinutes(appointment.bookingTime)
-                            appointment.headerDateText = viewModel.formatRelativeDate(appointment.bookingDate)
+                            appointment.endTime = addThirtyMinutes(appointment.bookingTime)
+                            appointment.headerDateText = viewModel.formatRelativeDate(context, appointment.bookingDate)
                         }
                         (binding.scheduleRecyclerView.adapter as? ScheduleAdapter)?.updateData(appointments)
                         setUpRecyclerViewListener()
@@ -103,13 +147,19 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.doctors.collect{ result ->
                 when(result){
                     is Resource.Error -> {
+                        val errorMessage = result.message ?: "An Unknown error occurred"
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                     }
                     is Resource.Loading -> {
                         binding.doctorRecyclerView.gone()
                     }
                     is Resource.Success -> {
                         binding.doctorRecyclerView.show()
-                        result.data?.let { doctorAdapter?.updateDate(it) }
+                        val doctorsList = result.data ?: emptyList()
+                        doctorsList.forEach { doctor ->
+                            doctor.isFavorite = doctor.id in isFavoriteList
+                        }
+                        doctorAdapter?.updateDate(doctorsList)
                     }
                 }
 

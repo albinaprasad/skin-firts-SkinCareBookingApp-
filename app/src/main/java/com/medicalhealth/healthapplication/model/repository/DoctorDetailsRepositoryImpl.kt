@@ -23,6 +23,18 @@ class DoctorDetailsRepositoryImpl(private val firestore: FirebaseFirestore):Doct
         }
     }
 
+    override suspend fun updateFavoriteDoctors(
+        uid: String,
+        favouriteList: List<String>
+    ): Resource<Unit> {
+         return try{
+             firestore.collection("users").document(uid).update("favouriteDoctors", favouriteList).await()
+             Resource.Success(Unit)
+         }catch (e: Exception){
+             Resource.Error("Firestore updated failed: ${e.localizedMessage}")
+         }
+    }
+
     override fun addDoctor(doctor: Doctor) {
         firestore.collection("doctors").add(doctor).addOnSuccessListener { documentRef ->
             Log.d("message", "Document Added: $documentRef")

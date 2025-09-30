@@ -19,4 +19,6 @@ data class Doctor(
     val endDay: Int = 0,
     val rating: Double = 0.0,
     val commentCount: Int = 0,
-): Serializable
+): Serializable {
+    var isFavorite: Boolean = false
+}

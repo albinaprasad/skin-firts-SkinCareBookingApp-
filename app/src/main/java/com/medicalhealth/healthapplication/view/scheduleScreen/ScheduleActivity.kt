@@ -12,12 +12,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
@@ -49,7 +51,11 @@ class ScheduleActivity : BaseActivity() {
         enableEdgeToEdge()
         binding = ActivityScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            insets.getSystemBarInsets(v) {
+                binding.root.setPadding(0, 0, 0, it.bottom)
+            }
+        }
         spinnerSetUp()
         dateRecyclerViewSetUp()
         timeslotAdapterSetup()

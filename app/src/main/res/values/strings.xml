@@ -68,6 +68,10 @@
     <string name="scheduled_change">Scheduled Change</string>
     <string name="two_hour">2H</string>
     <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="this_week">This Week</string>
+    <string name="next_week">Next Week</string>
     <string name="notification">Notification</string>
     <string name="mark_all">"Mark all "</string>
     <string name="rating">Rating</string>

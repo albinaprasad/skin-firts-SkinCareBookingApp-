@@ -34,7 +34,6 @@ class WelcomeScreenActivity : BaseActivity() {
         if(currentUser != null){
             val intent = Intent(this@WelcomeScreenActivity, MainActivity::class.java)
             startActivity(intent)
-            finish()
         }
     }
 
