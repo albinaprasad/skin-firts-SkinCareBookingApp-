@@ -1,4 +1,4 @@
-package com.medicalhealth.healthapplication.model.repository
+package com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
@@ -22,6 +22,18 @@ class DoctorDetailsRepositoryImpl @Inject constructor(private val firestore: Fir
         }catch (e: Exception){
             emit(Resource.Error("Error while fetching doctor info: ${e.localizedMessage}"))
         }
+    }
+
+    override suspend fun updateFavoriteDoctors(
+        uid: String,
+        favouriteList: List<String>
+    ): Resource<Unit> {
+         return try{
+             firestore.collection("users").document(uid).update("favouriteDoctors", favouriteList).await()
+             Resource.Success(Unit)
+         }catch (e: Exception){
+             Resource.Error("Firestore updated failed: ${e.localizedMessage}")
+         }
     }
 
     override fun addDoctor(doctor: Doctor) {

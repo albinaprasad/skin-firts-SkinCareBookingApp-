@@ -41,6 +41,7 @@
         app:layout_constraintWidth_percent="0.2239" />
 
     <TextView
+        android:id="@+id/userNameTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -81,7 +82,7 @@
             android:id="@+id/notificationImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/notification_image"
+            android:src="@drawable/notification_icon"
             app:layout_constraintBottom_toBottomOf="@id/backgroundEllipse"
             app:layout_constraintEnd_toEndOf="@id/backgroundEllipse"
             app:layout_constraintStart_toStartOf="@id/backgroundEllipse"
@@ -123,7 +124,7 @@
             android:id="@+id/settingsImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/settings_image"
+            android:src="@drawable/settings_ic"
             app:layout_constraintBottom_toBottomOf="@id/backgroundSettingsEllipse"
             app:layout_constraintEnd_toEndOf="@id/backgroundSettingsEllipse"
             app:layout_constraintStart_toStartOf="@id/backgroundSettingsEllipse"
@@ -271,14 +272,12 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dateRecyclerView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingVertical="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/scheduleContainer"
             app:layout_constraintEnd_toEndOf="@id/scheduleContainer"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@id/scheduleContainer"
             app:layout_constraintTop_toTopOf="@id/offBlueConstraint"
             tools:listitem="@layout/item_date" />
@@ -302,25 +301,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/league_spartan"
-                android:text="@string/date_wednesday_text"
+                android:text="@string/no_appointments"
                 android:textColor="@color/button_blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.7523"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="11 Wednesday - Today" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/timeOneTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/league_spartan_light"
                 android:text="@string/time_9am"
                 android:textColor="@color/button_blue"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toTopOf="@id/scheduleRecyclerView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1055"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/headerDate" />
 
@@ -340,13 +337,12 @@
                 android:id="@+id/scheduleRecyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/timeFourTextView"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHeight_percent="0.4146"
-                app:layout_constraintStart_toStartOf="@id/timeOneTextView"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/dashedLineOneImageView"
-                app:layout_constraintVertical_bias="0.5"
                 app:layout_constraintVertical_chainStyle="packed"
                 app:layout_constraintWidth_percent="0.90"
                 tools:listitem="@layout/item_schedule_appointment" />
@@ -356,13 +352,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/league_spartan_light"
-                android:text="@string/time_12am"
+                android:text="@string/time_6pm"
                 android:textColor="@color/button_blue"
                 android:textSize="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1055"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/scheduleRecyclerView" />
 

@@ -61,5 +61,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val intent = Intent(requireActivity(), HelpCenterActivity::class.java)
             startActivity(intent)
         }
+        else if(selectedOption == "Logout"){
+            viewModel.signOut()
+            activity?.finish()
+        }
     }
 }

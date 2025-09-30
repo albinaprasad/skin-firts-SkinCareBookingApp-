@@ -17,14 +17,17 @@
         android:textColor="@drawable/date_text_color_selector"
         android:textSize="24dp"
         android:textStyle="normal"
+        android:includeFontPadding="false"
         tools:text="11" />
 
     <TextView
         android:id="@+id/dayOfWeekTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/league_spartan"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/leaguespartan_regular"
         android:textColor="@drawable/date_text_color_selector"
-        android:textSize="10dp"
+        android:textSize="12dp"
+        android:includeFontPadding="false"
         tools:text="WED" />
 </LinearLayout>

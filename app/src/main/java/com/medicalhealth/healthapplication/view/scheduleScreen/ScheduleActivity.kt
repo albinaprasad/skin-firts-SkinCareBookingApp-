@@ -13,6 +13,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
@@ -20,11 +22,15 @@ import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
@@ -44,25 +50,46 @@ lateinit var userObj: Users
         enableEdgeToEdge()
         binding = ActivityScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+            insets.getSystemBarInsets(v) {
+                binding.root.setPadding(0, 0, 0, it.bottom)
+            }
+        }
 
-        //TODO replace with actual user data
-        userObj = Users(
-            uid = "user001",
-            userName = "User ",
-            userEmail = "john.doe@example.com",
-            mobileNumber = 9876543210L,
-            dateOfBirth = "8/2/2000"
-        )
+        observeUserData()
 
-        getDoctorData()
-        spinnerSetUp()
-        dateRecyclerViewSetUp()
-        timeslotAdapterSetup()
-        listenToButtonClicks()
-        observeBookingStatus()
+    }
 
-        viewModel.selectTodayDateAsDefault()
-        personalDetailsButtonSelection(binding.yourselfTextView)
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun observeUserData(){
+        lifecycleScope.launch {
+            viewModel.currentUserDetails.collectLatest { resource ->
+
+                Log.d("message", "$resource")
+                when(resource){
+                    is Resource.Error -> {
+
+                    }
+                    is Resource.Loading -> {
+
+                    }
+                    is Resource.Success -> {
+                        if(resource.data != null) {
+                            userObj = resource.data
+                            getDoctorData()
+                            spinnerSetUp()
+                            dateRecyclerViewSetUp()
+                            timeslotAdapterSetup()
+                            listenToButtonClicks()
+                            observeBookingStatus()
+
+                            viewModel.selectTodayDateAsDefault()
+                            personalDetailsButtonSelection(binding.yourselfTextView)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

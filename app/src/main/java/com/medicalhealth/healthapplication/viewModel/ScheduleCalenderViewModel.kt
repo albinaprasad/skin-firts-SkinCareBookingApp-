@@ -10,9 +10,13 @@ import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.TimeSlot
+import com.medicalhealth.healthapplication.model.data.Users
+import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepositoryImpl
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.time.LocalTime
 import java.util.Calendar
@@ -23,8 +27,13 @@ import javax.inject.Inject
 @RequiresApi(Build.VERSION_CODES.O)
 class ScheduleCalenderViewModel @Inject constructor(private val bookingRepository: BookingRepository): ViewModel() {
 
+    private val authRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
+
     private var _currentDoctor = MutableLiveData<Doctor>()
     val currentDoctor: LiveData<Doctor> get() = _currentDoctor
+
+    private val _currentUserDetails = MutableStateFlow<Resource<Users>>(Resource.Loading())
+    val currentUserDetails: StateFlow<Resource<Users>> = _currentUserDetails
 
     private val _dateList = MutableLiveData<List<Date>>()
     val dateList: LiveData<List<Date>> get() = _dateList
@@ -48,6 +57,9 @@ class ScheduleCalenderViewModel @Inject constructor(private val bookingRepositor
 
     init {
         _dateList.value = mutableListOf()
+        viewModelScope.launch {
+            fetchCurrentUserDetails()
+        }
     }
 
     fun generateMonthDates(monthIndex: Int) {
@@ -94,6 +106,15 @@ class ScheduleCalenderViewModel @Inject constructor(private val bookingRepositor
             autoSelectAvailableDay()
         }
     }
+
+    private suspend fun fetchCurrentUserDetails(){
+        authRepository.fetchCurrentUserDetails().collect{ result ->
+            if(result is Resource.Success){
+                _currentUserDetails.value = result
+            }
+        }
+    }
+
     private fun autoSelectAvailableDay() {
         val today = Calendar.getInstance()
         val todayMonth = today.get(Calendar.MONTH)

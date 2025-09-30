@@ -8,8 +8,9 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ItemDoctorProfileBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-class DoctorAdapter(private var doctors: List<Doctor>, private val onFavoriteClicked: (Doctor) -> Unit) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
+class DoctorAdapter(initialDoctors: List<Doctor>, private val onFavoriteClicked: (Doctor, Int) -> Unit) : RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
+    var doctors: List<Doctor> = initialDoctors
     class DoctorViewHolder(val binding: ItemDoctorProfileBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(
@@ -34,10 +35,14 @@ class DoctorAdapter(private var doctors: List<Doctor>, private val onFavoriteCli
             ratingTextView.text = doctor.rating.toString()
             commentCountTextView.text = doctor.commentCount.toString()
 
-            favoriteImageView.setImageResource(R.drawable.favorite_image)
-
             favoriteLayout.setOnClickListener {
-                onFavoriteClicked(doctor)
+
+                onFavoriteClicked(doctor, position)
+            }
+            if(doctor.isFavorite){
+                favoriteImageView.setImageResource(R.drawable.fav_icon_filled_darkblue)
+            }else{
+                favoriteImageView.setImageResource(R.drawable.favorite_image)
             }
         }
     }
@@ -47,7 +52,7 @@ class DoctorAdapter(private var doctors: List<Doctor>, private val onFavoriteCli
     }
 
     fun updateDate(newDoctorsList: List<Doctor>){
-        doctors = newDoctorsList
+        this.doctors = newDoctorsList
         notifyDataSetChanged()
     }
 

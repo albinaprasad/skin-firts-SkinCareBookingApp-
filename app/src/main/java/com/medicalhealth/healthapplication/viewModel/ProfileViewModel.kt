@@ -5,11 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.ItemOption
+import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepositoryImpl
 
 class ProfileViewModel: ViewModel() {
 
     private val _itemOptions = MutableLiveData<List<ItemOption>>()
     val itemOptions: LiveData<List<ItemOption>> = _itemOptions
+
+    private val authRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
 
     init {
         _itemOptions.value = listOf(
@@ -21,5 +24,9 @@ class ProfileViewModel: ViewModel() {
             ItemOption("6", R.drawable.help_ic_img, "Help", true),
             ItemOption("7", R.drawable.logout_ic_img, "Logout", false)
         )
+    }
+
+    fun signOut(){
+        authRepository.signOut()
     }
 }
