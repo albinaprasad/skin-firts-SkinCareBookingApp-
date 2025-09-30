@@ -1,6 +1,6 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
-import android.app.Activity
+
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle

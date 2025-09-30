@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
