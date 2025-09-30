@@ -42,7 +42,6 @@ class RatingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadDoctors("ALL")
     }
-
     private fun replaceFragment(doctorInfoFragment: DoctorInfoFragment) {
 
         parentFragmentManager.beginTransaction()
