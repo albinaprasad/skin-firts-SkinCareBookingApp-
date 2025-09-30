@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityDoctorsBinding
 import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
+import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
@@ -19,12 +20,14 @@ import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class DoctorsActivity : BaseActivity() {
     lateinit var binding: ActivityDoctorsBinding
     val sharedViewModel: SharedViewModel by viewModels()
     private lateinit var bottomNavBinding: BottomNavigationLayoutBinding
+    var showDoctorInfo by Delegates.notNull<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +39,33 @@ class DoctorsActivity : BaseActivity() {
                 binding.root.setPadding(0, 0, 0, it.bottom)
             }
         }
+
+         showDoctorInfo = intent.getBooleanExtra("SHOW_DOCTOR_INFO", false)
+        getDoctorInfo()
+
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_doctor, DoctorsListFragment())
-                .commit()
+            if (showDoctorInfo) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_doctor, DoctorInfoFragment())
+                    .commit()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_doctor, DoctorsListFragment())
+                    .commit()
+            }
         }
+
         bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
         setUpListeners()
         setUpOnObserver()
         buttonClickListener()
+    }
+
+    private fun getDoctorInfo() {
+        if (showDoctorInfo) {
+            val doctor = intent.getSerializableExtra("doctor_object") as? Doctor
+            doctor?.let { sharedViewModel.selectDoctor(it) }
+        }
     }
 
     private fun buttonClickListener() {
@@ -71,11 +92,10 @@ class DoctorsActivity : BaseActivity() {
             }
 
             backButton.setOnClickListener {
-                onBackPressed()
+               onBackPressed()
             }
         }
     }
-
     private fun setUpListeners(){
         with(bottomNavBinding){
             homeButton.setOnClickListener {

@@ -25,6 +25,7 @@ import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
+import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,13 +34,14 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.Calendar
+import kotlin.getValue
 
 @AndroidEntryPoint
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
     private val viewModel: ScheduleCalenderViewModel by viewModels()
-lateinit var dummyDoctor: Doctor
-lateinit var userObj: Users
+    lateinit var dummyDoctor: Doctor
+    lateinit var userObj: Users
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -270,7 +272,12 @@ lateinit var userObj: Users
                createBooking()
            }
             infoBtn.setOnClickListener {
-                finish()
+
+                // Navigate to DoctorsActivity which will show DoctorInfoFragment
+                val intent = Intent(this@ScheduleActivity, DoctorsActivity::class.java)
+                intent.putExtra("SHOW_DOCTOR_INFO", true)
+                intent.putExtra("doctor_object", dummyDoctor)
+                startActivity(intent)
             }
         }
     }

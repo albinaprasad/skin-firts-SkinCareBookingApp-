@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.viewModel
 
+import android.content.Intent
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
@@ -14,6 +15,7 @@ import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleDetailsActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -135,6 +137,9 @@ class SharedViewModel @Inject constructor( private val bookingRepository : Booki
                 {
                     is Resource.Success->{
                         Toast.makeText(context, context.getString(R.string.booking_sucess), Toast.LENGTH_SHORT).show()
+                        val intent = Intent(context, MainActivity::class.java)
+                        context.startActivity(intent)
+                        context.finish()
                     }
                     is Resource.Error<*> -> {
                         Toast.makeText(context,context.getString(R.string.booking_failed) , Toast.LENGTH_SHORT).show()

@@ -136,6 +136,8 @@ class ScheduleDetailsActivity : BaseActivity() {
         with(binding){
             bookBtn.setOnClickListener {
                 viewModel.confrimBooking(booking,this@ScheduleDetailsActivity)
+
+
             }
             cancelBtn.setOnClickListener {
                 finish()
