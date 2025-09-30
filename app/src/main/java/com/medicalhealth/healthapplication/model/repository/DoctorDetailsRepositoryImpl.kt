@@ -8,8 +8,9 @@ import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class DoctorDetailsRepositoryImpl(private val firestore: FirebaseFirestore):DoctorDetailsRepository {
+class DoctorDetailsRepositoryImpl @Inject constructor(private val firestore: FirebaseFirestore):DoctorDetailsRepository {
     override suspend fun getDoctors(): Flow<Resource<List<Doctor>>> = flow {
         emit(Resource.Loading())
         try{

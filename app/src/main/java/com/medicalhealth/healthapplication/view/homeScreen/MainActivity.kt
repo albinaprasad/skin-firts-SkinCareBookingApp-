@@ -17,9 +17,11 @@ import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.fragment.AllAppointmentFragment
 import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 import com.medicalhealth.healthapplication.view.reviewScreen.ReviewActivity
+import dagger.hilt.android.AndroidEntryPoint
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity(){
 
     val viewModel: SharedViewModel by viewModels()

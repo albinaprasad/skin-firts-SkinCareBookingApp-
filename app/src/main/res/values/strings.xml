@@ -154,6 +154,7 @@
     <string name="book_appointment">Book Appointment</string>
     <string name="booking_failed">Booking  Failed</string>
     <string name="booking_sucess">Booking  Success</string>
+    <string name="month_unavailable">This month is not available for booking</string>
 
 
 </resources>

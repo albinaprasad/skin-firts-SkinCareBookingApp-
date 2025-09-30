@@ -21,13 +21,13 @@ import com.squareup.picasso.Picasso
 
 class AppointmentAdapter(
     private val context: Context,
-    // This list now contains a wrapper for each individual appointment
+
     private var appointmentItems: List<AppointmentItem>,
-    private val onCancelClick: (String) -> Unit, // For btnCross
+    private val onCancelClick: (String) -> Unit,
     private val onCompleteClick: (String) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    // Constants for View Types
+
     private val VIEW_TYPE_COMPLETE = 1
     private val VIEW_TYPE_UPCOMING = 2
     private val VIEW_TYPE_CANCELLED = 3
@@ -55,7 +55,7 @@ class AppointmentAdapter(
     ): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
-        // Inflate the correct layout based on the viewType
+
         return when (viewType) {
             VIEW_TYPE_COMPLETE -> {
                 val binding = CompleteAppointmentBinding.inflate(inflater, parent, false)
@@ -75,10 +75,10 @@ class AppointmentAdapter(
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        // Get the specific AppointmentItem wrapper
+
         when (val item = appointmentItems[position]) {
             is AppointmentItem.Complete -> {
-                // Safely extract the single Appointment from the list inside the wrapper
+
                 if (item.doctor.isNotEmpty()) {
                     (holder as CompleteAppointmentViewHolder).bind(item.doctor[0], context)
                 }
@@ -99,11 +99,11 @@ class AppointmentAdapter(
     }
 
     override fun getItemCount(): Int {
-        // The count is simply the size of the list of wrappers
+
         return appointmentItems.size
     }
 
-    // --- ViewHolder Definitions ---
+
 
     class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -158,9 +158,9 @@ class AppointmentAdapter(
                 tvTimeOfAppointment.text = "${upcoming.bookingTime} - ${endTime}"
                 btnCross.setOnClickListener {
                     onCancelClick(upcoming.bookingId)
+                    Log.d("MATHEWS", "bind: ${upcoming.bookingId}")
                 }
                 btnTick.setOnClickListener {
-//                    (context as? MainActivity)?.viewModel?.ChangeTheStatus(upcoming.bookingId,"COMPLETED")
                     onCompleteClick(upcoming.bookingId)
                 }
 

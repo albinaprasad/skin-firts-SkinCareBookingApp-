@@ -12,8 +12,10 @@ import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.enums.Enums
 import com.medicalhealth.healthapplication.view.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
+@AndroidEntryPoint
 class ScheduleDetailsActivity : BaseActivity() {
     private lateinit var binding: ActivityScheduleDetailsBinding
     private val viewModel: SharedViewModel by viewModels()

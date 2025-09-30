@@ -3,6 +3,7 @@ package com.medicalhealth.healthapplication.viewModel
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,21 +18,21 @@ import com.medicalhealth.healthapplication.model.repository.doctorBooking.Bookin
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleDetailsActivity
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import android.widget.Toast
+import javax.inject.Inject
+import kotlin.text.Typography.dagger
 
+@HiltViewModel
+class SharedViewModel @Inject constructor( private val bookingRepository : BookingRepository): ViewModel() {
 
-class SharedViewModel: ViewModel() {
-
-    private val bookingRepository: BookingRepository =
-        BookingRepositoryImpl(FirebaseFirestore.getInstance())
 
     private val appointmentRepository:AppointmentRepository =
         AppointmentRepository(FirebaseFirestore.getInstance())
 
-    // LiveData for selected Doctor and Title (kept for existing functionality)
+
     private val _selectedDoctor = MutableLiveData<Doctor>()
     val selectedDoctor: LiveData<Doctor> = _selectedDoctor
 
@@ -40,15 +41,14 @@ class SharedViewModel: ViewModel() {
 
     private var lastRequestedStatus: String = "COMPLETED"
 
-    // StateFlow for ALL appointments fetched from Firestore
     private val _appointmentList = MutableStateFlow<Resource<List<Appointment>>>(Resource.Loading())
     val appointmentList:StateFlow<Resource<List<Appointment>>> = _appointmentList
 
-    // StateFlow for ALL doctors fetched from Firestore
+
     private val _doctorList = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
     val doctorList:StateFlow<Resource<List<Doctor>>> = _doctorList
 
-    // LiveData for the currently FILTERED list that the fragment will observe
+
     private val _filteredAppointments = MutableLiveData<Resource<List<Appointment>>>()
     val filteredAppointments: LiveData<Resource<List<Appointment>>> = _filteredAppointments
 
@@ -74,15 +74,13 @@ class SharedViewModel: ViewModel() {
         }
     }
 
-    fun ChangeTheStatus(documentId:String,status:String){
+    fun changeTheStatus(documentId:String,status:String){
         viewModelScope.launch {
             _statusUpdateResult.value = Resource.Loading()
-            Log.d("mathews", "ChangeTheStatus: evide ethyyy againnnn")
             appointmentRepository.ChangeTheStatus(documentId,status).collect{ resource ->
                 _statusUpdateResult.value = resource
 
                 if (resource is Resource.Success) {
-                    Log.d("mathews", "ChangeTheStatus: success")
                     fetchTheAppointment()
                 }
             }

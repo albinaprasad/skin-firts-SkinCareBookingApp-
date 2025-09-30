@@ -29,7 +29,7 @@ class AllAppointmentFragment : Fragment() {
     private val sharedViewModel: SharedViewModel by activityViewModels()
     private lateinit var cancelActivityResultLauncher: ActivityResultLauncher<Intent>
 
-    // ⭐ Stores the currently selected status to correctly package the data for the adapter
+
     private var currentStatus: String = "COMPLETED"
 
     override fun onCreateView(
@@ -58,32 +58,32 @@ class AllAppointmentFragment : Fragment() {
 
 
         val cancelClickListener: (String) -> Unit = { documentId ->
-            // Option 1: Start a new activity to confirm cancellation (your current approach)
+            Log.d("CancelFlow", "Attempting to launch CancelAppointment for ID: $documentId") // Log 1
             val intent = Intent(requireContext(), CancelAppointment::class.java).apply {
                 putExtra("BOOKING_ID", documentId)
             }
             cancelActivityResultLauncher.launch(intent)
+            Log.d("CancelFlow", "Launch call completed.")
 
-            // OR Option 2: Directly update status (if you remove CancelAppointment screen)
 
         }
         val completeClickListener: (String) -> Unit = { documentId ->
-            // ⭐ Call the ViewModel directly to update status to COMPLETED
-            sharedViewModel.ChangeTheStatus(documentId, "COMPLETED")
+            Log.d("CancelFlow", "Attempting to launch CancelAppointment for ID: $documentId")
+
+            sharedViewModel.changeTheStatus(documentId, "COMPLETED")
         }
 
-        // Initialize adapter with an empty list
+
         adapter = AppointmentAdapter(requireContext(), emptyList(), onCancelClick = cancelClickListener, onCompleteClick = completeClickListener)
         binding.completeAppointmentRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.completeAppointmentRecyclerView.adapter = adapter
 
-        // Set initial state
+
         binding.btnComplete.isActivated = true
 
-        // ⭐ Start observing the filtered data stream
         observeAppointments()
 
-        // Set up button click listeners
+
         setUpOnListener()
     }
 
@@ -92,25 +92,25 @@ class AllAppointmentFragment : Fragment() {
             sharedViewModel.filteredAppointments.observe(viewLifecycleOwner) { resource ->
                 when (resource) {
                     is Resource.Loading -> {
-                        // binding.progressBar.visibility = View.VISIBLE
+
                         Log.d("Fragment", "Loading appointments...")
                     }
 
                     is Resource.Error -> {
-                        // binding.progressBar.visibility = View.GONE
+
                         Log.e("Fragment", "Error fetching appointments: ${resource.message}")
                         adapter.updateChanges(emptyList())
                     }
 
                     is Resource.Success -> {
-                        // binding.progressBar.visibility = View.GONE
+
                         val appointments = resource.data ?: emptyList()
                         Log.d(
                             "Fragment",
                             "Received ${appointments.size} appointments for status: $currentStatus"
                         )
 
-                        // ⭐ Update the adapter with the correct AppointmentItem wrapper
+
                         updateAdapter(appointments)
                     }
                 }
@@ -141,7 +141,7 @@ class AllAppointmentFragment : Fragment() {
             updateButtonState(binding.btnComplete)
             currentStatus = "COMPLETED" // Update status
             if (currentUser != null) {
-                // ⭐ Call the ViewModel's filtering function
+
                 sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
             }
         }
@@ -149,7 +149,7 @@ class AllAppointmentFragment : Fragment() {
             updateButtonState(binding.btnUpcoming)
             currentStatus = "UPCOMING" // Update status
             if (currentUser != null) {
-                // ⭐ Call the ViewModel's filtering function
+
                 sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
             }
         }

@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -41,6 +43,13 @@ android {
         jvmTarget = "11"
     }
 }
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains.kotlin:kotlin-stdlib:2.0.20")
+        force("org.jetbrains.kotlin:kotlin-reflect:2.0.20")
+        force("org.jetbrains.kotlin:kotlin-compiler-embeddable:2.0.20")
+    }
+}
 
 dependencies {
 
@@ -74,6 +83,7 @@ dependencies {
     // Other dependencies
     implementation("androidx.activity:activity-ktx:1.9.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation(libs.androidx.espresso.core)
 
     // Testing dependencies
     testImplementation(libs.junit)
@@ -84,4 +94,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
     implementation("com.google.firebase:firebase-firestore-ktx:24.10.2")
+
+    //dagger hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.20")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.20")
 }

@@ -10,15 +10,17 @@ import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentDoctorInfoBinding
+import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.utils.getBitmapFromAssets
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class DoctorInfoFragment : Fragment() {
-
     private val sharedViewModel: SharedViewModel by activityViewModels()
     lateinit var binding: FragmentDoctorInfoBinding
+    var doctorObj: Doctor? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,13 +55,11 @@ class DoctorInfoFragment : Fragment() {
                 tvProfile.text = doctor.profile
                 tvCareerPath.text = doctor.careerPath
                 tvHighlights.text = doctor.highlights
+
+                doctorObj=doctor
             }
         }
     }
-
-
-
-
 
      fun buttonClickListeners() {
 
@@ -67,6 +67,7 @@ class DoctorInfoFragment : Fragment() {
          {
              btnSchedule.setOnClickListener {
                  val intent = Intent(requireContext(), ScheduleActivity::class.java)
+                 intent.putExtra("clicked_doctor",doctorObj)
                  startActivity(intent)
              }
          }

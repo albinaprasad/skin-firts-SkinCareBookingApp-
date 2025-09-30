@@ -22,10 +22,7 @@ class AppointmentRepository(val firestore: FirebaseFirestore) {
 
         val currentOne =
             firestore.collection("bookings").whereEqualTo("userId", currentUser).get().await()
-//        val doctors = currentOne.documents.mapNotNull { documentSnapshot ->
-//            documentSnapshot.toObject<Doctor>()?.copy(id = documentSnapshot.id)
-//
-//        }
+
         val snapshot = currentOne.documents.mapNotNull { it.toObject(Appointment::class.java) }
         Log.d("mathews", "fetchTheDoctor1: ${snapshot}")
         emit(Resource.Success(snapshot))

@@ -29,6 +29,6 @@ class SplashScreenActivity : BaseActivity() {
                 WelcomeScreenActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)    // Delay for 3 seconds
+        }, 3000)
     }
 }

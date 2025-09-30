@@ -6,22 +6,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Appointment
+import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.TimeSlot
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
-import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalTime
 import java.util.Calendar
+import javax.inject.Inject
 
+
+@HiltViewModel
 @RequiresApi(Build.VERSION_CODES.O)
-class ScheduleCalenderViewModel : ViewModel() {
+class ScheduleCalenderViewModel @Inject constructor(private val bookingRepository: BookingRepository): ViewModel() {
 
-    private val bookingRepository: BookingRepository =
-        BookingRepositoryImpl(FirebaseFirestore.getInstance())
+    private var _currentDoctor = MutableLiveData<Doctor>()
+    val currentDoctor: LiveData<Doctor> get() = _currentDoctor
 
     private val _dateList = MutableLiveData<List<Date>>()
     val dateList: LiveData<List<Date>> get() = _dateList
@@ -51,32 +54,89 @@ class ScheduleCalenderViewModel : ViewModel() {
         currentMonth = monthIndex
 
         val newDateList = mutableListOf<Date>()
-        val today = java.util.Calendar.getInstance()
-        val currentYear = today.get(java.util.Calendar.YEAR)
-        val todayMonth = today.get(java.util.Calendar.MONTH)
-        val currentDay = today.get(java.util.Calendar.DAY_OF_MONTH)
-        val calendar = java.util.Calendar.getInstance()
+        val today =Calendar.getInstance()
+        val currentYear = today.get(Calendar.YEAR)
+        val todayMonth = today.get(Calendar.MONTH)
+        val currentDay = today.get(Calendar.DAY_OF_MONTH)
+        val calendar = Calendar.getInstance()
 
-        calendar.set(java.util.Calendar.YEAR, currentYear)
-        calendar.set(java.util.Calendar.MONTH, monthIndex)
-        calendar.set(java.util.Calendar.DAY_OF_MONTH, 1)
+        calendar.set(Calendar.YEAR, currentYear)
+        calendar.set(Calendar.MONTH, monthIndex)
+        calendar.set(Calendar.DAY_OF_MONTH, 1)
 
-        val daysInMonth = calendar.getActualMaximum(java.util.Calendar.DAY_OF_MONTH)
+        val daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH)
         for (day in 1..daysInMonth) {
-            calendar.set(java.util.Calendar.DAY_OF_MONTH, day)
-            val dayOfWeek = calendar.get(java.util.Calendar.DAY_OF_WEEK)
+            calendar.set(Calendar.DAY_OF_MONTH, day)
+            val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
             val isToday = (monthIndex == todayMonth && day == currentDay)
+            val isBeforeToday =if (monthIndex < todayMonth && currentYear == calendar.get(Calendar.YEAR)){
+                true
+            }else if(monthIndex == todayMonth && day < currentDay &&  currentYear == calendar.get(Calendar.YEAR )){
+                true
+                }
+            else{
+                false
+            }
             val date = Date(
                 dayOfMonth = day.toString(),
                 dayOfWeek = dayNames[dayOfWeek - 1],
-                isSelected = false,
-                isToday = isToday
+                isSelected = isToday &&  monthIndex == todayMonth,
+                isToday = isToday,
+                isAvailable= !isBeforeToday
             )
             newDateList.add(date)
         }
         _dateList.value = newDateList
-    }
+        _selectedDate.value = null
+        _bookingStatus.value = Resource.Success(true)
 
+        if (monthIndex == todayMonth) {
+            autoSelectAvailableDay()
+        }
+    }
+    private fun autoSelectAvailableDay() {
+        val today = Calendar.getInstance()
+        val todayMonth = today.get(Calendar.MONTH)
+        val currentYear = today.get(Calendar.YEAR)
+        val currentDay = today.get(Calendar.DAY_OF_MONTH)
+        val currentHour = today.get(Calendar.HOUR_OF_DAY)
+        val todayDayOfWeek = today.get(Calendar.DAY_OF_WEEK)
+
+        if (currentMonth == todayMonth) {
+            val todayDate = _dateList.value?.find { it.isToday && it.isAvailable }
+            if (todayDate != null) {
+                val doctor = _currentDoctor.value
+
+
+                val isWorkingDay = doctor?.let { doct ->
+                    if (doct.startDay <= doct.endDay) todayDayOfWeek in doct.startDay..doct.endDay
+                    else todayDayOfWeek >= doct.startDay || todayDayOfWeek <= doct.endDay
+                } ?: false
+
+                if (isWorkingDay ) {
+
+                    _selectedDate.value = todayDate
+                    generateTimeSlots()
+                    checkSlotAvailability(todayDate)
+                } else {
+                    // Find next available day in this month
+                    val nextAvailable = _dateList.value?.find { date ->
+                        val cal = Calendar.getInstance()
+                        cal.set(currentYear, currentMonth, date.dayOfMonth.toInt())
+                        val dayOfWeek = cal.get(Calendar.DAY_OF_WEEK)
+                        date.isAvailable && doctor?.let { d ->
+                            if (d.startDay <= d.endDay) dayOfWeek in d.startDay..d.endDay
+                            else dayOfWeek >= d.startDay || dayOfWeek <= d.endDay
+                        } == true
+                    }
+
+                    if (nextAvailable != null) {
+                        onDateSelected(nextAvailable)
+                    }
+                }
+            }
+        }
+    }
     fun generateTimeSlots() {
         val newTimeSlots = mutableListOf<TimeSlot>()
         var time = LocalTime.of(9, 0)
@@ -110,7 +170,11 @@ class ScheduleCalenderViewModel : ViewModel() {
         } ?: emptyList()
         _dateList.value = updatedDates
 
-        checkSlotAvailability(selectedDate)
+        if (selectedDate.isAvailable) {
+            checkSlotAvailability(selectedDate)
+        } else {
+            _timeSlots.value = emptyList()
+        }
 
     }
 
@@ -144,9 +208,16 @@ class ScheduleCalenderViewModel : ViewModel() {
 
     private fun updateTimeSlotAvailability(bookedTimes: List<String>) {
 
+        val currentTime = LocalTime.now()
+        val selectedDate = _selectedDate.value
+        val isToday = selectedDate?.isToday == true
+
         val updatedSlots = _timeSlots.value?.map { slot ->
+            val isBooked = slot.timeString in bookedTimes
+            val isPastTime = isToday && slot.time.isBefore(currentTime)
+
             slot.copy(
-                isAvailable = slot.timeString !in bookedTimes,
+                isAvailable = !isBooked && !isPastTime,
                 isSelected = false
             )
         } ?: emptyList()
@@ -160,7 +231,7 @@ class ScheduleCalenderViewModel : ViewModel() {
         problemDescription: String,
         userId: String,
         personType: String
-    ):Appointment? {
+        ):Appointment? {
         val selectedDate = _selectedDate.value
         val selectedSlot = _selectedTimeSlot.value
 
@@ -215,6 +286,25 @@ class ScheduleCalenderViewModel : ViewModel() {
         )
         _bookingStatus.value = Resource.Success(true)
         return booking
+    }
+
+    fun setDoctor(dummyDoctor: Doctor) {
+        _currentDoctor.value= dummyDoctor
+    }
+
+    fun selectTodayDateAsDefault() {
+        val today = Calendar.getInstance()
+        val todayMonth = today.get(Calendar.MONTH)
+        val currentYear = today.get(Calendar.YEAR)
+
+        if (currentMonth == todayMonth && currentYear == today.get(Calendar.YEAR)) {
+            val todayDate = _dateList.value?.find { it.isToday && it.isAvailable }
+            if (todayDate != null) {
+                _selectedDate.value = todayDate
+                generateTimeSlots()
+                checkSlotAvailability(todayDate)
+            }
+        }
     }
 }
 

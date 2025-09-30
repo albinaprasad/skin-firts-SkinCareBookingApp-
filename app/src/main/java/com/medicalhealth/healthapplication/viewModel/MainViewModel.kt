@@ -4,22 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepository
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(
-    private val repository: DoctorDetailsRepository = DoctorDetailsRepositoryImpl(
-        FirebaseFirestore.getInstance()
-    )
-) : ViewModel() {
+
+@HiltViewModel
+class MainViewModel @Inject constructor(private val repository: DoctorDetailsRepository) : ViewModel() {
     private val _dates = MutableLiveData<List<Date>?>()
     val dates: MutableLiveData<List<Date>?> get() = _dates
 
