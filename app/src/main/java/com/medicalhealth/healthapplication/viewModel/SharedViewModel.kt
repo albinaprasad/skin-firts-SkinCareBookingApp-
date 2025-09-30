@@ -38,6 +38,8 @@ class SharedViewModel: ViewModel() {
     private val _titleChange = MutableLiveData<String>()
     val titleChange:LiveData<String> = _titleChange
 
+    private var lastRequestedStatus: String = "COMPLETED"
+
     // StateFlow for ALL appointments fetched from Firestore
     private val _appointmentList = MutableStateFlow<Resource<List<Appointment>>>(Resource.Loading())
     val appointmentList:StateFlow<Resource<List<Appointment>>> = _appointmentList
@@ -49,6 +51,12 @@ class SharedViewModel: ViewModel() {
     // LiveData for the currently FILTERED list that the fragment will observe
     private val _filteredAppointments = MutableLiveData<Resource<List<Appointment>>>()
     val filteredAppointments: LiveData<Resource<List<Appointment>>> = _filteredAppointments
+
+    private val _statusUpdateResult = MutableLiveData<Resource<Unit>>(Resource.Success(Unit))
+    val statusUpdateResult: LiveData<Resource<Unit>> = _statusUpdateResult
+
+
+
 
 
     fun selectDoctor(doctor: Doctor) {
@@ -67,17 +75,29 @@ class SharedViewModel: ViewModel() {
     }
 
     fun ChangeTheStatus(documentId:String,status:String){
-        appointmentRepository.ChangeTheStatus(documentId,status)
+        viewModelScope.launch {
+            _statusUpdateResult.value = Resource.Loading()
+            Log.d("mathews", "ChangeTheStatus: evide ethyyy againnnn")
+            appointmentRepository.ChangeTheStatus(documentId,status).collect{ resource ->
+                _statusUpdateResult.value = resource
+
+                if (resource is Resource.Success) {
+                    Log.d("mathews", "ChangeTheStatus: success")
+                    fetchTheAppointment()
+                }
+            }
+        }
+
     }
 
-    private suspend fun fetchTheAppointment() {
+     suspend fun fetchTheAppointment() {
         appointmentRepository.fetchAllAppointments().collect{ result ->
             _appointmentList.value = result
             Log.d("message", "All Appointments: ${result.data?.size}")
 
             // ⭐ Automatically filter for the initial status ("COMPLETED") after first fetch
             if (result is Resource.Success && result.data != null) {
-                filterAppointmentsByStatus("COMPLETED")
+                filterAppointmentsByStatus(lastRequestedStatus)
             }
         }
     }
@@ -90,6 +110,7 @@ class SharedViewModel: ViewModel() {
     }
 
     fun filterAppointmentsByStatus(status:String){
+        lastRequestedStatus = status
         // ⭐ FIX for NullPointerException and incorrect filtering logic
         val allAppointmentsResource = _appointmentList.value
 
@@ -101,7 +122,7 @@ class SharedViewModel: ViewModel() {
             _filteredAppointments.value = Resource.Success(appointmentsWithDetails)
         } else {
             // Handle loading or error state gracefully
-            _filteredAppointments.value = Resource.Success(emptyList())
+            _filteredAppointments.value = Resource.Loading()
         }
     }
 

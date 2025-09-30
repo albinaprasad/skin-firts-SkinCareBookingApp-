@@ -12,7 +12,8 @@ import com.medicalhealth.healthapplication.databinding.CompleteAppointmentBindin
 import com.medicalhealth.healthapplication.databinding.UpcomingAppointmentBinding
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
-import com.medicalhealth.healthapplication.utils.utils.convertDateToDayMonthFormat
+import com.medicalhealth.healthapplication.utils.utils.addThirtyMinutes
+import com.medicalhealth.healthapplication.utils.utils.convertDateToLongFormat
 import com.medicalhealth.healthapplication.view.CancelAppointment
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.squareup.picasso.Picasso
@@ -22,6 +23,8 @@ class AppointmentAdapter(
     private val context: Context,
     // This list now contains a wrapper for each individual appointment
     private var appointmentItems: List<AppointmentItem>,
+    private val onCancelClick: (String) -> Unit, // For btnCross
+    private val onCompleteClick: (String) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // Constants for View Types
@@ -60,7 +63,7 @@ class AppointmentAdapter(
             }
             VIEW_TYPE_UPCOMING -> {
                 val binding = UpcomingAppointmentBinding.inflate(inflater, parent, false)
-                UpcomingAppointmentViewHolder(binding)
+                UpcomingAppointmentViewHolder(binding,onCancelClick,onCompleteClick)
             }
             VIEW_TYPE_CANCELLED -> {
                 val binding = CancelledAppointmentBinding.inflate(inflater, parent, false)
@@ -139,7 +142,8 @@ class AppointmentAdapter(
         }
     }
 
-    class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding) :
+    class UpcomingAppointmentViewHolder(val binding: UpcomingAppointmentBinding,private val onCancelClick: (String) -> Unit,
+                                        private val onCompleteClick: (String) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(upcoming: Appointment, context: Context) {
             with(binding) {
@@ -147,17 +151,17 @@ class AppointmentAdapter(
                     .load("file:///android_asset/doctor_images/${upcoming.doctorPic}.png")
                     .into(ivDoctorPic)
                 tvDoctorName.text = upcoming.doctorName
+                Log.d("mathews", "bind: ${upcoming.doctorName},${upcoming.doctorSpec},${upcoming.bookingDate}")
                 tvSpecialization.text = upcoming.doctorSpec
-                tvDateOfAppointment.text = convertDateToDayMonthFormat(upcoming.bookingDate)
-                tvTimeOfAppointment.text = upcoming.bookingTime
+                tvDateOfAppointment.text = convertDateToLongFormat(upcoming.bookingDate)
+                val endTime = addThirtyMinutes(upcoming.bookingTime)
+                tvTimeOfAppointment.text = "${upcoming.bookingTime} - ${endTime}"
                 btnCross.setOnClickListener {
-                    Log.d("mathews", "bind: ${upcoming.bookingId}")
-                    val intent = Intent(context, CancelAppointment::class.java)
-                    intent.putExtra("id",upcoming.bookingId)// Assuming CancelAppointment is an Activity
-                    context.startActivity(intent)
+                    onCancelClick(upcoming.bookingId)
                 }
                 btnTick.setOnClickListener {
-                    (context as? MainActivity)?.viewModel?.ChangeTheStatus(upcoming.bookingId,"COMPLETED")
+//                    (context as? MainActivity)?.viewModel?.ChangeTheStatus(upcoming.bookingId,"COMPLETED")
+                    onCompleteClick(upcoming.bookingId)
                 }
 
                 cvDetails.setOnClickListener {

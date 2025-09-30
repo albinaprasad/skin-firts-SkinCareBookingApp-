@@ -19,7 +19,7 @@ data class Appointment(
     val personType:String="YOURSELF",
     val createdAt: Long = System.currentTimeMillis()
 ): Serializable{
-    var doctorName: String = ""
+    var doctorName: String? = null
     var doctorSpec: String = ""
     var doctorPic:String =""
     var rating: Double = 0.0

@@ -1,10 +1,14 @@
 package com.medicalhealth.healthapplication.view.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +17,7 @@ import com.medicalhealth.healthapplication.databinding.FragmentAllAppointmentBin
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
 import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.view.CancelAppointment
 import com.medicalhealth.healthapplication.view.adapter.AppointmentAdapter
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
@@ -20,9 +25,9 @@ class AllAppointmentFragment : Fragment() {
 
     private lateinit var binding: FragmentAllAppointmentBinding
     private lateinit var adapter: AppointmentAdapter
-    // Removed unused authentication and appointments fields
     private val currentUser = FirebaseAuth.getInstance().currentUser?.uid
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private lateinit var cancelActivityResultLauncher: ActivityResultLauncher<Intent>
 
     // ⭐ Stores the currently selected status to correctly package the data for the adapter
     private var currentStatus: String = "COMPLETED"
@@ -35,11 +40,40 @@ class AllAppointmentFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        cancelActivityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                Log.d("Fragment", "Cancellation confirmed on child screen. Forcing refresh.")
+                sharedViewModel.filterAppointmentsByStatus(currentStatus)
+            }
+
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        val cancelClickListener: (String) -> Unit = { documentId ->
+            // Option 1: Start a new activity to confirm cancellation (your current approach)
+            val intent = Intent(requireContext(), CancelAppointment::class.java).apply {
+                putExtra("BOOKING_ID", documentId)
+            }
+            cancelActivityResultLauncher.launch(intent)
+
+            // OR Option 2: Directly update status (if you remove CancelAppointment screen)
+
+        }
+        val completeClickListener: (String) -> Unit = { documentId ->
+            // ⭐ Call the ViewModel directly to update status to COMPLETED
+            sharedViewModel.ChangeTheStatus(documentId, "COMPLETED")
+        }
+
         // Initialize adapter with an empty list
-        adapter = AppointmentAdapter(requireContext(), emptyList())
+        adapter = AppointmentAdapter(requireContext(), emptyList(), onCancelClick = cancelClickListener, onCompleteClick = completeClickListener)
         binding.completeAppointmentRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.completeAppointmentRecyclerView.adapter = adapter
 
@@ -84,9 +118,6 @@ class AllAppointmentFragment : Fragment() {
         }
     }
     private fun updateAdapter(appointments: List<Appointment>) {
-        // ⭐ FIX: Map the list of Appointments into a list of AppointmentItem wrappers.
-        // This allows the RecyclerView to see multiple different view types if necessary,
-        // and correctly reports the item count.
 
         val appointmentItems: List<AppointmentItem> = appointments.map { appointment ->
             when (currentStatus) {
@@ -126,7 +157,6 @@ class AllAppointmentFragment : Fragment() {
             updateButtonState(binding.btnCancelled)
             currentStatus = "CANCELLED" // Update status
             if (currentUser != null) {
-                // ⭐ Call the ViewModel's filtering function
                 sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
             }
         }
@@ -138,6 +168,4 @@ class AllAppointmentFragment : Fragment() {
         binding.btnCancelled.isActivated = (activeButton == binding.btnCancelled)
     }
 
-    // ⭐ The getAndReplaceDoctorDetails logic has been moved and refactored into the ViewModel
-    //    to ensure data consistency before UI updates.
 }

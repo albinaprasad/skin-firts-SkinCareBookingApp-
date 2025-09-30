@@ -29,33 +29,34 @@ class AppointmentRepository(val firestore: FirebaseFirestore) {
         val snapshot = currentOne.documents.mapNotNull { it.toObject(Appointment::class.java) }
         Log.d("mathews", "fetchTheDoctor1: ${snapshot}")
         emit(Resource.Success(snapshot))
-//         val snapshot1 = snapshot.filter {it.status == status}
-//         Log.d("mathews", "fetchTheDoctor: ${snapshot1}")
-//         emit(Resource.Success(snapshot1))
+
 
 
     }
 
     fun fetchTheDoctor(): Flow<Resource<List<Doctor>>> = flow {
         emit(Resource.Loading())
-            val currentDoctor =firestore.collection("doctors").get().await()
+        val currentDoctor = firestore.collection("doctors").get().await()
         val doctorList = currentDoctor.documents.mapNotNull { it.toObject(Doctor::class.java) }
         emit(Resource.Success(doctorList))
 
 
-
     }
-    fun ChangeTheStatus(documentId:String,status:String){
-        val currentPosition = firestore.collection("bookings").document(documentId)
-        currentPosition.update("status",status).addOnSuccessListener {
-            Log.d("mathews", "ChangeTheStatus: Successful")
-        }
-            .addOnFailureListener {
-                Log.d("mathews", "ChangeTheStatus: failed")
-            }
 
+    fun ChangeTheStatus(documentId: String, status: String): Flow<Resource<Unit>> = flow {
+        emit(Resource.Loading())
+        try {
+            val currentPosition = firestore.collection("bookings").document(documentId)
+            currentPosition.update("status", status).await()
+            emit((Resource.Success(Unit)))
+        } catch (e: Exception) {
+            emit(Resource.Error("Failed to update status: ${e.message}"))
+            Log.d("mathews", "ChangeTheStatus: ${e.message}")
         }
     }
+}
+
+
 
 
 
