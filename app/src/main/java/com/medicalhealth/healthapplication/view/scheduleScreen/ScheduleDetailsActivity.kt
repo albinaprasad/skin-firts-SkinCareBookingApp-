@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -7,11 +8,13 @@ import androidx.activity.viewModels
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleDetailsBinding
+import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.databinding.ItemDoctorProfileBinding
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.enums.Enums
 import com.medicalhealth.healthapplication.view.BaseActivity
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Calendar
 
@@ -31,6 +34,35 @@ class ScheduleDetailsActivity : BaseActivity() {
 
         setupDoctorData()
         buttonClickListeners()
+        setUpListeners()
+    }
+
+    private fun setUpListeners(){
+       val bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
+
+        with(bottomNavBinding){
+            homeButton.setOnClickListener {
+                returnToMain("home")
+            }
+            chatButton.setOnClickListener {
+                returnToMain("chat")
+            }
+            profileButton.setOnClickListener {
+                returnToMain("profile")
+            }
+            calenderButton.setOnClickListener {
+                returnToMain("calendar")
+            }
+
+        }
+    }
+
+    fun returnToMain(tab: String){
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(MainActivity.FRAGMENT_TO_LOAD_KEY, tab)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     private fun setupDoctorData() {
@@ -107,6 +139,9 @@ class ScheduleDetailsActivity : BaseActivity() {
             }
             cancelBtn.setOnClickListener {
                 finish()
+            }
+            backButton.setOnClickListener {
+                onBackPressed()
             }
         }
 

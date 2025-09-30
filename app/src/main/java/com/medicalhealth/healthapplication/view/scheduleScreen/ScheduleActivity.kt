@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.scheduleScreen
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -17,12 +18,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
+import com.medicalhealth.healthapplication.databinding.BottomNavigationLayoutBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
@@ -56,6 +59,7 @@ lateinit var userObj: Users
 
         getDoctorData()
         spinnerSetUp()
+        setUpListeners()
         dateRecyclerViewSetUp()
         timeslotAdapterSetup()
         listenToButtonClicks()
@@ -65,6 +69,32 @@ lateinit var userObj: Users
         personalDetailsButtonSelection(binding.yourselfTextView)
     }
 
+    private fun setUpListeners(){
+       val bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
+
+        with(bottomNavBinding){
+            homeButton.setOnClickListener {
+                returnToMain("home")
+            }
+            chatButton.setOnClickListener {
+                returnToMain("chat")
+            }
+            profileButton.setOnClickListener {
+                returnToMain("profile")
+            }
+            calenderButton.setOnClickListener {
+                returnToMain("calendar")
+            }
+
+        }
+    }
+    fun returnToMain(tab: String){
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(MainActivity.FRAGMENT_TO_LOAD_KEY, tab)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun getDoctorData() {
         dummyDoctor =intent.getSerializableExtra("clicked_doctor") as Doctor
@@ -201,6 +231,9 @@ lateinit var userObj: Users
 
         with(binding)
         {
+            backButton.setOnClickListener {
+                onBackPressed()
+            }
             dateFwdBtn.setOnClickListener {
                 scheduleRecyclerView.smoothScrollBy(300, 0)
             }

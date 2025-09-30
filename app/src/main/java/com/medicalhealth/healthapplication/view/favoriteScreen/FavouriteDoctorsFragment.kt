@@ -50,11 +50,7 @@ class FavouriteDoctorsFragment : Fragment() {
                     }
 
                     else -> {
-                        Toast.makeText(
-                            requireActivity(),
-                            "error in loading data ",
-                            Toast.LENGTH_SHORT
-                        ).show()
+
                     }
                 }
             }

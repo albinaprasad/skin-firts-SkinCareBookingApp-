@@ -69,6 +69,10 @@ class DoctorsActivity : BaseActivity() {
             maleBtn.setOnClickListener {
                 filterBtnClickSetUp("MaleListFragment", getString(R.string.male), DoctorsListFragment.newInstance("Male"), binding.ratingBtn, binding.sortButton, binding.favBtn, binding.femaleBtn, binding.maleBtn)
             }
+
+            backButton.setOnClickListener {
+                onBackPressed()
+            }
         }
     }
 
@@ -86,6 +90,7 @@ class DoctorsActivity : BaseActivity() {
             calenderButton.setOnClickListener {
                 returnToMain("calendar")
             }
+
         }
     }
 

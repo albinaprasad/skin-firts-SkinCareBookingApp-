@@ -47,7 +47,8 @@ class MainActivity : BaseActivity(){
             }
         }
         bottomNavBinding = BottomNavigationLayoutBinding.bind(mainBinding.bottomNavigationBar.root)
-        selectTab("home")
+        val fragmentToLoad = intent.getStringExtra(FRAGMENT_TO_LOAD_KEY) ?: "home"
+        selectTab(fragmentToLoad)
         setUpListeners()
     }
 
