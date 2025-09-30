@@ -76,9 +76,6 @@ class DateAdapterForScheduling(
 
                     root.isEnabled = false
                     root.isClickable = false
-//                    dateContainer.alpha = 0.7f
-//                    dateTextView.alpha = 0.7f
-//                    dayOfWeekTextView.alpha = 0.7f
                 }
 
                dateTextView.text = date.dayOfMonth

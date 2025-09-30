@@ -9,7 +9,6 @@ import kotlinx.coroutines.tasks.await
 
 
 class AuthenticationRepository {
-
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
     private val userCollection = firestore.collection("users")
@@ -52,19 +51,5 @@ class AuthenticationRepository {
         }
     }
 
-//    suspend fun getUserFromFirestore(uid:String): Result<Users>
-//    {
-//        return try {
-//            val document = userCollection.document(uid).get().await()
-//            val userObj = document.toObject(Users::class.java)
-//            if (userObj != null) {
-//                Result.success(userObj)
-//            } else {
-//                Result.failure(Exception("User not found"))
-//            }
-//        }
-//        catch (e:Exception){
-//            Result.failure(e)
-//        }
-//    }
+
 }

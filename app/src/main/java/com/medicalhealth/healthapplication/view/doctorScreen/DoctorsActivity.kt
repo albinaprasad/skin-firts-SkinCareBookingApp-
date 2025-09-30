@@ -26,8 +26,6 @@ class DoctorsActivity : BaseActivity() {
     val sharedViewModel: SharedViewModel by viewModels()
     private lateinit var bottomNavBinding: BottomNavigationLayoutBinding
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
