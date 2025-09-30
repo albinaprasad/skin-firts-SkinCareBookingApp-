@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.medicalhealth.healthapplication.databinding.RatingCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-class RatingsAdapter( ) :
+class RatingsAdapter(  private val onInfoButtonClick:(Doctor) -> Unit,
+                       private val onCalenderButtonClick:(Doctor) -> Unit) :
     RecyclerView.Adapter<RatingsAdapter.RatingViewHolder>() {
 
     private var doctors: List<Doctor> = emptyList()
@@ -41,6 +42,17 @@ class RatingsAdapter( ) :
             specificationTV.text = doctor.specialization
             ratingTV.text = doctor.rating.toString()
         }
+
+        with(holder.ratingBinding){
+
+            infoButton.setOnClickListener {
+                onInfoButtonClick(doctor)
+            }
+            calenderBtn.setOnClickListener {
+                onCalenderButtonClick(doctor)
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
