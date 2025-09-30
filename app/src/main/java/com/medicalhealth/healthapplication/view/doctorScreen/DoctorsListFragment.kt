@@ -1,13 +1,11 @@
 package com.medicalhealth.healthapplication.view.doctorScreen
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,10 +16,12 @@ import com.medicalhealth.healthapplication.utils.ViewExtension.show
 import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
+@AndroidEntryPoint
 class DoctorsListFragment : Fragment() {
     private lateinit var binding: FragmentDoctorsListBinding
 

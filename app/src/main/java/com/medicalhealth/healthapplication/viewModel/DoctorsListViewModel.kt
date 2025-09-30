@@ -5,21 +5,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepository
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import com.medicalhealth.healthapplication.model.data.Schedule
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DoctorsListViewModel(
-    private val repository: DoctorDetailsRepository = DoctorDetailsRepositoryImpl(
-        FirebaseFirestore.getInstance()
-    )
-) : ViewModel() {
+
+@HiltViewModel
+class DoctorsListViewModel @Inject constructor(
+    private val repository: DoctorDetailsRepository) : ViewModel() {
 
     private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(
         value = Resource.Loading()

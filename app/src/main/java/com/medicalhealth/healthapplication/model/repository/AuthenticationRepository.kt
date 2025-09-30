@@ -9,7 +9,6 @@ import kotlinx.coroutines.tasks.await
 
 
 class AuthenticationRepository {
-
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
     private val userCollection = firestore.collection("users")
@@ -51,4 +50,6 @@ class AuthenticationRepository {
             Result.failure(e)
         }
     }
+
+
 }

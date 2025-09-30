@@ -38,5 +38,4 @@ class AuthenticationViewModel(private val authenticationRepository: Authenticati
             _isLoading.value = false
         }
     }
-
 }

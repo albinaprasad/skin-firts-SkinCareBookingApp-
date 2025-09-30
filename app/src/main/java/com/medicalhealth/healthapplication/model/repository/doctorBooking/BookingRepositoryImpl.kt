@@ -8,8 +8,9 @@ import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
-class BookingRepositoryImpl(val firestore:FirebaseFirestore): BookingRepository{
+class BookingRepositoryImpl @Inject constructor(val firestore:FirebaseFirestore): BookingRepository{
     override suspend fun createBooking(booking: Appointment): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
