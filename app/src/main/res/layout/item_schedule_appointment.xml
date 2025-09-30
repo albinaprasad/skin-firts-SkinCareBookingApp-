@@ -53,26 +53,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:autoSizeMaxTextSize="12dp"
-            android:autoSizeMinTextSize="8dp"
+            android:layout_marginStart="14dp"
+            android:autoSizeMaxTextSize="13dp"
+            android:autoSizeMinTextSize="11dp"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/leaguespartan_semibold"
             android:includeFontPadding="false"
             android:maxLines="1"
             android:text="Dr. Alexander Bennett, Ph.D."
             android:textColor="@color/button_blue"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/statusIcons"
-            app:layout_constraintHorizontal_bias="0.32"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintWidth_percent="0.6066" />
+            app:layout_constraintWidth_percent="0.7066" />
 
         <TextView
             android:id="@+id/treatmentTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:autoSizeMaxTextSize="10dp"
             android:autoSizeMinTextSize="6dp"
             android:autoSizeTextType="uniform"
@@ -82,9 +80,7 @@
             android:maxLines="2"
             android:text="Treatment and prevention of \nskin and photodermatitis."
             android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.26"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/doctorNameTextView"
             app:layout_constraintTop_toBottomOf="@+id/doctorNameTextView"
             app:layout_constraintWidth_percent="0.7192" />
 

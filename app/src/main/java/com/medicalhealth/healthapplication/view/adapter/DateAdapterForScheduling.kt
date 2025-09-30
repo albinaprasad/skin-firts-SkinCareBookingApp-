@@ -54,8 +54,8 @@ class DateAdapterForScheduling(
             val startDayNumber = if (doctorObj.startDay in 1..7) doctorObj.startDay else Calendar.MONDAY
             val endDayNumber = if (doctorObj.endDay in 1..7) doctorObj.endDay else Calendar.SATURDAY
 
-            val isAvailable = currentDayNumber in startDayNumber..endDayNumber
-
+            val isDoctorAvailable = currentDayNumber in startDayNumber..endDayNumber
+            val isAvailable = isDoctorAvailable && date.isAvailable
             with(binding) {
 
                 if (isAvailable) {
@@ -76,11 +76,6 @@ class DateAdapterForScheduling(
 
                     root.isEnabled = false
                     root.isClickable = false
-                    dateContainer.alpha = 0.3f
-                    dateTextView.alpha = 0.3f
-                    dayOfWeekTextView.alpha = 0.3f
-                    root.setOnClickListener(null)
-
                 }
 
                dateTextView.text = date.dayOfMonth
@@ -88,26 +83,23 @@ class DateAdapterForScheduling(
 
                 when {
                     !isAvailable -> {
-
                         dateContainer.isSelected = false
                         dateContainer.isEnabled = true
                         dateTextView.setTextColor(
                             ContextCompat.getColor(
                                 context,
-                                R.color.hintColor
+                                R.color.blueBorder
                             )
                         )
                         dayOfWeekTextView.setTextColor(
                             ContextCompat.getColor(
                                 context,
-                                R.color.black
+                                R.color.blueBorder
                             )
                         )
-                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
+                        dateTextView.setTextColor(ContextCompat.getColor(context, R.color.blueBorder))
                     }
-                    date.isToday || date.isSelected -> {
-
-
+                     date.isSelected -> {
                         dateContainer.isSelected = true
                         dateContainer.isEnabled = true
                         dateTextView.setTextColor(ContextCompat.getColor(context, R.color.white))
@@ -122,7 +114,6 @@ class DateAdapterForScheduling(
 
                     else -> {
 
-
                         dateContainer.isSelected = false
                         dateContainer.isEnabled = true
                         dateTextView.setTextColor(ContextCompat.getColor(context, R.color.black))
@@ -132,7 +123,6 @@ class DateAdapterForScheduling(
                                 R.color.black
                             )
                         )
-
                     }
                 }
             }

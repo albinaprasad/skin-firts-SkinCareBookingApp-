@@ -4,5 +4,6 @@ data class Date(
     val dayOfMonth: String,
     val dayOfWeek: String,
     var isSelected: Boolean = false,
-    var isToday: Boolean = false
+    var isToday: Boolean = false,
+    var isAvailable:Boolean =true
 )

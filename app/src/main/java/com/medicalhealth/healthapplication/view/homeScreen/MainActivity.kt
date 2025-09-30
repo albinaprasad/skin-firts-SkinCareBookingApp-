@@ -16,8 +16,10 @@ import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.fragment.AllAppointmentFragment
 import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 import com.medicalhealth.healthapplication.view.reviewScreen.ReviewActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity(){
 
     private lateinit var mainBinding: ActivityMainBinding

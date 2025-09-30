@@ -301,13 +301,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/league_spartan"
-                android:text="@string/date_wednesday_text"
+                android:text="@string/no_appointments"
                 android:textColor="@color/button_blue"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.7523"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="11 Wednesday - Today" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/timeOneTextView"

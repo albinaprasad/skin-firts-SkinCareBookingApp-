@@ -8,7 +8,9 @@ import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBind
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WelcomeScreenActivity : BaseActivity() {
     private lateinit var binding: ActivityWelcomeScreenBinding
     private val viewModel: MainViewModel by viewModels()

@@ -34,7 +34,7 @@
     <string name="john_doe">John Doe</string>
     <string name="doctors_text">Doctors</string>
     <string name="favorite_text">Favorite</string>
-    <string name="date_wednesday_text">11 Wednesday - Today</string>
+    <string name="no_appointments">No appointments this month</string>
     <string name="time_9am">9 AM</string>
     <string name="time_10am">10 AM</string>
     <string name="time_11am">11 AM</string>
@@ -158,6 +158,7 @@
     <string name="book_appointment">Book Appointment</string>
     <string name="booking_failed">Booking  Failed</string>
     <string name="booking_sucess">Booking  Success</string>
+    <string name="month_unavailable">This month is not available for booking</string>
 
 
 </resources>

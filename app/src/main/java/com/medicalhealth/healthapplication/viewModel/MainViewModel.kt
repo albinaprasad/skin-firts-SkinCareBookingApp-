@@ -6,34 +6,29 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.FirebaseFirestore
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepository
 import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepositoryImpl
-import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepository
-import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepositoryImpl
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
-import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 import java.util.concurrent.TimeUnit
 
-class MainViewModel(
-    private val repository: DoctorDetailsRepository = DoctorDetailsRepositoryImpl(
-        FirebaseFirestore.getInstance()
-    )
-) : ViewModel() {
 
-    private val bookingRepository: BookingRepository =
-        BookingRepositoryImpl(FirebaseFirestore.getInstance())
+@HiltViewModel
+class MainViewModel @Inject constructor(private val repository: DoctorDetailsRepository, private val bookingRepository: BookingRepository) : ViewModel() {
+
 
     private val authRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
 
@@ -96,7 +91,6 @@ class MainViewModel(
             if(result is Resource.Success){
                 _currentUserDetails.value = result
             }
-
         }
     }
 

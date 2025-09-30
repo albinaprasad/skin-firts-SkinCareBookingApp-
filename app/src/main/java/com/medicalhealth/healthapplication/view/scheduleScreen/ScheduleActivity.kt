@@ -3,6 +3,7 @@ package com.medicalhealth.healthapplication.view.scheduleScreen
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -13,38 +14,36 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityScheduleBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.utils.utils.getSystemBarInsets
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.Calendar
-import kotlin.getValue
 
+@AndroidEntryPoint
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
-
     private val viewModel: ScheduleCalenderViewModel by viewModels()
-    //TODO replace this with actuall doctor object
-    val dummyDoctor = Doctor(
-        id = "DOC001",
-        name = "Dr. John Smith",
-        specialization = "Cardiologist",
-        experience = 10,
-        profileImageUrl ="olivia_turner",
-        commentCount = 30,
-        rating = 4.5,
-        startDay = Calendar.MONDAY,
-        endDay = Calendar.SATURDAY,
-        startTime = 9,
-        endTime = 4
-    )
+lateinit var dummyDoctor: Doctor
+lateinit var userObj: Users
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,14 +55,54 @@ class ScheduleActivity : BaseActivity() {
                 binding.root.setPadding(0, 0, 0, it.bottom)
             }
         }
-        spinnerSetUp()
-        dateRecyclerViewSetUp()
-        timeslotAdapterSetup()
-        listenToButtonClicks()
-        //TODO replace with original doctor ID
-        viewModel.setCurrentDoctor("albin123")
-        observeBookingStatus()
-        personalDetailsButtonSelection(binding.yourselfTextView)
+
+        observeUserData()
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun observeUserData(){
+        lifecycleScope.launch {
+            viewModel.currentUserDetails.collectLatest { resource ->
+
+                Log.d("message", "$resource")
+                when(resource){
+                    is Resource.Error -> {
+
+                    }
+                    is Resource.Loading -> {
+
+                    }
+                    is Resource.Success -> {
+                        if(resource.data != null) {
+                            userObj = resource.data
+                            getDoctorData()
+                            spinnerSetUp()
+                            dateRecyclerViewSetUp()
+                            timeslotAdapterSetup()
+                            listenToButtonClicks()
+                            observeBookingStatus()
+
+                            viewModel.selectTodayDateAsDefault()
+                            personalDetailsButtonSelection(binding.yourselfTextView)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getDoctorData() {
+        dummyDoctor =intent.getSerializableExtra("clicked_doctor") as Doctor
+        viewModel.setCurrentDoctor(dummyDoctor.id)
+        Log.d("Doctor","${dummyDoctor.startDay   }${dummyDoctor.endDay   }")
+
+        viewModel.setCurrentDoctor(dummyDoctor.id)
+        viewModel.setDoctor(dummyDoctor)
+        viewModel.currentDoctor.observe(this){ doctor->
+          binding.titleText.text=doctor.name
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -75,6 +114,7 @@ class ScheduleActivity : BaseActivity() {
                 is Resource.Loading -> {
 
                     with(binding){
+
                        submitButton.isEnabled = false
                        submitButton.text = getString(R.string.creating_booking)
                        submitButton.setTextColor(ContextCompat.getColor(this@ScheduleActivity,android.R.color.white))
@@ -93,7 +133,7 @@ class ScheduleActivity : BaseActivity() {
                      submitButton.isEnabled = true
                      submitButton.text = getString(R.string.book_appointment)
                    }
-                    Toast.makeText(applicationContext,  getString(R.string.booking_failed), Toast.LENGTH_LONG).show()
+
                 }
             }
         }
@@ -211,8 +251,21 @@ class ScheduleActivity : BaseActivity() {
                 personalDetailsButtonSelection(anotherPersonTextView)
             }
            submitButton.setOnClickListener {
+
+               if (viewModel.selectedDate.value == null) {
+                   Toast.makeText(this@ScheduleActivity, "Please select a date", Toast.LENGTH_SHORT).show()
+                   return@setOnClickListener
+               }
+
+               if (viewModel.selectedTimeSlot.value == null) {
+                   Toast.makeText(this@ScheduleActivity, "Please select a time slot", Toast.LENGTH_SHORT).show()
+                   return@setOnClickListener
+               }
                createBooking()
            }
+            infoBtn.setOnClickListener {
+                finish()
+            }
         }
     }
 
@@ -222,15 +275,17 @@ class ScheduleActivity : BaseActivity() {
         with(binding)
         {
             val patientName = if (isYourselfSelected()) {
-                //TODO add actuall user here
-                 "Current user"
+               userObj.userName
+
+
             } else {
                 fullNameEditText.text.toString().trim()
             }
 
             val patientAge = if (isYourselfSelected()) {
-                //TODO add actuall user age here
-               30
+
+              calculateAgeFromDob(userObj.dateOfBirth)?.toInt()
+
             } else {
                 ageEditText.text.toString().toIntOrNull() ?: 0
             }
@@ -253,13 +308,12 @@ class ScheduleActivity : BaseActivity() {
                 "AnotherPerson"
             }
            val bookedObject= viewModel.createBooking(
-                patientName = patientName,
-                patientAge = patientAge,
+                patientName = patientName as String,
+                patientAge = patientAge as Int,
                 patientGender = patientGender,
                 problemDescription = problemDescription,
                 personType=personType,
-                //Todo add actuall use ID here
-                userId = "1234")
+                userId = userObj.uid)
 
                if( bookedObject != null ){
                    val intent = Intent(this@ScheduleActivity, ScheduleDetailsActivity::class.java)
@@ -267,12 +321,35 @@ class ScheduleActivity : BaseActivity() {
                    intent.putExtra("doctor_object", dummyDoctor)
                    startActivity(intent)
                }
-
         }
     }
-        private fun isYourselfSelected(): Boolean {
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun calculateAgeFromDob(dob: String): Int? {
+        val formatters = listOf(
+            DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+            DateTimeFormatter.ofPattern("d/MM/yyyy"),
+            DateTimeFormatter.ofPattern("d/M/yyyy"),
+            DateTimeFormatter.ofPattern("dd/M/yyyy")
+        )
+        for( formatter in formatters){
+            try {
+                val birthDate = LocalDate.parse(dob, formatter)
+                val current_date= LocalDate.now()
+                return Period.between(birthDate, current_date).years
+            }
+            catch (e: DateTimeParseException) {
+                continue
+            }
+        }
+        return null
+    }
+
+    private fun isYourselfSelected(): Boolean {
+
             return binding.yourselfTextView.isSelected
         }
+    @RequiresApi(Build.VERSION_CODES.O)
     fun personalDetailsButtonSelection(selectedTextView: TextView) {
         with(binding) {
 
@@ -291,12 +368,20 @@ class ScheduleActivity : BaseActivity() {
                 ageEditText.isEnabled = false
                 fullNameEditText.alpha = 0.5f
                 ageEditText.alpha = 0.5f
+
+                fullNameEditText.hint = userObj.userName
+                val age = calculateAgeFromDob(userObj.dateOfBirth)
+                ageEditText.hint = age?.toString() ?: ""
+
             } else {
 
                 fullNameEditText.isEnabled = true
                 ageEditText.isEnabled = true
                 fullNameEditText.alpha = 1.0f
                 ageEditText.alpha = 1.0f
+
+                fullNameEditText.hint = ""
+                ageEditText.hint = ""
             }
         }
     }
@@ -351,4 +436,8 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 }
+
+
+
+
 
