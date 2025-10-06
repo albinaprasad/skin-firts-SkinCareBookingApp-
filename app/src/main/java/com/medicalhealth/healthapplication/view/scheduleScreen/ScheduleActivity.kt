@@ -304,7 +304,9 @@ class ScheduleActivity : BaseActivity() {
                 val intent = Intent(this@ScheduleActivity, DoctorsActivity::class.java)
                 intent.putExtra("SHOW_DOCTOR_INFO", true)
                 intent.putExtra("doctor_object", dummyDoctor)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
+                finish()
             }
         }
     }
