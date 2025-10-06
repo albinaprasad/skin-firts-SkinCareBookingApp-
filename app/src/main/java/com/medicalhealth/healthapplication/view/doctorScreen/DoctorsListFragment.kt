@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.doctorScreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.medicalhealth.healthapplication.databinding.FragmentDoctorsListBindin
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.utils.ViewExtension.show
 import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
+import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,7 +31,6 @@ class DoctorsListFragment : Fragment() {
 
     private val viewModel: DoctorsListViewModel by activityViewModels()
     private val sharedViewModel:SharedViewModel by activityViewModels()
-
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DoctorListViewAdapter
 
@@ -50,10 +51,15 @@ class DoctorsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = DoctorListViewAdapter(requireContext(), emptyList()) { doctor ->
+        adapter = DoctorListViewAdapter(requireContext(), emptyList(), { doctor ->
             sharedViewModel.selectDoctor(doctor)
             replaceFragment(DoctorInfoFragment())
-        }
+        },
+            { doctorObj ->
+            val intent = Intent(requireContext(), ScheduleActivity::class.java)
+            intent.putExtra("clicked_doctor", doctorObj)
+            startActivity(intent)
+        })
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         viewModel.loadDoctors(filterType)

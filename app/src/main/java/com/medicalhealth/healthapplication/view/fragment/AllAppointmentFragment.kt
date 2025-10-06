@@ -87,6 +87,12 @@ class AllAppointmentFragment : Fragment() {
         setUpOnListener()
     }
 
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
+
+    }
+
     private fun observeAppointments() {
         if (currentUser != null) {
             sharedViewModel.filteredAppointments.observe(viewLifecycleOwner) { resource ->

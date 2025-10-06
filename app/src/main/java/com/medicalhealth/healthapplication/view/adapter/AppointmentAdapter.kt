@@ -97,13 +97,10 @@ class AppointmentAdapter(
             }
         }
     }
-
     override fun getItemCount(): Int {
 
         return appointmentItems.size
     }
-
-
 
     class CompleteAppointmentViewHolder(val binding: CompleteAppointmentBinding) :
         RecyclerView.ViewHolder(binding.root) {

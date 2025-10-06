@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.ratingScreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,10 +10,14 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentRatingBinding
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.adapter.RatingsAdapter
+import com.medicalhealth.healthapplication.view.doctorScreen.DoctorInfoFragment
+import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
+import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.getValue
@@ -23,6 +28,7 @@ import kotlin.getValue
 class RatingFragment : Fragment() {
     lateinit var ratingBinding: FragmentRatingBinding
     private val viewModel: DoctorsListViewModel by activityViewModels()
+    private val sharedViewModel:SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,9 +42,23 @@ class RatingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadDoctors("ALL")
     }
+    private fun replaceFragment(doctorInfoFragment: DoctorInfoFragment) {
 
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_doctor, doctorInfoFragment)
+            .addToBackStack(null)
+            .commit()
+
+    }
     private fun setUpAdapter() {
-        val adapter = RatingsAdapter()
+        val adapter = RatingsAdapter( { doctor ->
+            sharedViewModel.selectDoctor(doctor)
+            replaceFragment(DoctorInfoFragment())
+            }){ doctorObj ->
+            val intent = Intent(requireContext(), ScheduleActivity::class.java)
+            intent.putExtra("clicked_doctor", doctorObj)
+            startActivity(intent)
+        }
         with(ratingBinding) {
             ratingsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             ratingsRecyclerView.adapter = adapter

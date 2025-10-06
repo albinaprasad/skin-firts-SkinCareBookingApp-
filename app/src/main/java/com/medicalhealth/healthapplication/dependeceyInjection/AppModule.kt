@@ -1,8 +1,8 @@
 package com.medicalhealth.healthapplication.dependeceyInjection
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepository
-import com.medicalhealth.healthapplication.model.repository.DoctorDetailsRepositoryImpl
+import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepository
+import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepositoryImpl
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import dagger.Module

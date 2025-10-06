@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.viewModel
 
+import android.content.Intent
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -17,6 +18,7 @@ import com.medicalhealth.healthapplication.model.repository.AppointmentRepositor
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepositoryImpl
 import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleDetailsActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -74,7 +76,7 @@ class SharedViewModel @Inject constructor( private val bookingRepository : Booki
         }
     }
 
-    fun changeTheStatus(documentId:String,status:String){
+   fun changeTheStatus(documentId:String,status:String){
         viewModelScope.launch {
             _statusUpdateResult.value = Resource.Loading()
             appointmentRepository.ChangeTheStatus(documentId,status).collect{ resource ->
@@ -109,7 +111,6 @@ class SharedViewModel @Inject constructor( private val bookingRepository : Booki
 
     fun filterAppointmentsByStatus(status:String){
         lastRequestedStatus = status
-        // ⭐ FIX for NullPointerException and incorrect filtering logic
         val allAppointmentsResource = _appointmentList.value
 
         if (allAppointmentsResource is Resource.Success && allAppointmentsResource.data != null) {
@@ -216,6 +217,9 @@ class SharedViewModel @Inject constructor( private val bookingRepository : Booki
                 {
                     is Resource.Success->{
                         Toast.makeText(context, context.getString(R.string.booking_sucess), Toast.LENGTH_SHORT).show()
+                        val intent = Intent(context, MainActivity::class.java)
+                        context.startActivity(intent)
+                        context.finish()
                     }
                     is Resource.Error<*> -> {
                         Toast.makeText(context,context.getString(R.string.booking_failed) , Toast.LENGTH_SHORT).show()
