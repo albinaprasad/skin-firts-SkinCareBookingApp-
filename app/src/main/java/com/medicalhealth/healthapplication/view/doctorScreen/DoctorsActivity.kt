@@ -60,7 +60,6 @@ class DoctorsActivity : BaseActivity() {
         setUpOnObserver()
         buttonClickListener()
     }
-
     private fun getDoctorInfo() {
         if (showDoctorInfo) {
             val doctor = intent.getSerializableExtra("doctor_object") as? Doctor
