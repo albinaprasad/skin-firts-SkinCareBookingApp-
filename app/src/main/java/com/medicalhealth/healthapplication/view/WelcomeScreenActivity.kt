@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.medicalhealth.healthapplication.databinding.ActivityWelcomeScreenBinding
-import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ui.loginScreen.LoginActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +33,7 @@ class WelcomeScreenActivity : BaseActivity() {
         super.onStart()
         val currentUser = viewModel.keepMeSignedIn()
         if(currentUser != null){
-            val intent = Intent(this@WelcomeScreenActivity, MainActivity::class.java)
+            val intent = Intent(this@WelcomeScreenActivity, LoginActivity::class.java)
             startActivity(intent)
         }
     }
