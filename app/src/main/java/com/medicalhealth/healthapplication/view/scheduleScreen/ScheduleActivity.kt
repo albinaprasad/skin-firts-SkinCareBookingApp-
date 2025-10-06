@@ -30,6 +30,7 @@ import com.medicalhealth.healthapplication.view.adapter.DateAdapterForScheduling
 import com.medicalhealth.healthapplication.view.adapter.TimeSlotAdapterForScheduling
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorsActivity
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
+import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import com.medicalhealth.healthapplication.viewModel.ScheduleCalenderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
@@ -46,6 +47,8 @@ import kotlin.getValue
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
     private val viewModel: ScheduleCalenderViewModel by viewModels()
+
+    private val mainViewModel: MainViewModel by viewModels()
     lateinit var dummyDoctor: Doctor
     lateinit var userObj: Users
 
@@ -84,10 +87,11 @@ class ScheduleActivity : BaseActivity() {
                             getDoctorData()
                             spinnerSetUp()
                             setUpListeners()
-        dateRecyclerViewSetUp()
-        timeslotAdapterSetup()
-        listenToButtonClicks()
-        observeBookingStatus()
+                            dateRecyclerViewSetUp()
+                            timeslotAdapterSetup()
+                            listenToButtonClicks()
+                            observeBookingStatus()
+                            observeFavoriteStateOfDoctor()
 
                             viewModel.selectTodayDateAsDefault()
                             personalDetailsButtonSelection(binding.yourselfTextView)
@@ -98,6 +102,20 @@ class ScheduleActivity : BaseActivity() {
         }
     }
 
+    suspend fun observeFavoriteStateOfDoctor(){
+        mainViewModel.currentUserDetails.collectLatest { resource ->
+            if (resource is Resource.Success && resource.data != null) {
+                val isFavorite = resource.data.favouriteDoctors.contains(dummyDoctor.id)
+                dummyDoctor.isFavorite = isFavorite
+                updateFavoriteButtonUI(isFavorite)
+            }
+        }
+    }
+   fun updateFavoriteButtonUI(isFavorite:Boolean){
+       binding.favBtn.setImageResource(
+           if (isFavorite) R.drawable.fav_icon_filled_darkblue else R.drawable.fav_icon
+       )
+   }
     private fun setUpListeners(){
        val bottomNavBinding = BottomNavigationLayoutBinding.bind(binding.bottomNavigationBar.root)
 
@@ -222,12 +240,7 @@ class ScheduleActivity : BaseActivity() {
                 position: Int,
                 id: Long
             ) {
-                val selectedMonth = months[position]
-                Toast.makeText(
-                    this@ScheduleActivity,
-                    "Selected: $selectedMonth",
-                    Toast.LENGTH_SHORT
-                ).show()
+
                 viewModel.generateMonthDates(position)
             }
 
@@ -279,6 +292,11 @@ class ScheduleActivity : BaseActivity() {
             otherBtn.setOnClickListener {
                 genderButtonSelection(otherBtn)
             }
+            favBtn.setOnClickListener {
+                mainViewModel.toggleFavoriteStatus(dummyDoctor.id)
+                dummyDoctor.isFavorite = !dummyDoctor.isFavorite
+
+            }
             yourselfTextView.setOnClickListener {
                 personalDetailsButtonSelection(yourselfTextView)
             }
@@ -299,8 +317,6 @@ class ScheduleActivity : BaseActivity() {
                createBooking()
            }
             infoBtn.setOnClickListener {
-
-                // Navigate to DoctorsActivity which will show DoctorInfoFragment
                 val intent = Intent(this@ScheduleActivity, DoctorsActivity::class.java)
                 intent.putExtra("SHOW_DOCTOR_INFO", true)
                 intent.putExtra("doctor_object", dummyDoctor)

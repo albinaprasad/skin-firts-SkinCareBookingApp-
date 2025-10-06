@@ -149,7 +149,6 @@ class DoctorsActivity : BaseActivity() {
             .replace(R.id.fragment_container_doctor, fragment)
             .commit()
     }
-
 }
 
 
