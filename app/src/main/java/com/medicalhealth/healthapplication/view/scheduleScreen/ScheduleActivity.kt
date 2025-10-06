@@ -71,7 +71,6 @@ class ScheduleActivity : BaseActivity() {
     private fun observeUserData(){
         lifecycleScope.launch {
             viewModel.currentUserDetails.collectLatest { resource ->
-
                 Log.d("message", "$resource")
                 when(resource){
                     is Resource.Error -> {

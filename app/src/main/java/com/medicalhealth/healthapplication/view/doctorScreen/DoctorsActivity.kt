@@ -18,6 +18,7 @@ import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.favoriteScreen.FavouriteDoctorsFragment
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
 import com.medicalhealth.healthapplication.view.ratingScreen.RatingFragment
+import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.properties.Delegates
@@ -93,6 +94,10 @@ class DoctorsActivity : BaseActivity() {
             backButton.setOnClickListener {
                onBackPressed()
             }
+            settingsButton.setOnClickListener {
+                val intent = Intent(this@DoctorsActivity, SettingsActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
     private fun setUpListeners(){
@@ -109,7 +114,6 @@ class DoctorsActivity : BaseActivity() {
             calenderButton.setOnClickListener {
                 returnToMain("calendar")
             }
-
         }
     }
 
