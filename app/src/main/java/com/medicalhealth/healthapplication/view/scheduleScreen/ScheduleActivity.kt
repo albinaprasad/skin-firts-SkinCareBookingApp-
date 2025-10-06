@@ -46,7 +46,6 @@ import kotlin.getValue
 class ScheduleActivity : BaseActivity() {
     lateinit var binding: ActivityScheduleBinding
     private val viewModel: ScheduleCalenderViewModel by viewModels()
-
     private val mainViewModel: MainViewModel by viewModels()
     lateinit var dummyDoctor: Doctor
     lateinit var userObj: Users
