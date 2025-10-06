@@ -32,6 +32,9 @@ class SettingsActivity : BaseActivity() {
                     Intent(this@SettingsActivity, PasswordManagerActivity::class.java)
                 startActivity(passwordManagerIntent)
             }
+            backButton.setOnClickListener {
+                onBackPressed()
+            }
         }
     }
 

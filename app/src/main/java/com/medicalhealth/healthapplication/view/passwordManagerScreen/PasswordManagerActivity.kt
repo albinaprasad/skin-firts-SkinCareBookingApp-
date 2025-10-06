@@ -12,5 +12,13 @@ class PasswordManagerActivity : BaseActivity() {
         binding = ActivityPasswordManagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        buttonClickListeners()
+    }
+    fun buttonClickListeners(){
+        with(binding){
+            backButton.setOnClickListener {
+                onBackPressed()
+            }
+        }
     }
 }
