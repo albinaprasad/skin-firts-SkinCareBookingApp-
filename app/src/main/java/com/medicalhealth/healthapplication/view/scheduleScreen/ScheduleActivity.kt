@@ -81,6 +81,10 @@ class ScheduleActivity : BaseActivity() {
                     is Resource.Success -> {
                         if(resource.data != null) {
                             userObj = resource.data
+
+                            personalDetailsButtonSelection(binding.yourselfTextView)
+                            viewModel.selectTodayDateAsDefault()
+
                             getDoctorData()
                             spinnerSetUp()
                             setUpListeners()
@@ -89,9 +93,6 @@ class ScheduleActivity : BaseActivity() {
                             listenToButtonClicks()
                             observeBookingStatus()
                             observeFavoriteStateOfDoctor()
-
-                            viewModel.selectTodayDateAsDefault()
-                            personalDetailsButtonSelection(binding.yourselfTextView)
                         }
                     }
                 }
@@ -291,7 +292,7 @@ class ScheduleActivity : BaseActivity() {
             }
             favBtn.setOnClickListener {
                 mainViewModel.toggleFavoriteStatus(dummyDoctor.id)
-                dummyDoctor.isFavorite = !dummyDoctor.isFavorite
+
 
             }
             yourselfTextView.setOnClickListener {
