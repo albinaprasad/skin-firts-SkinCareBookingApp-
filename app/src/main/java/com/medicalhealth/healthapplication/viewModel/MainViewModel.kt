@@ -93,6 +93,11 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
             }
         }
     }
+    fun refreshCurrentUserDetails() {
+        viewModelScope.launch {
+            fetchCurrentUserDetails()
+        }
+    }
 
     private suspend fun fetchAllDoctors() {
         repository.getDoctors().collect {

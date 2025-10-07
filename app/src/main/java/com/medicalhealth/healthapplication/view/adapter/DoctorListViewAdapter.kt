@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.DoctorsListCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
@@ -13,7 +14,8 @@ class DoctorListViewAdapter(
     private val context: Context,
     private var dataList: List<Doctor>,
     private val onInfoButtonClick:(Doctor) -> Unit,
-    val onCalenderButtonClick:(Doctor) -> Unit
+    val onCalenderButtonClick:(Doctor) -> Unit,
+    val togleFavoriteDoctor:(Doctor) -> Unit
 ) : RecyclerView.Adapter<DoctorListViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -34,30 +36,38 @@ class DoctorListViewAdapter(
         // Bind data to the views using the binding object
         val inputStream = holder.itemView.context.assets.open("doctor_images/${currentItem.profileImageUrl}.png")
         val bitmap = BitmapFactory.decodeStream(inputStream)
-        holder.binding.doctorName.text = currentItem.name
-        holder.binding.specification.text = currentItem.specialization
-        holder.binding.doctorImage.setImageBitmap(bitmap)
 
-        holder.binding.infoButton.setOnClickListener {
-            onInfoButtonClick(currentItem)
+        with(holder.binding){
 
+           doctorName.text = currentItem.name
+           specification.text = currentItem.specialization
+           doctorImage.setImageBitmap(bitmap)
+            favBtn.setImageResource(
+                if (currentItem.isFavorite) R.drawable.fav_icon_filled_darkblue
+                else R.drawable.fav_icon
+            )
+
+           infoButton.setOnClickListener {
+                onInfoButtonClick(currentItem)
+            }
+
+            calenderBtn.setOnClickListener {
+                onCalenderButtonClick(currentItem)
+            }
+
+            moreinfoBtn.setOnClickListener {
+                showToast(context, "info")
+            }
+
+            aboutwhatBtn.setOnClickListener {
+                showToast(context, "?")
+            }
+
+           favBtn.setOnClickListener {
+               togleFavoriteDoctor(currentItem)
+            }
         }
 
-        holder.binding.calenderBtn.setOnClickListener {
-            onCalenderButtonClick(currentItem)
-        }
-
-        holder.binding.moreinfoBtn.setOnClickListener {
-            showToast(context, "info")
-        }
-
-        holder.binding.aboutwhatBtn.setOnClickListener {
-            showToast(context, "?")
-        }
-
-        holder.binding.favBtn.setOnClickListener {
-            showToast(context, "fav")
-        }
     }
 
     override fun getItemCount(): Int {
