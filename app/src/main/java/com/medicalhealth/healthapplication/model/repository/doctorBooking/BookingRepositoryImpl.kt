@@ -25,6 +25,7 @@ class BookingRepositoryImpl @Inject constructor(val firestore:FirebaseFirestore)
             emit(Resource.Error("Failed to create booking"))
         }
     }
+
     override suspend fun getBookedSlots(
         doctorId: String,
         date: String

@@ -22,7 +22,7 @@ import com.medicalhealth.healthapplication.view.adapter.DateAdapter
 import com.medicalhealth.healthapplication.view.adapter.DoctorAdapter
 import com.medicalhealth.healthapplication.view.adapter.ScheduleAdapter
 import com.medicalhealth.healthapplication.view.notificationScreen.NotificationActivity
-import com.medicalhealth.healthapplication.view.notificationSetting.NotificationSettingsActivity
+import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -70,9 +70,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             scheduleRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             scheduleAdapter= ScheduleAdapter(emptyList())
             scheduleRecyclerView.adapter = scheduleAdapter
-
-
-
             doctorRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             val initialDoctors = emptyList<Doctor>()
             doctorAdapter = DoctorAdapter(initialDoctors){ doctor, position ->
@@ -178,7 +175,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 startActivity(intent)
             }
             settingsBtn.setOnClickListener {
-                val intent = Intent(requireActivity(), NotificationSettingsActivity::class.java)
+                val intent = Intent(requireActivity(), SettingsActivity::class.java)
                 startActivity(intent)
             }
         }

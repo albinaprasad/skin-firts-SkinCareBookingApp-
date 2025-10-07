@@ -8,7 +8,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FavDoctorsCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
-class FavDoctorAdapter :
+class FavDoctorAdapter( private val makeAppointmentClickListener:(Doctor) -> Unit):
     RecyclerView.Adapter<FavDoctorAdapter.FavDoctorViewHolder>() {
 
     private var doctors: List<Doctor> = emptyList()
@@ -34,12 +34,17 @@ class FavDoctorAdapter :
         val doctor = doctors[position]
         val inputStream = holder.itemView.context.assets.open("doctor_images/${doctor.profileImageUrl}.png")
         val bitmap = BitmapFactory.decodeStream(inputStream)
-        holder.favBinding.apply {
-            doctorImage.setImageBitmap(bitmap)
-            nameTV.text = doctor.name
-            specificationTV.text = doctor.specialization
-            favBtn.setImageResource(R.drawable.fav_filled)
-        }
+
+       with(holder.favBinding){
+           doctorImage.setImageBitmap(bitmap)
+           nameTV.text = doctor.name
+           specificationTV.text = doctor.specialization
+           favBtn.setImageResource(R.drawable.fav_filled)
+
+           AppointementBtn.setOnClickListener {
+               makeAppointmentClickListener(doctor)
+           }
+       }
     }
 
     override fun getItemCount(): Int {
