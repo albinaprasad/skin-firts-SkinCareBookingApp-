@@ -87,9 +87,6 @@ class DoctorsListFragment : Fragment() {
     }
 
 
-
-
-
     private fun observeViewModel(){
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.doctors.collectLatest { result ->

@@ -17,6 +17,7 @@ import com.medicalhealth.healthapplication.view.adapter.RatingsAdapter
 import com.medicalhealth.healthapplication.view.doctorScreen.DoctorInfoFragment
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
+import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,6 +31,9 @@ class RatingFragment : Fragment() {
     private val viewModel: DoctorsListViewModel by activityViewModels()
     private val sharedViewModel:SharedViewModel by activityViewModels()
 
+    private val mainViewModel: MainViewModel by activityViewModels()
+    lateinit var adapter: RatingsAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -40,7 +44,9 @@ class RatingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.loadDoctors("ALL")
+        mainViewModel.refreshCurrentUserDetails()
     }
     private fun replaceFragment(doctorInfoFragment: DoctorInfoFragment) {
 
@@ -51,14 +57,20 @@ class RatingFragment : Fragment() {
 
     }
     private fun setUpAdapter() {
-        val adapter = RatingsAdapter( { doctor ->
-            sharedViewModel.selectDoctor(doctor)
-            replaceFragment(DoctorInfoFragment())
-            }){ doctorObj ->
-            val intent = Intent(requireContext(), ScheduleActivity::class.java)
-            intent.putExtra("clicked_doctor", doctorObj)
-            startActivity(intent)
-        }
+         adapter = RatingsAdapter(
+            { doctor ->
+                sharedViewModel.selectDoctor(doctor)
+                replaceFragment(DoctorInfoFragment())
+            }, { doctorObj ->
+                val intent = Intent(requireContext(), ScheduleActivity::class.java)
+                intent.putExtra("clicked_doctor", doctorObj)
+                startActivity(intent)
+            }, { doctor ->
+                mainViewModel.toggleFavoriteStatus(doctor.id)
+                doctor.isFavorite = !doctor.isFavorite
+                adapter.notifyDataSetChanged()
+            }
+        )
         with(ratingBinding) {
             ratingsRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             ratingsRecyclerView.adapter = adapter
