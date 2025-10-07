@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import com.medicalhealth.healthapplication.model.data.Doctor
+import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -43,5 +44,32 @@ class DoctorDetailsRepositoryImpl @Inject constructor(private val firestore: Fir
             .addOnFailureListener { e->
                 Log.w("message", "Error adding document")
             }
+    }
+
+    override fun getFavoriteDoctors(uid: String): Flow<Resource<List<Doctor>>> = flow {
+
+        emit(Resource.Loading())
+        try {
+            val userDoc =  firestore.collection("users").document(uid).get().await()
+            val userObj = userDoc.toObject<Users>()
+            val favoriteDoctorIdList = userObj?.favouriteDoctors ?: emptyList()
+
+            if (favoriteDoctorIdList.isEmpty()) {
+                emit(Resource.Success(emptyList()))
+                return@flow
+            }
+
+            val doctors = mutableListOf<Doctor>()
+            for(doctorID in favoriteDoctorIdList){
+                val doctorDoc =  firestore.collection("doctors").document(doctorID).get().await()
+                doctorDoc.toObject<Doctor>()?.copy( id = doctorDoc.id)?.let {
+                    doctors.add(it)
+                }
+            }
+            emit(Resource.Success(doctors))
+        }
+        catch (e: Exception){
+            emit(Resource.Error("Error fetching favorite doctors: ${e.localizedMessage}"))
+        }
     }
 }

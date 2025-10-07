@@ -65,7 +65,6 @@ class RatingsAdapter(  private val onInfoButtonClick:(Doctor) -> Unit,
     }
 
     override fun getItemCount(): Int {
-
         return doctors.size
     }
 

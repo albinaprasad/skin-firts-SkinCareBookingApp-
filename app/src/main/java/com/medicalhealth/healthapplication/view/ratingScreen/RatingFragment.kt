@@ -46,7 +46,6 @@ class RatingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.loadDoctors("ALL")
-        mainViewModel.refreshCurrentUserDetails()
     }
     private fun replaceFragment(doctorInfoFragment: DoctorInfoFragment) {
 

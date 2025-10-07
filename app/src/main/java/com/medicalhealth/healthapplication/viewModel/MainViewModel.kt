@@ -18,6 +18,7 @@ import com.medicalhealth.healthapplication.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 import java.text.SimpleDateFormat
@@ -29,7 +30,8 @@ import java.util.concurrent.TimeUnit
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository: DoctorDetailsRepository, private val bookingRepository: BookingRepository) : ViewModel() {
 
-
+    private val _favoriteDoctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
+    val favoriteDoctors: StateFlow<Resource<List<Doctor>>> = _favoriteDoctors.asStateFlow()
     private val authRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
 
     private val _currentUserDetails = MutableStateFlow<Resource<Users>>(Resource.Loading())
@@ -86,7 +88,7 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
         }
     }
 
-    private suspend fun fetchCurrentUserDetails(){
+     suspend fun fetchCurrentUserDetails(){
         authRepository.fetchCurrentUserDetails().collect{ result ->
             if(result is Resource.Success){
                 _currentUserDetails.value = result
@@ -128,7 +130,13 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
             getDayFromDateString(appointment.bookingDate)?.let { daysList.add(it) }
         }
     }
-
+    fun loadFavoriteDoctors(uid:String){
+        viewModelScope.launch {
+            repository.getFavoriteDoctors(uid).collect(){ resource ->
+                _favoriteDoctors.value= resource
+            }
+        }
+    }
     private fun generateMonthDates() {
         val newDateList = mutableListOf<Date>()
         val today = java.util.Calendar.getInstance()

@@ -9,4 +9,6 @@ interface DoctorDetailsRepository {
     suspend fun getDoctors(): Flow<Resource<List<Doctor>>>
     suspend fun updateFavoriteDoctors(uid: String, favouriteList: List<String>): Resource<Unit>
     fun addDoctor(doctor: Doctor)
+
+    fun getFavoriteDoctors(uid: String): Flow<Resource<List<Doctor>>>
 }
