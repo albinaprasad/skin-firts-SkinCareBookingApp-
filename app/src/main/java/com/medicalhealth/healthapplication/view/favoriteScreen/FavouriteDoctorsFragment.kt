@@ -1,5 +1,6 @@
 package com.medicalhealth.healthapplication.view.favoriteScreen
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.medicalhealth.healthapplication.databinding.FragmentFavouriteDoctorsBinding
 import com.medicalhealth.healthapplication.utils.Resource
 import com.medicalhealth.healthapplication.view.adapter.FavDoctorAdapter
+import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
 import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,7 +36,11 @@ class FavouriteDoctorsFragment : Fragment() {
     }
 
     private fun setUpAdapter() {
-        val adapter = FavDoctorAdapter()
+        val adapter = FavDoctorAdapter({doctorObj ->
+            val intent = Intent(requireContext(), ScheduleActivity::class.java)
+            intent.putExtra("clicked_doctor", doctorObj)
+            startActivity(intent)})
+
         with(FavBinding) {
             favRecyclerView.layoutManager = LinearLayoutManager(requireActivity())
             favRecyclerView.adapter = adapter
