@@ -1,180 +1,170 @@
 package com.medicalhealth.healthapplication.view.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.medicalhealth.healthapplication.databinding.FragmentAllAppointmentBinding
+import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.AppointmentItem
-import com.medicalhealth.healthapplication.model.data.Doctor
-import com.medicalhealth.healthapplication.model.data.Schedule
-import com.medicalhealth.healthapplication.model.data.UpcomingAppointment
+import com.medicalhealth.healthapplication.utils.Resource
+import com.medicalhealth.healthapplication.view.CancelAppointment
 import com.medicalhealth.healthapplication.view.adapter.AppointmentAdapter
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
-
 class AllAppointmentFragment : Fragment() {
-
 
     private lateinit var binding: FragmentAllAppointmentBinding
     private lateinit var adapter: AppointmentAdapter
+    private val currentUser = FirebaseAuth.getInstance().currentUser?.uid
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private lateinit var cancelActivityResultLauncher: ActivityResultLauncher<Intent>
 
-    private val allDoctors: List<Doctor> by lazy {
-        listOf(
-            Doctor(
-                "1",
-                "Dr. Olivia Turner, M.D.",
-                "alexander_bennett",
-                "Dermato-Endocrinology",
-                0,
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                17,
-                0,
-                5.0,
-                40
-            ),
-            Doctor(
-                "1",
-                "Dr. Olivia Turner, M.D.",
-                "alexander_bennett",
-                "Dermato-Endocrinology",
-                0,
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                17,
-                0,
-                5.0,
-                40
-            ),
-            Doctor(
-                "1",
-                "Dr. Olivia Turner, M.D.",
-                "alexander_bennett",
-                "Dermato-Endocrinology",
-                0,
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                17,
-                0,
-                5.0,
-                40
-            ),
-            Doctor(
-                "1",
-                "Dr. Olivia Turner, M.D.",
-                "alexander_bennett",
-                "Dermato-Endocrinology",
-                0,
-                15,
-                "",
-                "",
-                "",
-                "",
-                9,
-                17,
-                17,
-                0,
-                5.0,
-                40
-            ),
-        )
-    }
-    private val completeAppointments: List<AppointmentItem> by lazy {
-        allDoctors.map { AppointmentItem.Complete(it) }
-    }
-    private val upcomingAppointment: List<AppointmentItem> by lazy {
-        listOf(
-            AppointmentItem.Upcoming(
-                UpcomingAppointment(
-                    allDoctors[0],
-                    Schedule("Sunday,12 June", "9.30AM-10.00AM")
-                )
-            ),
-            AppointmentItem.Upcoming(
-                UpcomingAppointment(
-                    allDoctors[1],
-                    Schedule("Friday,20 June", "2.30PM-3.00PM")
-                )
-            ),
-            AppointmentItem.Upcoming(
-                UpcomingAppointment(
-                    allDoctors[2],
-                    Schedule("Tuesday,15 June", "9.30AM-10.00AM")
-                )
-            ),
-            AppointmentItem.Upcoming(
-                UpcomingAppointment(
-                    allDoctors[3],
-                    Schedule("Monday,14 June", "3.00PM-3.30PM")
-                )
-            ),
-        )
-    }
-    private val cancelledAppointments: List<AppointmentItem> by lazy {
-        allDoctors.map { AppointmentItem.Cancelled(it) }
-    }
 
+    private var currentStatus: String = "COMPLETED"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAllAppointmentBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        cancelActivityResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {result ->
+            if(result.resultCode == Activity.RESULT_OK){
+                Log.d("Fragment", "Cancellation confirmed on child screen. Forcing refresh.")
+                sharedViewModel.filterAppointmentsByStatus(currentStatus)
+            }
+
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
+        val cancelClickListener: (String) -> Unit = { documentId ->
+            Log.d("CancelFlow", "Attempting to launch CancelAppointment for ID: $documentId") // Log 1
+            val intent = Intent(requireContext(), CancelAppointment::class.java).apply {
+                putExtra("BOOKING_ID", documentId)
+            }
+            cancelActivityResultLauncher.launch(intent)
+            Log.d("CancelFlow", "Launch call completed.")
 
-        adapter = AppointmentAdapter(requireContext(), emptyList())
+
+        }
+        val completeClickListener: (String) -> Unit = { documentId ->
+            Log.d("CancelFlow", "Attempting to launch CancelAppointment for ID: $documentId")
+
+            sharedViewModel.changeTheStatus(documentId, "COMPLETED")
+        }
+
+
+        adapter = AppointmentAdapter(requireContext(), emptyList(), onCancelClick = cancelClickListener, onCompleteClick = completeClickListener)
         binding.completeAppointmentRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.completeAppointmentRecyclerView.adapter = adapter
 
-        sharedViewModel.currentDataList.observe(viewLifecycleOwner) { newData ->
-            adapter.updateChanges(newData as List<AppointmentItem>)
-        }
 
-        sharedViewModel.setData(completeAppointments)
         binding.btnComplete.isActivated = true
+
+        observeAppointments()
+
+
         setUpOnListener()
     }
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
+
+    }
+
+    private fun observeAppointments() {
+        if (currentUser != null) {
+            sharedViewModel.filteredAppointments.observe(viewLifecycleOwner) { resource ->
+                when (resource) {
+                    is Resource.Loading -> {
+
+                        Log.d("Fragment", "Loading appointments...")
+                    }
+
+                    is Resource.Error -> {
+
+                        Log.e("Fragment", "Error fetching appointments: ${resource.message}")
+                        adapter.updateChanges(emptyList())
+                    }
+
+                    is Resource.Success -> {
+
+                        val appointments = resource.data ?: emptyList()
+                        Log.d(
+                            "Fragment",
+                            "Received ${appointments.size} appointments for status: $currentStatus"
+                        )
+
+
+                        updateAdapter(appointments)
+                    }
+                }
+            }
+        }
+    }
+    private fun updateAdapter(appointments: List<Appointment>) {
+
+        val appointmentItems: List<AppointmentItem> = appointments.map { appointment ->
+            when (currentStatus) {
+                "COMPLETED" -> AppointmentItem.Complete(listOf(appointment))
+                "UPCOMING" -> AppointmentItem.Upcoming(listOf(appointment))
+                "CANCELLED" -> AppointmentItem.Cancelled(listOf(appointment))
+                else -> AppointmentItem.Complete(listOf(appointment))
+            }
+        }
+
+        // Pass the list of individual AppointmentItem wrappers to the adapter
+        adapter.updateChanges(appointmentItems)
+    }
+
+
+
 
     private fun setUpOnListener() {
 
         binding.btnComplete.setOnClickListener {
             updateButtonState(binding.btnComplete)
-            sharedViewModel.setData(completeAppointments)
+            currentStatus = "COMPLETED" // Update status
+            if (currentUser != null) {
+
+                sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
+            }
         }
         binding.btnUpcoming.setOnClickListener {
             updateButtonState(binding.btnUpcoming)
-            sharedViewModel.setData(upcomingAppointment)
+            currentStatus = "UPCOMING" // Update status
+            if (currentUser != null) {
+
+                sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
+            }
         }
         binding.btnCancelled.setOnClickListener {
             updateButtonState(binding.btnCancelled)
-            sharedViewModel.setData(cancelledAppointments)
+            currentStatus = "CANCELLED" // Update status
+            if (currentUser != null) {
+                sharedViewModel.filterAppointmentsByStatus(status = currentStatus)
+            }
         }
     }
 
@@ -183,6 +173,5 @@ class AllAppointmentFragment : Fragment() {
         binding.btnUpcoming.isActivated = (activeButton == binding.btnUpcoming)
         binding.btnCancelled.isActivated = (activeButton == binding.btnCancelled)
     }
-
 
 }

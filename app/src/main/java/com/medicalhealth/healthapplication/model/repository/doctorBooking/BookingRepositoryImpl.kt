@@ -15,9 +15,11 @@ class BookingRepositoryImpl @Inject constructor(val firestore:FirebaseFirestore)
     override suspend fun createBooking(booking: Appointment): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
-            firestore.collection("bookings")
+            val newDocumentRef = firestore.collection("bookings")
                 .add(booking)
                 .await()
+            val newBookingId = newDocumentRef.id
+            newDocumentRef.update("bookingId", newBookingId).await()
 
             emit(Resource.Success(true))
         } catch (e: Exception) {

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.medicalhealth.healthapplication.R
@@ -17,11 +18,13 @@ import com.medicalhealth.healthapplication.view.fragment.AllAppointmentFragment
 import com.medicalhealth.healthapplication.view.profileScreen.ProfileFragment
 import com.medicalhealth.healthapplication.view.reviewScreen.ReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
+import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity(){
 
+    val viewModel: SharedViewModel by viewModels()
     private lateinit var mainBinding: ActivityMainBinding
     private lateinit var bottomNavBinding: BottomNavigationLayoutBinding
 

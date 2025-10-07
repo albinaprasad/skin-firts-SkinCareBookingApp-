@@ -28,7 +28,7 @@ class SplashScreenActivity : BaseActivity() {
             val intent = Intent(this@SplashScreenActivity,WelcomeScreenActivity::class.java)
             startActivity(intent)
             finish()
-        }, 3000)    // Delay for 3 seconds
+        }, 3000)
     }
 
 
