@@ -160,6 +160,8 @@
     <string name="booking_sucess">Booking  Success</string>
     <string name="month_unavailable">This month is not available for booking</string>
     <string name="changing_password">Changing password....</string>
+    <string name="password_change_unsuccessful">Password change unsuccessful</string>
+    <string name="password_changed_successfully">Password changed successfully</string>
 
 
 </resources>

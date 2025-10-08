@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.ActivityPasswordManagerBinding
 import com.medicalhealth.healthapplication.utils.Resource
@@ -43,24 +45,31 @@ class PasswordManagerActivity : BaseActivity() {
             viewModel.changePassword(currentPassword, newPassword, confirmPassword)
 
             lifecycleScope.launch {
-                viewModel.changePasswordState.collect { resource ->
-                 when(resource){
+                repeatOnLifecycle(Lifecycle.State.STARTED){
+                    viewModel.changePasswordState.collect { resource ->
+                        when(resource){
 
-                     is Resource.Success ->{
-                         Toast.makeText(applicationContext, "Password changed successfully", Toast.LENGTH_LONG).show()
-                         onBackPressed()
-                     }
-                     is Resource.Error -> {
+                            is Resource.Success ->{
+                                Toast.makeText(applicationContext,
+                                    getString(R.string.password_changed_successfully), Toast.LENGTH_LONG).show()
+                                onBackPressed()
+                            }
+                            is Resource.Error -> {
+                                Toast.makeText(applicationContext,
+                                    getString(R.string.password_change_unsuccessful), Toast.LENGTH_LONG).show()
+                                binding.changePasswordBtn.alpha = 1f
+                                binding.changePasswordBtn.text = getString(R.string.change_password)
 
-                     }
-                     is Resource.Loading -> {
-                        binding.changePasswordBtn.alpha = 0.5f
-                         binding.changePasswordBtn.text = getString(R.string.changing_password)
-                     }
-                     else -> {
+                            }
+                            is Resource.Loading -> {
+                                binding.changePasswordBtn.alpha = 0.5f
+                                binding.changePasswordBtn.text = getString(R.string.changing_password)
+                            }
+                            else -> {
 
-                     }
-                 }
+                            }
+                        }
+                    }
                 }
             }
         }

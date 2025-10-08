@@ -120,9 +120,6 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
         Resource.Error("Error changing password: ${e.localizedMessage}")
     }
 }
-
-
-
     fun signOut(){
         auth.signOut()
     }
