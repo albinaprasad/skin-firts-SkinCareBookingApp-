@@ -1,7 +1,9 @@
 package com.medicalhealth.healthapplication.model.repository.authenticationRepository
 
 import android.util.Log
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
@@ -83,6 +85,42 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
             emit(Resource.Error("Error while current user info: ${e.localizedMessage}"))
         }
     }
+
+    override suspend  fun changePassword(
+        currentPassword: String,
+        newPassword: String
+    ): Resource<Unit> {
+        return  try  {
+            val user= auth.currentUser
+            if(user == null){
+                return Resource.Error("User not authenticated")
+            }
+            val email= user.email
+            if(email == null){
+                return Resource.Error("email not authenticated")
+            }
+        val credential = EmailAuthProvider.getCredential(email, currentPassword)
+
+        try {
+            user.reauthenticate(credential).await()
+        } catch (e: FirebaseAuthInvalidCredentialsException) {
+            return Resource.Error("Current password is incorrect")
+        } catch (e: Exception) {
+            return Resource.Error("Authentication failed: ${e.localizedMessage}")
+        }
+
+        try {
+            user.updatePassword(newPassword).await()
+            Resource.Success(Unit)
+        } catch (e: Exception) {
+            Resource.Error("Failed to update password: ${e.localizedMessage}")
+        }
+
+    } catch (e: Exception) {
+        Resource.Error("Error changing password: ${e.localizedMessage}")
+    }
+}
+
 
 
     fun signOut(){

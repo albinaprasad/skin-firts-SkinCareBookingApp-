@@ -10,4 +10,6 @@ interface AuthenticationRepository {
     suspend fun signUp(email:String,password:String,userName:String,mobileNumber:Long,dob:String):Result<FirebaseUser?>
     suspend fun login(email:String,password:String):Result<FirebaseUser?>
     fun fetchCurrentUserDetails(): Flow<Resource<Users>>
+
+   suspend fun changePassword(currentPassword:String,newPassword:String): Resource<Unit>
 }

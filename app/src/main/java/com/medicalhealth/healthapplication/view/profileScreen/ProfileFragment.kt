@@ -12,6 +12,7 @@ import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentProfileBinding
 import com.medicalhealth.healthapplication.view.HelpCenterActivity
 import com.medicalhealth.healthapplication.view.adapter.MyProfileAdapter
+import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 import com.medicalhealth.healthapplication.viewModel.ProfileViewModel
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -64,6 +65,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         else if(selectedOption == "Logout"){
             viewModel.signOut()
             activity?.finish()
+        }
+        else if (selectedOption == "Settings"){
+            val intent = Intent(requireActivity(), SettingsActivity::class.java)
+            startActivity(intent)
         }
     }
 }
