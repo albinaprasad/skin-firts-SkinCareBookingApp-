@@ -13,12 +13,14 @@ import com.medicalhealth.healthapplication.databinding.FragmentDoctorInfoBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.utils.utils.getBitmapFromAssets
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
+import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DoctorInfoFragment : Fragment() {
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     lateinit var binding: FragmentDoctorInfoBinding
     var doctorObj: Doctor? = null
 
@@ -57,8 +59,24 @@ class DoctorInfoFragment : Fragment() {
                 tvHighlights.text = doctor.highlights
 
                 doctorObj=doctor
+
+                updateFavButton(doctor.isFavorite)
+
+                btnFavourite.setOnClickListener {
+                    mainViewModel.toggleFavoriteStatus(doctor.id)
+                    doctor.isFavorite=!doctor.isFavorite
+                    updateFavButton(doctor.isFavorite)
+                }
+
             }
         }
+    }
+
+    fun updateFavButton(isFavorite:Boolean){
+        binding.btnFavourite.setImageResource(
+            if (isFavorite) R.drawable.fav_icon_filled_darkblue
+            else R.drawable.fav_icon
+        )
     }
 
      fun buttonClickListeners() {

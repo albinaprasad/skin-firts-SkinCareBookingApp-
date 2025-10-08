@@ -30,7 +30,6 @@ class RatingFragment : Fragment() {
     lateinit var ratingBinding: FragmentRatingBinding
     private val viewModel: DoctorsListViewModel by activityViewModels()
     private val sharedViewModel:SharedViewModel by activityViewModels()
-
     private val mainViewModel: MainViewModel by activityViewModels()
     lateinit var adapter: RatingsAdapter
 

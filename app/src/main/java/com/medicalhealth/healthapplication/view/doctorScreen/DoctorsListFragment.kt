@@ -50,7 +50,6 @@ class DoctorsListFragment : Fragment() {
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -76,7 +75,6 @@ class DoctorsListFragment : Fragment() {
         viewModel.loadDoctors(filterType)
         observeViewModel()
     }
-
     private fun replaceFragment(doctorInfoFragment: DoctorInfoFragment) {
 
         parentFragmentManager.beginTransaction()
@@ -85,8 +83,6 @@ class DoctorsListFragment : Fragment() {
             .commit()
 
     }
-
-
     private fun observeViewModel(){
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.doctors.collectLatest { result ->
