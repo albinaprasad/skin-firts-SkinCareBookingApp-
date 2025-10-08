@@ -17,6 +17,7 @@ import com.medicalhealth.healthapplication.utils.ViewExtension.show
 import com.medicalhealth.healthapplication.view.adapter.DoctorListViewAdapter
 import com.medicalhealth.healthapplication.view.scheduleScreen.ScheduleActivity
 import com.medicalhealth.healthapplication.viewModel.DoctorsListViewModel
+import com.medicalhealth.healthapplication.viewModel.MainViewModel
 import com.medicalhealth.healthapplication.viewModel.SharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -30,6 +31,7 @@ class DoctorsListFragment : Fragment() {
     private var filterType: String = "ALL"
 
     private val viewModel: DoctorsListViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private val sharedViewModel:SharedViewModel by activityViewModels()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: DoctorListViewAdapter
@@ -48,9 +50,11 @@ class DoctorsListFragment : Fragment() {
         return view
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mainViewModel.refreshCurrentUserDetails()
+
         adapter = DoctorListViewAdapter(requireContext(), emptyList(), { doctor ->
             sharedViewModel.selectDoctor(doctor)
             replaceFragment(DoctorInfoFragment())
@@ -59,13 +63,18 @@ class DoctorsListFragment : Fragment() {
             val intent = Intent(requireContext(), ScheduleActivity::class.java)
             intent.putExtra("clicked_doctor", doctorObj)
             startActivity(intent)
-        })
+        },
+            {
+                doctor->mainViewModel.toggleFavoriteStatus(doctor.id)
+                doctor.isFavorite = !doctor.isFavorite
+                adapter.notifyDataSetChanged()
+            }
+        )
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = adapter
         viewModel.loadDoctors(filterType)
         observeViewModel()
     }
-
     private fun replaceFragment(doctorInfoFragment: DoctorInfoFragment) {
 
         parentFragmentManager.beginTransaction()
@@ -74,7 +83,6 @@ class DoctorsListFragment : Fragment() {
             .commit()
 
     }
-
     private fun observeViewModel(){
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.doctors.collectLatest { result ->
@@ -88,8 +96,17 @@ class DoctorsListFragment : Fragment() {
 
                         is Resource.Success -> {
                             recyclerView.show()
-                            result.data?.let {
-                                adapter.updateData(it)
+                            result.data?.let { doctors->
+
+                                val userDetails = mainViewModel.currentUserDetails.value
+                                val favoriteDoctorIds= if (userDetails is Resource.Success && userDetails.data != null) {
+                                    userDetails.data.favouriteDoctors
+                                } else {
+                                    emptyList()
+                                }
+                                doctors.forEach { doctor ->  doctor.isFavorite =  favoriteDoctorIds.contains(doctor.id) }
+                                adapter.updateData(doctors)
+
                             }
                         }
                     }
@@ -110,6 +127,4 @@ class DoctorsListFragment : Fragment() {
             return fragment
         }
     }
-
-
 }

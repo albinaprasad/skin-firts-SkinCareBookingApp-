@@ -4,12 +4,14 @@ import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.medicalhealth.healthapplication.R
 
 import com.medicalhealth.healthapplication.databinding.RatingCardviewBinding
 import com.medicalhealth.healthapplication.model.data.Doctor
 
 class RatingsAdapter(  private val onInfoButtonClick:(Doctor) -> Unit,
-                       private val onCalenderButtonClick:(Doctor) -> Unit) :
+                       private val onCalenderButtonClick:(Doctor) -> Unit,
+                       val togleFavoriteDoctor:(Doctor) -> Unit) :
     RecyclerView.Adapter<RatingsAdapter.RatingViewHolder>() {
 
     private var doctors: List<Doctor> = emptyList()
@@ -41,6 +43,10 @@ class RatingsAdapter(  private val onInfoButtonClick:(Doctor) -> Unit,
             nameTV.text = doctor.name
             specificationTV.text = doctor.specialization
             ratingTV.text = doctor.rating.toString()
+            favBtn.setImageResource(
+                if (doctor.isFavorite) R.drawable.fav_icon_filled_darkblue
+                else R.drawable.fav_icon
+            )
         }
 
         with(holder.ratingBinding){
@@ -51,12 +57,14 @@ class RatingsAdapter(  private val onInfoButtonClick:(Doctor) -> Unit,
             calenderBtn.setOnClickListener {
                 onCalenderButtonClick(doctor)
             }
+           favBtn.setOnClickListener {
+               togleFavoriteDoctor(doctor)
+           }
         }
 
     }
 
     override fun getItemCount(): Int {
-
         return doctors.size
     }
 

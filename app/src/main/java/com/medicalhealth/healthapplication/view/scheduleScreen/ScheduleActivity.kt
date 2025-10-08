@@ -292,8 +292,6 @@ class ScheduleActivity : BaseActivity() {
             }
             favBtn.setOnClickListener {
                 mainViewModel.toggleFavoriteStatus(dummyDoctor.id)
-
-
             }
             yourselfTextView.setOnClickListener {
                 personalDetailsButtonSelection(yourselfTextView)
