@@ -2,6 +2,7 @@ package com.medicalhealth.healthapplication.view.profileScreen
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +11,12 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentProfileBinding
-import com.medicalhealth.healthapplication.view.HelpCenterActivity
+import com.medicalhealth.healthapplication.view.helpCentre.HelpCenterActivity
+import com.medicalhealth.healthapplication.view.PrivacyPolicyActivity
 import com.medicalhealth.healthapplication.view.adapter.MyProfileAdapter
 import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 import com.medicalhealth.healthapplication.viewModel.ProfileViewModel
+import kotlinx.coroutines.selects.select
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -26,6 +29,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         setUpRecyclerView()
+        Log.d("ProfileFragment", "Host Activity: ${requireActivity()::class.simpleName}")
         return binding.root
     }
 
@@ -38,7 +42,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun setUpRecyclerView(){
         with(binding){
             val adapter = MyProfileAdapter(emptyList()){ optionSelected ->
-                Toast.makeText(context, optionSelected.optionName, Toast.LENGTH_SHORT).show()
                 startActivity(optionSelected.optionName)
             }
             profileOptionRecyclerView.adapter = adapter
@@ -68,6 +71,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
         else if (selectedOption == "Settings"){
             val intent = Intent(requireActivity(), SettingsActivity::class.java)
+            startActivity(intent)
+        }
+        else if (selectedOption == "Privacy Policy"){
+
+            val intent = Intent(requireActivity(), PrivacyPolicyActivity::class.java)
             startActivity(intent)
         }
     }

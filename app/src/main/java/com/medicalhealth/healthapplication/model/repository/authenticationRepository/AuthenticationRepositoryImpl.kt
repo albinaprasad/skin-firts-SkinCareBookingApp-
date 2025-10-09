@@ -120,6 +120,19 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
         Resource.Error("Error changing password: ${e.localizedMessage}")
     }
 }
+
+    override suspend fun updateUserDetails(user: Users): Flow<Resource<Users>> = flow  {
+
+        emit(Resource.Loading())
+        try {
+            firestore.collection("users").document(user.uid).set(user).await()
+            emit(Resource.Success(user))
+        }
+        catch (e: Exception){
+            emit(Resource.Error(e.message ?: "Failed to update user details"))
+        }
+    }
+
     fun signOut(){
         auth.signOut()
     }

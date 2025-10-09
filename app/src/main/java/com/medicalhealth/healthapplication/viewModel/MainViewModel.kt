@@ -6,12 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.auth.User
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepository
 import com.medicalhealth.healthapplication.model.data.Users
+import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepository
 import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepositoryImpl
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.utils.Resource
@@ -30,6 +32,8 @@ import java.util.concurrent.TimeUnit
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository: DoctorDetailsRepository, private val bookingRepository: BookingRepository) : ViewModel() {
 
+    private val authenticationRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
+
     private val _favoriteDoctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
     val favoriteDoctors: StateFlow<Resource<List<Doctor>>> = _favoriteDoctors.asStateFlow()
     private val authRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
@@ -46,6 +50,9 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
     private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
     val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
 
+    private val _updatedUser = MutableStateFlow<Resource<Users>>(Resource.Loading())
+    val updatedUser: StateFlow<Resource<Users>> = _updatedUser
+
     private val daysList: MutableList<Int> = mutableListOf()
 
     private val dayNames = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
@@ -55,6 +62,18 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
             fetchCurrentUserDetails()
             fetchAllDoctors()
             fetchBookingsForCurrentMonth()
+        }
+    }
+
+    fun updateUserDetails(updatedUser:Users){
+        viewModelScope.launch {
+            authenticationRepository.updateUserDetails(updatedUser).collect { result ->
+                _updatedUser.value = result
+
+                if (result is Resource.Success){
+                    _currentUserDetails.value = result
+                }
+            }
         }
     }
 

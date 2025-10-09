@@ -33,5 +33,4 @@ object AppModule {
         return DoctorDetailsRepositoryImpl(firestore)
     }
 
-
 }

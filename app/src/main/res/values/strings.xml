@@ -162,6 +162,13 @@
     <string name="changing_password">Changing password....</string>
     <string name="password_change_unsuccessful">Password change unsuccessful</string>
     <string name="password_changed_successfully">Password changed successfully</string>
+    <string name="popular_topic">Popular Topic</string>
+    <string name="general">General</string>
+    <string name="name_cannot_be_empty">Name cannot be empty</string>
+    <string name="phone_cannot_be_empty">Phone cannot be empty</string>
+    <string name="Dob_cannot_be_empty">Dob cannot be empty</string>
+    <string name="profile_updated_sucessfully">Profile updated sucessfully</string>
+    <string name="profile_updated_unsucessfully">Profile updatio failed!! </string>
 
 
 </resources>

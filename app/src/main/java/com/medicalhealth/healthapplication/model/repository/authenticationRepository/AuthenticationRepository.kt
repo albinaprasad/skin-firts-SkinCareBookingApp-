@@ -12,4 +12,6 @@ interface AuthenticationRepository {
     fun fetchCurrentUserDetails(): Flow<Resource<Users>>
 
    suspend fun changePassword(currentPassword:String,newPassword:String): Resource<Unit>
+
+    suspend fun updateUserDetails(user:Users): Flow<Resource<Users>>
 }
