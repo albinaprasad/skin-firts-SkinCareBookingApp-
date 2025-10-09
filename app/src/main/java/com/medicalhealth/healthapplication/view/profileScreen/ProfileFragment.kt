@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.databinding.FragmentProfileBinding
@@ -16,7 +15,6 @@ import com.medicalhealth.healthapplication.view.PrivacyPolicyActivity
 import com.medicalhealth.healthapplication.view.adapter.MyProfileAdapter
 import com.medicalhealth.healthapplication.view.settingScreen.SettingsActivity
 import com.medicalhealth.healthapplication.viewModel.ProfileViewModel
-import kotlinx.coroutines.selects.select
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 

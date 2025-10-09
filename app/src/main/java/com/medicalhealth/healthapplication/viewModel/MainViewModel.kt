@@ -6,14 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.auth.User
 import com.medicalhealth.healthapplication.R
 import com.medicalhealth.healthapplication.model.data.Appointment
 import com.medicalhealth.healthapplication.model.data.Date
 import com.medicalhealth.healthapplication.model.data.Doctor
 import com.medicalhealth.healthapplication.model.repository.doctorDetailsRepository.DoctorDetailsRepository
 import com.medicalhealth.healthapplication.model.data.Users
-import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepository
 import com.medicalhealth.healthapplication.model.repository.authenticationRepository.AuthenticationRepositoryImpl
 import com.medicalhealth.healthapplication.model.repository.doctorBooking.BookingRepository
 import com.medicalhealth.healthapplication.utils.Resource
