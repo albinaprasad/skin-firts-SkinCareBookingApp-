@@ -11,7 +11,6 @@ import com.medicalhealth.healthapplication.databinding.ActivityHelpCenterBinding
 import com.medicalhealth.healthapplication.view.BaseActivity
 import com.medicalhealth.healthapplication.view.adapter.HelpCenterAdapter
 import com.medicalhealth.healthapplication.view.homeScreen.MainActivity
-import com.medicalhealth.healthapplication.view.profileScreen.EditProfileActivity
 import com.medicalhealth.healthapplication.viewModel.HelpCenterViewModel
 
 class HelpCenterActivity : BaseActivity() {
