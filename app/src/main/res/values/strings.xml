@@ -169,6 +169,7 @@
     <string name="Dob_cannot_be_empty">Dob cannot be empty</string>
     <string name="profile_updated_sucessfully">Profile updated sucessfully</string>
     <string name="profile_updated_unsucessfully">Profile updatio failed!! </string>
+    <string name="uploading_image">Uploading Image ....</string>
 
 
 </resources>

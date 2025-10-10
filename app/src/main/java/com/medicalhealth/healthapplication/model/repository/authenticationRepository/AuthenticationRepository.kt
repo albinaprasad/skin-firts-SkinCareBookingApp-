@@ -1,5 +1,7 @@
 package com.medicalhealth.healthapplication.model.repository.authenticationRepository
 
+import android.content.Context
+import android.net.Uri
 import com.google.firebase.auth.FirebaseUser
 import com.medicalhealth.healthapplication.model.data.Users
 import com.medicalhealth.healthapplication.utils.Resource
@@ -14,4 +16,5 @@ interface AuthenticationRepository {
    suspend fun changePassword(currentPassword:String,newPassword:String): Resource<Unit>
 
     suspend fun updateUserDetails(user:Users): Flow<Resource<Users>>
+  fun  uploadProfileImage(imageUri: Uri, context: Context): Flow<Resource<String>>
 }

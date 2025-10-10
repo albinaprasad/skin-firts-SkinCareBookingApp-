@@ -1,5 +1,10 @@
 package com.medicalhealth.healthapplication.model.repository.authenticationRepository
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.util.Base64
 import android.util.Log
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -12,6 +17,7 @@ import com.medicalhealth.healthapplication.utils.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import java.io.ByteArrayOutputStream
 
 
 class AuthenticationRepositoryImpl: AuthenticationRepository {
@@ -140,4 +146,46 @@ class AuthenticationRepositoryImpl: AuthenticationRepository {
     fun getCurrentUser():FirebaseUser?{
         return auth.currentUser
     }
+
+    override fun uploadProfileImage(imageUri: Uri, context: Context): Flow<Resource<String>> = flow {
+        emit(Resource.Loading())
+        try {
+            val inputStream = context.contentResolver.openInputStream(imageUri)
+            val bitmap = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+
+            val outputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
+            val imageBytes = outputStream.toByteArray()
+            val base64String = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+
+            if (base64String.length > 1_000_000) {  // Firestore limit ~1MB; adjust for Base64 bloat
+                emit(Resource.Error("Image too large for Firestore (exceeds 1MB)"))
+                return@flow
+            }
+
+            // Get current user UID
+            val currentUser = getCurrentUser()
+            if (currentUser == null) {
+                emit(Resource.Error("User not authenticated"))
+                return@flow
+            }
+
+            val docRef = userCollection.document(currentUser.uid).get().await()
+            if (docRef.exists()) {
+                val currentUserData = docRef.toObject<Users>()
+                val updatedUser = currentUserData?.copy(profileImageUrl = base64String) ?: Users(
+                    uid = currentUser.uid,
+                    profileImageUrl = base64String
+                )
+                userCollection.document(currentUser.uid).set(updatedUser).await()
+                emit(Resource.Success(base64String))
+            } else {
+                emit(Resource.Error("User document not found"))
+            }
+        } catch (e: Exception) {
+            emit(Resource.Error(e.message ?: "Failed to upload image"))
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.medicalhealth.healthapplication.viewModel
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -50,6 +51,9 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
 
     private val _updatedUser = MutableStateFlow<Resource<Users>>(Resource.Loading())
     val updatedUser: StateFlow<Resource<Users>> = _updatedUser
+
+    private val _profileImageUpload = MutableStateFlow<Resource<String>>(Resource.Success(""))
+    val profileImageUpload: StateFlow<Resource<String>> = _profileImageUpload.asStateFlow()
 
     private val daysList: MutableList<Int> = mutableListOf()
 
@@ -123,6 +127,8 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
             _doctors.value = it
         }
     }
+
+
 
     suspend fun fetchBookingsForCurrentMonth() {
         val calender = Calendar.getInstance()
@@ -251,6 +257,14 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
 
     fun keepMeSignedIn():FirebaseUser?{
         return authRepository.getCurrentUser()
+    }
+
+    fun uploadProfileImage(imageUri: Uri, context: Context){
+        viewModelScope.launch {
+            authenticationRepository.uploadProfileImage(imageUri,context).collect { resource ->
+                _profileImageUpload.value=resource
+            }
+        }
     }
 
 }

@@ -4,6 +4,7 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -101,4 +102,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.20")
     implementation("org.jetbrains.kotlin:kotlin-reflect:2.0.20")
+
+    //glide
+    implementation(libs.glide)
+    kapt(libs.glide.compiler)
 }
