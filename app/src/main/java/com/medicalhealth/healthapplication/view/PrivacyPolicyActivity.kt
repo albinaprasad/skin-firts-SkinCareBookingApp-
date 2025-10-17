@@ -15,15 +15,14 @@ class PrivacyPolicyActivity : BaseActivity() {
         binding.privacyPolicyWebView.loadUrl("file:///android_asset/Privacy_Policy/terms_and_condition.html")
         setUpOnListener()
     }
-
     private fun setUpOnListener() {
         with(binding) {
             backbtnPrivacyPolicy.setOnClickListener {
-                finish()
+               onBackPressed()
             }
+
         }
     }
-
     override fun onBackPressed() {
         if (binding.privacyPolicyWebView.canGoBack()) {
             binding.privacyPolicyWebView.goBack()

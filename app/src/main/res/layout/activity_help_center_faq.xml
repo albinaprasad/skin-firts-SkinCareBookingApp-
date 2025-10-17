@@ -5,8 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.helpCentre.HelpCenterActivity">
-
+    tools:context=".view.helpCentre.HelpCenterFaqActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/blueConstraint"
         android:layout_width="match_parent"
@@ -117,12 +116,11 @@
         android:autoSizeMinTextSize="17dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
-        android:backgroundTint="@color/off_blue"
+        android:backgroundTint="@color/button_blue"
         android:fontFamily="@font/leaguespartan_regular"
         android:gravity="center"
         android:includeFontPadding="false"
         android:text="@string/faq"
-        android:textColor="@color/button_blue"
         app:layout_constraintDimensionRatio="143:41"
         app:layout_constraintEnd_toStartOf="@+id/contactBtn"
         app:layout_constraintHorizontal_bias="0.5"
@@ -138,9 +136,10 @@
         android:autoSizeMinTextSize="17dp"
         android:autoSizeStepGranularity="0.5dp"
         android:autoSizeTextType="uniform"
-        android:backgroundTint="@color/button_blue"
+        android:backgroundTint="@color/off_blue"
         android:fontFamily="@font/leaguespartan_regular"
         android:gravity="center"
+        android:textColor="@color/button_blue"
         android:includeFontPadding="false"
         android:text="@string/contact_us"
         app:layout_constraintDimensionRatio="143:41"
@@ -151,16 +150,79 @@
         app:layout_constraintBottom_toBottomOf="@id/faqBtn"
         app:layout_constraintWidth_percent="0.3972" />
 
+    <Button
+        android:id="@+id/popularTopicBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="14dp"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/off_blue"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:gravity="center_vertical"
+        android:textColor="@color/button_blue"
+        android:includeFontPadding="false"
+        android:text="@string/popular_topic"
+        app:layout_constraintDimensionRatio="70:26"
+        android:layout_marginTop="8dp"
+
+        app:layout_constraintStart_toStartOf="@+id/faqBtn"
+        app:layout_constraintTop_toBottomOf="@id/faqBtn"
+        app:layout_constraintWidth_percent="0.262" />
+
+    <Button
+        android:id="@+id/generalTopicBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="15dp"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/off_blue"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:gravity="center"
+        android:textColor="@color/button_blue"
+        android:includeFontPadding="false"
+        android:text="@string/general"
+        app:layout_constraintDimensionRatio="70:26"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@+id/popularTopicBtn"
+        app:layout_constraintTop_toBottomOf="@id/faqBtn"
+        app:layout_constraintWidth_percent="0.25972" />
+
+    <Button
+        android:id="@+id/servicesTopicBtn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="15dp"
+        android:autoSizeMinTextSize="10dp"
+        android:autoSizeStepGranularity="0.5dp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="@color/off_blue"
+        android:fontFamily="@font/leaguespartan_regular"
+        android:gravity="center"
+        android:textColor="@color/button_blue"
+        android:includeFontPadding="false"
+        android:text="@string/contact_us"
+        app:layout_constraintDimensionRatio="70:26"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="10dp"
+
+        app:layout_constraintStart_toEndOf="@+id/generalTopicBtn"
+        app:layout_constraintTop_toBottomOf="@id/faqBtn"
+        app:layout_constraintWidth_percent="0.25972" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/helpCenterRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/middleGuideLine"
-        tools:listitem="@layout/item_help_center"
+        app:layout_constraintTop_toBottomOf="@id/generalTopicBtn"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -169,13 +231,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/middleGuideLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

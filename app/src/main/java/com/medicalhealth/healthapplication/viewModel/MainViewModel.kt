@@ -1,6 +1,7 @@
 package com.medicalhealth.healthapplication.viewModel
 
 import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,6 +31,8 @@ import java.util.concurrent.TimeUnit
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository: DoctorDetailsRepository, private val bookingRepository: BookingRepository) : ViewModel() {
 
+    private val authenticationRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
+
     private val _favoriteDoctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
     val favoriteDoctors: StateFlow<Resource<List<Doctor>>> = _favoriteDoctors.asStateFlow()
     private val authRepository: AuthenticationRepositoryImpl = AuthenticationRepositoryImpl()
@@ -46,6 +49,12 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
     private val _doctors = MutableStateFlow<Resource<List<Doctor>>>(Resource.Loading())
     val doctors: StateFlow<Resource<List<Doctor>>> = _doctors
 
+    private val _updatedUser = MutableStateFlow<Resource<Users>>(Resource.Loading())
+    val updatedUser: StateFlow<Resource<Users>> = _updatedUser
+
+    private val _profileImageUpload = MutableStateFlow<Resource<String>>(Resource.Success(""))
+    val profileImageUpload: StateFlow<Resource<String>> = _profileImageUpload.asStateFlow()
+
     private val daysList: MutableList<Int> = mutableListOf()
 
     private val dayNames = arrayOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
@@ -55,6 +64,18 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
             fetchCurrentUserDetails()
             fetchAllDoctors()
             fetchBookingsForCurrentMonth()
+        }
+    }
+
+    fun updateUserDetails(updatedUser:Users){
+        viewModelScope.launch {
+            authenticationRepository.updateUserDetails(updatedUser).collect { result ->
+                _updatedUser.value = result
+
+                if (result is Resource.Success){
+                    _currentUserDetails.value = result
+                }
+            }
         }
     }
 
@@ -106,6 +127,8 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
             _doctors.value = it
         }
     }
+
+
 
     suspend fun fetchBookingsForCurrentMonth() {
         val calender = Calendar.getInstance()
@@ -234,6 +257,14 @@ class MainViewModel @Inject constructor(private val repository: DoctorDetailsRep
 
     fun keepMeSignedIn():FirebaseUser?{
         return authRepository.getCurrentUser()
+    }
+
+    fun uploadProfileImage(imageUri: Uri, context: Context){
+        viewModelScope.launch {
+            authenticationRepository.uploadProfileImage(imageUri,context).collect { resource ->
+                _profileImageUpload.value=resource
+            }
+        }
     }
 
 }
