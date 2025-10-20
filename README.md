@@ -41,3 +41,6 @@ Doctor-side dashboard to manage appointments
 Push notifications for appointment reminders
 
 Chat or teleconsultation module
+
+![Screenshot_2025-10-20-22-29-03-08_3ab289e43bfbaa731ea67a466842150d](https://github.com/user-attachments/assets/d4f2e8e1-e35c-45c5-96eb-82054ce3a51d)
+![Screenshot_2025-10-20-22-29-03-08_3ab289e43bfbaa731ea67a466842150d](https://github.com/user-attachments/assets/2ad23582-affa-46a4-a3f4-22687ff04919)
