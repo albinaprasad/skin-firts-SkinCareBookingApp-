@@ -42,5 +42,8 @@ Push notifications for appointment reminders
 
 Chat or teleconsultation module
 
-![Screenshot_2025-10-20-22-29-03-08_3ab289e43bfbaa731ea67a466842150d](https://github.com/user-attachments/assets/d4f2e8e1-e35c-45c5-96eb-82054ce3a51d)
-![Screenshot_2025-10-20-22-29-03-08_3ab289e43bfbaa731ea67a466842150d](https://github.com/user-attachments/assets/2ad23582-affa-46a4-a3f4-22687ff04919)
+<img src="https://github.com/user-attachments/assets/945965c8-be87-4e3b-a7c0-5666ae02dadf" width="300">
+<img src="https://github.com/user-attachments/assets/81a70429-3135-4502-b386-b97481908027" width="300">
+<img src="https://github.com/user-attachments/assets/5f5e92dc-8c57-4943-b00b-7a5ae5f2598f" width="400">
+
+
