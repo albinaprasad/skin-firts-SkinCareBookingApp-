@@ -1,20 +1,43 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+🧴 Skin Firts – Skin Care Doctor Booking App
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Skin Firts is an Android application that allows patients to easily book appointments with skincare specialists. The app provides a smooth, intuitive platform for users to browse available doctors, schedule consultations, view their booking history, and manage personal profiles — all within a clean, user-friendly interface.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+Developed using Kotlin and XML, Skin First follows the MVVM (Model-View-ViewModel) architecture for scalable, maintainable, and testable code. Firebase Firestore is used as the backend database to handle real-time storage and retrieval of user profiles, doctor details, and appointment information.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+✨ Key Features
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+User Authentication: Register and log in securely.
+
+Doctor Listing: Browse available dermatologists with essential details.
+
+Appointment Booking: Schedule and confirm appointments quickly.
+
+Booking History: View and manage past and upcoming appointments.
+
+Profile Management: Update personal information conveniently.
+
+⚙️ Tech Stack
+
+Language: Kotlin
+
+UI: XML
+
+Architecture: MVVM
+
+Database: Firebase Firestore
+
+IDE: Android Studio
+
+🎯 Objective
+
+Skin First simplifies skincare consultation bookings by connecting patients directly with dermatologists through a digital platform. It eliminates manual scheduling and improves accessibility to skin care management.
+
+🚀 Future Enhancements
+
+Firebase Authentication with OTP or Google login
+
+Doctor-side dashboard to manage appointments
+
+Push notifications for appointment reminders
+
+Chat or teleconsultation module
